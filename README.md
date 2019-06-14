@@ -178,11 +178,12 @@ These callbacks are necessary because there is currently no way to create an `Ev
 
 Browser compatibility
 ---------------------
-Compatible with all browsers than can run WebAssembly and Blazor.
 
- IE11 | Edge | Chrome | Firefox | Safari | Opera | UC Browser
+ IE11* | Edge | Chrome | Firefox | Safari | Opera | UC Browser
 -------|------|--------|---------|--------|-------|------------
- ❌ | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | ❌ |
+ :heavy_check_mark:  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:  |
+
+\* ES6 Promise polyfill should be included, see usage example.
 
 Related projects
 -------------------------
