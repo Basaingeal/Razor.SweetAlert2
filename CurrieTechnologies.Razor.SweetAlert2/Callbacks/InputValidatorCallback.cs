@@ -17,24 +17,30 @@
         /// Initializes a new instance of the <see cref="InputValidatorCallback"/> class.
         /// Creates an <see cref="InputValidatorCallback"/> for the provided <paramref name="receiver"/> and <paramref name="callback"/>.
         /// </summary>
-        /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
         /// <param name="callback">The event callback.</param>
-        public InputValidatorCallback(object receiver, Func<string, Task<string>> callback)
+        /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
+        public InputValidatorCallback(Func<string, Task<string>> callback, ComponentBase receiver = null)
         {
             this.asyncCallback = callback;
-            this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
+            if (receiver != null)
+            {
+                this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
+            }
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InputValidatorCallback"/> class.
         /// Creates an <see cref="InputValidatorCallback"/> for the provided <paramref name="receiver"/> and <paramref name="callback"/>.
         /// </summary>
-        /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
         /// <param name="callback">The event callback.</param>
-        public InputValidatorCallback(object receiver, Func<string, string> callback)
+        /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
+        public InputValidatorCallback(Func<string, string> callback, ComponentBase receiver = null)
         {
             this.syncCallback = callback;
-            this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
+            if (receiver != null)
+            {
+                this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
+            }
         }
 
         /// <summary>
@@ -54,8 +60,9 @@
             }
 
             await this.eventCallback.InvokeAsync(arg);
+
+
             return ret;
         }
-
     }
 }
