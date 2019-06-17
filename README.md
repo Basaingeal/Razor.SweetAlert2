@@ -20,9 +20,9 @@
 </p>
 
 ---
-### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
-
 ## This package is for Server-side Blazor only. For Client-side Blazor use [CurrieTechnologies.Blazor.SweetAlert2](https://github.com/Basaingeal/Blazor.SweetAlert2)
+
+### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
 
 Installation
 ------------
@@ -169,11 +169,11 @@ Notable differences from the JavaScript library
 ```cs
 new SweetAlertOptions {
 	...
-	InputValidator = new InputValidatorCallback(this, (string input) => input.Length == 0 ? "Please provide a value" : null),
+	InputValidator = new InputValidatorCallback((string input) => input.Length == 0 ? "Please provide a value" : null, this),
 	...
 }
 ```
-`this` is passed in so that the Blazor `EventCallback` used behind the scenes can trigger a re-render if the state of the calling component was changed in the callback.
+`this` is passed in so that the Blazor `EventCallback` used behind the scenes can trigger a re-render if the state of the calling component was changed in the callback. If the callback does not require the calling component to re-render, passing in `this` is optional.
 These callbacks are necessary because there is currently no way to create an `EventCallback` in Blazor that isn't a component parameter without using the `EventCallbackFactory` which is clunky. It also allows the callback to return a value that can be used by the SweetAlert2 library. (e.g. A validation message to show if input validation fails.) Native Blazor `EventCallback`s only return generic `Task`s.
 
 Browser compatibility

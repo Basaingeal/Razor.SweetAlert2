@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <Version>0.1.3</Version>
+    <Version>0.2.0</Version>
     <Authors>Michael J. Currie</Authors>
     <Company>Currie Technologies</Company>
     <Product>Razor.SweetAlert2</Product>
@@ -16,9 +16,9 @@ Use in Server-side Blazor apps.</Description>
     <RepositoryUrl>https://github.com/Basaingeal/Razor.SweetAlert2</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
-    <PackageReleaseNotes>- Improve IE11 compatability
-- Update Nuget description</PackageReleaseNotes>
+    <PackageReleaseNotes>Passing in calling component to callback constructors is now optional</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
