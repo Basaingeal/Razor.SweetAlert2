@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CurrieTechnologies.Razor.SweetAlert2
 {
-    public class SweetAlertService
+    public class SweetAlertService: IAsyncSweetAlertService
     {
         private static readonly IDictionary<Guid, TaskCompletionSource<SweetAlertResult>> PendingFireRequests =
             new Dictionary<Guid, TaskCompletionSource<SweetAlertResult>>();

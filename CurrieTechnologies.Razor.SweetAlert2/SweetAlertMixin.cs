@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class SweetAlertMixin
+    public class SweetAlertMixin: IAsyncSweetAlertService
     {
         private readonly SweetAlertOptions storedOptions;
         private readonly SweetAlertService swal;
