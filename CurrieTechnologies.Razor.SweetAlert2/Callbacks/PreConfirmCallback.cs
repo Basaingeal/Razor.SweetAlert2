@@ -42,9 +42,44 @@
         /// <param name="callback">The event callback.</param>
         /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
         /// <exception cref="ArgumentException">Thrown if used in Queue request.</exception>
+        public PreConfirmCallback(Func<Task<string>> callback, ComponentBase receiver = null)
+        {
+            this.asyncCallback = (string _) => { return callback(); };
+            if (receiver != null)
+            {
+                this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
+            }
+
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreConfirmCallback"/> class.
+        /// Creates a <see cref="PreConfirmCallback"/> for the provided <paramref name="receiver"/> and <paramref name="callback"/>.
+        /// <para>Use in Fire requests.</para>
+        /// </summary>
+        /// <param name="callback">The event callback.</param>
+        /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
+        /// <exception cref="ArgumentException">Thrown if used in Queue request.</exception>
         public PreConfirmCallback(Func<string, string> callback, ComponentBase receiver = null)
         {
             this.syncCallback = callback;
+            if (receiver != null)
+            {
+                this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreConfirmCallback"/> class.
+        /// Creates a <see cref="PreConfirmCallback"/> for the provided <paramref name="receiver"/> and <paramref name="callback"/>.
+        /// <para>Use in Fire requests.</para>
+        /// </summary>
+        /// <param name="callback">The event callback.</param>
+        /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
+        /// <exception cref="ArgumentException">Thrown if used in Queue request.</exception>
+        public PreConfirmCallback(Func<string> callback, ComponentBase receiver = null)
+        {
+            this.syncCallback = (string _) => { return callback(); };
             if (receiver != null)
             {
                 this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
@@ -76,9 +111,43 @@
         /// <param name="callback">The event callback.</param>
         /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
         /// <exception cref="ArgumentException">Thrown if used in Fire request.</exception>
+        public PreConfirmCallback(Func<Task<IEnumerable<string>>> callback, ComponentBase receiver = null)
+        {
+            this.asyncQueueCallback = (IEnumerable<string> _) => { return callback(); };
+            if (receiver != null)
+            {
+                this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreConfirmCallback"/> class.
+        /// Creates a <see cref="PreConfirmCallback"/> for the provided <paramref name="receiver"/> and <paramref name="callback"/>.
+        /// <para>Use in Queue requests.</para>
+        /// </summary>
+        /// <param name="callback">The event callback.</param>
+        /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
+        /// <exception cref="ArgumentException">Thrown if used in Fire request.</exception>
         public PreConfirmCallback(Func<IEnumerable<string>, IEnumerable<string>> callback, ComponentBase receiver = null)
         {
             this.syncQueueCallback = callback;
+            if (receiver != null)
+            {
+                this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreConfirmCallback"/> class.
+        /// Creates a <see cref="PreConfirmCallback"/> for the provided <paramref name="receiver"/> and <paramref name="callback"/>.
+        /// <para>Use in Queue requests.</para>
+        /// </summary>
+        /// <param name="callback">The event callback.</param>
+        /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
+        /// <exception cref="ArgumentException">Thrown if used in Fire request.</exception>
+        public PreConfirmCallback(Func<IEnumerable<string>> callback, ComponentBase receiver = null)
+        {
+            this.syncQueueCallback = (IEnumerable<string> _) => { return callback(); };
             if (receiver != null)
             {
                 this.eventCallback = EventCallback.Factory.Create(receiver, () => { });

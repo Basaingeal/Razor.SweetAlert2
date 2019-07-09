@@ -1,6 +1,6 @@
 {
   "name": "currietechnologies-razorsweetalert2",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Razor class library for interacting with SweetAlert2",
   "scripts": {
     "build": "webpack",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@sweetalert2/themes": "^2.0.3",
     "lodash": "4.17.11",
-    "sweetalert2": "8.12.1"
+    "sweetalert2": "8.13.3"
   },
   "author": "Michael J. Currie",
   "private": true,
