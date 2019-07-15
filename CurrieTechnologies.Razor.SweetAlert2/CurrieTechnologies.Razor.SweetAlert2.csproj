@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <Version>0.2.1</Version>
+    <Version>0.2.2</Version>
     <Authors>Michael J. Currie</Authors>
     <Company>Currie Technologies</Company>
     <Product>Razor.SweetAlert2</Product>
@@ -16,11 +16,12 @@ Use in Server-side Blazor apps.</Description>
     <RepositoryUrl>https://github.com/Basaingeal/Razor.SweetAlert2</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
-    <PackageReleaseNotes>- Update to SweetAlert2 v8.13.3
-- Allow parameterless PreConfirm callbacks</PackageReleaseNotes>
+    <PackageReleaseNotes>- Update to SweetAlert2 v8.13.5
+
+- Upgrade lodash dependency to patch Prototype Pollution vulnerability</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>0.2.1.0</AssemblyVersion>
-    <FileVersion>0.2.1.0</FileVersion>
+    <AssemblyVersion>0.2.2.0</AssemblyVersion>
+    <FileVersion>0.2.2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

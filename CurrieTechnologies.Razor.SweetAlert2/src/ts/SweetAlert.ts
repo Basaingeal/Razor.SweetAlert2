@@ -319,15 +319,15 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.SetTheme = (theme: number): void 
   let fileName: string = "";
   switch (theme) {
     case 1: {
-      fileName = "darkTheme.min.css"
+      fileName = "darkTheme.min.css";
       break;
     }
     case 2: {
-      fileName = "minimalTheme.min.css"
+      fileName = "minimalTheme.min.css";
       break;
     }
     case 3: {
-      fileName = "borderlessTheme.min.css"
+      fileName = "borderlessTheme.min.css";
       break;
     }
     default: {
@@ -340,4 +340,4 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.SetTheme = (theme: number): void 
   styleTag.rel = "stylesheet";
   styleTag.href = `_content/currietechnologiesrazorsweetalert2/${fileName}`;
   head.appendChild(styleTag);
-}
+};
