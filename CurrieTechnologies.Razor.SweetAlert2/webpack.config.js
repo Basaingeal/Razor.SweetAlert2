@@ -8,12 +8,16 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   entry: {
     sweetAlert2: './src/ts/SweetAlert.ts',
+    'sweetAlert2.min': './src/ts/SweetAlert.ts',
     darkTheme: './src/scss/dark-theme.scss',
+    'darkTheme.min': './src/scss/dark-theme.scss',
     minimalTheme: './src/scss/minimal-theme.scss',
-    borderlessTheme: './src/scss/borderless-theme.scss'
+    'minimalTheme.min': './src/scss/minimal-theme.scss',
+    borderlessTheme: './src/scss/borderless-theme.scss',
+    'borderlessTheme.min': './src/scss/borderless-theme.scss'
   },
   output: {
-    filename: "[name].min.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, 'wwwroot')
   },
   module: {
@@ -40,18 +44,27 @@ module.exports = {
       onEnd: {
         delete: [
           path.resolve(__dirname, 'wwwroot', 'darkTheme.min.js'),
+          path.resolve(__dirname, 'wwwroot', 'darkTheme.js'),
           path.resolve(__dirname, 'wwwroot', 'minimalTheme.min.js'),
-          path.resolve(__dirname, 'wwwroot', 'borderlessTheme.min.js')
+          path.resolve(__dirname, 'wwwroot', 'minimalTheme.js'),
+          path.resolve(__dirname, 'wwwroot', 'borderlessTheme.min.js'),
+          path.resolve(__dirname, 'wwwroot', 'borderlessTheme.js')
         ]
       }
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].min.css",
+      filename: "[name].css",
       path: path.resolve(__dirname, 'wwwroot')
     }),
     new CleanWebpackPlugin()
   ],
   optimization: {
-    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
+    minimizer: [
+      new TerserJSPlugin({
+        include: /\.min\.js$/
+      }),
+      new OptimizeCSSAssetsPlugin({
+        assetNameRegExp: /\.min\.css$/
+      })]
   }
 };
