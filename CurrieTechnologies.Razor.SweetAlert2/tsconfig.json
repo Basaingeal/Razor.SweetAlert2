@@ -4,7 +4,7 @@
     "sourceMap": false,
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
-    "module": "es6",
+    "module": "esnext",
     "target": "es5",
     "lib": [
       "es2015",
