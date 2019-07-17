@@ -55,6 +55,7 @@ steps:
     arguments: '-c $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Publishing'
   inputs:
     command: 'publish'
     publishWebProjects: false
@@ -64,13 +65,15 @@ steps:
     modifyOutputPath: false
 
 - task: DotNetCoreCLI@2
+  displayName: 'Packing'
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
-    arguments: '--version-suffix ci-$(Build.BuildNumber)'
+    arguments: '--version-suffix "ci-$(Build.BuildNumber)"'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Pushing'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
