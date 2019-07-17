@@ -10,6 +10,11 @@ variables:
 
 steps:
 - task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: '$(projectName)'
+    
+- task: Npm@1
   displayName: 'Linting'
   inputs:
     command: 'custom'
