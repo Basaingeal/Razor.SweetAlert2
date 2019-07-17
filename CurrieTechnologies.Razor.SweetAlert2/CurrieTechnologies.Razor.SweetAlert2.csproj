@@ -18,7 +18,7 @@ Use in Server-side Blazor apps.</Description>
     <PackageReleaseNotes>- Update to SweetAlert2 v8.13.5
 
 - Upgrade lodash dependency to patch Prototype Pollution vulnerability</PackageReleaseNotes>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,5 +42,18 @@ Use in Server-side Blazor apps.</Description>
     <None Include="tsconfig.json" />
     <None Include="tslint.json" />
   </ItemGroup>
+
+  <Target Name="Lint" BeforeTargets="Prettier">
+    <Message Text="Linting" />
+    <Exec Condition="$(Configuration) == 'Release'" Command="npm run lint" />
+  </Target>
+  <Target Name="Prettier" BeforeTargets="Webpack">
+    <Message Text="Checking Prettier Format" />
+    <Exec Condition="$(Configuration) == 'Release'" Command="npm run prettier:check" />
+  </Target>
+  <Target Name="Webpack" BeforeTargets="PreBuildEvent">
+    <Message Text="Building JavaScript and CSS" />
+    <Exec Condition="$(Configuration) == 'Release'" Command="npm run build" />
+  </Target>
 
 </Project>
