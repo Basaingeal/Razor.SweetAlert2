@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <VersionPrefix>0.2.3</VersionPrefix>
+    <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <Authors>Michael J. Currie</Authors>
     <Company>Currie Technologies</Company>
     <Product>Razor.SweetAlert2</Product>
