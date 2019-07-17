@@ -4,7 +4,7 @@ import ISimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import ISweetAlertQueueResult from "./SweetAlertQueueResult";
 import ISweetAlertResult from "./SweetAlertResult";
 
-let DotNet: any;
+declare const DotNet: any;
 const domWindow = window as any;
 const namespace = "CurrieTechnologies.Razor.SweetAlert2";
 
