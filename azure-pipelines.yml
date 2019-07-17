@@ -14,18 +14,21 @@ steps:
   inputs:
     command: 'custom'
     customCommand: 'run lint'
+    workingDir: '$(projectName)'
 
 - task: Npm@1
   displayName: 'Checking Prettier'
   inputs:
     command: 'custom'
     customCommand: 'run prettier:check'
+    workingDir: '$(projectName)'
 
 - task: Npm@1
   displayName: 'Building JS and CSS'
   inputs:
     command: 'custom'
     customCommand: 'run build'
+    workingDir: '$(projectName)'
 
 - task: DotNetCoreInstaller@0
   displayName: 'Installing .NET Core SDK...'
