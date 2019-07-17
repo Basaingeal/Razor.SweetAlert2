@@ -4,8 +4,6 @@
   "description": "A Razor class library for interacting with SweetAlert2",
   "scripts": {
     "build": "SET NODE_ENV=production && webpack -p --color",
-    "build:dev": "SET NODE_ENV=development && webpack -d --color",
-    "build:prod": "SET NODE_ENV=production && webpack -p --color",
     "build:tsc": "tsc",
     "watch": "webpack --watch",
     "lint": "tslint ./src/*.ts",
