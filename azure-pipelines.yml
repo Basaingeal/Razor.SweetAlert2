@@ -22,7 +22,7 @@ steps:
   displayName: 'Install Latest NPM'
   inputs:
     command: 'custom'
-    customCommand: 'install -g npm @latest'
+    customCommand: 'install -g npm@latest'
     workingDir: '$(projectName)'
 
 - task: Npm@1
