@@ -69,8 +69,10 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    versioningScheme: 'off'
-    arguments: '--version-suffix "ci-$(Build.BuildNumber)"'
+    versioningScheme: 'byPrereleaseNumber'
+    majorVersion: '0'
+    minorVersion: '2'
+    patchVersion: '4'
 
 - task: DotNetCoreCLI@2
   displayName: 'Pushing'
