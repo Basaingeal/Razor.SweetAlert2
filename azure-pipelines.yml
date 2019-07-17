@@ -59,30 +59,22 @@ steps:
     projects: '**/*.csproj'
     arguments: '-c $(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Publishing'
-  inputs:
-    command: 'publish'
-    publishWebProjects: false
-    projects: '**/*.csproj'
-    arguments: '-c $(buildConfiguration) -o out'
-    zipAfterPublish: false
-    modifyOutputPath: false
 
 - task: DotNetCoreCLI@2
   displayName: 'Packing'
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    versioningScheme: 'byPrereleaseNumber'
-    majorVersion: '0'
-    minorVersion: '2'
-    patchVersion: '4'
+    versioningScheme: 'byBuildNumber'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Pushing'
+- task: CopyFiles@2
+  displayName: 'Copying CHANGELOG'
   inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: '92bb098c-7077-481e-813d-9c0d49ec780d'
+    Contents: '**/CHANGELOG.md'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
