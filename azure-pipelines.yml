@@ -2,10 +2,12 @@ name: 0.2.9
 
 trigger:
 - master
+- develop
 - release/*
 
 pr:
 - master
+- develop
 - release/*
 
 pool:
@@ -18,7 +20,7 @@ variables:
 steps:
 - task: Npm@1
   inputs:
-    command: 'install'
+    command: 'ci'
     workingDir: '$(projectName)'
     
 - task: Npm@1
