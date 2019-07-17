@@ -53,17 +53,3 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '-c Release'
-
-- task: NuGetCommand@2
-  displayName: 'Generating Nuget Package... '
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    versioningScheme: 'byBuildNumber'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: '92bb098c-7077-481e-813d-9c0d49ec780d'
