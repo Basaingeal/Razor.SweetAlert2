@@ -8,9 +8,9 @@ import ISimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import ISweetAlertQueueResult from "./SweetAlertQueueResult";
 import ISweetAlertResult from "./SweetAlertResult";
 
-declare var DotNet: any;
+let var DotNet: any;
 const domWindow = window as any;
-const namespace: string = "CurrieTechnologies.Razor.SweetAlert2";
+const namespace = "CurrieTechnologies.Razor.SweetAlert2";
 
 function getEnumNumber(enumString: string): number {
   if (enumString === "cancel") {
@@ -316,7 +316,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.IsUpdatableParamter = (paramName:
 };
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.SetTheme = (theme: number): void => {
-  let fileName: string = "";
+  let fileName = "";
   switch (theme) {
     case 1: {
       fileName = "darkTheme.min.css";
