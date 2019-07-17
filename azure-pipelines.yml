@@ -1,4 +1,4 @@
-name: $(Build.BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+name: 0.2.7
 
 trigger:
 - master
@@ -72,7 +72,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copying CHANGELOG'
   inputs:
-    Contents: '**/CHANGELOG.md'
+    Contents: '$(projectName)/CHANGELOG.md'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
