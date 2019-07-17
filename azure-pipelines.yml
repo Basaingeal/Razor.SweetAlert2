@@ -2,11 +2,11 @@ name: 0.2.9
 
 trigger:
 - master
-- releases/*
+- release/*
 
 pr:
 - master
-- releases/*
+- release/*
 
 pool:
   vmImage: 'windows-latest'
