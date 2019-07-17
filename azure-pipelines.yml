@@ -2,33 +2,60 @@ trigger:
 - master
 
 pool:
-  vmImage: 'vs2017-win2016'
+  vmImage: 'windows-latest'
 
 variables:
   buildConfiguration: 'Release'
+  projectName: 'CurrieTechnologies.Razor.SweetAlert2'
 
 steps:
+- task: Npm@1
+  displayName: 'Linting'
+  inputs:
+    command: 'custom'
+    customCommand: 'run lint'
+
+- task: Npm@1
+  displayName: 'Checking Prettier'
+  inputs:
+    command: 'custom'
+    customCommand: 'run prettier:check'
+
+- task: Npm@1
+  displayName: 'Building JS and CSS'
+  inputs:
+    command: 'custom'
+    customCommand: 'run build'
+
 - task: DotNetCoreInstaller@0
   displayName: 'Installing .NET Core SDK...'
   inputs:
     version: 3.0.100-preview6-012264
 
-- task: NuGetToolInstaller@0
-  displayName: 'Installing Nuget Tools...'
+- task: DotNetCoreCLI@2
+  displayName: 'Restoring Nuget Packages'
   inputs:
-    versionSpec: '5.0.2'
-
-- script: dotnet build --configuration $(buildConfiguration) CurrieTechnologies.Razor.Sweetalert2/CurrieTechnologies.Razor.SweetAlert2.csproj
-  displayName: 'Building $(buildConfiguration)...'
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Building'
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '-c Release'
+
+- task: NuGetCommand@2
   displayName: 'Generating Nuget Package... '
   inputs:
-    command: pack
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'byBuildNumber'
 
-    arguments: --no-build
-    packagesToPack: CurrieTechnologies.Razor.SweetAlert2/CurrieTechnologies.Razor.SweetAlert2.csproj
-    configuration: $(buildConfiguration)
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publishing Build Artifacts...'
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '92bb098c-7077-481e-813d-9c0d49ec780d'
