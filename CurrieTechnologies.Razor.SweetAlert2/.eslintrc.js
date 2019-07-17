@@ -11,4 +11,7 @@ module.exports = {
     'prettier',
     'prettier/@typescript-eslint'
   ],
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'off'
+  }
 };
