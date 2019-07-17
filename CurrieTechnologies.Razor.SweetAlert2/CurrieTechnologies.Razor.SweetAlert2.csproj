@@ -15,9 +15,7 @@ Use in Server-side Blazor apps.</Description>
     <RepositoryUrl>https://github.com/Basaingeal/Razor.SweetAlert2</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
-    <PackageReleaseNotes>- Update to SweetAlert2 v8.13.5
-
-- Upgrade lodash dependency to patch Prototype Pollution vulnerability</PackageReleaseNotes>
+    <PackageReleaseNotes>- Update to SweetAlert2 v8.13.6</PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
