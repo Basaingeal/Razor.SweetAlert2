@@ -1,3 +1,5 @@
+name: $(Build.BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+
 trigger:
 - master
 - releases/*
