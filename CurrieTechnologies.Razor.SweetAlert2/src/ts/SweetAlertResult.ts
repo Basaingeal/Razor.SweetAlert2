@@ -1,4 +1,4 @@
-export default interface ISweetAlertResult {
+export default interface SweetAlertResult {
   value?: string;
   dismiss?: number;
 }

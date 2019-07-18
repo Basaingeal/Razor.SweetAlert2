@@ -1,11 +1,13 @@
-name: 0.2.9
+name: 0.3.0
 
 trigger:
 - master
+- develop
 - release/*
 
 pr:
 - master
+- develop
 - release/*
 
 pool:
@@ -17,8 +19,17 @@ variables:
 
 steps:
 - task: Npm@1
+  displayName: 'Install Latest NPM'
   inputs:
-    command: 'install'
+    command: 'custom'
+    customCommand: 'install -g npm@latest'
+    workingDir: '$(projectName)'
+
+- task: Npm@1
+  displayName: 'Install CI'
+  inputs:
+    command: 'custom'
+    customCommand: 'ci'
     workingDir: '$(projectName)'
     
 - task: Npm@1

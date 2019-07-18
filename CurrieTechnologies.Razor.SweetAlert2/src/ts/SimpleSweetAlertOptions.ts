@@ -3,7 +3,7 @@ import { InputType } from "./InputType";
 import { SweetAlertGrow } from "./SweetAlertGrow";
 import { SweetAlertPosition } from "./SweetAlertPosition";
 
-export default interface ISimpleSweetAlertOptions {
+export default interface SimpleSweetAlertOptions {
   title?: string;
 
   titleText?: string;
@@ -77,6 +77,8 @@ export default interface ISimpleSweetAlertOptions {
   focusCancel?: boolean;
 
   showCloseButton?: boolean;
+
+  closeButtonHtml?: string;
 
   closeButtonAriaLabel?: string;
 

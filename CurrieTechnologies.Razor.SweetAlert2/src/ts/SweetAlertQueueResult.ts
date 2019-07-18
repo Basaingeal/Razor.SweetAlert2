@@ -1,4 +1,4 @@
-export default interface ISweetAlertQueueResult {
+export default interface SweetAlertQueueResult {
   value?: string[];
   dismiss?: number;
 }
