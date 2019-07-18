@@ -204,6 +204,11 @@
         public bool? ShowCloseButton { get; set; }
 
         /// <summary>
+        /// Use this to change the content of the close button.
+        /// </summary>
+        public string CloseButtonHtml { get; set; }
+
+        /// <summary>
         /// Use this to change the `aria-label` for the close button.
         /// </summary>
         public string CloseButtonAriaLabel { get; set; }
@@ -329,68 +334,6 @@
 
         internal SweetAlertOptionPOCO ToPOCO()
         {
-            ////return new SweetAlertOptionPOCO
-            ////{
-            ////    Title = Title,
-            ////    TitleText = TitleText,
-            ////    Text = Text,
-            ////    Html = Html,
-            ////    Footer = Footer,
-            ////    Type = Type?.ToString(),
-            ////    Backdrop = Backdrop ?? true,
-            ////    Toast = Toast ?? false,
-            ////    Target = Target ?? "body",
-            ////    Input = Input?.ToString(),
-            ////    Width = Width,
-            ////    Padding = Padding,
-            ////    Background = Background ?? "#fff",
-            ////    Position = Position?.ToString() ?? SweetAlertPosition.CENTER.ToString(),
-            ////    Grow = Grow?.ToString(),
-            ////    CustomClass = CustomClass ?? new SweetAlertCustomClass(""),
-            ////    Timer = Timer,
-            ////    Animation = Animation ?? true,
-            ////    HeightAuto = HeightAuto ?? true,
-            ////    AllowOutsideClick = AllowOutsideClick ?? true,
-            ////    AllowEscapeKey = AllowEscapeKey ?? true,
-            ////    AllowEnterKey = AllowEnterKey ?? true,
-            ////    StopKeydownPropagation = StopKeydownPropagation ?? true,
-            ////    KeydownListenerCapture = KeydownListenerCapture ?? false,
-            ////    ShowConfirmButton = ShowConfirmButton ?? true,
-            ////    ShowCancelButton = ShowCancelButton ?? false,
-            ////    ConfirmButtonText = ConfirmButtonText ?? "OK",
-            ////    CancelButtonText = CancelButtonText ?? "Cancel",
-            ////    ConfirmButtonColor = ConfirmButtonColor ?? "#3085d6",
-            ////    CancelButtonColor = CancelButtonColor ?? "#aaa",
-            ////    ConfirmButtonAriaLabel = ConfirmButtonAriaLabel ?? "",
-            ////    CancelButtonAriaLabel = CancelButtonAriaLabel ?? "",
-            ////    ButtonsStyling = ButtonsStyling ?? true,
-            ////    ReverseButtons = ReverseButtons ?? false,
-            ////    FocusConfirm = FocusConfirm ?? true,
-            ////    FocusCancel = FocusCancel ?? false,
-            ////    ShowCloseButton = ShowCloseButton ?? false,
-            ////    CloseButtonAriaLabel = CloseButtonAriaLabel ?? "Close this dialog",
-            ////    ShowLoaderOnConfirm = ShowLoaderOnConfirm ?? false,
-            ////    PreConfirm = PreConfirm != null,
-            ////    ImageUrl = ImageUrl,
-            ////    ImageWidth = ImageWidth,
-            ////    ImageHeight = ImageHeight,
-            ////    ImageAlt = ImageAlt ?? "",
-            ////    InputPlaceholder = InputPlaceholder ?? "",
-            ////    InputValue = InputValue ?? "",
-            ////    InputOptions = InputOptions,
-            ////    InputAutoTrim = InputAutoTrim ?? true,
-            ////    InputAttributes = InputAttributes,
-            ////    InputValidator = InputValidator != null,
-            ////    ValidationMessage = ValidationMessage,
-            ////    ProgressSteps = ProgressSteps ?? new List<string>(),
-            ////    CurrentProgressStep = CurrentProgressStep,
-            ////    ProgressStepsDistance = ProgressStepsDistance,
-            ////    OnBeforeOpen = OnBeforeOpen != null,
-            ////    OnAfterClose = OnAfterClose != null,
-            ////    OnOpen = OnOpen != null,
-            ////    OnClose = OnClose != null,
-            ////    ScrollbarPadding = ScrollbarPadding ?? true
-            ////};
             return new SweetAlertOptionPOCO
             {
                 Title = this.Title,
@@ -430,6 +373,7 @@
                 FocusConfirm = this.FocusConfirm,
                 FocusCancel = this.FocusCancel,
                 ShowCloseButton = this.ShowCloseButton,
+                CloseButtonHtml = this.CloseButtonHtml,
                 CloseButtonAriaLabel = this.CloseButtonAriaLabel,
                 ShowLoaderOnConfirm = this.ShowLoaderOnConfirm,
                 PreConfirm = this.PreConfirm != null,

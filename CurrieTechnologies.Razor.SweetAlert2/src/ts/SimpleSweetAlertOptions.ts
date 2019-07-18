@@ -78,6 +78,8 @@ export default interface SimpleSweetAlertOptions {
 
   showCloseButton?: boolean;
 
+  closeButtonHtml?: string;
+
   closeButtonAriaLabel?: string;
 
   showLoaderOnConfirm?: boolean;

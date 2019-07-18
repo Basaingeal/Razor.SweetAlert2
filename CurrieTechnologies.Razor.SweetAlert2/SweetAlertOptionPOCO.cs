@@ -78,6 +78,8 @@
 
         public bool? ShowCloseButton { get; set; }
 
+        public string CloseButtonHtml { get; set; }
+
         public string CloseButtonAriaLabel { get; set; }
 
         public bool? ShowLoaderOnConfirm { get; set; }
