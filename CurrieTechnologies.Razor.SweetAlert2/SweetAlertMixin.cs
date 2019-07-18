@@ -350,6 +350,7 @@
                 FocusConfirm = newSettings.FocusConfirm ?? this.storedOptions.FocusConfirm,
                 FocusCancel = newSettings.FocusCancel ?? this.storedOptions.FocusCancel,
                 ShowCloseButton = newSettings.ShowCloseButton ?? this.storedOptions.ShowCloseButton,
+                CloseButtonHtml = newSettings.CloseButtonHtml ?? this.storedOptions.CloseButtonHtml,
                 CloseButtonAriaLabel = newSettings.CloseButtonAriaLabel ?? this.storedOptions.CloseButtonAriaLabel,
                 ShowLoaderOnConfirm = newSettings.ShowLoaderOnConfirm ?? this.storedOptions.ShowLoaderOnConfirm,
                 PreConfirm = newSettings.PreConfirm ?? this.storedOptions.PreConfirm,
