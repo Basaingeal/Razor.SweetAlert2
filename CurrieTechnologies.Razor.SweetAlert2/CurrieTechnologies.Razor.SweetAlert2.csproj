@@ -15,7 +15,9 @@ Use in Server-side Blazor apps.</Description>
     <RepositoryUrl>https://github.com/Basaingeal/Razor.SweetAlert2</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
-    <PackageReleaseNotes>- Update to SweetAlert2 v8.13.6</PackageReleaseNotes>
+    <PackageReleaseNotes>- Update to SweetAlert2 v8.14.0
+- Add CloseButtonHtml property to SweetAlertOptions
+    </PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
