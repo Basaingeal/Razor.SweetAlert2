@@ -375,7 +375,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 "CurrieTechnologies.Razor.SweetAlert2.Queue",
                 requestId,
                 tuples.Select(t => t.RequestId).ToArray(),
-                tuples.Select(t => t.Step.ToPOCO()));
+                tuples.Select(t => t.Step.ToPOCO()).ToArray());
             return await tcs.Task;
         }
 
