@@ -47,6 +47,13 @@ steps:
     workingDir: '$(projectName)'
 
 - task: Npm@1
+  displayName: 'Checking Types'
+  inputs:
+    command: 'custom'
+    customCommand: 'run build:tsc'
+    workingDir: '$(projectName)'
+
+- task: Npm@1
   displayName: 'Building JS and CSS'
   inputs:
     command: 'custom'

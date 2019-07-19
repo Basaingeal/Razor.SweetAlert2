@@ -36,17 +36,21 @@ function getStringVerison(input: any): string {
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const myResult = (result as any) as ISweetAlertResult;
-  myResult.value = myResult.value ? getStringVerison(myResult.value) : null;
-  myResult.dismiss = myResult.dismiss ? getEnumNumber(result.dismiss.toString()) : null;
+  myResult.value = myResult.value ? getStringVerison(myResult.value) : undefined;
+  myResult.dismiss = myResult.dismiss ? getEnumNumber(myResult.dismiss.toString()) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
 }
 
 function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const queueResult = result as ISweetAlertQueueResult;
   queueResult.value = result.value
-    ? flatten(result.value).map((v: any): string | null => (v ? getStringVerison(v) : null))
-    : null;
-  queueResult.dismiss = queueResult.dismiss ? getEnumNumber(result.dismiss.toString()) : null;
+    ? flatten(result.value).map((v: any): string | undefined =>
+        v ? getStringVerison(v) : undefined
+      )
+    : undefined;
+  queueResult.dismiss = queueResult.dismiss
+    ? getEnumNumber(queueResult.dismiss.toString())
+    : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveQueueResult", requestId, queueResult);
 }
 
@@ -95,7 +99,7 @@ function dispatchOnComplete(requestId: string): void {
 }
 
 function cleanSettings(settings: ISimpleSweetAlertOptions): ISimpleSweetAlertOptions {
-  const settingsToReturn: any = { ...settings } as any;
+  const settingsToReturn: any = settings as any;
   for (const propName in settingsToReturn) {
     if (settingsToReturn[propName] === null || settingsToReturn[propName] === undefined) {
       delete settingsToReturn[propName];
@@ -167,52 +171,53 @@ domWindow.CurrieTechnologies.Razor = domWindow.CurrieTechnologies.Razor || {};
 domWindow.CurrieTechnologies.Razor.SweetAlert2 =
   domWindow.CurrieTechnologies.Razor.SweetAlert2 || {};
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = async (
+domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
   requestId: string,
   title: string,
   message: string,
   type: SweetAlertType
-): Promise<void> => {
+): void => {
   let params: [string] | [string, string] | [string, string, string] = [title];
-  params = message
-    ? ([...params, message] as [string, string])
-    : ([...params, ""] as [string, string]);
-  params = type ? ([...params, type.toString()] as [string, string, string]) : params;
-  const result = await Swal.fire(Swal.argsToParams(params));
-  await dispatchFireResult(requestId, result);
+  params = params.concat(message || "") as [string, string];
+  params = type ? (params.concat(type.toString()) as [string, string, string]) : params;
+  Swal.fire(Swal.argsToParams(params)).then((result): void => {
+    dispatchFireResult(requestId, result);
+  });
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = async (
+domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = (
   requestId: string,
   settingsPoco: ISimpleSweetAlertOptions
-): Promise<void> => {
+): void => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
 
-  const result = await Swal.fire(swalSettings);
-  await dispatchFireResult(requestId, result);
+  Swal.fire(swalSettings).then((result): void => {
+    dispatchFireResult(requestId, result);
+  });
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Queue = async (
+domWindow.CurrieTechnologies.Razor.SweetAlert2.Queue = (
   requestId: string,
   optionIds: string[],
   steps: ISimpleSweetAlertOptions[]
-): Promise<void> => {
+): void => {
   const arrSwalSettings: SweetAlertOptions[] = optionIds.map(
     (optionId, i): SweetAlertOptions => getSwalSettingsFromPoco(steps[i], optionId, true)
   );
 
-  const result = await Swal.queue(arrSwalSettings);
-  await dispatchQueueResult(requestId, result);
+  Swal.queue(arrSwalSettings).then((result): void => {
+    dispatchQueueResult(requestId, result);
+  });
 };
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.IsVisible = (): boolean => {
   return !!Swal.isVisible();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Update = async (
+domWindow.CurrieTechnologies.Razor.SweetAlert2.Update = (
   requestId: string,
   settingsPoco: ISimpleSweetAlertOptions
-): Promise<void> => {
+): void => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
   Swal.update(swalSettings);
 };
@@ -291,7 +296,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.IncreaseTimer = (n: number): numb
   return Swal.increaseTimer(n);
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.GetQueueStep = (): string => {
+domWindow.CurrieTechnologies.Razor.SweetAlert2.GetQueueStep = (): string | null => {
   return Swal.getQueueStep();
 };
 

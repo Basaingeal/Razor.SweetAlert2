@@ -5,8 +5,11 @@
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "target": "es5",
+    "isolatedModules": true,
+    "target": "esnext",
+    "strict": true,
+    "moduleResolution": "node",
+    "noEmit": true,
     "lib": [
       "es2015",
       "dom"
@@ -14,5 +17,5 @@
     "allowJs": true,
     "types": ["sweetalert2"]
   },
-  "include": ["./src/ts/SweetAlert.ts"]
+  "include": ["./src/ts"]
 }
