@@ -1,4 +1,4 @@
 export default interface SweetAlertQueueResult {
-  value?: string[];
+  value?: (string | undefined)[];
   dismiss?: number;
 }

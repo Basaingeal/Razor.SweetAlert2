@@ -1,4 +1,6 @@
-﻿import flatten from "lodash/flatten";
+﻿import "regenerator-runtime/runtime";
+
+import flatten from "lodash/flatten";
 import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertType } from "sweetalert2";
 import ISimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import ISweetAlertQueueResult from "./SweetAlertQueueResult";
@@ -36,17 +38,21 @@ function getStringVerison(input: any): string {
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const myResult = (result as any) as ISweetAlertResult;
-  myResult.value = myResult.value ? getStringVerison(myResult.value) : null;
-  myResult.dismiss = myResult.dismiss ? getEnumNumber(result.dismiss.toString()) : null;
+  myResult.value = myResult.value ? getStringVerison(myResult.value) : undefined;
+  myResult.dismiss = myResult.dismiss ? getEnumNumber(myResult.dismiss.toString()) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
 }
 
 function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const queueResult = result as ISweetAlertQueueResult;
   queueResult.value = result.value
-    ? flatten(result.value).map((v: any): string | null => (v ? getStringVerison(v) : null))
-    : null;
-  queueResult.dismiss = queueResult.dismiss ? getEnumNumber(result.dismiss.toString()) : null;
+    ? flatten(result.value).map((v: any): string | undefined =>
+        v ? getStringVerison(v) : undefined
+      )
+    : undefined;
+  queueResult.dismiss = queueResult.dismiss
+    ? getEnumNumber(queueResult.dismiss.toString())
+    : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveQueueResult", requestId, queueResult);
 }
 
@@ -291,7 +297,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.IncreaseTimer = (n: number): numb
   return Swal.increaseTimer(n);
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.GetQueueStep = (): string => {
+domWindow.CurrieTechnologies.Razor.SweetAlert2.GetQueueStep = (): string | null => {
   return Swal.getQueueStep();
 };
 
