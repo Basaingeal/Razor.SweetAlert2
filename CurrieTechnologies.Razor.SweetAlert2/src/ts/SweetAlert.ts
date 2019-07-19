@@ -1,6 +1,4 @@
-﻿import "regenerator-runtime/runtime";
-
-import flatten from "lodash/flatten";
+﻿import flatten from "lodash/flatten";
 import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertType } from "sweetalert2";
 import ISimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import ISweetAlertQueueResult from "./SweetAlertQueueResult";
@@ -101,7 +99,7 @@ function dispatchOnComplete(requestId: string): void {
 }
 
 function cleanSettings(settings: ISimpleSweetAlertOptions): ISimpleSweetAlertOptions {
-  const settingsToReturn: any = { ...settings } as any;
+  const settingsToReturn: any = settings as any;
   for (const propName in settingsToReturn) {
     if (settingsToReturn[propName] === null || settingsToReturn[propName] === undefined) {
       delete settingsToReturn[propName];
@@ -173,42 +171,43 @@ domWindow.CurrieTechnologies.Razor = domWindow.CurrieTechnologies.Razor || {};
 domWindow.CurrieTechnologies.Razor.SweetAlert2 =
   domWindow.CurrieTechnologies.Razor.SweetAlert2 || {};
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = async (
+domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
   requestId: string,
   title: string,
   message: string,
   type: SweetAlertType
-): Promise<void> => {
+): void => {
   let params: [string] | [string, string] | [string, string, string] = [title];
-  params = message
-    ? ([...params, message] as [string, string])
-    : ([...params, ""] as [string, string]);
-  params = type ? ([...params, type.toString()] as [string, string, string]) : params;
-  const result = await Swal.fire(Swal.argsToParams(params));
-  await dispatchFireResult(requestId, result);
+  params = params.concat(message || "") as [string, string]
+  params = type ? params.concat(type.toString()) as [string, string, string] : params;
+  Swal.fire(Swal.argsToParams(params)).then((result): void => {
+    dispatchFireResult(requestId, result);
+  });
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = async (
+domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = (
   requestId: string,
   settingsPoco: ISimpleSweetAlertOptions
-): Promise<void> => {
+): void => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
 
-  const result = await Swal.fire(swalSettings);
-  await dispatchFireResult(requestId, result);
+  Swal.fire(swalSettings).then((result): void => {
+    dispatchFireResult(requestId, result);
+  });
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Queue = async (
+domWindow.CurrieTechnologies.Razor.SweetAlert2.Queue = (
   requestId: string,
   optionIds: string[],
   steps: ISimpleSweetAlertOptions[]
-): Promise<void> => {
+): void => {
   const arrSwalSettings: SweetAlertOptions[] = optionIds.map(
     (optionId, i): SweetAlertOptions => getSwalSettingsFromPoco(steps[i], optionId, true)
   );
 
-  const result = await Swal.queue(arrSwalSettings);
-  await dispatchQueueResult(requestId, result);
+  Swal.queue(arrSwalSettings).then((result): void => {
+    dispatchQueueResult(requestId, result);
+  });
 };
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.IsVisible = (): boolean => {
