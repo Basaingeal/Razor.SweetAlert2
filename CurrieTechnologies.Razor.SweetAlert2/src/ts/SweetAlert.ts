@@ -178,8 +178,8 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
   type: SweetAlertType
 ): void => {
   let params: [string] | [string, string] | [string, string, string] = [title];
-  params = params.concat(message || "") as [string, string]
-  params = type ? params.concat(type.toString()) as [string, string, string] : params;
+  params = params.concat(message || "") as [string, string];
+  params = type ? (params.concat(type.toString()) as [string, string, string]) : params;
   Swal.fire(Swal.argsToParams(params)).then((result): void => {
     dispatchFireResult(requestId, result);
   });

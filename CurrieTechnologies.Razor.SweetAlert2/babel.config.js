@@ -6,8 +6,6 @@ module.exports = function(api) {
       "@babel/preset-env",
       {
         useBuiltIns: false,
-        corejs: 3,
-        debug: true
       }
     ],
     "@babel/preset-typescript"
