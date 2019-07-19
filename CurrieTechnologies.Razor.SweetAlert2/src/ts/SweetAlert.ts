@@ -215,10 +215,10 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.IsVisible = (): boolean => {
   return !!Swal.isVisible();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Update = async (
+domWindow.CurrieTechnologies.Razor.SweetAlert2.Update = (
   requestId: string,
   settingsPoco: ISimpleSweetAlertOptions
-): Promise<void> => {
+): void => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
   Swal.update(swalSettings);
 };

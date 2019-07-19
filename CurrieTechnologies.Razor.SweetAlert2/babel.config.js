@@ -1,11 +1,11 @@
 module.exports = function(api) {
-  api.cache(false)
+  api.cache(true)
 
   const presets = [
     [
       "@babel/preset-env",
       {
-        useBuiltIns: "entry",
+        useBuiltIns: "usage",
         corejs: 3
       }
     ],
@@ -13,7 +13,8 @@ module.exports = function(api) {
   ];
   
   const plugins = [
-    "@babel/proposal-class-properties"
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread"
   ]
 
   return { presets, plugins }
