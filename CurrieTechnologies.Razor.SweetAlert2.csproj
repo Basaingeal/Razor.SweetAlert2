@@ -47,9 +47,13 @@ Use in Server-side Blazor apps.</Description>
     <Message Text="Linting" />
     <Exec Condition="$(Configuration) == 'Release'" Command="npm run lint" />
   </Target>
-  <Target Name="Prettier" BeforeTargets="Webpack">
+  <Target Name="Prettier" BeforeTargets="Types">
     <Message Text="Checking Prettier Format" />
     <Exec Condition="$(Configuration) == 'Release'" Command="npm run prettier:check" />
+  </Target>
+  <Target Name="Types" BeforeTargets="Webpack">
+    <Message Text="Checking Types" />
+    <Exec Condition="$(Configuration) == 'Release'" Command="npm run build:tsc" />
   </Target>
   <Target Name="Webpack" BeforeTargets="PreBuildEvent">
     <Message Text="Building JavaScript and CSS" />
