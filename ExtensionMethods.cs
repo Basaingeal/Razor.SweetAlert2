@@ -16,7 +16,7 @@
         /// <returns>The original <see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddSweetAlert2(this IServiceCollection services)
         {
-            return services.AddTransient<SweetAlertService>();
+            return services.AddScoped<SweetAlertService>();
         }
 
         /// <summary>
@@ -29,7 +29,7 @@
         {
             var options = new SweetAlertServiceOptions();
             configureOptions(options);
-            return services.AddTransient(s => new SweetAlertService(s.GetRequiredService<IJSRuntime>(), options));
+            return services.AddScoped(s => new SweetAlertService(s.GetRequiredService<IJSRuntime>(), options));
         }
     }
 }
