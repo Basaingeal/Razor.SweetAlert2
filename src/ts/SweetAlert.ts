@@ -36,21 +36,22 @@ function getStringVerison(input: any): string {
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const myResult = (result as any) as ISweetAlertResult;
-  myResult.value = myResult.value ? getStringVerison(myResult.value) : undefined;
-  myResult.dismiss = myResult.dismiss ? getEnumNumber(myResult.dismiss.toString()) : undefined;
+  myResult.value = myResult.value !== undefined ? getStringVerison(myResult.value) : undefined;
+  myResult.dismiss =
+    myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss.toString()) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
 }
 
 function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const queueResult = result as ISweetAlertQueueResult;
-  queueResult.value = result.value
-    ? flatten(result.value).map((v: any): string | undefined =>
-        v ? getStringVerison(v) : undefined
-      )
-    : undefined;
-  queueResult.dismiss = queueResult.dismiss
-    ? getEnumNumber(queueResult.dismiss.toString())
-    : undefined;
+  queueResult.value =
+    result.value !== undefined
+      ? flatten(result.value).map((v: any): string | undefined =>
+          v !== undefined ? getStringVerison(v) : undefined
+        )
+      : undefined;
+  queueResult.dismiss =
+    queueResult.dismiss !== undefined ? getEnumNumber(queueResult.dismiss.toString()) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveQueueResult", requestId, queueResult);
 }
 
