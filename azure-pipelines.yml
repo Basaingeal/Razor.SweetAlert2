@@ -17,41 +17,37 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: Npm@1
-  displayName: 'Install Latest NPM'
+- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-installer-task.YarnInstaller@3
+  displayName: 'Use Yarn 1.17.x'
   inputs:
-    command: 'custom'
-    customCommand: 'install -g npm@latest'
+    versionSpec: 1.17.x
+    checkLatest: true
+    includePrerelease: false
 
-- task: Npm@1
-  displayName: 'Install CI'
+- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-task.Yarn@3
+  displayName: 'Yarn Install'
   inputs:
-    command: 'custom'
-    customCommand: 'ci'
-    
-- task: Npm@1
+    arguments: --verbose
+
+- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-task.Yarn@3
   displayName: 'Linting'
   inputs:
-    command: 'custom'
-    customCommand: 'run lint'
+    arguments: lint
 
-- task: Npm@1
+- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-task.Yarn@3
   displayName: 'Checking Prettier'
   inputs:
-    command: 'custom'
-    customCommand: 'run prettier:check'
+    arguments: prettier:check
 
-- task: Npm@1
+- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-task.Yarn@3
   displayName: 'Checking Types'
   inputs:
-    command: 'custom'
-    customCommand: 'run build:tsc'
+    arguments: build:tsc
 
-- task: Npm@1
+- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-task.Yarn@3
   displayName: 'Building JS and CSS'
   inputs:
-    command: 'custom'
-    customCommand: 'run build'
+    arguments: build
 
 - task: DotNetCoreInstaller@0
   displayName: 'Installing .NET Core SDK...'
@@ -71,7 +67,6 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '-c $(buildConfiguration)'
-
 
 - task: DotNetCoreCLI@2
   displayName: 'Packing'
