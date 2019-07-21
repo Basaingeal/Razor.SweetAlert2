@@ -17,34 +17,34 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-installer-task.YarnInstaller@3
+- task: YarnInstaller@3
   displayName: 'Use Yarn 1.17.x'
   inputs:
     versionSpec: 1.17.x
     checkLatest: true
     includePrerelease: false
 
-- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-task.Yarn@3
+- task: Yarn@3
   displayName: 'Yarn Install'
   inputs:
     arguments: --verbose
 
-- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-task.Yarn@3
+- task: Yarn@3
   displayName: 'Linting'
   inputs:
     arguments: lint
 
-- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-task.Yarn@3
+- task: Yarn@3
   displayName: 'Checking Prettier'
   inputs:
     arguments: prettier:check
 
-- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-task.Yarn@3
+- task: Yarn@3
   displayName: 'Checking Types'
   inputs:
     arguments: build:tsc
 
-- task: geeklearningio.gl-vsts-tasks-yarn-dev.yarn-task.Yarn@3
+- task: Yarn@3
   displayName: 'Building JS and CSS'
   inputs:
     arguments: build
