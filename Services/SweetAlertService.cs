@@ -527,6 +527,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             PreConfirmCallbacks.TryGetValue(requestIdGuid, out PreConfirmCallback callback);
+            PreConfirmCallbacks.Remove(requestIdGuid);
             return callback.InvokeAsync(inputValue);
         }
 
@@ -569,6 +570,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             OnBeforeOpenCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            OnBeforeOpenCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
 
@@ -577,6 +579,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             OnAfterCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            OnAfterCloseCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
 
