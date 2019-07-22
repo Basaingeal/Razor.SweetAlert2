@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CurrieTechnologies.Razor.SweetAlert2
 {
-    public class SweetAlertService: IAsyncSweetAlertService
+    public class SweetAlertService : IAsyncSweetAlertService
     {
         private static readonly IDictionary<Guid, TaskCompletionSource<SweetAlertResult>> PendingFireRequests =
             new Dictionary<Guid, TaskCompletionSource<SweetAlertResult>>();
@@ -44,8 +44,13 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         public SweetAlertService(IJSRuntime jSRuntime, SweetAlertServiceOptions options)
         {
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
             this.jSRuntime = jSRuntime;
-            if(options.Theme != SweetAlertTheme.Default)
+            if (options.Theme != SweetAlertTheme.Default)
             {
                 SetTheme(options.Theme);
             }
@@ -53,7 +58,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         private async void SetTheme(SweetAlertTheme theme)
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.SetTheme", (int)theme);
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.SetTheme", (int)theme).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -68,8 +73,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             var tcs = new TaskCompletionSource<SweetAlertResult>();
             Guid requestId = Guid.NewGuid();
             PendingFireRequests.Add(requestId, tcs);
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Fire", requestId, title, message, type?.ToString());
-            return await tcs.Task;
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Fire", requestId, title, message, type?.ToString()).ConfigureAwait(false);
+            return await tcs.Task.ConfigureAwait(false);
         }
 
         [JSInvokable]
@@ -107,6 +112,11 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <param name="settings"></param>
         public async Task<SweetAlertResult> FireAsync(SweetAlertOptions settings)
         {
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             var tcs = new TaskCompletionSource<SweetAlertResult>();
             Guid requestId = Guid.NewGuid();
             PendingFireRequests.Add(requestId, tcs);
@@ -116,8 +126,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             await jSRuntime.InvokeAsync<SweetAlertResult>(
                 "CurrieTechnologies.Razor.SweetAlert2.FireSettings",
                 requestId,
-                settings.ToPOCO());
-            return await tcs.Task;
+                settings.ToPOCO()).ConfigureAwait(false);
+            return await tcs.Task.ConfigureAwait(false);
         }
 
         private static void AddCallbackToDictionaries(SweetAlertOptions settings, Guid requestId)
@@ -168,7 +178,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task<bool> IsVisibleAsync()
         {
-            return await jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsVisible");
+            return await jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsVisible").ConfigureAwait(false);
         }
 
         /// <summary>
@@ -179,7 +189,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestId = Guid.NewGuid();
             OnCompleteCallbacks.Add(requestId, onComplete);
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Close", requestId);
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Close", requestId).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -189,7 +199,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestId = Guid.NewGuid();
             OnCompleteCallbacks.Add(requestId, null);
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Close", requestId);
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Close", requestId).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -198,12 +208,17 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <param name="newSettings"></param>
         public async Task UpdateAsync(SweetAlertOptions newSettings)
         {
+            if (newSettings == null)
+            {
+                throw new ArgumentNullException(nameof(newSettings));
+            }
+
             Guid requestId = Guid.NewGuid();
             AddCallbackToDictionaries(newSettings, requestId);
             await jSRuntime.InvokeAsync<SweetAlertResult>(
                 "CurrieTechnologies.Razor.SweetAlert2.Update",
                 requestId,
-                newSettings.ToPOCO());
+                newSettings.ToPOCO()).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -211,7 +226,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task EnableButtonsAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.EnableButtons");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.EnableButtons")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -219,7 +235,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task DisableButtonsAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.DisableButtons");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.DisableButtons")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -227,7 +244,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task ShowLoadingAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ShowLoading");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ShowLoading")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -235,7 +253,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task HideLoadingAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.HideLoading");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.HideLoading")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -251,7 +270,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task ClickConfirmAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ClickConfirm");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ClickConfirm")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -259,7 +279,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task ClickCancelAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ClickCancel");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ClickCancel")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -268,7 +289,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <param name="validationMessage">The validation message.</param>
         public async Task ShowValidationMessageAsync(string validationMessage)
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ShowValidationMessage", validationMessage);
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ShowValidationMessage", validationMessage)
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -276,7 +298,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task ResetValidationMessageAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ResetValidationMessage");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ResetValidationMessage")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -284,7 +307,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task DisableInputAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.DisableInput");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.DisableInput")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -292,7 +316,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task EnableInputAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.EnableInput");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.EnableInput")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -301,7 +326,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task<double?> GetTimerLeftAsync()
         {
-            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.GetTimerLeft");
+            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.GetTimerLeft")
+                .ConfigureAwait(false);
             return response == null ? null : (double?)Convert.ToDouble(response.ToString());
         }
 
@@ -311,7 +337,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task<double?> StopTimerAsync()
         {
-            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.StopTimer");
+            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.StopTimer")
+                .ConfigureAwait(false);
             return response == null ? null : (double?)Convert.ToDouble(response.ToString());
         }
 
@@ -321,7 +348,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task<double?> ResumeTimerAsync()
         {
-            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ResumeTimer");
+            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ResumeTimer")
+                .ConfigureAwait(false);
             return response == null ? null : (double?)Convert.ToDouble(response.ToString());
         }
 
@@ -331,7 +359,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task<double?> ToggleTimerAsync()
         {
-            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ToggleTimer");
+            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ToggleTimer")
+                .ConfigureAwait(false);
             return response == null ? null : (double?)Convert.ToDouble(response.ToString());
         }
 
@@ -341,7 +370,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task<bool?> IsTimmerRunningAsync()
         {
-            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IsTimmerRunning");
+            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IsTimmerRunning")
+                .ConfigureAwait(false);
             return response == null ? null : (bool?)Convert.ToBoolean(response.ToString());
         }
 
@@ -352,7 +382,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <param name="n">The number of milliseconds to add to the currect timer</param>
         public async Task<double?> IncreaseTimerAsync(double n)
         {
-            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IncreaseTimer", n);
+            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IncreaseTimer", n)
+                .ConfigureAwait(false);
             return response == null ? null : (double?)Convert.ToDouble(response.ToString());
         }
 
@@ -375,8 +406,9 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 "CurrieTechnologies.Razor.SweetAlert2.Queue",
                 requestId,
                 tuples.Select(t => t.RequestId).ToArray(),
-                tuples.Select(t => t.Step.ToPOCO()).ToArray());
-            return await tcs.Task;
+                tuples.Select(t => t.Step.ToPOCO()).ToArray())
+                .ConfigureAwait(false);
+            return await tcs.Task.ConfigureAwait(false);
         }
 
         /// <summary>
@@ -394,6 +426,11 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <param name="index">The index to insert the step at. By default a modal will be added to the end of a queue.</param>
         public Task<double> InsertQueueStepAsync(SweetAlertOptions step, double? index = null)
         {
+            if (step == null)
+            {
+                throw new ArgumentNullException(nameof(step));
+            }
+
             var requestId = Guid.NewGuid();
             AddCallbackToDictionaries(step, requestId);
             return jSRuntime.InvokeAsync<double>("CurrieTechnologies.Razor.SweetAlert2.InsertQueueStep", requestId, step.ToPOCO(), index);
@@ -405,7 +442,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <param name="index">The modal index in the queue.</param>
         public async Task DeleteQueueStepAsync(double index)
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.DeleteQueueStep", index);
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.DeleteQueueStep", index)
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -413,7 +451,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task ShowProgressStepsAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ShowProgressSteps");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ShowProgressSteps")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -421,7 +460,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task HideProgressStepsAsync()
         {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.HideProgressSteps");
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.HideProgressSteps")
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -451,10 +491,14 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <exception cref="ArgumentException">Thrown if parameters is not 1, 2, or 3 elements long.</exception>
         public SweetAlertOptions ArgsToParams(IEnumerable<string> paramaters)
         {
+            if (paramaters == null)
+            {
+                throw new ArgumentNullException(nameof(paramaters));
+            }
             int paramLength = paramaters.Count();
             if (paramLength > 3 || paramLength < 1)
             {
-                throw new ArgumentException("parameters can only be 1, 2, or 3 elements long.");
+                throw new ArgumentException("Parameters can only be 1, 2, or 3 elements long.");
             }
             var paramEnum = paramaters.GetEnumerator();
             paramEnum.MoveNext();
@@ -469,7 +513,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             }
             if (paramEnum.MoveNext())
             {
-                optionsToReturn.Type = (SweetAlertType)paramEnum.Current;
+                optionsToReturn.Type = paramEnum.Current;
             }
 
             return optionsToReturn;
@@ -504,7 +548,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             OnOpenCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
-            await callback.InvokeAsync();
+            await callback.InvokeAsync().ConfigureAwait(false);
         }
 
         [JSInvokable]
@@ -512,7 +556,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             OnCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
-            await callback.InvokeAsync();
+            await callback.InvokeAsync().ConfigureAwait(false);
         }
 
         [JSInvokable]
@@ -520,7 +564,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             OnBeforeOpenCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
-            await callback.InvokeAsync();
+            await callback.InvokeAsync().ConfigureAwait(false);
         }
 
         [JSInvokable]
@@ -528,7 +572,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             OnAfterCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
-            await callback.InvokeAsync();
+            await callback.InvokeAsync().ConfigureAwait(false);
         }
 
         [JSInvokable]
@@ -538,7 +582,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             OnCompleteCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
             if (callback != null)
             {
-                await callback.InvokeAsync();
+                await callback.InvokeAsync().ConfigureAwait(false);
             }
 
             OnCompleteCallbacks.Remove(requestIdGuid);

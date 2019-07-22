@@ -1,8 +1,8 @@
 ﻿import flatten from "lodash/flatten";
 import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertType } from "sweetalert2";
-import ISimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
-import ISweetAlertQueueResult from "./SweetAlertQueueResult";
-import ISweetAlertResult from "./SweetAlertResult";
+import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
+import SweetAlertQueueResult from "./SweetAlertQueueResult";
+import EnumSweetAlertResult from "./EnumSweetAlertResult";
 
 declare const DotNet: any;
 const domWindow = window as any;
@@ -35,7 +35,7 @@ function getStringVerison(input: any): string {
 }
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
-  const myResult = (result as any) as ISweetAlertResult;
+  const myResult = (result as any) as EnumSweetAlertResult;
   myResult.value = myResult.value !== undefined ? getStringVerison(myResult.value) : undefined;
   myResult.dismiss =
     myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss.toString()) : undefined;
@@ -43,7 +43,7 @@ function dispatchFireResult(requestId: string, result: SweetAlertResult): Promis
 }
 
 function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promise<void> {
-  const queueResult = result as ISweetAlertQueueResult;
+  const queueResult = result as SweetAlertQueueResult;
   queueResult.value =
     result.value !== undefined
       ? flatten(result.value).map((v: any): string | undefined =>
@@ -99,7 +99,7 @@ function dispatchOnComplete(requestId: string): void {
   DotNet.invokeMethodAsync(namespace, "ReceiveOnCompleteInput", requestId);
 }
 
-function cleanSettings(settings: ISimpleSweetAlertOptions): ISimpleSweetAlertOptions {
+function cleanSettings(settings: SimpleSweetAlertOptions): SimpleSweetAlertOptions {
   const settingsToReturn: any = settings as any;
   for (const propName in settingsToReturn) {
     if (settingsToReturn[propName] === null || settingsToReturn[propName] === undefined) {
@@ -107,11 +107,11 @@ function cleanSettings(settings: ISimpleSweetAlertOptions): ISimpleSweetAlertOpt
     }
   }
 
-  return settingsToReturn as ISimpleSweetAlertOptions;
+  return settingsToReturn as SimpleSweetAlertOptions;
 }
 
 function getSwalSettingsFromPoco(
-  settings: ISimpleSweetAlertOptions,
+  settings: SimpleSweetAlertOptions,
   requestId: string,
   isQueue: boolean
 ): SweetAlertOptions {
@@ -188,7 +188,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = (
   requestId: string,
-  settingsPoco: ISimpleSweetAlertOptions
+  settingsPoco: SimpleSweetAlertOptions
 ): void => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
 
@@ -200,7 +200,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = (
 domWindow.CurrieTechnologies.Razor.SweetAlert2.Queue = (
   requestId: string,
   optionIds: string[],
-  steps: ISimpleSweetAlertOptions[]
+  steps: SimpleSweetAlertOptions[]
 ): void => {
   const arrSwalSettings: SweetAlertOptions[] = optionIds.map(
     (optionId, i): SweetAlertOptions => getSwalSettingsFromPoco(steps[i], optionId, true)
@@ -217,7 +217,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.IsVisible = (): boolean => {
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.Update = (
   requestId: string,
-  settingsPoco: ISimpleSweetAlertOptions
+  settingsPoco: SimpleSweetAlertOptions
 ): void => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
   Swal.update(swalSettings);
@@ -303,7 +303,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.GetQueueStep = (): string | null 
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.InsertQueueStep = (
   requestId: string,
-  step: ISimpleSweetAlertOptions,
+  step: SimpleSweetAlertOptions,
   index?: number
 ): number => {
   const stepSettings = getSwalSettingsFromPoco(step, requestId, true);

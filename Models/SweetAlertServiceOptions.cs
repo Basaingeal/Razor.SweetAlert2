@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CurrieTechnologies.Razor.SweetAlert2
+﻿namespace CurrieTechnologies.Razor.SweetAlert2
 {
     /// <summary>
     /// Options to configure the <see cref="SweetAlertService"/> at Startup.

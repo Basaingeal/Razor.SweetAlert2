@@ -27,6 +27,11 @@
         /// <returns></returns>
         public static IServiceCollection AddSweetAlert2(this IServiceCollection services, Action<SweetAlertServiceOptions> configureOptions)
         {
+            if (configureOptions == null)
+            {
+                throw new ArgumentNullException(nameof(configureOptions));
+            }
+
             var options = new SweetAlertServiceOptions();
             configureOptions(options);
             return services.AddScoped(s => new SweetAlertService(s.GetRequiredService<IJSRuntime>(), options));

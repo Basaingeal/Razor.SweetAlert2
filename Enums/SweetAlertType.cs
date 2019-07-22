@@ -18,13 +18,18 @@
 
         public static implicit operator SweetAlertType(string str)
         {
+            return FromString(str);
+        }
+
+        public static SweetAlertType FromString(string str)
+        {
             if (Instance.TryGetValue(str, out SweetAlertType result))
             {
                 return result;
             }
             else
             {
-                throw new InvalidCastException();
+                throw new ArgumentException($"{nameof(SweetAlertType)} must be \"{Success}\", \"{Error}\", \"{Warning}\", \"{Info}\", or \"{Question}.\"");
             }
         }
 
