@@ -190,7 +190,9 @@
             IEnumerable<string> ret;
             if (this.asyncQueueCallback != null)
             {
-                ret = await this.asyncQueueCallback(arg).ConfigureAwait(false);
+#pragma warning disable CA2007 // Consider calling ConfigureAwait on the awaited task
+                ret = await this.asyncQueueCallback(arg);
+#pragma warning restore CA2007 // Consider calling ConfigureAwait on the awaited task
             }
             else if (this.syncQueueCallback != null)
             {
@@ -201,7 +203,9 @@
                 throw new ArgumentException("Use IEnumerable<string> for Queue requests");
             }
 
-            await this.eventCallback.InvokeAsync(arg).ConfigureAwait(false);
+#pragma warning disable CA2007 // Consider calling ConfigureAwait on the awaited task
+            await this.eventCallback.InvokeAsync(arg);
+#pragma warning restore CA2007 // Consider calling ConfigureAwait on the awaited task
 
             return ret;
         }

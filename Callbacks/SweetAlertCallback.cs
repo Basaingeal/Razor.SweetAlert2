@@ -50,14 +50,18 @@
         {
             if (this.asyncCallback != null)
             {
-                await this.asyncCallback().ConfigureAwait(false);
+#pragma warning disable CA2007 // Consider calling ConfigureAwait on the awaited task
+                await this.asyncCallback();
+#pragma warning restore CA2007 // Consider calling ConfigureAwait on the awaited task
             }
             else
             {
                 this.syncCallback();
             }
 
-            await this.eventCallback.InvokeAsync(null).ConfigureAwait(false);
+#pragma warning disable CA2007 // Consider calling ConfigureAwait on the awaited task
+            await this.eventCallback.InvokeAsync(null);
+#pragma warning restore CA2007 // Consider calling ConfigureAwait on the awaited task
         }
     }
 }
