@@ -8,23 +8,21 @@ declare const DotNet: any;
 const domWindow = window as any;
 const namespace = "CurrieTechnologies.Razor.SweetAlert2";
 
-function getEnumNumber(enumString: string): number {
-  if (enumString === "cancel") {
-    return 0;
+function getEnumNumber(enumString: string): number | undefined {
+  switch (enumString) {
+    case "cancel":
+      return 0;
+    case "backdrop":
+      return 1;
+    case "close":
+      return 2;
+    case "esc":
+      return 3;
+    case "timer":
+      return 4;
   }
-  if (enumString === "backdrop") {
-    return 1;
-  }
-  if (enumString === "close") {
-    return 2;
-  }
-  if (enumString === "esc") {
-    return 3;
-  }
-  if (enumString === "timer") {
-    return 4;
-  }
-  return 0;
+
+  return undefined;
 }
 
 function getStringVerison(input: any): string {
@@ -35,7 +33,7 @@ function getStringVerison(input: any): string {
 }
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
-  const myResult = (result as any) as EnumSweetAlertResult;
+  const myResult = (result as (SweetAlertResult | EnumSweetAlertResult)) as EnumSweetAlertResult;
   myResult.value = myResult.value !== undefined ? getStringVerison(myResult.value) : undefined;
   myResult.dismiss =
     myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss.toString()) : undefined;
@@ -115,7 +113,9 @@ function getSwalSettingsFromPoco(
   requestId: string,
   isQueue: boolean
 ): SweetAlertOptions {
-  const swalSettings = (cleanSettings(settings) as any) as SweetAlertOptions;
+  const swalSettings = (cleanSettings(settings) as (
+    | SimpleSweetAlertOptions
+    | SweetAlertOptions)) as SweetAlertOptions;
 
   if (settings.preConfirm) {
     swalSettings.preConfirm = isQueue
@@ -334,6 +334,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.IsUpdatableParamter = (
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.SetTheme = (theme: number): void => {
   let fileName = "";
+  const tagId = "currietechnologies-razor-sweetalert2-theme-link";
   switch (theme) {
     case 1: {
       fileName = "darkTheme.min.css";
@@ -355,6 +356,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.SetTheme = (theme: number): void 
   const head = document.getElementsByTagName("head")[0];
   const styleTag = document.createElement("link");
   styleTag.rel = "stylesheet";
+  styleTag.id = tagId;
   styleTag.href = `_content/currietechnologiesrazorsweetalert2/${fileName}`;
   head.appendChild(styleTag);
 };

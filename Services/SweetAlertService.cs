@@ -1,6 +1,7 @@
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -36,6 +37,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             new Dictionary<Guid, InputValidatorCallback>();
 
         private readonly IJSRuntime jSRuntime;
+
+        private readonly CultureInfo culture = CultureInfo.GetCultureInfo("en-US");
 
         public SweetAlertService(IJSRuntime jSRuntime)
         {
@@ -328,7 +331,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.GetTimerLeft")
                 .ConfigureAwait(false);
-            return response == null ? null : (double?)Convert.ToDouble(response.ToString());
+            return response == null ? null : (double?)Convert.ToDouble(response.ToString(), culture.NumberFormat);
         }
 
         /// <summary>
@@ -339,7 +342,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.StopTimer")
                 .ConfigureAwait(false);
-            return response == null ? null : (double?)Convert.ToDouble(response.ToString());
+            return response == null ? null : (double?)Convert.ToDouble(response.ToString(), culture.NumberFormat);
         }
 
         /// <summary>
@@ -350,7 +353,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ResumeTimer")
                 .ConfigureAwait(false);
-            return response == null ? null : (double?)Convert.ToDouble(response.ToString());
+            return response == null ? null : (double?)Convert.ToDouble(response.ToString(), culture.NumberFormat);
         }
 
         /// <summary>
@@ -361,7 +364,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ToggleTimer")
                 .ConfigureAwait(false);
-            return response == null ? null : (double?)Convert.ToDouble(response.ToString());
+            return response == null ? null : (double?)Convert.ToDouble(response.ToString(), new NumberFormatInfo());
         }
 
         /// <summary>
@@ -372,7 +375,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IsTimmerRunning")
                 .ConfigureAwait(false);
-            return response == null ? null : (bool?)Convert.ToBoolean(response.ToString());
+            return response == null ? null : (bool?)Convert.ToBoolean(response.ToString(), culture.NumberFormat);
         }
 
         /// <summary>
@@ -384,7 +387,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IncreaseTimer", n)
                 .ConfigureAwait(false);
-            return response == null ? null : (double?)Convert.ToDouble(response.ToString());
+            return response == null ? null : (double?)Convert.ToDouble(response.ToString(), culture.NumberFormat);
         }
 
         /// <summary>
@@ -548,6 +551,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             OnOpenCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            OnOpenCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
 
@@ -556,6 +560,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             OnCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            OnCloseCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
 
