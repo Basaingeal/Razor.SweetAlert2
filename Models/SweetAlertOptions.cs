@@ -225,10 +225,12 @@
         /// </summary>
         public PreConfirmCallback PreConfirm { get; set; }
 
+#pragma warning disable CA1056 // Uri properties should not be strings
         /// <summary>
         /// Add a customized icon for the modal. Should contain a string with the path or URL to the image.
         /// </summary>
-        public Uri ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
+#pragma warning restore CA1056 // Uri properties should not be strings
 
         /// <summary>
         /// If imageUrl is set, you can specify imageWidth to describes image width in px.
@@ -382,7 +384,7 @@
                 CloseButtonAriaLabel = this.CloseButtonAriaLabel,
                 ShowLoaderOnConfirm = this.ShowLoaderOnConfirm,
                 PreConfirm = this.PreConfirm != null,
-                ImageUrl = this.ImageUrl.ToString(),
+                ImageUrl = this.ImageUrl,
                 ImageWidth = this.ImageWidth,
                 ImageHeight = this.ImageHeight,
                 ImageAlt = this.ImageAlt,
