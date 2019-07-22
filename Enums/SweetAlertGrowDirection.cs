@@ -18,21 +18,31 @@
 
         public static implicit operator SweetAlertGrowDirection(string str)
         {
+            return FromString(str);
+        }
+
+        public static SweetAlertGrowDirection FromString(string str)
+        {
             if (Instance.TryGetValue(str, out SweetAlertGrowDirection result))
             {
                 return result;
             }
             else
             {
-                throw new InvalidCastException();
+                throw new ArgumentException($"{nameof(SweetAlertGrowDirection)} must be \"{Row}\", \"{Column}\", \"{Fullscreen}\", or {False}");
             }
         }
 
         public static implicit operator SweetAlertGrowDirection(bool boolean)
         {
+            return FromBoolean(boolean);
+        }
+
+        public static SweetAlertGrowDirection FromBoolean(bool boolean)
+        {
             if (boolean)
             {
-                throw new InvalidCastException();
+                throw new ArgumentException("SweetAlertGrowDirection cannot be true.");
             }
             else
             {

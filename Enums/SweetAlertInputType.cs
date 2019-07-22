@@ -18,13 +18,18 @@
 
         public static implicit operator SweetAlertInputType(string str)
         {
+            return FromString(str);
+        }
+
+        public static SweetAlertInputType FromString(string str)
+        {
             if (Instance.TryGetValue(str, out SweetAlertInputType result))
             {
                 return result;
             }
             else
             {
-                throw new InvalidCastException();
+                throw new ArgumentException($"{nameof(SweetAlertInputType)} must be \"${Text}\", \"{Email}\", \"{Password}\", \"{Number}\", \"{Tel}\", \"{Range}\", \"{Textarea}\", \"{Select}\", \"{Radio}\", \"{Checkbox}\", \"{Url}\", or \"{File}\""); ;
             }
         }
 

@@ -1,9 +1,9 @@
 ﻿namespace CurrieTechnologies.Razor.SweetAlert2
 {
+    using Microsoft.AspNetCore.Components;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Components;
 
     /// <summary>
     /// A bound event handler delagate.
@@ -164,7 +164,7 @@
             string ret;
             if (this.asyncCallback != null)
             {
-                ret = await this.asyncCallback(arg);
+                ret = await this.asyncCallback(arg).ConfigureAwait(false);
             }
             else if (this.syncCallback != null)
             {
@@ -172,10 +172,10 @@
             }
             else
             {
-                throw new ArgumentException("use string (not IEnumerable<string>) for Fire requests");
+                throw new ArgumentException("Use string (not IEnumerable<string>) for Fire requests");
             }
 
-            await this.eventCallback.InvokeAsync(arg);
+            await this.eventCallback.InvokeAsync(arg).ConfigureAwait(false);
 
             return ret;
         }
@@ -190,7 +190,7 @@
             IEnumerable<string> ret;
             if (this.asyncQueueCallback != null)
             {
-                ret = await this.asyncQueueCallback(arg);
+                ret = await this.asyncQueueCallback(arg).ConfigureAwait(false);
             }
             else if (this.syncQueueCallback != null)
             {
@@ -198,10 +198,10 @@
             }
             else
             {
-                throw new ArgumentException("use IEnumerable<string> for Queue requests");
+                throw new ArgumentException("Use IEnumerable<string> for Queue requests");
             }
 
-            await this.eventCallback.InvokeAsync(arg);
+            await this.eventCallback.InvokeAsync(arg).ConfigureAwait(false);
 
             return ret;
         }

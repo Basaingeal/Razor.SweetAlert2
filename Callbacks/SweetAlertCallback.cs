@@ -1,8 +1,8 @@
 ﻿namespace CurrieTechnologies.Razor.SweetAlert2
 {
+    using Microsoft.AspNetCore.Components;
     using System;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Components;
 
     /// <summary>
     /// A bound event handler delagate.
@@ -50,14 +50,14 @@
         {
             if (this.asyncCallback != null)
             {
-                await this.asyncCallback();
+                await this.asyncCallback().ConfigureAwait(false);
             }
             else
             {
                 this.syncCallback();
             }
 
-            await this.eventCallback.InvokeAsync(null);
+            await this.eventCallback.InvokeAsync(null).ConfigureAwait(false);
         }
     }
 }

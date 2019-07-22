@@ -1,5 +1,6 @@
 ﻿namespace CurrieTechnologies.Razor.SweetAlert2
 {
+    using System;
     using System.Collections.Generic;
 
     public class SweetAlertOptions
@@ -227,7 +228,7 @@
         /// <summary>
         /// Add a customized icon for the modal. Should contain a string with the path or URL to the image.
         /// </summary>
-        public string ImageUrl { get; set; }
+        public Uri ImageUrl { get; set; }
 
         /// <summary>
         /// If imageUrl is set, you can specify imageWidth to describes image width in px.
@@ -254,11 +255,13 @@
         /// </summary>
         public string InputValue { get; set; }
 
+#pragma warning disable CA2227 // Collection properties should be read only
         /// <summary>
         /// If input parameter is set to "select" or "radio", you can provide options.
         /// <para>Object keys will represent options values, object values will represent options text values.</para>
         /// </summary>
         public IDictionary<string, string> InputOptions { get; set; }
+#pragma warning restore CA2227 // Collection properties should be read only
 
         /// <summary>
         /// Automatically remove whitespaces from both ends of a result string.
@@ -267,10 +270,12 @@
         public bool? InputAutoTrim { get; set; }
 
         //TODO: Input Attributes POCO
+#pragma warning disable CA2227 // Collection properties should be read only
         /// <summary>
         /// HTML input attributes (e.g. min, max, step, accept...), that are added to the input field.
         /// </summary>
         public IDictionary<string, string> InputAttributes { get; set; }
+#pragma warning restore CA2227 // Collection properties should be read only
 
         /// <summary>
         /// Validator for input field.
@@ -377,7 +382,7 @@
                 CloseButtonAriaLabel = this.CloseButtonAriaLabel,
                 ShowLoaderOnConfirm = this.ShowLoaderOnConfirm,
                 PreConfirm = this.PreConfirm != null,
-                ImageUrl = this.ImageUrl,
+                ImageUrl = this.ImageUrl.ToString(),
                 ImageWidth = this.ImageWidth,
                 ImageHeight = this.ImageHeight,
                 ImageAlt = this.ImageAlt,
