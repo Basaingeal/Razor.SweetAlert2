@@ -67,7 +67,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Add this script tag in  your root html file (Likely _Host.cshtml), right under the `<script src="_framework/blazor.server.js"></script>` tag.
 ```html
-<script src="_content/currietechnologiesrazorsweetalert2/sweetalert2.min.js"></script>
+<script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
 ```
 
 Inject the SweetAlertService into any Blazor component
