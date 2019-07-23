@@ -65,7 +65,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Add this script tag in  your root html file (Likely _Host.cshtml), right under the `<script src="_framework/blazor.server.js"></script>` tag.
+Add this script tag in  your root html file (Likely _Host.cshtml for Server-side Blazor or index.html for Client-side Blazor), right under the framework script tag. (i.e `<script src="_framework/blazor.server.js"></script>` for Server-side Blazor or `<script src="_framework/blazor.webassembly.js"></script>` for Client-side Blazor)
 ```html
 <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
 ```
