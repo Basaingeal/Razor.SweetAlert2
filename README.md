@@ -1,5 +1,5 @@
 <p align="center">
-<span style="font-size:x-large">Server-side Blazor</span>
+<span style="font-size:x-large">Blazor</span>
 <br>
 +
 <br>
@@ -23,7 +23,7 @@
 [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=master)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=master)
 ![Nuget](https://img.shields.io/nuget/v/CurrieTechnologies.Razor.SweetAlert2.svg?style=popout)
 
-## This package is for Server-side Blazor only. For Client-side Blazor use [CurrieTechnologies.Blazor.SweetAlert2](https://github.com/Basaingeal/Blazor.SweetAlert2)
+## This package is now for both Server-side and Client-side Blazor. [CurrieTechnologies.Blazor.SweetAlert2](https://github.com/Basaingeal/Blazor.SweetAlert2) is now deprecated.
 
 ### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
 
@@ -65,9 +65,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Add this script tag in  your root html file (Likely _Host.cshtml), right under the `<script src="_framework/blazor.server.js"></script>` tag.
+Add this script tag in  your root html file (Likely _Host.cshtml for Server-side Blazor or index.html for Client-side Blazor), right under the framework script tag. (i.e `<script src="_framework/blazor.server.js"></script>` for Server-side Blazor or `<script src="_framework/blazor.webassembly.js"></script>` for Client-side Blazor)
 ```html
-<script src="_content/currietechnologiesrazorsweetalert2/sweetalert2.min.js"></script>
+<script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
 ```
 
 Inject the SweetAlertService into any Blazor component
@@ -75,7 +75,7 @@ Inject the SweetAlertService into any Blazor component
 // Sample.razor
 @inject SweetAlertService Swal;
 <button class="btn btn-primary"
-		@onclick="@(async () => await Swal.FireAsync("Any fool can use a computer"))">
+		@onclick="(async () => await Swal.FireAsync("Any fool can use a computer"))">
 	Try me!
 </button>
 ```

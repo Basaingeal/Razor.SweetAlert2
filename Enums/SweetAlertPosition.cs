@@ -18,13 +18,18 @@
 
         public static implicit operator SweetAlertPosition(string str)
         {
+            return FromString(str);
+        }
+
+        public static SweetAlertPosition FromString(string str)
+        {
             if (Instance.TryGetValue(str, out SweetAlertPosition result))
             {
                 return result;
             }
             else
             {
-                throw new InvalidCastException();
+                throw new ArgumentException($"{nameof(SweetAlertPosition)} must be \"{Top}\", \"{TopStart}\", \"{TopEnd}\", \"{TopLeft}\", \"{TopRight}\", \"{Center}\", \"{CenterStart}\", \"{CenterEnd}\", \"{CenterLeft}\", \"{CenterRight}\", \"{Bottom}\", \"{BottomStart}\", \"{BottomEnd}\", \"{BottomLeft}\", or \"{BottomRight}.\"");
             }
         }
 

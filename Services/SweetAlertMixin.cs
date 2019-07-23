@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class SweetAlertMixin: IAsyncSweetAlertService
+    public class SweetAlertMixin : IAsyncSweetAlertService
     {
         private readonly SweetAlertOptions storedOptions;
         private readonly SweetAlertService swal;
@@ -38,6 +38,11 @@
         /// <param name="settings"></param>
         public Task<SweetAlertResult> FireAsync(SweetAlertOptions settings)
         {
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             return this.swal.FireAsync(this.Mix(settings));
         }
 
@@ -48,6 +53,11 @@
         /// <returns></returns>
         public SweetAlertMixin Mixin(SweetAlertOptions settings)
         {
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             return new SweetAlertMixin(this.Mix(settings), this.swal);
         }
 
@@ -82,6 +92,11 @@
         /// <param name="newSettings"></param>
         public Task UpdateAsync(SweetAlertOptions newSettings)
         {
+            if (newSettings == null)
+            {
+                throw new ArgumentNullException(nameof(newSettings));
+            }
+
             return this.swal.UpdateAsync(this.Mix(newSettings));
         }
 
@@ -253,6 +268,11 @@
         /// <param name="index">The index to insert the step at. By default a modal will be added to the end of a queue.</param>
         public Task<double> InsertQueueStepAsync(SweetAlertOptions step, double? index = null)
         {
+            if (step == null)
+            {
+                throw new ArgumentNullException(nameof(step));
+            }
+
             return this.swal.InsertQueueStepAsync(this.Mix(step), index);
         }
 

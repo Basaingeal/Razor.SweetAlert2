@@ -1,4 +1,4 @@
-name: 0.3.1
+name: 0.4.0
 
 trigger:
 - master
@@ -15,48 +15,42 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  projectName: 'CurrieTechnologies.Razor.SweetAlert2'
 
 steps:
-- task: Npm@1
-  displayName: 'Install Latest NPM'
+- task: YarnInstaller@3
+  displayName: 'Use Yarn 1.17.x'
   inputs:
-    command: 'custom'
-    customCommand: 'install -g npm@latest'
-    workingDir: '$(projectName)'
+    versionSpec: 1.17.x
+    checkLatest: true
+    includePrerelease: false
 
-- task: Npm@1
-  displayName: 'Install CI'
-  inputs:
-    command: 'custom'
-    customCommand: 'ci'
-    workingDir: '$(projectName)'
-    
-- task: Npm@1
+- task: Yarn@3
+  displayName: 'Yarn Install'
+
+- task: Yarn@3
   displayName: 'Linting'
   inputs:
-    command: 'custom'
-    customCommand: 'run lint'
-    workingDir: '$(projectName)'
+    arguments: lint
 
-- task: Npm@1
+- task: Yarn@3
   displayName: 'Checking Prettier'
   inputs:
-    command: 'custom'
-    customCommand: 'run prettier:check'
-    workingDir: '$(projectName)'
+    arguments: prettier:check
 
-- task: Npm@1
+- task: Yarn@3
+  displayName: 'Checking Types'
+  inputs:
+    arguments: build:tsc
+
+- task: Yarn@3
   displayName: 'Building JS and CSS'
   inputs:
-    command: 'custom'
-    customCommand: 'run build'
-    workingDir: '$(projectName)'
+    arguments: build
 
 - task: DotNetCoreInstaller@0
   displayName: 'Installing .NET Core SDK...'
   inputs:
-    version: 3.0.100-preview6-012264
+    version: 3.0.100-preview7-012821
 
 - task: DotNetCoreCLI@2
   displayName: 'Restoring Nuget Packages'
@@ -72,7 +66,6 @@ steps:
     projects: '**/*.csproj'
     arguments: '-c $(buildConfiguration)'
 
-
 - task: DotNetCoreCLI@2
   displayName: 'Packing'
   inputs:
@@ -83,7 +76,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copying CHANGELOG'
   inputs:
-    Contents: '$(projectName)/CHANGELOG.md'
+    Contents: 'CHANGELOG.md'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
