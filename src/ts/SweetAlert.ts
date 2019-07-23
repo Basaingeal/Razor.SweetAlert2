@@ -203,7 +203,7 @@ function setTheme(theme: number): void {
   const styleTag = document.createElement("link");
   styleTag.rel = "stylesheet";
   styleTag.id = tagId;
-  styleTag.href = `_content/currietechnologiesrazorsweetalert2/${fileName}`;
+  styleTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${fileName}`;
   styleTag.setAttribute("data-theme-number", theme.toString());
   head.appendChild(styleTag);
 }
