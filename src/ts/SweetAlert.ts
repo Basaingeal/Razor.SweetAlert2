@@ -167,6 +167,47 @@ function getSwalSettingsFromPoco(
   return swalSettings;
 }
 
+function setTheme(theme: number): void {
+  let fileName: string;
+  const tagId = "currietechnologies-razor-sweetalert2-theme-link";
+
+  const existingThemeTag = document.getElementById(tagId);
+  if (existingThemeTag !== null) {
+    const currentTheme = Number(existingThemeTag.dataset.themeNumber);
+    if (currentTheme === theme) {
+      return;
+    } else {
+      existingThemeTag.remove();
+    }
+  }
+
+  switch (theme) {
+    case 1: {
+      fileName = "darkTheme.min.css";
+      break;
+    }
+    case 2: {
+      fileName = "minimalTheme.min.css";
+      break;
+    }
+    case 3: {
+      fileName = "borderlessTheme.min.css";
+      break;
+    }
+    default: {
+      return;
+    }
+  }
+
+  const head = document.getElementsByTagName("head")[0];
+  const styleTag = document.createElement("link");
+  styleTag.rel = "stylesheet";
+  styleTag.id = tagId;
+  styleTag.href = `_content/currietechnologiesrazorsweetalert2/${fileName}`;
+  styleTag.setAttribute("data-theme-number", theme.toString());
+  head.appendChild(styleTag);
+}
+
 domWindow.CurrieTechnologies = domWindow.CurrieTechnologies || {};
 domWindow.CurrieTechnologies.Razor = domWindow.CurrieTechnologies.Razor || {};
 domWindow.CurrieTechnologies.Razor.SweetAlert2 =
@@ -176,8 +217,11 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
   requestId: string,
   title: string,
   message: string,
-  type: SweetAlertType
+  type: SweetAlertType,
+  theme: number
 ): void => {
+  setTheme(theme);
+  
   let params: [string] | [string, string] | [string, string, string] = [title];
   params = params.concat(message || "") as [string, string];
   params = type ? (params.concat(type.toString()) as [string, string, string]) : params;
@@ -188,8 +232,11 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = (
   requestId: string,
-  settingsPoco: SimpleSweetAlertOptions
+  settingsPoco: SimpleSweetAlertOptions,
+  theme: number
 ): void => {
+  setTheme(theme);
+
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
 
   Swal.fire(swalSettings).then((result): void => {
@@ -200,8 +247,11 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = (
 domWindow.CurrieTechnologies.Razor.SweetAlert2.Queue = (
   requestId: string,
   optionIds: string[],
-  steps: SimpleSweetAlertOptions[]
+  steps: SimpleSweetAlertOptions[],
+  theme: number
 ): void => {
+  setTheme(theme);
+
   const arrSwalSettings: SweetAlertOptions[] = optionIds.map(
     (optionId, i): SweetAlertOptions => getSwalSettingsFromPoco(steps[i], optionId, true)
   );
@@ -330,33 +380,4 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.IsUpdatableParamter = (
   paramName: string
 ): boolean => {
   return Swal.isUpdatableParameter(paramName);
-};
-
-domWindow.CurrieTechnologies.Razor.SweetAlert2.SetTheme = (theme: number): void => {
-  let fileName = "";
-  const tagId = "currietechnologies-razor-sweetalert2-theme-link";
-  switch (theme) {
-    case 1: {
-      fileName = "darkTheme.min.css";
-      break;
-    }
-    case 2: {
-      fileName = "minimalTheme.min.css";
-      break;
-    }
-    case 3: {
-      fileName = "borderlessTheme.min.css";
-      break;
-    }
-    default: {
-      return;
-    }
-  }
-
-  const head = document.getElementsByTagName("head")[0];
-  const styleTag = document.createElement("link");
-  styleTag.rel = "stylesheet";
-  styleTag.id = tagId;
-  styleTag.href = `_content/currietechnologiesrazorsweetalert2/${fileName}`;
-  head.appendChild(styleTag);
 };
