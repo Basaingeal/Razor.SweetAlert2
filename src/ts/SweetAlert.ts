@@ -221,7 +221,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
   theme: number
 ): void => {
   setTheme(theme);
-  
+
   let params: [string] | [string, string] | [string, string, string] = [title];
   params = params.concat(message || "") as [string, string];
   params = type ? (params.concat(type.toString()) as [string, string, string]) : params;
