@@ -40,6 +40,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         private readonly CultureInfo culture = CultureInfo.GetCultureInfo("en-US");
 
+        private readonly SweetAlertTheme theme = SweetAlertTheme.Default;
+
         public SweetAlertService(IJSRuntime jSRuntime)
         {
             this.jSRuntime = jSRuntime;
@@ -47,21 +49,12 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         public SweetAlertService(IJSRuntime jSRuntime, SweetAlertServiceOptions options)
         {
+            this.jSRuntime = jSRuntime;
             if (options == null)
             {
-                throw new ArgumentNullException(nameof(options));
+                return;
             }
-
-            this.jSRuntime = jSRuntime;
-            if (options.Theme != SweetAlertTheme.Default)
-            {
-                SetTheme(options.Theme);
-            }
-        }
-
-        private async void SetTheme(SweetAlertTheme theme)
-        {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.SetTheme", (int)theme).ConfigureAwait(false);
+            theme = options.Theme;
         }
 
         /// <summary>
@@ -76,7 +69,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             var tcs = new TaskCompletionSource<SweetAlertResult>();
             Guid requestId = Guid.NewGuid();
             PendingFireRequests.Add(requestId, tcs);
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Fire", requestId, title, message, type?.ToString()).ConfigureAwait(false);
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Fire", requestId, title, message, type?.ToString(), (int)theme).ConfigureAwait(false);
             return await tcs.Task.ConfigureAwait(false);
         }
 
@@ -129,7 +122,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             await jSRuntime.InvokeAsync<SweetAlertResult>(
                 "CurrieTechnologies.Razor.SweetAlert2.FireSettings",
                 requestId,
-                settings.ToPOCO()).ConfigureAwait(false);
+                settings.ToPOCO(),
+                (int)theme).ConfigureAwait(false);
             return await tcs.Task.ConfigureAwait(false);
         }
 
@@ -409,7 +403,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 "CurrieTechnologies.Razor.SweetAlert2.Queue",
                 requestId,
                 tuples.Select(t => t.RequestId).ToArray(),
-                tuples.Select(t => t.Step.ToPOCO()).ToArray())
+                tuples.Select(t => t.Step.ToPOCO()).ToArray(),
+                (int)theme)
                 .ConfigureAwait(false);
             return await tcs.Task.ConfigureAwait(false);
         }
