@@ -1,5 +1,3 @@
-name: 0.4.0
-
 trigger:
 - master
 - develop
@@ -17,6 +15,11 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: PowerShell@2
+  displayName: 'Setting build number'
+  inputs:
+    filePath: './versioning.ps1'
+
 - task: YarnInstaller@3
   displayName: 'Use Yarn 1.17.x'
   inputs:
