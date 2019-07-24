@@ -3,9 +3,10 @@ $pkg = Get-Content "$pkgPath" | Out-String | ConvertFrom-Json
 $version = $pkg.version;
 $buildNumber = $Env:BUILD_BUILDNUMBER;
 $branchName = $Env:BUILD_SOURCEBRANCHNAME
+$branch = $Env:BUILD_SOURCEBRANCH
 $buildReason = $Env:BUILD_REASON
 
-If ($buildReason -eq "IndividualCI" -and $branchName -eq "master") {
+If ($buildReason -eq "IndividualCI" -and $branch -eq "refs/heads/master") {
   Write-Host "##vso[build.updatebuildnumber]$version"
 } 
 ElseIf ($buildReason -eq "PullRequest") {
