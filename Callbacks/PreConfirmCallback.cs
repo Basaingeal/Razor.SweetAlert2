@@ -164,7 +164,7 @@
             string ret;
             if (this.asyncCallback != null)
             {
-                ret = await this.asyncCallback(arg).ConfigureAwait(false);
+                ret = await asyncCallback(arg).ConfigureAwait(true);
             }
             else if (this.syncCallback != null)
             {
@@ -175,7 +175,7 @@
                 throw new ArgumentException("Use string (not IEnumerable<string>) for Fire requests");
             }
 
-            await this.eventCallback.InvokeAsync(arg).ConfigureAwait(false);
+            await this.eventCallback.InvokeAsync(arg).ConfigureAwait(true);
 
             return ret;
         }
@@ -190,9 +190,7 @@
             IEnumerable<string> ret;
             if (this.asyncQueueCallback != null)
             {
-#pragma warning disable CA2007 // Consider calling ConfigureAwait on the awaited task
-                ret = await this.asyncQueueCallback(arg);
-#pragma warning restore CA2007 // Consider calling ConfigureAwait on the awaited task
+                ret = await this.asyncQueueCallback(arg).ConfigureAwait(true);
             }
             else if (this.syncQueueCallback != null)
             {
@@ -203,9 +201,7 @@
                 throw new ArgumentException("Use IEnumerable<string> for Queue requests");
             }
 
-#pragma warning disable CA2007 // Consider calling ConfigureAwait on the awaited task
-            await this.eventCallback.InvokeAsync(arg);
-#pragma warning restore CA2007 // Consider calling ConfigureAwait on the awaited task
+            await this.eventCallback.InvokeAsync(arg).ConfigureAwait(true);
 
             return ret;
         }
