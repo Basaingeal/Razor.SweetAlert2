@@ -20,8 +20,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      - Target .Net Standard
-      - Deprecate CurrieTechnologies.Blazor.SweetAlert2
+      - Fix issue with mismatched synchronization context.
     </PackageReleaseNotes>
   </PropertyGroup>
 
