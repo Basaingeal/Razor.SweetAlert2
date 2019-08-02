@@ -10,7 +10,7 @@
     <Description>
       A Razor class library for interacting with SweetAlert2.
       Use in Client-sde or Server-side Blazor apps.
-      Currently using sweetalert2@8.14.0
+      Currently using sweetalert2@8.14.1
     </Description>
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -20,7 +20,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      - Fix issue with mismatched synchronization context.
+      - Bump sweetalert2 version
+      - Re-add ConfigureAwaits where safe
     </PackageReleaseNotes>
   </PropertyGroup>
 
@@ -40,7 +41,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0-preview7.19365.7" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4-beta1.final" >
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4" >
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>

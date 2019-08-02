@@ -1,6 +1,6 @@
 {
   "name": "currietechnologies-razorsweetalert2",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A Razor class library for interacting with SweetAlert2",
   "scripts": {
     "build": "SET NODE_ENV=production && webpack -p --color",
@@ -19,7 +19,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
     "@types/lodash": "^4.14.136",
-    "@types/node": "^12.6.8",
+    "@types/node": "^12.6.9",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "babel-loader": "^8.0.6",
@@ -36,14 +36,14 @@
     "ts-loader": "^6.0.4",
     "tslint": "^5.18.0",
     "typescript": "^3.5.3",
-    "webpack": "^4.37.0",
+    "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
     "webpack-fix-style-only-entries": "^0.3.0"
   },
   "dependencies": {
     "@sweetalert2/themes": "^2.0.3",
     "lodash": "4.17.15",
-    "sweetalert2": "8.14.0"
+    "sweetalert2": "8.14.1"
   },
   "author": "Michael J. Currie",
   "private": true,

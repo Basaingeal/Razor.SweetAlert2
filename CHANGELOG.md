@@ -1,2 +1,4 @@
-﻿### Bug Fixes
-* Always resume tasks on the same context. (May update later so that some don't, but right now removing all to fix breaking issue.)
+﻿### Enhancements
+* Bump sweetalert2 dependency to 8.14.1
+* Re-add ConfigureAwaits in safe places
+* Bump webpack to 4.39.1
