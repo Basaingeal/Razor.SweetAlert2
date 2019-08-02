@@ -43,7 +43,7 @@
   "dependencies": {
     "@sweetalert2/themes": "^2.0.3",
     "lodash": "4.17.15",
-    "sweetalert2": "8.14.0"
+    "sweetalert2": "8.14.1"
   },
   "author": "Michael J. Currie",
   "private": true,
