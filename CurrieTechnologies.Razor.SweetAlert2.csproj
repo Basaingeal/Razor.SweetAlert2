@@ -10,7 +10,7 @@
     <Description>
       A Razor class library for interacting with SweetAlert2.
       Use in Client-sde or Server-side Blazor apps.
-      Currently using sweetalert2@8.15.0
+      Currently using sweetalert2@8.15.2
     </Description>
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
