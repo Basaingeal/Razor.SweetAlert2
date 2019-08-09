@@ -41,7 +41,7 @@
     "webpack-fix-style-only-entries": "^0.3.0"
   },
   "dependencies": {
-    "@sweetalert2/themes": "^2.0.3",
+    "@sweetalert2/themes": "^2.1.0",
     "lodash": "4.17.15",
     "sweetalert2": "8.15.3"
   },
