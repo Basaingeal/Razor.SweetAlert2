@@ -1,5 +1,4 @@
-﻿import flatten from "lodash/flatten";
-import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertType } from "sweetalert2";
+﻿import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertType } from "sweetalert2";
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import SweetAlertQueueResult from "./SweetAlertQueueResult";
 import EnumSweetAlertResult from "./EnumSweetAlertResult";
@@ -40,11 +39,14 @@ function dispatchFireResult(requestId: string, result: SweetAlertResult): Promis
   return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
 }
 
+const flatten = (arr: any[]): any[] =>
+  arr.reduce((flat: any[], next: any): any[] => flat.concat(next), []);
+
 function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const queueResult = result as SweetAlertQueueResult;
   queueResult.value =
-    result.value !== undefined
-      ? flatten(result.value).map((v: any): string | undefined =>
+    queueResult.value !== undefined
+      ? flatten(queueResult.value).map((v: any): string | undefined =>
           v !== undefined ? getStringVerison(v) : undefined
         )
       : undefined;
