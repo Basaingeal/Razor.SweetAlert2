@@ -699,10 +699,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@sweetalert2/themes@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-2.0.3.tgz#a15f9064090b0500d22976574bf6f3ccddfb4d6e"
-  integrity sha512-UGNQ4/R861pVIBBa1Ani/EMz7niA10rmq84Fkaxr1h6Ko4U6wdIvuay5noo2EnoEO8s3K7OevlSY+Tbohl+aOQ==
+"@sweetalert2/themes@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-2.1.0.tgz#62653fd07b5a87c2820e795a1725c3207faed9c1"
+  integrity sha512-7TQ8aOVsqFibc3bPkGur8h+g4HBxIAqAOHnZ8lSmvHN7pG5EcOiC9wHi7Tfg2QDnS1qOs7BWllRM+UMMPjbcAg==
 
 "@types/anymatch@*":
   version "1.3.1"
