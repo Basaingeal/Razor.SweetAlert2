@@ -40,7 +40,7 @@ function dispatchFireResult(requestId: string, result: SweetAlertResult): Promis
 }
 
 const flatten = (arr: any[]): any[] =>
-  arr.reduce((flat: any[], next: any): any[] => flat.concat(next), []);
+  arr.reduce((flat, next): any[] => flat.concat(Array.isArray(next) ? flatten(next) : next), []);
 
 function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const queueResult = result as SweetAlertQueueResult;
