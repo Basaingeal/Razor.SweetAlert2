@@ -14,7 +14,9 @@ module.exports = {
     minimalTheme: "./src/scss/minimal-theme.scss",
     "minimalTheme.min": "./src/scss/minimal-theme.scss",
     borderlessTheme: "./src/scss/borderless-theme.scss",
-    "borderlessTheme.min": "./src/scss/borderless-theme.scss"
+    "borderlessTheme.min": "./src/scss/borderless-theme.scss",
+    bootstrap4Theme: "./src/scss/bootstrap-4-theme.scss",
+    "bootstrap4Theme.min": "./src/scss/bootstrap-4-theme.scss"
   },
   output: {
     filename: "[name].js",

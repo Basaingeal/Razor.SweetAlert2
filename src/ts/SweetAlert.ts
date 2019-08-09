@@ -194,6 +194,10 @@ function setTheme(theme: number): void {
       fileName = "borderlessTheme.min.css";
       break;
     }
+    case 4: {
+      fileName = "bootstrap4Theme.min.css";
+      break;
+    }
     default: {
       return;
     }
