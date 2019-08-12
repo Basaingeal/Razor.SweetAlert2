@@ -20,7 +20,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      - Bump sweetalert2 version
+      - New theme added: Bootstrap 4
     </PackageReleaseNotes>
   </PropertyGroup>
 
