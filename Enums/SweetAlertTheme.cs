@@ -5,6 +5,7 @@
         Default,
         Dark,
         Minimal,
-        Borderless
+        Borderless,
+        Bootstrap4
     }
 }
