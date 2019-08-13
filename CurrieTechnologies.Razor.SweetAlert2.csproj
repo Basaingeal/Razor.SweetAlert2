@@ -8,7 +8,7 @@
     <Product>Razor.SweetAlert2</Product>
     <Description>
       A Razor class library for interacting with SweetAlert2.
-      Use in Blazor Server or Blazor WebAssembly Apps.
+      Use in Blazor Server Apps or Blazor WebAssembly Apps.
       Currently using sweetalert2@8.15.3
     </Description>
     <Copyright>Michael J. Currie</Copyright>
