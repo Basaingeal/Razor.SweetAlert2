@@ -24,7 +24,7 @@
 ![Nuget](https://img.shields.io/nuget/v/CurrieTechnologies.Razor.SweetAlert2.svg?style=popout)
 ![Nuget](https://img.shields.io/nuget/dt/CurrieTechnologies.Razor.SweetAlert2)
 
-## This package is now for both Server-side and Client-side Blazor. [CurrieTechnologies.Blazor.SweetAlert2](https://github.com/Basaingeal/Blazor.SweetAlert2) is now deprecated.
+## This package is now for both Blazor Server Apps and Blazor WebAssembly Apps. [CurrieTechnologies.Blazor.SweetAlert2](https://github.com/Basaingeal/Blazor.SweetAlert2) is now deprecated.
 
 ### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
 
@@ -66,7 +66,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Add this script tag in  your root html file (Likely _Host.cshtml for Server-side Blazor or index.html for Client-side Blazor), right under the framework script tag. (i.e `<script src="_framework/blazor.server.js"></script>` for Server-side Blazor or `<script src="_framework/blazor.webassembly.js"></script>` for Client-side Blazor)
+Add this script tag in  your root html file (Likely _Host.cshtml for Blazor Server or index.html for Blazor WebAssembly), right under the framework script tag. (i.e `<script src="_framework/blazor.server.js"></script>` for Blazor Server or `<script src="_framework/blazor.webassembly.js"></script>` for Blazor WebAssembly)
 ```html
 <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
 ```
