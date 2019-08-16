@@ -17,5 +17,5 @@
     "allowJs": true,
     "types": ["sweetalert2"]
   },
-  "include": ["./src/ts"]
+  "include": ["./src/ts/*.ts"]
 }
