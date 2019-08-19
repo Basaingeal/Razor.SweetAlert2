@@ -24,6 +24,23 @@ function getEnumNumber(enumString: string): number | undefined {
   return undefined;
 }
 
+function getEnumString(enumNumber: number): string | undefined {
+  switch (enumNumber) {
+    case 0:
+      return "cancel";
+    case 1:
+      return "backdrop";
+    case 2:
+      return "close";
+    case 3:
+      return "esc";
+    case 4:
+      return "timer";
+  }
+
+  return undefined;
+}
+
 function getStringVerison(input: any): string {
   if (input instanceof Object) {
     return JSON.stringify(input);
@@ -93,10 +110,6 @@ function dispatchOnBeforeOpen(requestId: string): void {
 
 function dispatchOnAfterClose(requestId: string): void {
   DotNet.invokeMethodAsync(namespace, "ReceiveOnAfterCloseInput", requestId);
-}
-
-function dispatchOnComplete(requestId: string): void {
-  DotNet.invokeMethodAsync(namespace, "ReceiveOnCompleteInput", requestId);
 }
 
 function cleanSettings(settings: SimpleSweetAlertOptions): SimpleSweetAlertOptions {
@@ -279,8 +292,13 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Update = (
   Swal.update(swalSettings);
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Close = (requestId: string): void => {
-  Swal.close((): void => dispatchOnComplete(requestId));
+domWindow.CurrieTechnologies.Razor.SweetAlert2.CloseResult = (result: SweetAlertResult): void => {
+  result.dismiss = (getEnumString((result.dismiss as any) as number) as any) as Swal.DismissReason;
+  Swal.close(result);
+};
+
+domWindow.CurrieTechnologies.Razor.SweetAlert2.Close = (): void => {
+  Swal.close();
 };
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.EnableButtons = (): void => {
