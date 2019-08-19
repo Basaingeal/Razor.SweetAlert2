@@ -30,9 +30,6 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         private static readonly IDictionary<Guid, SweetAlertCallback> OnAfterCloseCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
-        private static readonly IDictionary<Guid, SweetAlertCallback> OnCompleteCallbacks =
-            new Dictionary<Guid, SweetAlertCallback>();
-
         private static readonly IDictionary<Guid, InputValidatorCallback> InputValidatorCallbacks =
             new Dictionary<Guid, InputValidatorCallback>();
 
@@ -182,12 +179,23 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Closes the currently open SweetAlert2 modal programmatically.
         /// </summary>
-        /// <param name="onComplete">An optional callback to be called when the alert has finished closing.</param>
-        public async Task CloseAsync(SweetAlertCallback onComplete)
+        /// <param name="result">The promise originally returned by <code>Swal.FireAsync()</code> will be resolved with this value.
+        /// <para>If no object is given, the promise is resolved with an empty ({}) <code>SweetAlertResult</code> object.</para>
+        /// </param>
+        public async Task CloseAsync(SweetAlertResult result)
         {
-            var requestId = Guid.NewGuid();
-            OnCompleteCallbacks.Add(requestId, onComplete);
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Close", requestId).ConfigureAwait(false);
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.CloseResult", result).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Closes the currently open SweetAlert2 modal programmatically.
+        /// </summary>
+        /// <param name="result">The promise originally returned by <code>Swal.FireAsync()</code> will be resolved with this value.
+        /// <para>If no object is given, the promise is resolved with an empty ({}) <code>SweetAlertResult</code> object.</para>
+        /// </param>
+        public async Task CloseAsync(SweetAlertQueueResult result)
+        {
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.CloseResult", result).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -195,9 +203,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public async Task CloseAsync()
         {
-            var requestId = Guid.NewGuid();
-            OnCompleteCallbacks.Add(requestId, null);
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Close", requestId).ConfigureAwait(false);
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Close").ConfigureAwait(false);
         }
 
         /// <summary>
@@ -577,19 +583,6 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             OnAfterCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
             OnAfterCloseCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
-        }
-
-        [JSInvokable]
-        public static async Task ReceiveOnCompleteInput(string requestId)
-        {
-            var requestIdGuid = Guid.Parse(requestId);
-            OnCompleteCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
-            if (callback != null)
-            {
-                await callback.InvokeAsync().ConfigureAwait(false);
-            }
-
-            OnCompleteCallbacks.Remove(requestIdGuid);
         }
     }
 

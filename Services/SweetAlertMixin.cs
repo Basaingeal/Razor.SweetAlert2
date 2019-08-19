@@ -72,10 +72,23 @@
         /// <summary>
         /// Closes the currently open SweetAlert2 modal programmatically.
         /// </summary>
-        /// <param name="onComplete">An optional callback to be called when the alert has finished closing.</param>
-        public Task CloseAsync(SweetAlertCallback onComplete)
+        /// <param name="result">The promise originally returned by <code>Swal.FireAsync()</code> will be resolved with this value.
+        /// <para>If no object is given, the promise is resolved with an empty ({}) <code>SweetAlertResult</code> object.</para>
+        /// </param>
+        public Task CloseAsync(SweetAlertResult result)
         {
-            return this.swal.CloseAsync(onComplete);
+            return this.swal.CloseAsync(result);
+        }
+
+        /// <summary>
+        /// Closes the currently open SweetAlert2 modal programmatically.
+        /// </summary>
+        /// <param name="result">The promise originally returned by <code>Swal.FireAsync()</code> will be resolved with this value.
+        /// <para>If no object is given, the promise is resolved with an empty ({}) <code>SweetAlertResult</code> object.</para>
+        /// </param>
+        public Task CloseAsync(SweetAlertQueueResult result)
+        {
+            return this.swal.CloseAsync(result);
         }
 
         /// <summary>
