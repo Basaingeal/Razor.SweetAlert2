@@ -1,5 +1,5 @@
 ﻿## Enhancements
-* Bump `sweetalert2` to `8.16.3`
+* Bump `sweetalert2` to `8.16.2`
   * Bug Fix: **types**: Swal.close() now takes the value to resolve with, not a callback (https://github.com/sweetalert2/sweetalert2/commit/8def219)
 
 ## Bug Fixes / Breaking Changes
