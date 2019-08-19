@@ -13,7 +13,9 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         Task<bool> IsVisibleAsync();
 
-        Task CloseAsync(SweetAlertCallback onComplete);
+        Task CloseAsync(SweetAlertResult result);
+
+        Task CloseAsync(SweetAlertQueueResult result);
 
         Task CloseAsync();
 
