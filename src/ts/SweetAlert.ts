@@ -51,8 +51,7 @@ function getStringVerison(input: any): string {
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const myResult = (result as (SweetAlertResult | EnumSweetAlertResult)) as EnumSweetAlertResult;
   myResult.value = myResult.value !== undefined ? getStringVerison(myResult.value) : undefined;
-  myResult.dismiss =
-    myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss) : undefined;
+  myResult.dismiss = myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
 }
 
