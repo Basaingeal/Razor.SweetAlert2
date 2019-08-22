@@ -7,35 +7,35 @@ declare const DotNet: any;
 const domWindow = window as any;
 const namespace = "CurrieTechnologies.Razor.SweetAlert2";
 
-function getEnumNumber(enumString: string): number | undefined {
+function getEnumNumber(enumString: Swal.DismissReason): number | undefined {
   switch (enumString) {
-    case "cancel":
+    case Swal.DismissReason.cancel:
       return 0;
-    case "backdrop":
+    case Swal.DismissReason.backdrop:
       return 1;
-    case "close":
+    case Swal.DismissReason.close:
       return 2;
-    case "esc":
+    case Swal.DismissReason.esc:
       return 3;
-    case "timer":
+    case Swal.DismissReason.timer:
       return 4;
   }
 
   return undefined;
 }
 
-function getEnumString(enumNumber: number): string | undefined {
+function getEnumString(enumNumber: number): Swal.DismissReason | undefined {
   switch (enumNumber) {
     case 0:
-      return "cancel";
+      return Swal.DismissReason.cancel;
     case 1:
-      return "backdrop";
+      return Swal.DismissReason.backdrop;
     case 2:
-      return "close";
+      return Swal.DismissReason.close;
     case 3:
-      return "esc";
+      return Swal.DismissReason.esc;
     case 4:
-      return "timer";
+      return Swal.DismissReason.timer;
   }
 
   return undefined;
@@ -51,8 +51,7 @@ function getStringVerison(input: any): string {
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const myResult = (result as (SweetAlertResult | EnumSweetAlertResult)) as EnumSweetAlertResult;
   myResult.value = myResult.value !== undefined ? getStringVerison(myResult.value) : undefined;
-  myResult.dismiss =
-    myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss.toString()) : undefined;
+  myResult.dismiss = myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
 }
 
@@ -68,7 +67,7 @@ function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promi
         )
       : undefined;
   queueResult.dismiss =
-    queueResult.dismiss !== undefined ? getEnumNumber(queueResult.dismiss.toString()) : undefined;
+    queueResult.dismiss !== undefined ? getEnumNumber(queueResult.dismiss) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveQueueResult", requestId, queueResult);
 }
 
@@ -293,7 +292,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Update = (
 };
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.CloseResult = (result: SweetAlertResult): void => {
-  result.dismiss = (getEnumString((result.dismiss as any) as number) as any) as Swal.DismissReason;
+  result.dismiss = getEnumString((result.dismiss as any) as number);
   Swal.close(result);
 };
 
