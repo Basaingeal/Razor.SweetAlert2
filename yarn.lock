@@ -6122,10 +6122,10 @@ webpack-cli@^3.3.7:
     v8-compile-cache "2.0.3"
     yargs "13.2.4"
 
-webpack-fix-style-only-entries@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/webpack-fix-style-only-entries/-/webpack-fix-style-only-entries-0.3.0.tgz#bdce1a2b4aff76e9a9e4c863cee4c990e9ebb6d6"
-  integrity sha512-WmQpJ8kdyfWRCj3hMuMm+ZCFH0kUEuG19t986LD2+W6f0jnLvF6KR1jciMsmrfNNgxXVQQaKlycXcasU1IsCOw==
+webpack-fix-style-only-entries@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/webpack-fix-style-only-entries/-/webpack-fix-style-only-entries-0.3.1.tgz#8753f368fbc2df50eda967b276b16b04498be0b8"
+  integrity sha512-B9fTBquTxEw5FAKO6PaIgCDFmkeZAdIg4Npoq7S2MPf12/doQT3KTzhBXjnOb+kBq1zgMumxluqMBUXbzm+OnA==
 
 webpack-sources@^1.1.0, webpack-sources@^1.4.0, webpack-sources@^1.4.1:
   version "1.4.1"
