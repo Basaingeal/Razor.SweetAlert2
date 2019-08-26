@@ -2,6 +2,7 @@ trigger:
 - master
 - develop
 - release/*
+- greenkeeper/*
 
 pr:
 - master
