@@ -20,7 +20,7 @@
 </p>
 
 ---
-[![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=master)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=master)
+[![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=master)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=master) [![Greenkeeper badge](https://badges.greenkeeper.io/Basaingeal/Razor.SweetAlert2.svg)](https://greenkeeper.io/)
 ![Nuget](https://img.shields.io/nuget/v/CurrieTechnologies.Razor.SweetAlert2.svg?style=popout)
 ![Nuget](https://img.shields.io/nuget/dt/CurrieTechnologies.Razor.SweetAlert2)
 
