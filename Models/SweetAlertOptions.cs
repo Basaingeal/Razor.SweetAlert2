@@ -1,6 +1,5 @@
 ﻿namespace CurrieTechnologies.Razor.SweetAlert2
 {
-    using System;
     using System.Collections.Generic;
 
     public class SweetAlertOptions
@@ -325,6 +324,13 @@
         public SweetAlertCallback OnClose { get; set; }
 
         /// <summary>
+        /// Function to run after modal DOM has been updated.
+        /// <para>Typically, this will happen after Swal.FireAsync() or Swal.UpdateAsync().</para>
+        /// <para>If you want to perform changes in the modal's DOM, that survive Swal.UpdateAsync(), onRender is a good place for that.</para>
+        /// </summary>
+        public SweetAlertCallback OnRender { get; set; }
+
+        /// <summary>
         /// Set to false to disable body padding adjustment when scrollbar is present.
         /// </summary>
         public bool? ScrollbarPadding { get; set; }
@@ -402,6 +408,7 @@
                 OnAfterClose = this.OnAfterClose != null,
                 OnOpen = this.OnOpen != null,
                 OnClose = this.OnClose != null,
+                OnRender = this.OnRender != null,
                 ScrollbarPadding = this.ScrollbarPadding,
             };
         }

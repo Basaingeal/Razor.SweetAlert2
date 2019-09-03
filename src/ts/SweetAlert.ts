@@ -1,4 +1,9 @@
-﻿import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertType } from "sweetalert2";
+﻿import Swal, {
+  SweetAlertOptions,
+  SweetAlertResult,
+  SweetAlertType,
+  SweetAlertArrayOptions
+} from "sweetalert2";
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import SweetAlertQueueResult from "./SweetAlertQueueResult";
 import EnumSweetAlertResult from "./EnumSweetAlertResult";
@@ -103,6 +108,10 @@ function dispatchOnClose(requestId: string): void {
   DotNet.invokeMethodAsync(namespace, "ReceiveOnCloseInput", requestId);
 }
 
+function dispatchOnRender(requestId: string): void {
+  DotNet.invokeMethodAsync(namespace, "ReceiveOnRenderInput", requestId);
+}
+
 function dispatchOnBeforeOpen(requestId: string): void {
   DotNet.invokeMethodAsync(namespace, "ReceiveOnBeforeOpenInput", requestId);
 }
@@ -168,6 +177,12 @@ function getSwalSettingsFromPoco(
     swalSettings.onClose = (): void => dispatchOnClose(requestId);
   } else {
     delete swalSettings.onClose;
+  }
+
+  if (settings.onRender) {
+    swalSettings.onRender = (): void => dispatchOnRender(requestId);
+  } else {
+    delete swalSettings.onRender;
   }
 
   if (settings.grow === "false") {
@@ -240,9 +255,9 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
 ): void => {
   setTheme(theme);
 
-  let params: [string] | [string, string] | [string, string, string] = [title];
-  params = params.concat(message || "") as [string, string];
-  params = type ? (params.concat(type.toString()) as [string, string, string]) : params;
+  let params: SweetAlertArrayOptions = [title];
+  params = params.concat(message || "") as SweetAlertArrayOptions;
+  params = type ? (params.concat(type.toString()) as SweetAlertArrayOptions) : params;
   Swal.fire(Swal.argsToParams(params)).then((result): void => {
     dispatchFireResult(requestId, result);
   });

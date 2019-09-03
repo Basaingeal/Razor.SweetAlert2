@@ -122,6 +122,8 @@
 
         public bool OnClose { get; set; }
 
+        public bool OnRender { get; set; }
+
         public bool? ScrollbarPadding { get; set; }
     }
 }
