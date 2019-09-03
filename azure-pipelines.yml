@@ -29,21 +29,9 @@ jobs:
           checkLatest: true
           includePrerelease: false
 
-      - task: DotNetCoreInstaller@0
-        displayName: 'Installing .NET Core SDK...'
-        inputs:
-          version: 3.0.100-preview8-013656
-          
       - task: Yarn@3
         displayName: 'Installing Yarn Packages'
 
-      - task: DotNetCoreCLI@2
-        displayName: 'Restoring Nuget Packages'
-        inputs:
-          command: 'restore'
-          projects: '**/*.csproj'
-          feedsToUse: 'select'
-          
       - task: Yarn@3
         displayName: 'Linting'
         inputs:
@@ -63,6 +51,17 @@ jobs:
         displayName: 'Building JS and CSS'
         inputs:
           arguments: build
+
+      - task: DotNetCoreInstaller@0
+        displayName: 'Installing .NET Core SDK...'
+        inputs:
+          version: 3.0.100-preview8-013656
+      - task: DotNetCoreCLI@2
+        displayName: 'Restoring Nuget Packages'
+        inputs:
+          command: 'restore'
+          projects: '**/*.csproj'
+          feedsToUse: 'select'
 
       - task: DotNetCoreCLI@2
         displayName: 'Building'
