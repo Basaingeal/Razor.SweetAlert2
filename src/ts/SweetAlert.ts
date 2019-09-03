@@ -103,6 +103,10 @@ function dispatchOnClose(requestId: string): void {
   DotNet.invokeMethodAsync(namespace, "ReceiveOnCloseInput", requestId);
 }
 
+function dispatchOnRender(requestId: string): void {
+  DotNet.invokeMethodAsync(namespace, "ReceiveOnRenderInput", requestId);
+}
+
 function dispatchOnBeforeOpen(requestId: string): void {
   DotNet.invokeMethodAsync(namespace, "ReceiveOnBeforeOpenInput", requestId);
 }
@@ -168,6 +172,12 @@ function getSwalSettingsFromPoco(
     swalSettings.onClose = (): void => dispatchOnClose(requestId);
   } else {
     delete swalSettings.onClose;
+  }
+
+  if (settings.onRender) {
+    swalSettings.onRender = (): void => dispatchOnRender(requestId);
+  } else {
+    delete swalSettings.onRender;
   }
 
   if (settings.grow === "false") {
