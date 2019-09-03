@@ -96,7 +96,7 @@ jobs:
     dependsOn: buildLibrary
     pool:
       vmImage: 'windows-latest'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/azure-pipelines'), eq(variables['Build.BuildReason'], 'IndividualCI'))
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/azure-pipelines'), eq(variables['Build.Reason'], 'Manual'))
     environment: currietechnologies-prod
     strategy:
       runOnce:
@@ -107,7 +107,7 @@ jobs:
             inputs:
               buildType: 'current'
               downloadType: 'single'
-              artifactName: WebSite
+              artifactName: 'drop'
               downloadPath: '$(System.ArtifactStagingDirectory)'
           
 #          - task: GitHubRelease@0
