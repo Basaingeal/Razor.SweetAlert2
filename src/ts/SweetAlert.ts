@@ -1,4 +1,4 @@
-﻿import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertType } from "sweetalert2";
+﻿import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertType, SweetAlertArrayOptions } from "sweetalert2";
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import SweetAlertQueueResult from "./SweetAlertQueueResult";
 import EnumSweetAlertResult from "./EnumSweetAlertResult";
@@ -240,9 +240,9 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
 ): void => {
   setTheme(theme);
 
-  let params: [string] | [string, string] | [string, string, string] = [title];
-  params = params.concat(message || "") as [string, string];
-  params = type ? (params.concat(type.toString()) as [string, string, string]) : params;
+  let params: SweetAlertArrayOptions = [title];
+  params = params.concat(message || "") as SweetAlertArrayOptions;
+  params = type ? (params.concat(type.toString()) as SweetAlertArrayOptions) : params;
   Swal.fire(Swal.argsToParams(params)).then((result): void => {
     dispatchFireResult(requestId, result);
   });
