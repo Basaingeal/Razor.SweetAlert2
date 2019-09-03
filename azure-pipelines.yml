@@ -2,89 +2,140 @@ trigger:
 - master
 - develop
 - release/*
-- greenkeeper/*
 
 pr:
 - master
 - develop
 - release/*
 
-pool:
-  vmImage: 'windows-latest'
-
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- task: PowerShell@2
-  displayName: 'Setting build number'
-  inputs:
-    filePath: './versioning.ps1'
+jobs:
+  - job: buildLibrary
+    displayName: Build Library
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+      - task: PowerShell@2
+        displayName: 'Setting build number'
+        inputs:
+          filePath: './versioning.ps1'
+          
+      - task: YarnInstaller@3
+        displayName: 'Installing Yarn 1.17.x'
+        inputs:
+          versionSpec: 1.17.x
+          checkLatest: true
+          includePrerelease: false
 
-- task: YarnInstaller@3
-  displayName: 'Use Yarn 1.17.x'
-  inputs:
-    versionSpec: 1.17.x
-    checkLatest: true
-    includePrerelease: false
+      - task: DotNetCoreInstaller@0
+        displayName: 'Installing .NET Core SDK...'
+        inputs:
+          version: 3.0.100-preview8-013656
+          
+      - task: Yarn@3
+        displayName: 'Installing Yarn Packages'
 
-- task: Yarn@3
-  displayName: 'Yarn Install'
+      - task: DotNetCoreCLI@2
+        displayName: 'Restoring Nuget Packages'
+        inputs:
+          command: 'restore'
+          projects: '**/*.csproj'
+          feedsToUse: 'select'
+          
+      - task: Yarn@3
+        displayName: 'Linting'
+        inputs:
+          arguments: lint
 
-- task: Yarn@3
-  displayName: 'Linting'
-  inputs:
-    arguments: lint
+      - task: Yarn@3
+        displayName: 'Checking Prettier'
+        inputs:
+          arguments: prettier:check
 
-- task: Yarn@3
-  displayName: 'Checking Prettier'
-  inputs:
-    arguments: prettier:check
+      - task: Yarn@3
+        displayName: 'Checking Types'
+        inputs:
+          arguments: build:tsc
+          
+      - task: Yarn@3
+        displayName: 'Building JS and CSS'
+        inputs:
+          arguments: build
 
-- task: Yarn@3
-  displayName: 'Checking Types'
-  inputs:
-    arguments: build:tsc
+      - task: DotNetCoreCLI@2
+        displayName: 'Building'
+        inputs:
+          command: 'build'
+          projects: '**/*.csproj'
+          arguments: '-c $(buildConfiguration)'
+          
+      - task: DotNetCoreCLI@2
+        displayName: 'Packing'
+        inputs:
+          command: 'pack'
+          packagesToPack: '**/*.csproj'
+          versioningScheme: 'byBuildNumber'
 
-- task: Yarn@3
-  displayName: 'Building JS and CSS'
-  inputs:
-    arguments: build
+      - task: CopyFiles@2
+        displayName: 'Copying CHANGELOG'
+        inputs:
+          Contents: 'CHANGELOG.md'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: DotNetCoreInstaller@0
-  displayName: 'Installing .NET Core SDK...'
-  inputs:
-    version: 3.0.100-preview8-013656
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Restoring Nuget Packages'
-  inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
-    feedsToUse: 'select'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Building'
-  inputs:
-    command: 'build'
-    projects: '**/*.csproj'
-    arguments: '-c $(buildConfiguration)'
+  - deployment: deployLibrary
+    displayName: Deploy Library
+    dependsOn: buildLibrary
+    pool:
+      vmImage: 'windows-latest'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.Reason'], 'IndividualCI'))
+    environment: currietechnologies-prod
+    strategy:
+      runOnce:
+        deploy:
+          steps:
 
-- task: DotNetCoreCLI@2
-  displayName: 'Packing'
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    versioningScheme: 'byBuildNumber'
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'drop'
+              downloadPath: '$(System.ArtifactStagingDirectory)'
+          
+          - task: GitHubRelease@0
+            displayName: Create GitHub Release
+            inputs:
+              gitHubConnection: 'github connection 1'
+              repositoryName: '$(Build.Repository.Name)'
+              action: 'create'
+              target: '$(Build.SourceVersion)'
+              tagSource: 'auto'
+              tagPattern: 'v$(Build.BuildNumber)'
+              title: 'v$(Build.BuildNumber)'
+              releaseNotesFile: '$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md'
+              assets: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
+              compareWith: 'lastFullRelease'
 
-- task: CopyFiles@2
-  displayName: 'Copying CHANGELOG'
-  inputs:
-    Contents: 'CHANGELOG.md'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+          - task: DotNetCoreCLI@2
+            displayName: 'Push to private NuGet Feed'
+            inputs:
+              command: 'push'
+              packagesToPush: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
+              nuGetFeedType: 'internal'
+              publishVstsFeed: '92bb098c-7077-481e-813d-9c0d49ec780d'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+          - task: DotNetCoreCLI@2
+            displayName: 'Push to NuGet.org'
+            inputs:
+              command: 'push'
+              packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+              nuGetFeedType: 'external'
+              publishFeedCredentials: 'NuGet All'
