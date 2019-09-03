@@ -126,5 +126,7 @@ export default interface SimpleSweetAlertOptions {
 
   onClose: boolean;
 
+  onRender: boolean;
+
   scrollbarPadding?: boolean;
 }
