@@ -2,89 +2,123 @@ trigger:
 - master
 - develop
 - release/*
-- greenkeeper/*
 
 pr:
 - master
 - develop
 - release/*
 
-pool:
-  vmImage: 'windows-latest'
-
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- task: PowerShell@2
-  displayName: 'Setting build number'
-  inputs:
-    filePath: './versioning.ps1'
+jobs:
+  - job: setBuildNumber
+    displayName: Set Build Number
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+      - task: PowerShell@2
+        displayName: 'Setting build number'
+        inputs:
+          filePath: './versioning.ps1'
 
-- task: YarnInstaller@3
-  displayName: 'Use Yarn 1.17.x'
-  inputs:
-    versionSpec: 1.17.x
-    checkLatest: true
-    includePrerelease: false
+  - job: installTools
+    displayName: Install Build Tools
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+      - task: YarnInstaller@3
+        displayName: 'Installing Yarn 1.17.x'
+        inputs:
+          versionSpec: 1.17.x
+          checkLatest: true
+          includePrerelease: false
 
-- task: Yarn@3
-  displayName: 'Yarn Install'
+      - task: DotNetCoreInstaller@0
+        displayName: 'Installing .NET Core SDK...'
+        inputs:
+          version: 3.0.100-preview8-013656
+  
+  - job: restorePackages
+    dependsOn: installTools
+    displayName: Restore Packages
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+      - task: Yarn@3
+        displayName: 'Installing Yarn Packages'
 
-- task: Yarn@3
-  displayName: 'Linting'
-  inputs:
-    arguments: lint
+      - task: DotNetCoreCLI@2
+        displayName: 'Restoring Nuget Packages'
+        inputs:
+          command: 'restore'
+          projects: '**/*.csproj'
+          feedsToUse: 'select'
 
-- task: Yarn@3
-  displayName: 'Checking Prettier'
-  inputs:
-    arguments: prettier:check
+  - job: lintTypecheck
+    dependsOn: restorePackages
+    displayName: Lint & Type Check
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+      - task: Yarn@3
+        displayName: 'Linting'
+        inputs:
+          arguments: lint
 
-- task: Yarn@3
-  displayName: 'Checking Types'
-  inputs:
-    arguments: build:tsc
+      - task: Yarn@3
+        displayName: 'Checking Prettier'
+        inputs:
+          arguments: prettier:check
 
-- task: Yarn@3
-  displayName: 'Building JS and CSS'
-  inputs:
-    arguments: build
+      - task: Yarn@3
+        displayName: 'Checking Types'
+        inputs:
+          arguments: build:tsc
 
-- task: DotNetCoreInstaller@0
-  displayName: 'Installing .NET Core SDK...'
-  inputs:
-    version: 3.0.100-preview8-013656
+  - job: build
+    dependsOn:
+      - installTools
+      - lintTypecheck
+    displayName: Build
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+      - task: Yarn@3
+        displayName: 'Building JS and CSS'
+        inputs:
+          arguments: build
 
-- task: DotNetCoreCLI@2
-  displayName: 'Restoring Nuget Packages'
-  inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
-    feedsToUse: 'select'
+      - task: DotNetCoreCLI@2
+        displayName: 'Building'
+        inputs:
+          command: 'build'
+          projects: '**/*.csproj'
+          arguments: '-c $(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Building'
-  inputs:
-    command: 'build'
-    projects: '**/*.csproj'
-    arguments: '-c $(buildConfiguration)'
+  - job: publishBuild
+    dependsOn: 
+      - installTools
+      - build
+    displayName: Publish Build
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+      - task: DotNetCoreCLI@2
+        displayName: 'Packing'
+        inputs:
+          command: 'pack'
+          packagesToPack: '**/*.csproj'
+          versioningScheme: 'byBuildNumber'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Packing'
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    versioningScheme: 'byBuildNumber'
+      - task: CopyFiles@2
+        displayName: 'Copying CHANGELOG'
+        inputs:
+          Contents: 'CHANGELOG.md'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: CopyFiles@2
-  displayName: 'Copying CHANGELOG'
-  inputs:
-    Contents: 'CHANGELOG.md'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
