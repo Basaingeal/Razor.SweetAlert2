@@ -119,13 +119,13 @@ jobs:
 #              tagSource: 'auto'
 #              tagPattern: 'v$(Build.BuildNumber)'
 #              title: 'v$(Build.BuildNumber)'
-#              releaseNotesFile: '$(System.ArtifactStagingDirectory)/_Basaingeal.Razor.SweetAlert2/drop/CHANGELOG.md'
-#              assets: '$(System.ArtifactStagingDirectory)/_Basaingeal.Razor.SweetAlert2/drop/*.nupkg'
+#              releaseNotesFile: '$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md'
+#              assets: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
 #              compareWith: 'lastFullRelease'
 
           - task: DotNetCoreCLI@2
             inputs:
               command: 'push'
-              packagesToPush: '$(System.DefaultWorkingDirectory)/_Basaingeal.Razor.SweetAlert2/drop/*.nupkg'
+              packagesToPush: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
               nuGetFeedType: 'internal'
               publishVstsFeed: '92bb098c-7077-481e-813d-9c0d49ec780d'
