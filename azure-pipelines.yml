@@ -96,7 +96,7 @@ jobs:
     dependsOn: buildLibrary
     pool:
       vmImage: 'windows-latest'
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/azure-pipelines'), eq(variables['Build.Reason'], 'Manual'))
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.Reason'], 'IndividualCI'))
     environment: currietechnologies-prod
     strategy:
       runOnce:
@@ -110,22 +110,32 @@ jobs:
               artifactName: 'drop'
               downloadPath: '$(System.ArtifactStagingDirectory)'
           
-#          - task: GitHubRelease@0
-#            inputs:
-#              gitHubConnection: 'github connection 1'
-#              repositoryName: '$(Build.Repository.Name)'
-#              action: 'create'
-#              target: '$(Build.SourceVersion)'
-#              tagSource: 'auto'
-#              tagPattern: 'v$(Build.BuildNumber)'
-#              title: 'v$(Build.BuildNumber)'
-#              releaseNotesFile: '$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md'
-#              assets: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
-#              compareWith: 'lastFullRelease'
+          - task: GitHubRelease@0
+            displayName: Create GitHub Release
+            inputs:
+              gitHubConnection: 'github connection 1'
+              repositoryName: '$(Build.Repository.Name)'
+              action: 'create'
+              target: '$(Build.SourceVersion)'
+              tagSource: 'auto'
+              tagPattern: 'v$(Build.BuildNumber)'
+              title: 'v$(Build.BuildNumber)'
+              releaseNotesFile: '$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md'
+              assets: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
+              compareWith: 'lastFullRelease'
 
           - task: DotNetCoreCLI@2
+            displayName: 'Push to private NuGet Feed'
             inputs:
               command: 'push'
               packagesToPush: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
               nuGetFeedType: 'internal'
               publishVstsFeed: '92bb098c-7077-481e-813d-9c0d49ec780d'
+
+          - task: DotNetCoreCLI@2
+            displayName: 'Push to NuGet.org'
+            inputs:
+              command: 'push'
+              packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+              nuGetFeedType: 'external'
+              publishFeedCredentials: 'NuGet All'
