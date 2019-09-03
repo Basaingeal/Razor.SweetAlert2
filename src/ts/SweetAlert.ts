@@ -1,4 +1,9 @@
-﻿import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertType, SweetAlertArrayOptions } from "sweetalert2";
+﻿import Swal, {
+  SweetAlertOptions,
+  SweetAlertResult,
+  SweetAlertType,
+  SweetAlertArrayOptions
+} from "sweetalert2";
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import SweetAlertQueueResult from "./SweetAlertQueueResult";
 import EnumSweetAlertResult from "./EnumSweetAlertResult";
