@@ -12,8 +12,8 @@ variables:
   buildConfiguration: 'Release'
 
 jobs:
-  - job: setBuildNumber
-    displayName: Set Build Number
+  - job: buildLibrary
+    displayName: Build Library
     pool:
       vmImage: 'windows-latest'
     steps:
@@ -21,12 +21,7 @@ jobs:
         displayName: 'Setting build number'
         inputs:
           filePath: './versioning.ps1'
-
-  - job: installTools
-    displayName: Install Build Tools
-    pool:
-      vmImage: 'windows-latest'
-    steps:
+          
       - task: YarnInstaller@3
         displayName: 'Installing Yarn 1.17.x'
         inputs:
@@ -38,13 +33,7 @@ jobs:
         displayName: 'Installing .NET Core SDK...'
         inputs:
           version: 3.0.100-preview8-013656
-  
-  - job: restorePackages
-    dependsOn: installTools
-    displayName: Restore Packages
-    pool:
-      vmImage: 'windows-latest'
-    steps:
+          
       - task: Yarn@3
         displayName: 'Installing Yarn Packages'
 
@@ -54,13 +43,7 @@ jobs:
           command: 'restore'
           projects: '**/*.csproj'
           feedsToUse: 'select'
-
-  - job: lintTypecheck
-    dependsOn: restorePackages
-    displayName: Lint & Type Check
-    pool:
-      vmImage: 'windows-latest'
-    steps:
+          
       - task: Yarn@3
         displayName: 'Linting'
         inputs:
@@ -75,15 +58,7 @@ jobs:
         displayName: 'Checking Types'
         inputs:
           arguments: build:tsc
-
-  - job: build
-    dependsOn:
-      - installTools
-      - lintTypecheck
-    displayName: Build
-    pool:
-      vmImage: 'windows-latest'
-    steps:
+          
       - task: Yarn@3
         displayName: 'Building JS and CSS'
         inputs:
@@ -95,15 +70,7 @@ jobs:
           command: 'build'
           projects: '**/*.csproj'
           arguments: '-c $(buildConfiguration)'
-
-  - job: publishBuild
-    dependsOn: 
-      - installTools
-      - build
-    displayName: Publish Build
-    pool:
-      vmImage: 'windows-latest'
-    steps:
+          
       - task: DotNetCoreCLI@2
         displayName: 'Packing'
         inputs:
@@ -122,3 +89,42 @@ jobs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
           ArtifactName: 'drop'
           publishLocation: 'Container'
+
+
+  - deployment: deployLibrary
+    displayName: Deploy Library
+    dependsOn: buildLibrary
+    pool:
+      vmImage: 'windows-latest'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/azure-pipelines'), eq(variables['Build.BuildReason'], 'IndividualCI'))
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: WebSite
+              downloadPath: '$(System.ArtifactStagingDirectory)'
+          
+#          - task: GitHubRelease@0
+#            inputs:
+#              gitHubConnection: 'github connection 1'
+#              repositoryName: '$(Build.Repository.Name)'
+#              action: 'create'
+#              target: '$(Build.SourceVersion)'
+#              tagSource: 'auto'
+#              tagPattern: 'v$(Build.BuildNumber)'
+#              title: 'v$(Build.BuildNumber)'
+#              releaseNotesFile: '$(System.ArtifactStagingDirectory)/_Basaingeal.Razor.SweetAlert2/drop/CHANGELOG.md'
+#              assets: '$(System.ArtifactStagingDirectory)/_Basaingeal.Razor.SweetAlert2/drop/*.nupkg'
+#              compareWith: 'lastFullRelease'
+
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: 'push'
+              packagesToPush: '$(System.DefaultWorkingDirectory)/_Basaingeal.Razor.SweetAlert2/drop/*.nupkg'
+              nuGetFeedType: 'internal'
+              publishVstsFeed: '92bb098c-7077-481e-813d-9c0d49ec780d'
