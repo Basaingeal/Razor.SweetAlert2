@@ -10,6 +10,7 @@ pr:
 
 variables:
   buildConfiguration: "Release"
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 jobs:
   - job: buildLibrary
@@ -22,6 +23,12 @@ jobs:
         inputs:
           filePath: "./versioning.ps1"
 
+      - task: CacheBeta@1
+        inputs:
+          key: 'yarn | $(Agent.OS) | yarn.lock'
+          path: '$(YARN_CACHE_FOLDER)'
+        displayName: Cache Yarn packages
+
       - task: YarnInstaller@3
         displayName: "Installing Yarn 1.17.x"
         inputs:
@@ -31,6 +38,8 @@ jobs:
 
       - task: Yarn@3
         displayName: "Installing Yarn Packages"
+        inputs:
+          arguments: --frozen-lockfile
 
       - task: Yarn@3
         displayName: "Linting"
