@@ -65,7 +65,7 @@ jobs:
         displayName: "Installing .NET Core SDK..."
         inputs:
           packageType: "sdk"
-          version: "3.0.100-preview8-013656"
+          version: "3.0.100-preview9-014004"
 
       - task: DotNetCoreCLI@2
         displayName: "Restoring Nuget Packages"
