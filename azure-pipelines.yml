@@ -52,10 +52,12 @@ jobs:
         inputs:
           arguments: build
 
-      - task: DotNetCoreInstaller@0
+      - task: DotNetCoreInstaller@1
         displayName: "Installing .NET Core SDK..."
         inputs:
-          version: 3.0.100-preview8-013656
+          packageType: 'sdk'
+          version: "3.0.100-preview8-013656"
+
       - task: DotNetCoreCLI@2
         displayName: "Restoring Nuget Packages"
         inputs:
@@ -107,19 +109,18 @@ jobs:
                 artifactName: "drop"
                 downloadPath: "$(System.ArtifactStagingDirectory)"
 
-            - task: GitHubRelease@0
-              displayName: Create GitHub Release
+            - task: GitHubRelease@1
               inputs:
-                gitHubConnection: "github connection 1"
-                repositoryName: "$(Build.Repository.Name)"
-                action: "create"
-                target: "$(Build.SourceVersion)"
-                tagSource: "auto"
-                tagPattern: "v$(Build.BuildNumber)"
-                title: "v$(Build.BuildNumber)"
-                releaseNotesFile: "$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md"
-                assets: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
-                compareWith: "lastFullRelease"
+                gitHubConnection: 'github connection 1'
+                repositoryName: '$(Build.Repository.Name)'
+                action: 'create'
+                target: '$(Build.SourceVersion)'
+                tagSource: 'auto'
+                title: 'v$(Build.BuildNumber)'
+                releaseNotesFilePath: '$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md'
+                assets: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
+                changeLogCompareToRelease: 'lastFullRelease'
+                changeLogType: 'commitBased'
 
             - task: DotNetCoreCLI@2
               displayName: "Push to private NuGet Feed"
