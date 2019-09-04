@@ -146,6 +146,6 @@ jobs:
               displayName: "Push to NuGet.org"
               inputs:
                 command: "push"
-                packagesToPush: "$(Build.ArtifactStagingDirectory)/drop/*.nupkg"
+                packagesToPush: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
                 nuGetFeedType: "external"
                 publishFeedCredentials: "NuGet All"
