@@ -64,7 +64,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <param name="message"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public async Task<SweetAlertResult> FireAsync(string title = null, string message = null, SweetAlertType type = null)
+        public async ValueTask<SweetAlertResult> FireAsync(string title = null, string message = null, SweetAlertType type = null)
         {
             var tcs = new TaskCompletionSource<SweetAlertResult>();
             Guid requestId = Guid.NewGuid();
@@ -107,7 +107,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </code>
         /// </example>
         /// <param name="settings"></param>
-        public async Task<SweetAlertResult> FireAsync(SweetAlertOptions settings)
+        public async ValueTask<SweetAlertResult> FireAsync(SweetAlertOptions settings)
         {
             if (settings == null)
             {
@@ -179,7 +179,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Determines if a modal is shown.
         /// </summary>
-        public async Task<bool> IsVisibleAsync()
+        public async ValueTask<bool> IsVisibleAsync()
         {
             return await jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsVisible").ConfigureAwait(false);
         }
@@ -190,7 +190,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <param name="result">The promise originally returned by <code>Swal.FireAsync()</code> will be resolved with this value.
         /// <para>If no object is given, the promise is resolved with an empty ({}) <code>SweetAlertResult</code> object.</para>
         /// </param>
-        public async Task CloseAsync(SweetAlertResult result)
+        public async ValueTask CloseAsync(SweetAlertResult result)
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.CloseResult", result).ConfigureAwait(false);
         }
@@ -201,7 +201,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <param name="result">The promise originally returned by <code>Swal.FireAsync()</code> will be resolved with this value.
         /// <para>If no object is given, the promise is resolved with an empty ({}) <code>SweetAlertResult</code> object.</para>
         /// </param>
-        public async Task CloseAsync(SweetAlertQueueResult result)
+        public async ValueTask CloseAsync(SweetAlertQueueResult result)
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.CloseResult", result).ConfigureAwait(false);
         }
@@ -209,7 +209,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Closes the currently open SweetAlert2 modal programmatically.
         /// </summary>
-        public async Task CloseAsync()
+        public async ValueTask CloseAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Close").ConfigureAwait(false);
         }
@@ -218,7 +218,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Updates popup options.
         /// </summary>
         /// <param name="newSettings"></param>
-        public async Task UpdateAsync(SweetAlertOptions newSettings)
+        public async ValueTask UpdateAsync(SweetAlertOptions newSettings)
         {
             if (newSettings == null)
             {
@@ -236,7 +236,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Enables "Confirm" and "Cancel" buttons.
         /// </summary>
-        public async Task EnableButtonsAsync()
+        public async ValueTask EnableButtonsAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.EnableButtons")
                .ConfigureAwait(false);
@@ -245,7 +245,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Disables "Confirm" and "Cancel" buttons.
         /// </summary>
-        public async Task DisableButtonsAsync()
+        public async ValueTask DisableButtonsAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.DisableButtons")
                 .ConfigureAwait(false);
@@ -254,7 +254,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Disables buttons and show loader. This is useful with HTML requests.
         /// </summary>
-        public async Task ShowLoadingAsync()
+        public async ValueTask ShowLoadingAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ShowLoading")
                 .ConfigureAwait(false);
@@ -263,7 +263,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Enables buttons and hide loader.
         /// </summary>
-        public async Task HideLoadingAsync()
+        public async ValueTask HideLoadingAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.HideLoading")
                 .ConfigureAwait(false);
@@ -272,7 +272,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Determines if modal is in the loading state.
         /// </summary>
-        public Task<bool> IsLoadingAsync()
+        public ValueTask<bool> IsLoadingAsync()
         {
             return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsLoading");
         }
@@ -280,7 +280,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Clicks the "Confirm"-button programmatically.
         /// </summary>
-        public async Task ClickConfirmAsync()
+        public async ValueTask ClickConfirmAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ClickConfirm")
                 .ConfigureAwait(false);
@@ -289,7 +289,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Clicks the "Cancel"-button programmatically.
         /// </summary>
-        public async Task ClickCancelAsync()
+        public async ValueTask ClickCancelAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ClickCancel")
                 .ConfigureAwait(false);
@@ -299,7 +299,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Shows a validation message.
         /// </summary>
         /// <param name="validationMessage">The validation message.</param>
-        public async Task ShowValidationMessageAsync(string validationMessage)
+        public async ValueTask ShowValidationMessageAsync(string validationMessage)
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ShowValidationMessage", validationMessage)
                 .ConfigureAwait(false);
@@ -308,7 +308,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Hides validation message.
         /// </summary>
-        public async Task ResetValidationMessageAsync()
+        public async ValueTask ResetValidationMessageAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ResetValidationMessage")
                 .ConfigureAwait(false);
@@ -317,7 +317,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Disables the modal input. A disabled input element is unusable and un-clickable.
         /// </summary>
-        public async Task DisableInputAsync()
+        public async ValueTask DisableInputAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.DisableInput")
                 .ConfigureAwait(false);
@@ -326,7 +326,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Enables the modal input.
         /// </summary>
-        public async Task EnableInputAsync()
+        public async ValueTask EnableInputAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.EnableInput")
                 .ConfigureAwait(false);
@@ -336,7 +336,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// If `timer` parameter is set, returns number of milliseconds of timer remained.
         /// <para>Otherwise, returns null.</para>
         /// </summary>
-        public async Task<double?> GetTimerLeftAsync()
+        public async ValueTask<double?> GetTimerLeftAsync()
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.GetTimerLeft")
                 .ConfigureAwait(false);
@@ -347,7 +347,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Stop timer. Returns number of milliseconds of timer remained.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public async Task<double?> StopTimerAsync()
+        public async ValueTask<double?> StopTimerAsync()
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.StopTimer")
                 .ConfigureAwait(false);
@@ -358,7 +358,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Resume timer. Returns number of milliseconds of timer remained.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public async Task<double?> ResumeTimerAsync()
+        public async ValueTask<double?> ResumeTimerAsync()
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ResumeTimer")
                 .ConfigureAwait(false);
@@ -369,7 +369,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Toggle timer. Returns number of milliseconds of timer remained.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public async Task<double?> ToggleTimerAsync()
+        public async ValueTask<double?> ToggleTimerAsync()
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ToggleTimer")
                 .ConfigureAwait(false);
@@ -380,7 +380,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Check if timer is running. Returns true if timer is running, and false is timer is paused / stopped.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public async Task<bool?> IsTimmerRunningAsync()
+        public async ValueTask<bool?> IsTimmerRunningAsync()
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IsTimmerRunning")
                 .ConfigureAwait(false);
@@ -392,7 +392,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
         /// <param name="n">The number of milliseconds to add to the currect timer</param>
-        public async Task<double?> IncreaseTimerAsync(double n)
+        public async ValueTask<double?> IncreaseTimerAsync(double n)
         {
             var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IncreaseTimer", n)
                 .ConfigureAwait(false);
@@ -403,7 +403,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Provide an array of SweetAlert2 parameters to show multiple modals, one modal after another.
         /// </summary>
         /// <param name="steps">The steps' configuration.</param>
-        public async Task<SweetAlertQueueResult> QueueAsync(IEnumerable<SweetAlertOptions> steps)
+        public async ValueTask<SweetAlertQueueResult> QueueAsync(IEnumerable<SweetAlertOptions> steps)
         {
             var requestId = Guid.NewGuid();
             var tcs = new TaskCompletionSource<SweetAlertQueueResult>();
@@ -427,7 +427,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Gets the index of current modal in queue. When there's no active queue, null will be returned.
         /// </summary>
-        public Task<string> GetQueueStepAsync()
+        public ValueTask<string> GetQueueStepAsync()
         {
             return jSRuntime.InvokeAsync<string>("CurrieTechnologies.Razor.SweetAlert2.GetQueueStep");
         }
@@ -437,7 +437,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         /// <param name="step">The step configuration (same object as in the Swal.fire() call).</param>
         /// <param name="index">The index to insert the step at. By default a modal will be added to the end of a queue.</param>
-        public Task<double> InsertQueueStepAsync(SweetAlertOptions step, double? index = null)
+        public ValueTask<double> InsertQueueStepAsync(SweetAlertOptions step, double? index = null)
         {
             if (step == null)
             {
@@ -453,7 +453,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Deletes the modal at the specified index in the queue.
         /// </summary>
         /// <param name="index">The modal index in the queue.</param>
-        public async Task DeleteQueueStepAsync(double index)
+        public async ValueTask DeleteQueueStepAsync(double index)
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.DeleteQueueStep", index)
                 .ConfigureAwait(false);
@@ -462,7 +462,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Shows progress steps.
         /// </summary>
-        public async Task ShowProgressStepsAsync()
+        public async ValueTask ShowProgressStepsAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ShowProgressSteps")
                 .ConfigureAwait(false);
@@ -471,7 +471,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Shows progress steps.
         /// </summary>
-        public async Task HideProgressStepsAsync()
+        public async ValueTask HideProgressStepsAsync()
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.HideProgressSteps")
                 .ConfigureAwait(false);
@@ -482,7 +482,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         /// <param name="paramName">The parameter to check.</param>
         /// <returns></returns>
-        public Task<bool> IsValidParamterAsync(string paramName)
+        public ValueTask<bool> IsValidParamterAsync(string paramName)
         {
             return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsValidParamter", paramName);
         }
@@ -492,7 +492,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         /// <param name="paramName">The parameter to check.</param>
         /// <returns></returns>
-        public Task<bool> IsUpdatableParamterAsync(string paramName)
+        public ValueTask<bool> IsUpdatableParamterAsync(string paramName)
         {
             return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsUpdatableParamter", paramName);
         }
