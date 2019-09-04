@@ -55,16 +55,16 @@ jobs:
       - task: DotNetCoreInstaller@1
         displayName: "Installing .NET Core SDK..."
         inputs:
-          packageType: 'sdk'
+          packageType: "sdk"
           version: "3.0.100-preview8-013656"
 
       - task: DotNetCoreCLI@2
         displayName: "Restoring Nuget Packages"
         inputs:
-          command: 'restore'
-          projects: '**/*.csproj'
-          feedsToUse: 'select'
-          verbosityRestore: 'Normal'
+          command: "restore"
+          projects: "**/*.csproj"
+          feedsToUse: "select"
+          verbosityRestore: "Normal"
 
       - task: DotNetCoreCLI@2
         displayName: "Building"
@@ -76,10 +76,10 @@ jobs:
       - task: DotNetCoreCLI@2
         displayName: "Packing"
         inputs:
-          command: 'pack'
-          packagesToPack: '**/*.csproj'
-          versioningScheme: 'byBuildNumber'
-          verbosityPack: 'Normal'
+          command: "pack"
+          packagesToPack: "**/*.csproj"
+          versioningScheme: "byBuildNumber"
+          verbosityPack: "Normal"
 
       - task: CopyFiles@2
         displayName: "Copying CHANGELOG"
@@ -113,16 +113,16 @@ jobs:
 
             - task: GitHubRelease@1
               inputs:
-                gitHubConnection: 'github connection 1'
-                repositoryName: '$(Build.Repository.Name)'
-                action: 'create'
-                target: '$(Build.SourceVersion)'
-                tagSource: 'auto'
-                title: 'v$(Build.BuildNumber)'
-                releaseNotesFilePath: '$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md'
-                assets: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
-                changeLogCompareToRelease: 'lastFullRelease'
-                changeLogType: 'commitBased'
+                gitHubConnection: "github connection 1"
+                repositoryName: "$(Build.Repository.Name)"
+                action: "create"
+                target: "$(Build.SourceVersion)"
+                tagSource: "auto"
+                title: "v$(Build.BuildNumber)"
+                releaseNotesFilePath: "$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md"
+                assets: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
+                changeLogCompareToRelease: "lastFullRelease"
+                changeLogType: "commitBased"
 
             - task: DotNetCoreCLI@2
               displayName: "Push to private NuGet Feed"
