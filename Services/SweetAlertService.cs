@@ -274,7 +274,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public Task<bool> IsLoadingAsync()
         {
-            return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsLoading");
+            return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsLoading").AsTask();
         }
 
         /// <summary>
@@ -429,7 +429,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public Task<string> GetQueueStepAsync()
         {
-            return jSRuntime.InvokeAsync<string>("CurrieTechnologies.Razor.SweetAlert2.GetQueueStep");
+            return jSRuntime.InvokeAsync<string>("CurrieTechnologies.Razor.SweetAlert2.GetQueueStep").AsTask();
         }
 
         /// <summary>
@@ -446,7 +446,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
             var requestId = Guid.NewGuid();
             AddCallbackToDictionaries(step, requestId);
-            return jSRuntime.InvokeAsync<double>("CurrieTechnologies.Razor.SweetAlert2.InsertQueueStep", requestId, step.ToPOCO(), index);
+            return jSRuntime.InvokeAsync<double>("CurrieTechnologies.Razor.SweetAlert2.InsertQueueStep", requestId, step.ToPOCO(), index).AsTask();
         }
 
         /// <summary>
@@ -484,7 +484,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <returns></returns>
         public Task<bool> IsValidParamterAsync(string paramName)
         {
-            return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsValidParamter", paramName);
+            return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsValidParamter", paramName).AsTask();
         }
 
         /// <summary>
@@ -494,7 +494,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <returns></returns>
         public Task<bool> IsUpdatableParamterAsync(string paramName)
         {
-            return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsUpdatableParamter", paramName);
+            return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsUpdatableParamter", paramName).AsTask();
         }
 
         /// <summary>

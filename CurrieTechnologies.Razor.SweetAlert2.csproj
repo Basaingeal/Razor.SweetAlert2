@@ -19,9 +19,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      - Bump sweetalert2
-      - Add OnRender callback
-      - Fix missing OnRender functionality
+      - Target .NET Core 3.0.100-preview9
     </PackageReleaseNotes>
   </PropertyGroup>
 
@@ -40,8 +38,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0-preview8.19405.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-preview8.19405.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0-preview9.19424.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-preview9.19424.4" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

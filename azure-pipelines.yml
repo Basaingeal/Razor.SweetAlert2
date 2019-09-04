@@ -65,7 +65,7 @@ jobs:
         displayName: "Installing .NET Core SDK..."
         inputs:
           packageType: "sdk"
-          version: "3.0.100-preview8-013656"
+          version: "3.0.100-preview9-014004"
 
       - task: DotNetCoreCLI@2
         displayName: "Restoring Nuget Packages"
@@ -114,6 +114,7 @@ jobs:
         deploy:
           steps:
             - task: DownloadBuildArtifacts@0
+              displayName: Download Build Artifacts
               inputs:
                 buildType: "current"
                 downloadType: "single"
@@ -121,6 +122,7 @@ jobs:
                 downloadPath: "$(System.ArtifactStagingDirectory)"
 
             - task: GitHubRelease@1
+              displayName: Create GitHub Release
               inputs:
                 gitHubConnection: "github connection 1"
                 repositoryName: "$(Build.Repository.Name)"
@@ -134,6 +136,12 @@ jobs:
                 changeLogCompareToRelease: "lastFullRelease"
                 changeLogType: "commitBased"
 
+            - task: NuGetToolInstaller@1
+              displayName: Use Latest NuGet
+              inputs:
+                versionSpec: '5.x'
+                checkLatest: true
+
             - task: DotNetCoreCLI@2
               displayName: "Push to private NuGet Feed"
               inputs:
@@ -143,6 +151,7 @@ jobs:
                 publishVstsFeed: "92bb098c-7077-481e-813d-9c0d49ec780d"
 
             - task: NuGetCommand@2
+              displayName: Push to NuGet.org
               inputs:
                 command: "push"
                 packagesToPush: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
