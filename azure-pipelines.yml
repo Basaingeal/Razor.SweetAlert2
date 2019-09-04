@@ -61,9 +61,10 @@ jobs:
       - task: DotNetCoreCLI@2
         displayName: "Restoring Nuget Packages"
         inputs:
-          command: "restore"
-          projects: "**/*.csproj"
-          feedsToUse: "select"
+          command: 'restore'
+          projects: '**/*.csproj'
+          feedsToUse: 'select'
+          verbosityRestore: 'Normal'
 
       - task: DotNetCoreCLI@2
         displayName: "Building"
@@ -75,9 +76,10 @@ jobs:
       - task: DotNetCoreCLI@2
         displayName: "Packing"
         inputs:
-          command: "pack"
-          packagesToPack: "**/*.csproj"
-          versioningScheme: "byBuildNumber"
+          command: 'pack'
+          packagesToPack: '**/*.csproj'
+          versioningScheme: 'byBuildNumber'
+          verbosityPack: 'Normal'
 
       - task: CopyFiles@2
         displayName: "Copying CHANGELOG"
