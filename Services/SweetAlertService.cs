@@ -24,6 +24,9 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         private static readonly IDictionary<Guid, SweetAlertCallback> OnCloseCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
+        private static readonly IDictionary<Guid, SweetAlertCallback> OnRenderCallbacks =
+            new Dictionary<Guid, SweetAlertCallback>();
+
         private static readonly IDictionary<Guid, SweetAlertCallback> OnBeforeOpenCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
@@ -61,7 +64,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <param name="message"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public async Task<SweetAlertResult> FireAsync(string title, string message = null, SweetAlertType type = null)
+        public async Task<SweetAlertResult> FireAsync(string title = null, string message = null, SweetAlertType type = null)
         {
             var tcs = new TaskCompletionSource<SweetAlertResult>();
             Guid requestId = Guid.NewGuid();
@@ -145,6 +148,11 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             if (settings.OnClose != null)
             {
                 OnCloseCallbacks.Add(requestId, settings.OnClose);
+            }
+
+            if (settings.OnRender != null)
+            {
+                OnRenderCallbacks.Add(requestId, settings.OnRender);
             }
 
             if (settings.OnBeforeOpen != null)
@@ -564,6 +572,14 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             var requestIdGuid = Guid.Parse(requestId);
             OnCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
             OnCloseCallbacks.Remove(requestIdGuid);
+            await callback.InvokeAsync().ConfigureAwait(false);
+        }
+
+        [JSInvokable]
+        public static async Task ReceiveOnRenderInput(string requestId)
+        {
+            var requestIdGuid = Guid.Parse(requestId);
+            OnRenderCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
 

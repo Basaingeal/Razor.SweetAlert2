@@ -21,6 +21,7 @@
     <PackageReleaseNotes>
       - Bump sweetalert2
       - Add OnRender callback
+      - Fix missing OnRender functionality
     </PackageReleaseNotes>
   </PropertyGroup>
 
