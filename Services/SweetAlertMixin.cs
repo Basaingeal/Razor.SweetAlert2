@@ -23,7 +23,7 @@
         /// <param name="message"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public Task<SweetAlertResult> FireAsync(string title, string message = null, SweetAlertType type = null)
+        public Task<SweetAlertResult> FireAsync(string title = null, string message = null, SweetAlertType type = null)
         {
             SweetAlertOptions newSettings = this.Mix(this.storedOptions);
             newSettings.Title = title;
@@ -405,6 +405,7 @@
                 OnAfterClose = newSettings.OnAfterClose ?? this.storedOptions.OnAfterClose,
                 OnOpen = newSettings.OnOpen ?? this.storedOptions.OnOpen,
                 OnClose = newSettings.OnClose ?? this.storedOptions.OnClose,
+                OnRender = newSettings.OnRender ?? this.storedOptions.OnRender,
                 ScrollbarPadding = newSettings.ScrollbarPadding ?? this.storedOptions.ScrollbarPadding,
             };
         }

@@ -248,17 +248,18 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2 =
 
 domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
   requestId: string,
-  title: string,
-  message: string,
-  type: SweetAlertType,
+  title: string | null,
+  message: string | null,
+  type: SweetAlertType | null,
   theme: number
 ): void => {
   setTheme(theme);
 
-  let params: SweetAlertArrayOptions = [title];
-  params = params.concat(message || "") as SweetAlertArrayOptions;
-  params = type ? (params.concat(type.toString()) as SweetAlertArrayOptions) : params;
-  Swal.fire(Swal.argsToParams(params)).then((result): void => {
+  const params: SweetAlertArrayOptions = [];
+  params[0] = title || undefined;
+  params[1] = message || undefined;
+  params[2] = type || undefined;
+  Swal.fire(params[0], params[1], params[2]).then((result): void => {
     dispatchFireResult(requestId, result);
   });
 };
