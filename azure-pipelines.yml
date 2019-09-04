@@ -25,8 +25,8 @@ jobs:
 
       - task: CacheBeta@1
         inputs:
-          key: 'yarn | $(Agent.OS) | yarn.lock'
-          path: '$(YARN_CACHE_FOLDER)'
+          key: "yarn | $(Agent.OS) | yarn.lock"
+          path: "$(YARN_CACHE_FOLDER)"
         displayName: Cache Yarn packages
 
       - task: YarnInstaller@3
@@ -122,17 +122,17 @@ jobs:
 
             - task: GitHubRelease@1
               inputs:
-                gitHubConnection: 'github connection 1'
-                repositoryName: '$(Build.Repository.Name)'
-                action: 'create'
-                target: '$(Build.SourceVersion)'
-                tagSource: 'userSpecifiedTag'
-                tag: 'v$(Build.BuildNumber)'
-                title: 'v$(Build.BuildNumber)'
-                releaseNotesFilePath: '$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md'
-                assets: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
-                changeLogCompareToRelease: 'lastFullRelease'
-                changeLogType: 'commitBased'
+                gitHubConnection: "github connection 1"
+                repositoryName: "$(Build.Repository.Name)"
+                action: "create"
+                target: "$(Build.SourceVersion)"
+                tagSource: "userSpecifiedTag"
+                tag: "v$(Build.BuildNumber)"
+                title: "v$(Build.BuildNumber)"
+                releaseNotesFilePath: "$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md"
+                assets: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
+                changeLogCompareToRelease: "lastFullRelease"
+                changeLogType: "commitBased"
 
             - task: DotNetCoreCLI@2
               displayName: "Push to private NuGet Feed"
