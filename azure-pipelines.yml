@@ -144,8 +144,8 @@ jobs:
 
             - task: NuGetCommand@2
               inputs:
-                command: 'push'
-                packagesToPush: '$(System.ArtifactStagingDirectory)/drop/*.nupkg'
-                nuGetFeedType: 'external'
-                publishFeedCredentials: 'NuGet All'
-                verbosityPush: 'Normal'
+                command: "push"
+                packagesToPush: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
+                nuGetFeedType: "external"
+                publishFeedCredentials: "NuGet All"
+                verbosityPush: "Normal"
