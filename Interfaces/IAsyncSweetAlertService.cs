@@ -5,73 +5,73 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 {
     internal interface IAsyncSweetAlertService
     {
-        ValueTask<SweetAlertResult> FireAsync(string title, string message, SweetAlertType type);
+        Task<SweetAlertResult> FireAsync(string title, string message, SweetAlertType type);
 
-        ValueTask<SweetAlertResult> FireAsync(SweetAlertOptions settings);
+        Task<SweetAlertResult> FireAsync(SweetAlertOptions settings);
 
         SweetAlertMixin Mixin(SweetAlertOptions settings);
 
-        ValueTask<bool> IsVisibleAsync();
+        Task<bool> IsVisibleAsync();
 
-        ValueTask CloseAsync(SweetAlertResult result);
+        Task CloseAsync(SweetAlertResult result);
 
-        ValueTask CloseAsync(SweetAlertQueueResult result);
+        Task CloseAsync(SweetAlertQueueResult result);
 
-        ValueTask CloseAsync();
+        Task CloseAsync();
 
-        ValueTask UpdateAsync(SweetAlertOptions newSettings);
+        Task UpdateAsync(SweetAlertOptions newSettings);
 
-        ValueTask EnableButtonsAsync();
+        Task EnableButtonsAsync();
 
-        ValueTask DisableButtonsAsync();
+        Task DisableButtonsAsync();
 
-        ValueTask ShowLoadingAsync();
+        Task ShowLoadingAsync();
 
-        ValueTask HideLoadingAsync();
+        Task HideLoadingAsync();
 
-        ValueTask<bool> IsLoadingAsync();
+        Task<bool> IsLoadingAsync();
 
-        ValueTask ClickConfirmAsync();
+        Task ClickConfirmAsync();
 
-        ValueTask ClickCancelAsync();
+        Task ClickCancelAsync();
 
-        ValueTask ShowValidationMessageAsync(string validationMessage);
+        Task ShowValidationMessageAsync(string validationMessage);
 
-        ValueTask ResetValidationMessageAsync();
+        Task ResetValidationMessageAsync();
 
-        ValueTask DisableInputAsync();
+        Task DisableInputAsync();
 
-        ValueTask EnableInputAsync();
+        Task EnableInputAsync();
 
-        ValueTask<double?> GetTimerLeftAsync();
+        Task<double?> GetTimerLeftAsync();
 
-        ValueTask<double?> StopTimerAsync();
+        Task<double?> StopTimerAsync();
 
-        ValueTask<double?> ResumeTimerAsync();
+        Task<double?> ResumeTimerAsync();
 
-        ValueTask<double?> ToggleTimerAsync();
+        Task<double?> ToggleTimerAsync();
 
-        ValueTask<bool?> IsTimmerRunningAsync();
+        Task<bool?> IsTimmerRunningAsync();
 
-        ValueTask<double?> IncreaseTimerAsync(double n);
+        Task<double?> IncreaseTimerAsync(double n);
 
-        ValueTask<SweetAlertQueueResult> QueueAsync(IEnumerable<SweetAlertOptions> steps);
+        Task<SweetAlertQueueResult> QueueAsync(IEnumerable<SweetAlertOptions> steps);
 
-        ValueTask<string> GetQueueStepAsync();
+        Task<string> GetQueueStepAsync();
 
-        ValueTask<double> InsertQueueStepAsync(SweetAlertOptions step, double? index);
-
-
-        ValueTask DeleteQueueStepAsync(double index);
+        Task<double> InsertQueueStepAsync(SweetAlertOptions step, double? index);
 
 
-        ValueTask ShowProgressStepsAsync();
+        Task DeleteQueueStepAsync(double index);
 
-        ValueTask HideProgressStepsAsync();
 
-        ValueTask<bool> IsValidParamterAsync(string paramName);
+        Task ShowProgressStepsAsync();
 
-        ValueTask<bool> IsUpdatableParamterAsync(string paramName);
+        Task HideProgressStepsAsync();
+
+        Task<bool> IsValidParamterAsync(string paramName);
+
+        Task<bool> IsUpdatableParamterAsync(string paramName);
 
         SweetAlertOptions ArgsToParams(IEnumerable<string> paramaters);
     }

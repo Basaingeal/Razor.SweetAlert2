@@ -23,7 +23,7 @@
         /// <param name="message"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public ValueTask<SweetAlertResult> FireAsync(string title = null, string message = null, SweetAlertType type = null)
+        public Task<SweetAlertResult> FireAsync(string title = null, string message = null, SweetAlertType type = null)
         {
             SweetAlertOptions newSettings = this.Mix(this.storedOptions);
             newSettings.Title = title;
@@ -36,7 +36,7 @@
         /// Function to display a SweetAlert2 modal, with an object of options, all being optional.
         /// </summary>
         /// <param name="settings"></param>
-        public ValueTask<SweetAlertResult> FireAsync(SweetAlertOptions settings)
+        public Task<SweetAlertResult> FireAsync(SweetAlertOptions settings)
         {
             if (settings == null)
             {
@@ -64,7 +64,7 @@
         /// <summary>
         /// Determines if a modal is shown.
         /// </summary>
-        public ValueTask<bool> IsVisibleAsync()
+        public Task<bool> IsVisibleAsync()
         {
             return this.swal.IsVisibleAsync();
         }
@@ -75,7 +75,7 @@
         /// <param name="result">The promise originally returned by <code>Swal.FireAsync()</code> will be resolved with this value.
         /// <para>If no object is given, the promise is resolved with an empty ({}) <code>SweetAlertResult</code> object.</para>
         /// </param>
-        public ValueTask CloseAsync(SweetAlertResult result)
+        public Task CloseAsync(SweetAlertResult result)
         {
             return this.swal.CloseAsync(result);
         }
@@ -86,7 +86,7 @@
         /// <param name="result">The promise originally returned by <code>Swal.FireAsync()</code> will be resolved with this value.
         /// <para>If no object is given, the promise is resolved with an empty ({}) <code>SweetAlertResult</code> object.</para>
         /// </param>
-        public ValueTask CloseAsync(SweetAlertQueueResult result)
+        public Task CloseAsync(SweetAlertQueueResult result)
         {
             return this.swal.CloseAsync(result);
         }
@@ -94,7 +94,7 @@
         /// <summary>
         /// Closes the currently open SweetAlert2 modal programmatically.
         /// </summary>
-        public ValueTask CloseAsync()
+        public Task CloseAsync()
         {
             return this.swal.CloseAsync();
         }
@@ -103,7 +103,7 @@
         /// Updates popup options.
         /// </summary>
         /// <param name="newSettings"></param>
-        public ValueTask UpdateAsync(SweetAlertOptions newSettings)
+        public Task UpdateAsync(SweetAlertOptions newSettings)
         {
             if (newSettings == null)
             {
@@ -116,7 +116,7 @@
         /// <summary>
         /// Enables "Confirm" and "Cancel" buttons.
         /// </summary>
-        public ValueTask EnableButtonsAsync()
+        public Task EnableButtonsAsync()
         {
             return this.swal.EnableButtonsAsync();
         }
@@ -124,7 +124,7 @@
         /// <summary>
         /// Disables "Confirm" and "Cancel" buttons.
         /// </summary>
-        public ValueTask DisableButtonsAsync()
+        public Task DisableButtonsAsync()
         {
             return this.swal.DisableButtonsAsync();
         }
@@ -132,7 +132,7 @@
         /// <summary>
         /// Disables buttons and show loader. This is useful with HTML requests.
         /// </summary>
-        public ValueTask ShowLoadingAsync()
+        public Task ShowLoadingAsync()
         {
             return this.swal.ShowLoadingAsync();
         }
@@ -140,7 +140,7 @@
         /// <summary>
         /// Enables buttons and hide loader.
         /// </summary>
-        public ValueTask HideLoadingAsync()
+        public Task HideLoadingAsync()
         {
             return this.swal.HideLoadingAsync();
         }
@@ -148,7 +148,7 @@
         /// <summary>
         /// Determines if modal is in the loading state.
         /// </summary>
-        public ValueTask<bool> IsLoadingAsync()
+        public Task<bool> IsLoadingAsync()
         {
             return this.swal.IsLoadingAsync();
         }
@@ -156,7 +156,7 @@
         /// <summary>
         /// Clicks the "Confirm"-button programmatically.
         /// </summary>
-        public ValueTask ClickConfirmAsync()
+        public Task ClickConfirmAsync()
         {
             return this.swal.ClickCancelAsync();
         }
@@ -164,7 +164,7 @@
         /// <summary>
         /// Clicks the "Cancel"-button programmatically.
         /// </summary>
-        public ValueTask ClickCancelAsync()
+        public Task ClickCancelAsync()
         {
             return this.swal.ClickCancelAsync();
         }
@@ -173,7 +173,7 @@
         /// Shows a validation message.
         /// </summary>
         /// <param name="validationMessage">The validation message.</param>
-        public ValueTask ShowValidationMessageAsync(string validationMessage)
+        public Task ShowValidationMessageAsync(string validationMessage)
         {
             return this.swal.ShowValidationMessageAsync(validationMessage);
         }
@@ -181,7 +181,7 @@
         /// <summary>
         /// Hides validation message.
         /// </summary>
-        public ValueTask ResetValidationMessageAsync()
+        public Task ResetValidationMessageAsync()
         {
             return this.swal.ResetValidationMessageAsync();
         }
@@ -189,7 +189,7 @@
         /// <summary>
         /// Disables the modal input. A disabled input element is unusable and un-clickable.
         /// </summary>
-        public ValueTask DisableInputAsync()
+        public Task DisableInputAsync()
         {
             return this.swal.DisableInputAsync();
         }
@@ -197,7 +197,7 @@
         /// <summary>
         /// Enables the modal input.
         /// </summary>
-        public ValueTask EnableInputAsync()
+        public Task EnableInputAsync()
         {
             return this.swal.EnableInputAsync();
         }
@@ -206,7 +206,7 @@
         /// If `timer` parameter is set, returns number of milliseconds of timer remained.
         /// <para>Otherwise, returns null.</para>
         /// </summary>
-        public ValueTask<double?> GetTimerLeftAsync()
+        public Task<double?> GetTimerLeftAsync()
         {
             return this.swal.GetTimerLeftAsync();
         }
@@ -215,7 +215,7 @@
         /// Stop timer. Returns number of milliseconds of timer remained.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public ValueTask<double?> StopTimerAsync()
+        public Task<double?> StopTimerAsync()
         {
             return this.swal.StopTimerAsync();
         }
@@ -224,7 +224,7 @@
         /// Resume timer. Returns number of milliseconds of timer remained.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public ValueTask<double?> ResumeTimerAsync()
+        public Task<double?> ResumeTimerAsync()
         {
             return this.swal.ResumeTimerAsync();
         }
@@ -233,7 +233,7 @@
         /// Toggle timer. Returns number of milliseconds of timer remained.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public ValueTask<double?> ToggleTimerAsync()
+        public Task<double?> ToggleTimerAsync()
         {
             return this.swal.ToggleTimerAsync();
         }
@@ -242,7 +242,7 @@
         /// Check if timer is running. Returns true if timer is running, and false is timer is paused / stopped.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public ValueTask<bool?> IsTimmerRunningAsync()
+        public Task<bool?> IsTimmerRunningAsync()
         {
             return this.swal.IsTimmerRunningAsync();
         }
@@ -252,7 +252,7 @@
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
         /// <param name="n">The number of milliseconds to add to the currect timer</param>
-        public ValueTask<double?> IncreaseTimerAsync(double n)
+        public Task<double?> IncreaseTimerAsync(double n)
         {
             return this.swal.IncreaseTimerAsync(n);
         }
@@ -261,7 +261,7 @@
         /// Provide an array of SweetAlert2 parameters to show multiple modals, one modal after another.
         /// </summary>
         /// <param name="steps">The steps' configuration.</param>
-        public ValueTask<SweetAlertQueueResult> QueueAsync(IEnumerable<SweetAlertOptions> steps)
+        public Task<SweetAlertQueueResult> QueueAsync(IEnumerable<SweetAlertOptions> steps)
         {
             return this.swal.QueueAsync(steps.Select(s => this.Mix(s)));
         }
@@ -269,7 +269,7 @@
         /// <summary>
         /// Gets the index of current modal in queue. When there's no active queue, null will be returned.
         /// </summary>
-        public ValueTask<string> GetQueueStepAsync()
+        public Task<string> GetQueueStepAsync()
         {
             return this.swal.GetQueueStepAsync();
         }
@@ -279,7 +279,7 @@
         /// </summary>
         /// <param name="step">The step configuration (same object as in the Swal.fire() call).</param>
         /// <param name="index">The index to insert the step at. By default a modal will be added to the end of a queue.</param>
-        public ValueTask<double> InsertQueueStepAsync(SweetAlertOptions step, double? index = null)
+        public Task<double> InsertQueueStepAsync(SweetAlertOptions step, double? index = null)
         {
             if (step == null)
             {
@@ -293,7 +293,7 @@
         /// Deletes the modal at the specified index in the queue.
         /// </summary>
         /// <param name="index">The modal index in the queue.</param>
-        public ValueTask DeleteQueueStepAsync(double index)
+        public Task DeleteQueueStepAsync(double index)
         {
             return this.swal.DeleteQueueStepAsync(index);
         }
@@ -301,7 +301,7 @@
         /// <summary>
         /// Shows progress steps.
         /// </summary>
-        public ValueTask ShowProgressStepsAsync()
+        public Task ShowProgressStepsAsync()
         {
             return this.swal.ShowProgressStepsAsync();
         }
@@ -309,7 +309,7 @@
         /// <summary>
         /// Shows progress steps.
         /// </summary>
-        public ValueTask HideProgressStepsAsync()
+        public Task HideProgressStepsAsync()
         {
             return this.swal.HideProgressStepsAsync();
         }
@@ -318,7 +318,7 @@
         /// Determines if a given parameter name is valid.
         /// </summary>
         /// <param name="paramName">The parameter to check.</param>
-        public ValueTask<bool> IsValidParamterAsync(string paramName)
+        public Task<bool> IsValidParamterAsync(string paramName)
         {
             return this.swal.IsValidParamterAsync(paramName);
         }
@@ -327,7 +327,7 @@
         /// Determines if a given parameter name is valid for Swal.update() method.
         /// </summary>
         /// <param name="paramName">The parameter to check.</param>
-        public ValueTask<bool> IsUpdatableParamterAsync(string paramName)
+        public Task<bool> IsUpdatableParamterAsync(string paramName)
         {
             return this.swal.IsUpdatableParamterAsync(paramName);
         }
