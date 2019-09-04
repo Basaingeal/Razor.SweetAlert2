@@ -142,10 +142,10 @@ jobs:
                 nuGetFeedType: "internal"
                 publishVstsFeed: "92bb098c-7077-481e-813d-9c0d49ec780d"
 
-            - task: DotNetCoreCLI@2
-              displayName: "Push to NuGet.org"
+            - task: NuGetCommand@2
               inputs:
                 command: "push"
                 packagesToPush: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
                 nuGetFeedType: "external"
                 publishFeedCredentials: "NuGet All"
+                verbosityPush: "Normal"
