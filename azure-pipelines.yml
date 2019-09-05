@@ -32,10 +32,12 @@ jobs:
         inputs:
           key: "yarn | $(Agent.OS) | yarn.lock"
           path: "$(YARN_CACHE_FOLDER)"
+          cacheHitVar: YARN_CACHE_HIT
         displayName: Cache Yarn packages
 
       - task: YarnInstaller@3
         displayName: "Installing Yarn 1.17.x"
+        condition: ne(variables.YARN_CACHE_HIT, 'false')
         inputs:
           versionSpec: 1.17.x
           checkLatest: true
@@ -43,6 +45,7 @@ jobs:
 
       - task: Yarn@3
         displayName: "Installing Yarn Packages"
+        condition: ne(variables.YARN_CACHE_HIT, 'false')
         inputs:
           arguments: --frozen-lockfile
 
@@ -56,7 +59,7 @@ jobs:
         inputs:
           key: "yarn | $(Agent.OS) | yarn.lock"
           path: "$(YARN_CACHE_FOLDER)"
-        displayName: Cache Yarn packages
+        displayName: Restore Yarn Packages from Cache
 
       - task: YarnInstaller@3
         displayName: "Installing Yarn 1.17.x"
@@ -97,7 +100,7 @@ jobs:
         inputs:
           key: "yarn | $(Agent.OS) | yarn.lock"
           path: "$(YARN_CACHE_FOLDER)"
-        displayName: Cache Yarn packages
+        displayName: Restore Yarn Packages from Cache
         
       - task: YarnInstaller@3
         displayName: "Installing Yarn 1.17.x"
