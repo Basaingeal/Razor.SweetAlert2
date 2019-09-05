@@ -13,8 +13,8 @@ variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 jobs:
-  - job: buildLibrary
-    displayName: Build Library
+  - job: setBuildNumber
+    displayName: Set Build Number
     pool:
       vmImage: "windows-latest"
     steps:
@@ -23,12 +23,35 @@ jobs:
         inputs:
           filePath: "./versioning.ps1"
 
+  - job: installPackages
+    displayName: Install Packages
+    pool:
+      vmImage: "windows-latest"
+    steps:
       - task: CacheBeta@1
         inputs:
           key: "yarn | $(Agent.OS) | yarn.lock"
           path: "$(YARN_CACHE_FOLDER)"
         displayName: Cache Yarn packages
 
+      - task: YarnInstaller@3
+        displayName: "Installing Yarn 1.17.x"
+        inputs:
+          versionSpec: 1.17.x
+          checkLatest: true
+          includePrerelease: false
+
+      - task: Yarn@3
+        displayName: "Installing Yarn Packages"
+        inputs:
+          arguments: --frozen-lockfile
+
+  - job: lintLibrary
+    displayName: Lint
+    dependsOn: installPackages
+    pool:
+      vmImage: "windows-latest"
+    steps:
       - task: YarnInstaller@3
         displayName: "Installing Yarn 1.17.x"
         inputs:
@@ -55,6 +78,26 @@ jobs:
         displayName: "Checking Types"
         inputs:
           arguments: build:tsc
+
+  - job: buildLibrary
+    displayName: Build
+    dependsOn:
+      - installPackages
+      - setBuildNumber
+    pool:
+      vmImage: "windows-latest"
+    steps:
+      - task: YarnInstaller@3
+        displayName: "Installing Yarn 1.17.x"
+        inputs:
+          versionSpec: 1.17.x
+          checkLatest: true
+          includePrerelease: false
+
+      - task: Yarn@3
+        displayName: "Installing Yarn Packages"
+        inputs:
+          arguments: --frozen-lockfile
 
       - task: Yarn@3
         displayName: "Building JS and CSS"
@@ -103,8 +146,10 @@ jobs:
           publishLocation: "Container"
 
   - deployment: deployLibrary
-    displayName: Deploy Library
-    dependsOn: buildLibrary
+    displayName: Deploy
+    dependsOn:
+      - buildLibrary
+      - lintLibrary
     pool:
       vmImage: "windows-latest"
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.Reason'], 'IndividualCI'))
@@ -139,7 +184,7 @@ jobs:
             - task: NuGetToolInstaller@1
               displayName: Use Latest NuGet
               inputs:
-                versionSpec: '5.x'
+                versionSpec: "5.x"
                 checkLatest: true
 
             - task: DotNetCoreCLI@2
