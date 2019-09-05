@@ -37,7 +37,7 @@ jobs:
 
       - task: YarnInstaller@3
         displayName: "Installing Yarn 1.17.x"
-        condition: ne(variables.YARN_CACHE_HIT, 'false')
+        condition: ne(variables.YARN_CACHE_HIT, 'true')
         inputs:
           versionSpec: 1.17.x
           checkLatest: true
@@ -45,7 +45,7 @@ jobs:
 
       - task: Yarn@3
         displayName: "Installing Yarn Packages"
-        condition: ne(variables.YARN_CACHE_HIT, 'false')
+        condition: ne(variables.YARN_CACHE_HIT, 'true')
         inputs:
           arguments: --frozen-lockfile
 
