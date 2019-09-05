@@ -10,7 +10,7 @@ If ($buildReason -eq "IndividualCI" -and $branch -eq "refs/heads/master") {
   Write-Host "##vso[build.updatebuildnumber]$version"
 } 
 ElseIf ($buildReason -eq "PullRequest") {
-  Write-Host "##vso[build.updatebuildnumber]$version-$branchName-pr-$buildNumber"
+  Write-Host "##vso[build.updatebuildnumber]$version-pr-$buildNumber"
 }
 Else {
   Write-Host "##vso[build.updatebuildnumber]$version-$branchName-$buildNumber"
