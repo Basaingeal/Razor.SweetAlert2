@@ -16,45 +16,8 @@ stages:
   - stage: buildStage
     displayName: Build
     jobs:
-      - job: setBuildNumber
-        displayName: Set Build Number
-        pool:
-          vmImage: "windows-latest"
-        steps:
-          - task: PowerShell@2
-            displayName: "Setting build number"
-            inputs:
-              filePath: "./versioning.ps1"
-
-      - job: installPackages
-        displayName: Install Packages
-        pool:
-          vmImage: "windows-latest"
-        steps:
-          - task: CacheBeta@1
-            inputs:
-              key: "yarn | $(Agent.OS) | yarn.lock"
-              path: "$(YARN_CACHE_FOLDER)"
-              cacheHitVar: YARN_CACHE_HIT
-            displayName: Cache Yarn packages
-
-          - task: YarnInstaller@3
-            displayName: "Installing Yarn 1.17.x"
-            condition: ne(variables.YARN_CACHE_HIT, 'true')
-            inputs:
-              versionSpec: 1.17.x
-              checkLatest: true
-              includePrerelease: false
-
-          - task: Yarn@3
-            displayName: "Installing Yarn Packages"
-            condition: ne(variables.YARN_CACHE_HIT, 'true')
-            inputs:
-              arguments: --frozen-lockfile
-
       - job: lintLibrary
         displayName: Lint
-        dependsOn: installPackages
         pool:
           vmImage: "windows-latest"
         steps:
@@ -62,7 +25,7 @@ stages:
             inputs:
               key: "yarn | $(Agent.OS) | yarn.lock"
               path: "$(YARN_CACHE_FOLDER)"
-            displayName: Restore Yarn Packages from Cache
+            displayName: Cache Yarn Packages
 
           - task: YarnInstaller@3
             displayName: "Installing Yarn 1.17.x"
@@ -94,16 +57,19 @@ stages:
       - job: buildLibrary
         displayName: Build
         dependsOn:
-          - installPackages
-          - setBuildNumber
         pool:
           vmImage: "windows-latest"
         steps:
+          - task: PowerShell@2
+            displayName: "Setting build number"
+            inputs:
+              filePath: "./versioning.ps1"
+
           - task: CacheBeta@1
             inputs:
               key: "yarn | $(Agent.OS) | yarn.lock"
               path: "$(YARN_CACHE_FOLDER)"
-            displayName: Restore Yarn Packages from Cache
+            displayName: Cache Yarn Packages
 
           - task: YarnInstaller@3
             displayName: "Installing Yarn 1.17.x"
