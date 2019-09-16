@@ -5831,10 +5831,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sweetalert2@8.17.1:
-  version "8.17.1"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.17.1.tgz#0c691ce4181661182ad4bc5312aa25e44479a650"
-  integrity sha512-aCPXmK1YyVUfsw36iDETzUnYj1fxwXSY/dkt8cnqViv7f5sOS5i37LXIf9LLiDCd99EbY4d4kvZkyWYlJZ79Xw==
+sweetalert2@8.17.2:
+  version "8.17.2"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.17.2.tgz#f8c5a6a4596e734a19c51cf1f1b1147656238dc5"
+  integrity sha512-9SXqgy0++TSdIcqJTDGsmBtfoBE+ZwuiMUI1TWAFG2/ebwWqMkKTRCY5XN2HhT3opCev/kYkjOqLoNNlXUvKLw==
 
 table@^5.2.3:
   version "5.4.4"
