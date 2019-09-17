@@ -1,3 +1,3 @@
 ﻿﻿## Breaking Changes
-* Bump `Microsoft.AspNetCore.Components` to `3.0.0-rc1.19457.4`
-* Bump `Microsoft.AspNetCore.Components.Web` to `3.0.0-rc1.19457.4`
+* Bump `sweetalert2` to `8.17.4`
+  * **Bug Fix**: types: title and footer can be of HTMLElement and JQuery types (https://github.com/sweetalert2/sweetalert2/commit/b00065f)
