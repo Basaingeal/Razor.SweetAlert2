@@ -1,7 +1,7 @@
-﻿# v1.0.1
+﻿# v1.0.2
 
 ## Enhancements
 
-* Bump `sweetalert2` to `8.18.0`
-  * Features:
-    * **scss:**  add \$swal2-close-button-font-family and $swal2-button-focus-background-color variables (https://github.com/sweetalert2/sweetalert2/issues/1753) (https://github.com/sweetalert2/sweetalert2/commit/bc1da42)
+* Bump `sweetalert2` to `8.18.1`
+  * Bug Fixes:
+    * get file result for multiple file type input (https://github.com/sweetalert2/sweetalert2/issues/1759) (https://github.com/sweetalert2/sweetalert2/commit/cf00614)
