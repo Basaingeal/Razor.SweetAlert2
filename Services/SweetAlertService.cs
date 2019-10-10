@@ -41,7 +41,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         private readonly CultureInfo culture = CultureInfo.GetCultureInfo("en-US");
 
         private readonly SweetAlertTheme theme = SweetAlertTheme.Default;
-        private readonly Dictionary<int, int> colorSchemeThemes = new Dictionary<int, int>();
+        private readonly int[][] colorSchemeThemes = new int[2][];
 
         public SweetAlertService(IJSRuntime jSRuntime)
         {
@@ -57,7 +57,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             }
             theme = options.Theme;
             colorSchemeThemes = options.ColorSchemeThemes
-                .ToDictionary(kvp => (int)kvp.Key, kvp => (int)kvp.Value);
+                .Select(kvp => new int[2] { (int)kvp.Key, (int)kvp.Value })
+                .ToArray();
         }
 
         /// <summary>

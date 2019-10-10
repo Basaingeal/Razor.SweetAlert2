@@ -1,4 +1,3 @@
+import { ColorScheme } from "./ColorScheme";
 import { SweetAlertTheme } from "./SweetAlertTheme";
-export default interface ColorSchemeDictionary {
-  [colorScheme: number]: SweetAlertTheme;
-}
+export type ColorSchemeDictionary = [[ColorScheme, SweetAlertTheme]];

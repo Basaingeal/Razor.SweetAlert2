@@ -9,7 +9,7 @@ import Swal, {
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import SweetAlertQueueResult from "./SweetAlertQueueResult";
 import EnumSweetAlertResult from "./EnumSweetAlertResult";
-import ColorSchemeDictionary from "./ColorSchemeDictionary";
+import { ColorSchemeDictionary } from "./ColorSchemeDictionary";
 
 declare const DotNet: any;
 const domWindow = window as any;
@@ -216,7 +216,7 @@ function getFileNameByTheme(theme: SweetAlertTheme): string {
     }
     case SweetAlertTheme.Default:
     default: {
-      return "default.min.css";
+      return "defaultTheme.min.css";
     }
   }
 }
@@ -235,8 +235,8 @@ function getColorSchemeName(colorScheme: ColorScheme): string {
 
 function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictionary): void {
   const colorSchemeMap: Map<ColorScheme, SweetAlertTheme> = new Map();
-  Object.keys(colorSchemeThemes).forEach(key => {
-    colorSchemeMap.set(Number(key) as ColorScheme, colorSchemeThemes[Number(key)]);
+  colorSchemeThemes.forEach(pair => {
+    colorSchemeMap.set(pair[0], pair[1]);
   });
 
   const tagId = "currietechnologies-razor-sweetalert2-theme-link";

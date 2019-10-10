@@ -55,5 +55,8 @@ module.exports = {
         assetNameRegExp: /\.min\.css$/
       })
     ]
+  },
+  resolve: {
+    extensions: [".ts", ".scss"]
   }
 };
