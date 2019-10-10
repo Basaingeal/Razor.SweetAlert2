@@ -57,7 +57,9 @@ module.exports = [{
       filename: "[name].css",
       path: path.resolve(__dirname, "wwwroot")
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: []
+  })
   ],
   optimization: {
     minimizer: [
