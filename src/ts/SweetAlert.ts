@@ -223,13 +223,13 @@ function getFileNameByTheme(theme: SweetAlertTheme): string {
 
 function getColorSchemeName(colorScheme: ColorScheme): string {
   switch (colorScheme) {
-    case ColorScheme.NoPreference:
-    default:
-      return "no-preference";
     case ColorScheme.Light:
       return "light";
     case ColorScheme.Dark:
       return "dark";
+    case ColorScheme.NoPreference:
+    default:
+      return "no-preference";
   }
 }
 
@@ -242,21 +242,23 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
   const tagId = "currietechnologies-razor-sweetalert2-theme-link";
 
   const existingThemeTag = document.getElementById(tagId);
+  let themeShouldBeSet = true;
   if (existingThemeTag !== null) {
     const currentTheme = Number(existingThemeTag.dataset.themeNumber);
     if (currentTheme === theme) {
-      return;
+      themeShouldBeSet = false;
+    } else {
+      existingThemeTag.remove();
+      themeShouldBeSet = true;
     }
-    existingThemeTag.remove();
   }
 
-  if (theme !== SweetAlertTheme.Default) {
-    const fileName = getFileNameByTheme(theme);
+  if (theme !== SweetAlertTheme.Default && themeShouldBeSet) {
     const head = document.getElementsByTagName("head")[0];
     const styleTag = document.createElement("link");
     styleTag.rel = "stylesheet";
     styleTag.id = tagId;
-    styleTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${fileName}`;
+    styleTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${getFileNameByTheme(theme)}`;
     styleTag.setAttribute("data-theme-number", theme.toString());
     head.appendChild(styleTag);
   }
