@@ -73,6 +73,14 @@ Add this script tag in your root html file (Likely \_Host.cshtml for Blazor Serv
 <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
 ```
 
+###### IE Compatibility
+
+If you need to support IE11, use this instead. (file size is about 35% larger)
+
+```html
+<script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.ieCompat.min.js"></script>
+```
+
 Inject the SweetAlertService into any Blazor component
 
 ```cs
@@ -184,9 +192,11 @@ These callbacks are necessary because there is currently no way to create an `Ev
 
 ## Browser compatibility
 
-| IE11 | Edge               | Chrome             | Firefox            | Safari             | Opera              | UC Browser         |
-| ---- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| ❌   | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| IE11\* | Edge               | Chrome             | Firefox            | Safari             | Opera              | UC Browser         |
+| ------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| ⚠️     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+
+\* For IE11 compatibility, see [here](#ie-compatibility). You will also likely need to utilize the [Blazor.Polyfill](https://github.com/Daddoon/Blazor.Polyfill) library, for general Blazor functionality in IE.
 
 ## Related projects
 
