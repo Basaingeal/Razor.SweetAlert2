@@ -20,18 +20,16 @@
 </p>
 
 ---
-| Master | Develop | Version | Downloads | Dependabot | Mergify |
-|:------:|:-------:|:-------:|:---------:|:----------:|:-------:|
-|[![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=master)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=master)|[![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=develop)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=develop)|![Nuget](https://img.shields.io/nuget/v/CurrieTechnologies.Razor.SweetAlert2.svg?style=popout)|![Nuget](https://img.shields.io/nuget/dt/CurrieTechnologies.Razor.SweetAlert2)|[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=Basaingeal/Razor.SweetAlert2)](https://dependabot.com)|[![mergify-status](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/Basaingeal/Razor.SweetAlert2&style=popout)](https://mergify.io)
 
-
+|                                                                                                                                  Master                                                                                                                                   |                                                                                                                                   Develop                                                                                                                                   |                                            Version                                             |                                   Downloads                                    |                                                               Dependabot                                                               |                                                                         Mergify                                                                         |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=master)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=master) | [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=develop)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=develop) | ![Nuget](https://img.shields.io/nuget/v/CurrieTechnologies.Razor.SweetAlert2.svg?style=popout) | ![Nuget](https://img.shields.io/nuget/dt/CurrieTechnologies.Razor.SweetAlert2) | [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=Basaingeal/Razor.SweetAlert2)](https://dependabot.com) | [![mergify-status](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/Basaingeal/Razor.SweetAlert2&style=popout)](https://mergify.io) |
 
 ## This package is now for both Blazor Server Apps and Blazor WebAssembly Apps. [`CurrieTechnologies.Blazor.SweetAlert2`](https://github.com/Basaingeal/Blazor.SweetAlert2) is now deprecated.
 
 ### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
 
-Installation
-------------
+## Installation
 
 ```sh
 Install-Package CurrieTechnologies.Razor.SweetAlert2
@@ -39,10 +37,10 @@ Install-Package CurrieTechnologies.Razor.SweetAlert2
 
 Or grab from [Nuget](https://www.nuget.org/packages/CurrieTechnologies.Razor.SweetAlert2/)
 
+## Usage
 
-Usage
------
 Register the service in your Startup file.
+
 ```cs
 // Startup.cs
 public void ConfigureServices(IServiceCollection services)
@@ -56,6 +54,7 @@ public void ConfigureServices(IServiceCollection services)
 **OR**
 
 If you want to use one of the Official SweetAlert2 themes
+
 ```cs
 // Startup.cs
 public void ConfigureServices(IServiceCollection services)
@@ -68,12 +67,14 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Add this script tag in  your root html file (Likely _Host.cshtml for Blazor Server or index.html for Blazor WebAssembly), right under the framework script tag. (i.e `<script src="_framework/blazor.server.js"></script>` for Blazor Server or `<script src="_framework/blazor.webassembly.js"></script>` for Blazor WebAssembly)
+Add this script tag in your root html file (Likely \_Host.cshtml for Blazor Server or index.html for Blazor WebAssembly), right under the framework script tag. (i.e `<script src="_framework/blazor.server.js"></script>` for Blazor Server or `<script src="_framework/blazor.webassembly.js"></script>` for Blazor WebAssembly)
+
 ```html
 <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
 ```
 
 Inject the SweetAlertService into any Blazor component
+
 ```cs
 // Sample.razor
 @inject SweetAlertService Swal;
@@ -83,9 +84,7 @@ Inject the SweetAlertService into any Blazor component
 </button>
 ```
 
-
-Examples
---------
+## Examples
 
 The most basic message:
 
@@ -139,7 +138,7 @@ Swal.FireAsync(new SweetAlertOptions
 		ShowCancelButton = true,
 		ConfirmButtonText = "Yes, delete it!",
 		CancelButtonText = "No, keep it"
-	}).ContinueWith(swalTask => 
+	}).ContinueWith(swalTask =>
 	{
 		SweetAlertResult result = swalTask.Result;
 		if (!string.IsNullOrEmpty(result.Value))
@@ -165,13 +164,13 @@ Swal.FireAsync(new SweetAlertOptions
 
 ## [More examples can be found on the SweetAlert2 project site](https://sweetalert2.github.io/)
 
+## Notable differences from the JavaScript library
 
-Notable differences from the JavaScript library
----------------------
 - No methods that return an HTMLElement are included (e. g. `Swal.getContainer()`)
 - The value of a `SweetAlertResult` (`result.Value`) can only be a string (or a collection of strings if returned from a queue request). Numbers and booleans must be converted. Object must be parsed to/from JSON in your code.
 - `OnOpenAsync()`, `OnCloseAsync()`, `OnBeforeOpenAsync()`, and `OnAfterCloseAsync()` can all take asynchronous callbacks. 🎉 (none will return an HTMLElement though.)
 - Callbacks must be passed inside of objects specifically designed for the given callback property. e.g. the `InputValidator` property takes an `InputValidatorCallback` created like so:
+
 ```cs
 new SweetAlertOptions {
 	...
@@ -179,19 +178,16 @@ new SweetAlertOptions {
 	...
 }
 ```
+
 `this` is passed in so that the Blazor `EventCallback` used behind the scenes can trigger a re-render if the state of the calling component was changed in the callback. If the callback does not require the calling component to re-render, passing in `this` is optional.
 These callbacks are necessary because there is currently no way to create an `EventCallback` in Blazor that isn't a component parameter without using the `EventCallbackFactory` which is clunky. It also allows the callback to return a value that can be used by the SweetAlert2 library. (e.g. A validation message to show if input validation fails.) Native Blazor `EventCallback`s only return generic `Task`s.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
- IE11* | Edge | Chrome | Firefox | Safari | Opera | UC Browser
--------|------|--------|---------|--------|-------|------------
- :heavy_check_mark:  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:  |
+| IE11 | Edge               | Chrome             | Firefox            | Safari             | Opera              | UC Browser         |
+| ---- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| ❌   | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 
-\* ES6 Promise polyfill should be included, see usage example.
-
-Related projects
--------------------------
+## Related projects
 
 - [SweetAlert2](https://sweetalert2.github.io/) - Original SweetAlert2 project
