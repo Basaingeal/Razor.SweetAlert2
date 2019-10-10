@@ -53,7 +53,7 @@ function getStringVersion(input: any): string {
   if (input instanceof Object) {
     return JSON.stringify(input);
   }
-  return input.toString();
+  return String(input)
 }
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
@@ -65,6 +65,7 @@ function dispatchFireResult(requestId: string, result: SweetAlertResult): Promis
 
 const flatten = (arr: any[]): any[] =>
   arr.reduce((flat, next): any[] => flat.concat(Array.isArray(next) ? flatten(next) : next), []);
+  //arr.flat(Infinity)
 
 function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const queueResult = result as SweetAlertQueueResult;
@@ -259,7 +260,7 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
     styleTag.rel = "stylesheet";
     styleTag.id = tagId;
     styleTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${getFileNameByTheme(theme)}`;
-    styleTag.setAttribute("data-theme-number", theme.toString());
+    styleTag.setAttribute("data-theme-number", String(theme));
     head.appendChild(styleTag);
   }
 
@@ -278,8 +279,8 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
     schemeTag.rel = "stylesheet";
     schemeTag.id = schemeTagId;
     schemeTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${getFileNameByTheme(theme)}`;
-    schemeTag.setAttribute("data-theme-number", theme.toString());
-    schemeTag.setAttribute("data-scheme-number", colorScheme.toString());
+    schemeTag.setAttribute("data-theme-number", String(theme));
+    schemeTag.setAttribute("data-scheme-number", String(colorScheme));
     schemeTag.setAttribute("media", `(prefers-color-scheme: ${getColorSchemeName(colorScheme)})`);
 
     const head = document.getElementsByTagName("head")[0];
