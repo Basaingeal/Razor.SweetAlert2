@@ -1,3 +1,10 @@
 {
-  "tslint.exclude": ["**/*.ts", "**/*.tsx"]
+  "tslint.exclude": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "cSpell.words": [
+    "currietechnologies",
+    "swal"
+  ]
 }

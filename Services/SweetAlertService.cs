@@ -41,6 +41,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         private readonly CultureInfo culture = CultureInfo.GetCultureInfo("en-US");
 
         private readonly SweetAlertTheme theme = SweetAlertTheme.Default;
+        private readonly Dictionary<int, int> colorSchemeThemes = new Dictionary<int, int>();
 
         public SweetAlertService(IJSRuntime jSRuntime)
         {
@@ -55,6 +56,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 return;
             }
             theme = options.Theme;
+            colorSchemeThemes = options.ColorSchemeThemes
+                .ToDictionary(kvp => (int)kvp.Key, kvp => (int)kvp.Value);
         }
 
         /// <summary>
@@ -69,7 +72,14 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             var tcs = new TaskCompletionSource<SweetAlertResult>();
             Guid requestId = Guid.NewGuid();
             PendingFireRequests.Add(requestId, tcs);
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.Fire", requestId, title, message, type?.ToString(), (int)theme)
+            await jSRuntime.InvokeAsync<object>(
+                "CurrieTechnologies.Razor.SweetAlert2.Fire",
+                requestId,
+                title,
+                message,
+                type?.ToString(),
+                (int)theme,
+                colorSchemeThemes)
                 .ConfigureAwait(false);
             return await tcs.Task.ConfigureAwait(false);
         }
@@ -124,7 +134,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 "CurrieTechnologies.Razor.SweetAlert2.FireSettings",
                 requestId,
                 settings.ToPOCO(),
-                (int)theme).ConfigureAwait(false);
+                (int)theme,
+                colorSchemeThemes).ConfigureAwait(false);
             return await tcs.Task.ConfigureAwait(false);
         }
 
@@ -419,7 +430,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 requestId,
                 tuples.Select(t => t.RequestId).ToArray(),
                 tuples.Select(t => t.Step.ToPOCO()).ToArray(),
-                (int)theme)
+                (int)theme,
+                colorSchemeThemes)
                 .ConfigureAwait(false);
             return await tcs.Task.ConfigureAwait(false);
         }

@@ -9,6 +9,8 @@ module.exports = {
   entry: {
     sweetAlert2: "./src/ts/SweetAlert.ts",
     "sweetAlert2.min": "./src/ts/SweetAlert.ts",
+    defaultTheme: "./src/scss/default-theme.scss",
+    "defaultTheme.min": "./src/scss/default-theme.scss",
     darkTheme: "./src/scss/dark-theme.scss",
     "darkTheme.min": "./src/scss/dark-theme.scss",
     minimalTheme: "./src/scss/minimal-theme.scss",
