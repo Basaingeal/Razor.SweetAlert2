@@ -53,7 +53,7 @@ function getStringVersion(input: any): string {
   if (input instanceof Object) {
     return JSON.stringify(input);
   }
-  return String(input)
+  return String(input);
 }
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
@@ -65,7 +65,7 @@ function dispatchFireResult(requestId: string, result: SweetAlertResult): Promis
 
 const flatten = (arr: any[]): any[] =>
   arr.reduce((flat, next): any[] => flat.concat(Array.isArray(next) ? flatten(next) : next), []);
-  //arr.flat(Infinity)
+//arr.flat(Infinity)
 
 function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const queueResult = result as SweetAlertQueueResult;
