@@ -2,18 +2,19 @@
 <a href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">
     <img src="BrandBlazor_nohalo_140x.png" alt="Blazor">
   </a>
-<br>
-+
-<br>
+<p align="center">
+  Blazor
+</p>
+<p align="center">
+  +
+</p>
   <a href="https://sweetalert2.github.io/">
     <img src="https://raw.github.com/sweetalert2/sweetalert2/master/assets/swal2-logo.png" alt="SweetAlert2">
   </a>
 </p>
-
 <p align="center">
   A beautiful, responsive, customizable, accessible (WAI-ARIA) replacement for JavaScript's popup boxes.
 </p>
-
 <p align="center">
   <a href="https://sweetalert2.github.io/">
     <img src="https://raw.github.com/sweetalert2/sweetalert2/master/assets/sweetalert2.gif" width="562"><br>
@@ -43,12 +44,12 @@ Or install from the NuGet Package Manager
 
 Register the service in your Startup file.
 
- ```csharp
+```csharp
 // Startup.cs
 public void ConfigureServices(IServiceCollection services)
 {
 ...
-  services.AddSweetAlert2();
+ services.AddSweetAlert2();
 ...
 }
 ```
@@ -57,14 +58,14 @@ public void ConfigureServices(IServiceCollection services)
 
 If you want to use one of the Official SweetAlert2 themes
 
- ```csharp
+```csharp
 // Startup.cs
 public void ConfigureServices(IServiceCollection services)
 {
 ...
-  services.AddSweetAlert2(options => {
-    options.Theme = SweetAlertTheme.Dark;
-  });
+ services.AddSweetAlert2(options => {
+   options.Theme = SweetAlertTheme.Dark;
+ });
 ...
 }
 ```
@@ -81,12 +82,12 @@ Add this script tag in your root html file (Likely \_Host.cshtml for Blazor Serv
 
 Inject the SweetAlertService into any Blazor component.
 
- ```razor
+```razor
 // Sample.razor
 @inject SweetAlertService Swal;
 <button class="btn btn-primary"
-    @onclick="(async () => await Swal.FireAsync("Any fool can use a computer"))">
-  Try me!
+   @onclick="(async () => await Swal.FireAsync("Any fool can use a computer"))">
+ Try me!
 </button>
 ```
 
@@ -94,76 +95,76 @@ Inject the SweetAlertService into any Blazor component.
 
 The most basic message:
 
- ```csharp
+```csharp
 await Swal.FireAsync("Hello world!");
 ```
 
 A message signaling an error:
 
- ```csharp
+```csharp
 await Swal.FireAsync("Oops...", "Something went wrong!", "error");
 ```
 
 Handling the result of SweetAlert2 modal:
 
- ```csharp
+```csharp
 // async/await
 SweetAlertResult result = await Swal.FireAsync(new SweetAlertOptions
-  {
-    Title = "Are you sure?",
-    Text = "You will not be able to recover this imaginary file!",
-    Type = SweetAlertType.Warning,
-    ShowCancelButton = true,
-    ConfirmButtonText = "Yes, delete it!",
-    CancelButtonText = "No, keep it"
-  });
+ {
+   Title = "Are you sure?",
+   Text = "You will not be able to recover this imaginary file!",
+   Type = SweetAlertType.Warning,
+   ShowCancelButton = true,
+   ConfirmButtonText = "Yes, delete it!",
+   CancelButtonText = "No, keep it"
+ });
 
 if (!string.IsNullOrEmpty(result.Value))
 {
-  await Swal.FireAsync(
-    "Deleted",
-    "Your imaginary file has been deleted.",
-    SweetAlertType.Success
-    );
+ await Swal.FireAsync(
+   "Deleted",
+   "Your imaginary file has been deleted.",
+   SweetAlertType.Success
+   );
 }
 else if (result.Dismiss == DismissReason.Cancel)
 {
-  await Swal.FireAsync(
-    "Cancelled",
-    "Your imaginary file is safe :)",
-    SweetAlertType.Error
-    );
+ await Swal.FireAsync(
+   "Cancelled",
+   "Your imaginary file is safe :)",
+   SweetAlertType.Error
+   );
 }
 
 // Promise/Task based
 Swal.FireAsync(new SweetAlertOptions
-  {
-    Title = "Are you sure?",
-    Text = "You will not be able to recover this imaginary file!",
-    Type = SweetAlertType.Warning,
-    ShowCancelButton = true,
-    ConfirmButtonText = "Yes, delete it!",
-    CancelButtonText = "No, keep it"
-  }).ContinueWith(swalTask =>
-  {
-    SweetAlertResult result = swalTask.Result;
-    if (!string.IsNullOrEmpty(result.Value))
-    {
-      Swal.FireAsync(
-        "Deleted",
-        "Your imaginary file has been deleted.",
-        SweetAlertType.Success
-        );
-    }
-    else if (result.Dismiss == DismissReason.Cancel)
-    {
-      Swal.FireAsync(
-        "Cancelled",
-        "Your imaginary file is safe :)",
-        SweetAlertType.Error
-        );
-    }
-  });
+ {
+   Title = "Are you sure?",
+   Text = "You will not be able to recover this imaginary file!",
+   Type = SweetAlertType.Warning,
+   ShowCancelButton = true,
+   ConfirmButtonText = "Yes, delete it!",
+   CancelButtonText = "No, keep it"
+ }).ContinueWith(swalTask =>
+ {
+   SweetAlertResult result = swalTask.Result;
+   if (!string.IsNullOrEmpty(result.Value))
+   {
+     Swal.FireAsync(
+       "Deleted",
+       "Your imaginary file has been deleted.",
+       SweetAlertType.Success
+       );
+   }
+   else if (result.Dismiss == DismissReason.Cancel)
+   {
+     Swal.FireAsync(
+       "Cancelled",
+       "Your imaginary file is safe :)",
+       SweetAlertType.Error
+       );
+   }
+ });
 ```
 
 ### [More examples can be found on the SweetAlert2 project site](https://sweetalert2.github.io/)
@@ -184,28 +185,28 @@ With the `SweetAlertServiceOptions.SetThemeForColorSchemePreference()` method, y
 
 If you want the default theme by default, and the dark theme if the user prefers a dark color scheme:
 
- ```csharp
+```csharp
 services.AddSweetAlert2(options => {
-  options.SetThemeForColorSchemePreference(ColorScheme.Dark, SweetAlertTheme.Dark);
+ options.SetThemeForColorSchemePreference(ColorScheme.Dark, SweetAlertTheme.Dark);
 });
 ```
 
 A dark theme by default, and a lighter theme if the user prefers a light color scheme:
 
- ```csharp
+```csharp
 services.AddSweetAlert2(options => {
-  options.Theme = SweetAlertTheme.Dark;
-  options.SetThemeForColorSchemePreference(ColorScheme.Light, SweetAlertTheme.Bootstrap4);
+ options.Theme = SweetAlertTheme.Dark;
+ options.SetThemeForColorSchemePreference(ColorScheme.Light, SweetAlertTheme.Bootstrap4);
 });
 ```
 
 A minimal theme as a fallback, and a dark/light theme to match user preference:
 
- ```csharp
+```csharp
 services.AddSweetAlert2(options => {
-  options.Theme = SweetAlertTheme.Minimal;
-  options.SetThemeForColorSchemePreference(ColorScheme.Light, SweetAlertTheme.Default);
-  options.SetThemeForColorSchemePreference(ColorScheme.Dark, SweetAlertTheme.Dark);
+ options.Theme = SweetAlertTheme.Minimal;
+ options.SetThemeForColorSchemePreference(ColorScheme.Light, SweetAlertTheme.Default);
+ options.SetThemeForColorSchemePreference(ColorScheme.Dark, SweetAlertTheme.Dark);
 });
 ```
 
@@ -218,11 +219,11 @@ _See [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@me
 - `OnOpenAsync()`, `OnCloseAsync()`, `OnBeforeOpenAsync()`, and `OnAfterCloseAsync()` can all take asynchronous callbacks. 🎉 (none will return an HTMLElement though.)
 - Callbacks must be passed inside of objects specifically designed for the given callback property. e.g. the `InputValidator` property takes an `InputValidatorCallback` created like so:
 
- ```csharp
+```csharp
 new SweetAlertOptions {
-  ...
-  InputValidator = new InputValidatorCallback((string input) => input.Length == 0 ? "Please provide a value" : null, this),
-  ...
+ ...
+ InputValidator = new InputValidatorCallback((string input) => input.Length == 0 ? "Please provide a value" : null, this),
+ ...
 }
 ```
 
