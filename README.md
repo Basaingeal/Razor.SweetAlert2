@@ -1,5 +1,3 @@
-# Razor.SweetAlert2
-
 <p align="center">
 <span style="font-size:x-large">Blazor</span>
 <br>
@@ -27,7 +25,7 @@
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
 | [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=master)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=master) | [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=develop)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=develop) | ![Nuget](https://img.shields.io/nuget/v/CurrieTechnologies.Razor.SweetAlert2.svg?style=popout) | ![Nuget](https://img.shields.io/nuget/dt/CurrieTechnologies.Razor.SweetAlert2) | [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=Basaingeal/Razor.SweetAlert2)](https://dependabot.com) | [![mergify-status](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/Basaingeal/Razor.SweetAlert2&style=popout)](https://mergify.io) |
 
-## This package is now for both Blazor Server Apps and Blazor WebAssembly Apps. [`CurrieTechnologies.Blazor.SweetAlert2`](https://github.com/Basaingeal/Blazor.SweetAlert2) is now deprecated.
+## This package is now for both Blazor Server Apps and Blazor WebAssembly Apps. [`CurrieTechnologies.Blazor.SweetAlert2`](https://github.com/Basaingeal/Blazor.SweetAlert2) is now deprecated
 
 ### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
 
@@ -172,11 +170,11 @@ Swal.FireAsync(new SweetAlertOptions
 
 In `Startup.cs` you have the opportunity to configure how `sweetalert2` will behave in your application.
 
-### `Theme`
+### Theme
 
 With `SweetAlertServiceOptions.Theme` you can specify one of the official sweetalert2 themes to apply to your modal throughout your application.
 
-#### `SetThemeForColorSchemePreference()`
+#### SetThemeForColorSchemePreference()
 
 With the `SweetAlertServiceOptions.SetThemeForColorSchemePreference()` method, you can specify which theme the user uses, based on the result of their `prefers-color-scheme` CSS media query. Most commonly this can be used to help create a dark version of your application, based on user preference. Browsers that do not support the `prefers-color-scheme` media query will fall back to the theme specified in `SweetAlertServiceOptions.Theme`
 
