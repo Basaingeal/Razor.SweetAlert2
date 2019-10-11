@@ -1,5 +1,7 @@
 <p align="center">
-<span style="font-size:x-large">Blazor</span>
+<a href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">
+    <img src="BrandBlazor_nohalo_140x.png" alt="Blazor">
+  </a>
 <br>
 +
 <br>
