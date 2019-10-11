@@ -35,13 +35,13 @@
 Install-Package CurrieTechnologies.Razor.SweetAlert2
 ```
 
-Or grab from [Nuget](https://www.nuget.org/packages/CurrieTechnologies.Razor.SweetAlert2/)
+Or install from the NuGet Package Manager
 
 ## Usage
 
 Register the service in your Startup file.
 
-```cs
+ ```csharp
 // Startup.cs
 public void ConfigureServices(IServiceCollection services)
 {
@@ -55,7 +55,7 @@ public void ConfigureServices(IServiceCollection services)
 
 If you want to use one of the Official SweetAlert2 themes
 
-```cs
+ ```csharp
 // Startup.cs
 public void ConfigureServices(IServiceCollection services)
 {
@@ -79,7 +79,7 @@ Add this script tag in your root html file (Likely \_Host.cshtml for Blazor Serv
 
 Inject the SweetAlertService into any Blazor component.
 
-```cs
+ ```razor
 // Sample.razor
 @inject SweetAlertService Swal;
 <button class="btn btn-primary"
@@ -92,19 +92,19 @@ Inject the SweetAlertService into any Blazor component.
 
 The most basic message:
 
-```cs
+ ```csharp
 await Swal.FireAsync("Hello world!");
 ```
 
 A message signaling an error:
 
-```cs
+ ```csharp
 await Swal.FireAsync("Oops...", "Something went wrong!", "error");
 ```
 
 Handling the result of SweetAlert2 modal:
 
-```cs
+ ```csharp
 // async/await
 SweetAlertResult result = await Swal.FireAsync(new SweetAlertOptions
   {
@@ -182,7 +182,7 @@ With the `SweetAlertServiceOptions.SetThemeForColorSchemePreference()` method, y
 
 If you want the default theme by default, and the dark theme if the user prefers a dark color scheme:
 
-```cs
+ ```csharp
 services.AddSweetAlert2(options => {
   options.SetThemeForColorSchemePreference(ColorScheme.Dark, SweetAlertTheme.Dark);
 });
@@ -190,7 +190,7 @@ services.AddSweetAlert2(options => {
 
 A dark theme by default, and a lighter theme if the user prefers a light color scheme:
 
-```cs
+ ```csharp
 services.AddSweetAlert2(options => {
   options.Theme = SweetAlertTheme.Dark;
   options.SetThemeForColorSchemePreference(ColorScheme.Light, SweetAlertTheme.Bootstrap4);
@@ -199,7 +199,7 @@ services.AddSweetAlert2(options => {
 
 A minimal theme as a fallback, and a dark/light theme to match user preference:
 
-```cs
+ ```csharp
 services.AddSweetAlert2(options => {
   options.Theme = SweetAlertTheme.Minimal;
   options.SetThemeForColorSchemePreference(ColorScheme.Light, SweetAlertTheme.Default);
@@ -216,7 +216,7 @@ _See [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@me
 - `OnOpenAsync()`, `OnCloseAsync()`, `OnBeforeOpenAsync()`, and `OnAfterCloseAsync()` can all take asynchronous callbacks. 🎉 (none will return an HTMLElement though.)
 - Callbacks must be passed inside of objects specifically designed for the given callback property. e.g. the `InputValidator` property takes an `InputValidatorCallback` created like so:
 
-```cs
+ ```csharp
 new SweetAlertOptions {
   ...
   InputValidator = new InputValidatorCallback((string input) => input.Length == 0 ? "Please provide a value" : null, this),
