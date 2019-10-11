@@ -1,11 +1,15 @@
 module.exports = function(api) {
-  api.cache(true);
+  if (api) {
+    api.cache(true);
+  }
 
   const presets = [
     [
       "@babel/preset-env",
       {
-        useBuiltIns: false
+        useBuiltIns: false,
+        debug: false,
+        corejs: 3
       }
     ],
     "@babel/preset-typescript"

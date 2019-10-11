@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@sweetalert2/themes": "^2.1.0",
+    "core-js": "3.2.1",
     "sweetalert2": "8.18.3"
   },
   "author": "Michael J. Currie",
@@ -48,7 +49,6 @@
     "*.ts"
   ],
   "browserslist": [
-    "ie 11",
     "last 2 edge versions",
     "last 2 chrome versions",
     "last 2 firefox versions",
