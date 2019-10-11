@@ -1,3 +1,5 @@
+# Razor.SweetAlert2
+
 <p align="center">
 <span style="font-size:x-large">Blazor</span>
 <br>
@@ -46,12 +48,12 @@ Register the service in your Startup file.
 public void ConfigureServices(IServiceCollection services)
 {
 ...
-	services.AddSweetAlert2();
+  services.AddSweetAlert2();
 ...
 }
 ```
 
-**OR**
+### OR
 
 If you want to use one of the Official SweetAlert2 themes
 
@@ -60,12 +62,14 @@ If you want to use one of the Official SweetAlert2 themes
 public void ConfigureServices(IServiceCollection services)
 {
 ...
-	services.AddSweetAlert2(options => {
-		options.Theme = SweetAlertTheme.Dark;
-	});
+  services.AddSweetAlert2(options => {
+    options.Theme = SweetAlertTheme.Dark;
+  });
 ...
 }
 ```
+
+_See [Configuration](#configuration) for more information._
 
 Add this script tag in your root html file (Likely \_Host.cshtml for Blazor Server or index.html for Blazor WebAssembly), right under the framework script tag. (i.e `<script src="_framework/blazor.server.js"></script>` for Blazor Server or `<script src="_framework/blazor.webassembly.js"></script>` for Blazor WebAssembly)
 
@@ -73,22 +77,16 @@ Add this script tag in your root html file (Likely \_Host.cshtml for Blazor Serv
 <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
 ```
 
-###### IE Compatibility
+**If you need to support IE11, this script tag is different. See [IE Compatibility](#ie-compatibility).**
 
-If you need to support IE11, use this instead. (file size is about 35% larger)
-
-```html
-<script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.ieCompat.min.js"></script>
-```
-
-Inject the SweetAlertService into any Blazor component
+Inject the SweetAlertService into any Blazor component.
 
 ```cs
 // Sample.razor
 @inject SweetAlertService Swal;
 <button class="btn btn-primary"
-		@onclick="(async () => await Swal.FireAsync("Any fool can use a computer"))">
-	Try me!
+    @onclick="(async () => await Swal.FireAsync("Any fool can use a computer"))">
+  Try me!
 </button>
 ```
 
@@ -111,66 +109,107 @@ Handling the result of SweetAlert2 modal:
 ```cs
 // async/await
 SweetAlertResult result = await Swal.FireAsync(new SweetAlertOptions
-	{
-		Title = "Are you sure?",
-		Text = "You will not be able to recover this imaginary file!",
-		Type = SweetAlertType.Warning,
-		ShowCancelButton = true,
-		ConfirmButtonText = "Yes, delete it!",
-		CancelButtonText = "No, keep it"
-	});
+  {
+    Title = "Are you sure?",
+    Text = "You will not be able to recover this imaginary file!",
+    Type = SweetAlertType.Warning,
+    ShowCancelButton = true,
+    ConfirmButtonText = "Yes, delete it!",
+    CancelButtonText = "No, keep it"
+  });
 
 if (!string.IsNullOrEmpty(result.Value))
 {
-	await Swal.FireAsync(
-		"Deleted",
-		"Your imaginary file has been deleted.",
-		SweetAlertType.Success
-		);
+  await Swal.FireAsync(
+    "Deleted",
+    "Your imaginary file has been deleted.",
+    SweetAlertType.Success
+    );
 }
 else if (result.Dismiss == DismissReason.Cancel)
 {
-	await Swal.FireAsync(
-		"Cancelled",
-		"Your imaginary file is safe :)",
-		SweetAlertType.Error
-		);
+  await Swal.FireAsync(
+    "Cancelled",
+    "Your imaginary file is safe :)",
+    SweetAlertType.Error
+    );
 }
 
 // Promise/Task based
 Swal.FireAsync(new SweetAlertOptions
-	{
-		Title = "Are you sure?",
-		Text = "You will not be able to recover this imaginary file!",
-		Type = SweetAlertType.Warning,
-		ShowCancelButton = true,
-		ConfirmButtonText = "Yes, delete it!",
-		CancelButtonText = "No, keep it"
-	}).ContinueWith(swalTask =>
-	{
-		SweetAlertResult result = swalTask.Result;
-		if (!string.IsNullOrEmpty(result.Value))
-		{
-			Swal.FireAsync(
-				"Deleted",
-				"Your imaginary file has been deleted.",
-				SweetAlertType.Success
-				);
-		}
-		else if (result.Dismiss == DismissReason.Cancel)
-		{
-			Swal.FireAsync(
-				"Cancelled",
-				"Your imaginary file is safe :)",
-				SweetAlertType.Error
-				);
-		}
-	});
-
-
+  {
+    Title = "Are you sure?",
+    Text = "You will not be able to recover this imaginary file!",
+    Type = SweetAlertType.Warning,
+    ShowCancelButton = true,
+    ConfirmButtonText = "Yes, delete it!",
+    CancelButtonText = "No, keep it"
+  }).ContinueWith(swalTask =>
+  {
+    SweetAlertResult result = swalTask.Result;
+    if (!string.IsNullOrEmpty(result.Value))
+    {
+      Swal.FireAsync(
+        "Deleted",
+        "Your imaginary file has been deleted.",
+        SweetAlertType.Success
+        );
+    }
+    else if (result.Dismiss == DismissReason.Cancel)
+    {
+      Swal.FireAsync(
+        "Cancelled",
+        "Your imaginary file is safe :)",
+        SweetAlertType.Error
+        );
+    }
+  });
 ```
 
-## [More examples can be found on the SweetAlert2 project site](https://sweetalert2.github.io/)
+### [More examples can be found on the SweetAlert2 project site](https://sweetalert2.github.io/)
+
+## Configuration
+
+In `Startup.cs` you have the opportunity to configure how `sweetalert2` will behave in your application.
+
+### `Theme`
+
+With `SweetAlertServiceOptions.Theme` you can specify one of the official sweetalert2 themes to apply to your modal throughout your application.
+
+#### `SetThemeForColorSchemePreference()`
+
+With the `SweetAlertServiceOptions.SetThemeForColorSchemePreference()` method, you can specify which theme the user uses, based on the result of their `prefers-color-scheme` CSS media query. Most commonly this can be used to help create a dark version of your application, based on user preference. Browsers that do not support the `prefers-color-scheme` media query will fall back to the theme specified in `SweetAlertServiceOptions.Theme`
+
+##### Theme Examples
+
+If you want the default theme by default, and the dark theme if the user prefers a dark color scheme:
+
+```cs
+services.AddSweetAlert2(options => {
+  options.SetThemeForColorSchemePreference(ColorScheme.Dark, SweetAlertTheme.Dark);
+});
+```
+
+A dark theme by default, and a lighter theme if the user prefers a light color scheme:
+
+```cs
+services.AddSweetAlert2(options => {
+  options.Theme = SweetAlertTheme.Dark;
+  options.SetThemeForColorSchemePreference(ColorScheme.Light, SweetAlertTheme.Bootstrap4);
+});
+```
+
+A minimal theme as a fallback, and a dark/light theme to match user preference:
+
+```cs
+services.AddSweetAlert2(options => {
+  options.Theme = SweetAlertTheme.Minimal;
+  options.SetThemeForColorSchemePreference(ColorScheme.Light, SweetAlertTheme.Default);
+  options.SetThemeForColorSchemePreference(ColorScheme.Dark, SweetAlertTheme.Dark);
+});
+```
+
+_See [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) for more information._
 
 ## Notable differences from the JavaScript library
 
@@ -181,9 +220,9 @@ Swal.FireAsync(new SweetAlertOptions
 
 ```cs
 new SweetAlertOptions {
-	...
-	InputValidator = new InputValidatorCallback((string input) => input.Length == 0 ? "Please provide a value" : null, this),
-	...
+  ...
+  InputValidator = new InputValidatorCallback((string input) => input.Length == 0 ? "Please provide a value" : null, this),
+  ...
 }
 ```
 
@@ -196,7 +235,15 @@ These callbacks are necessary because there is currently no way to create an `Ev
 | ------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
 | ⚠️     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 
-\* For IE11 compatibility, see [here](#ie-compatibility). You will also likely need to utilize the [Blazor.Polyfill](https://github.com/Daddoon/Blazor.Polyfill) library, for general Blazor functionality in IE.
+### IE Compatibility\*
+
+If you need to support IE11, use this script tag instead. (file size is about 35% larger)
+
+```html
+<script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.ieCompat.min.js"></script>
+```
+
+You will also likely need to utilize the [Blazor.Polyfill](https://github.com/Daddoon/Blazor.Polyfill) library, for general Blazor functionality in IE.
 
 ## Related projects
 
