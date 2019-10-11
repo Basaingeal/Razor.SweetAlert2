@@ -12,7 +12,7 @@ function getIECompatBabelLoaderOptions(){
   const babelPresetEnvOptions = babelIECompatConfig.presets[0][1]
   //console.log(babelPresetEnvOptions)
   babelPresetEnvOptions.useBuiltIns = "usage"
-  babelPresetEnvOptions.targets = [...Object.values(pkg.browserslist), "ie 11"].join(", ")
+  babelPresetEnvOptions.targets = [...pkg.browserslist, "ie 11"].join(", ")
   //console.log(babelIECompatConfig)
   return babelIECompatConfig
 }
