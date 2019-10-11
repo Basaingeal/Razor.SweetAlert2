@@ -178,7 +178,7 @@ With `SweetAlertServiceOptions.Theme` you can specify one of the official sweeta
 
 With the `SweetAlertServiceOptions.SetThemeForColorSchemePreference()` method, you can specify which theme the user uses, based on the result of their `prefers-color-scheme` CSS media query. Most commonly this can be used to help create a dark version of your application, based on user preference. Browsers that do not support the `prefers-color-scheme` media query will fall back to the theme specified in `SweetAlertServiceOptions.Theme`
 
-##### Theme Examples
+#### Theme Examples
 
 If you want the default theme by default, and the dark theme if the user prefers a dark color scheme:
 
