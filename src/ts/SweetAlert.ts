@@ -213,7 +213,6 @@ function getFileNameByTheme(theme: SweetAlertTheme): string {
     }
     case SweetAlertTheme.Bootstrap4: {
       return "bootstrap4Theme.min.css";
-      break;
     }
     case SweetAlertTheme.Default:
     default: {
