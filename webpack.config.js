@@ -10,10 +10,8 @@ const babelConfig = require("./babel.config.js");
 function getIECompatBabelLoaderOptions() {
   const babelIECompatConfig = babelConfig();
   const babelPresetEnvOptions = babelIECompatConfig.presets[0][1];
-  //console.log(babelPresetEnvOptions)
   babelPresetEnvOptions.useBuiltIns = "usage";
   babelPresetEnvOptions.targets = [...pkg.browserslist, "ie 11"].join(", ");
-  //console.log(babelIECompatConfig)
   return babelIECompatConfig;
 }
 
