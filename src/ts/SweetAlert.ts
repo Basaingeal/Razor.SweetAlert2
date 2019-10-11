@@ -1,4 +1,6 @@
-﻿import Swal, {
+﻿import { ColorScheme } from "./ColorScheme";
+import { SweetAlertTheme } from "./SweetAlertTheme";
+import Swal, {
   SweetAlertOptions,
   SweetAlertResult,
   SweetAlertType,
@@ -7,6 +9,7 @@
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import SweetAlertQueueResult from "./SweetAlertQueueResult";
 import EnumSweetAlertResult from "./EnumSweetAlertResult";
+import { ColorSchemeDictionary } from "./ColorSchemeDictionary";
 
 declare const DotNet: any;
 const domWindow = window as any;
@@ -46,29 +49,30 @@ function getEnumString(enumNumber: number): Swal.DismissReason | undefined {
   return undefined;
 }
 
-function getStringVerison(input: any): string {
+function getStringVersion(input: any): string {
   if (input instanceof Object) {
     return JSON.stringify(input);
   }
-  return input.toString();
+  return String(input);
 }
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const myResult = (result as (SweetAlertResult | EnumSweetAlertResult)) as EnumSweetAlertResult;
-  myResult.value = myResult.value !== undefined ? getStringVerison(myResult.value) : undefined;
+  myResult.value = myResult.value !== undefined ? getStringVersion(myResult.value) : undefined;
   myResult.dismiss = myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
 }
 
 const flatten = (arr: any[]): any[] =>
   arr.reduce((flat, next): any[] => flat.concat(Array.isArray(next) ? flatten(next) : next), []);
+//arr.flat(Infinity)
 
 function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promise<void> {
   const queueResult = result as SweetAlertQueueResult;
   queueResult.value =
     queueResult.value !== undefined
       ? flatten(queueResult.value).map((v: any): string | undefined =>
-          v !== undefined ? getStringVerison(v) : undefined
+          v !== undefined ? getStringVersion(v) : undefined
         )
       : undefined;
   queueResult.dismiss =
@@ -81,7 +85,7 @@ function dispatchPreConfirm(requestId: string, inputValue: any): Promise<any> {
     namespace,
     "ReceivePreConfirmInput",
     requestId,
-    getStringVerison(inputValue)
+    getStringVersion(inputValue)
   );
 }
 
@@ -92,7 +96,7 @@ function dispatchQueuePreConfirm(requestId: string, inputValue: any): Promise<an
     namespace,
     "ReceivePreConfirmQueueInput",
     requestId,
-    valArray.map((v): string => getStringVerison(v))
+    valArray.map((v): string => getStringVersion(v))
   );
 }
 
@@ -196,49 +200,91 @@ function getSwalSettingsFromPoco(
   return swalSettings;
 }
 
-function setTheme(theme: number): void {
-  let fileName: string;
+function getFileNameByTheme(theme: SweetAlertTheme): string {
+  switch (theme) {
+    case SweetAlertTheme.Dark: {
+      return "darkTheme.min.css";
+    }
+    case SweetAlertTheme.Minimal: {
+      return "minimalTheme.min.css";
+    }
+    case SweetAlertTheme.Borderless: {
+      return "borderlessTheme.min.css";
+    }
+    case SweetAlertTheme.Bootstrap4: {
+      return "bootstrap4Theme.min.css";
+    }
+    case SweetAlertTheme.Default:
+    default: {
+      return "defaultTheme.min.css";
+    }
+  }
+}
+
+function getColorSchemeName(colorScheme: ColorScheme): string {
+  switch (colorScheme) {
+    case ColorScheme.Light:
+      return "light";
+    case ColorScheme.Dark:
+      return "dark";
+    case ColorScheme.NoPreference:
+    default:
+      return "no-preference";
+  }
+}
+
+function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictionary): void {
+  const colorSchemeMap: Map<ColorScheme, SweetAlertTheme> = new Map();
+  colorSchemeThemes.forEach(pair => {
+    colorSchemeMap.set(pair[0], pair[1]);
+  });
+
   const tagId = "currietechnologies-razor-sweetalert2-theme-link";
 
   const existingThemeTag = document.getElementById(tagId);
+  let themeShouldBeSet = true;
   if (existingThemeTag !== null) {
     const currentTheme = Number(existingThemeTag.dataset.themeNumber);
     if (currentTheme === theme) {
-      return;
+      themeShouldBeSet = false;
     } else {
       existingThemeTag.remove();
+      themeShouldBeSet = true;
     }
   }
 
-  switch (theme) {
-    case 1: {
-      fileName = "darkTheme.min.css";
-      break;
-    }
-    case 2: {
-      fileName = "minimalTheme.min.css";
-      break;
-    }
-    case 3: {
-      fileName = "borderlessTheme.min.css";
-      break;
-    }
-    case 4: {
-      fileName = "bootstrap4Theme.min.css";
-      break;
-    }
-    default: {
-      return;
-    }
+  if (theme !== SweetAlertTheme.Default && themeShouldBeSet) {
+    const head = document.getElementsByTagName("head")[0];
+    const styleTag = document.createElement("link");
+    styleTag.rel = "stylesheet";
+    styleTag.id = tagId;
+    styleTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${getFileNameByTheme(theme)}`;
+    styleTag.setAttribute("data-theme-number", String(theme));
+    head.appendChild(styleTag);
   }
 
-  const head = document.getElementsByTagName("head")[0];
-  const styleTag = document.createElement("link");
-  styleTag.rel = "stylesheet";
-  styleTag.id = tagId;
-  styleTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${fileName}`;
-  styleTag.setAttribute("data-theme-number", theme.toString());
-  head.appendChild(styleTag);
+  colorSchemeMap.forEach((theme, colorScheme) => {
+    const schemeTagId = `currietechnologies-razor-sweetalert2-scheme-link-${colorScheme}`;
+    const existingSchemeTag = document.getElementById(schemeTagId);
+    if (existingSchemeTag !== null) {
+      const currentThemeForScheme = Number(existingSchemeTag.dataset.themeNumber);
+      if (currentThemeForScheme === theme) {
+        return;
+      }
+      existingSchemeTag.remove();
+    }
+
+    const schemeTag = document.createElement("link");
+    schemeTag.rel = "stylesheet";
+    schemeTag.id = schemeTagId;
+    schemeTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${getFileNameByTheme(theme)}`;
+    schemeTag.setAttribute("data-theme-number", String(theme));
+    schemeTag.setAttribute("data-scheme-number", String(colorScheme));
+    schemeTag.setAttribute("media", `(prefers-color-scheme: ${getColorSchemeName(colorScheme)})`);
+
+    const head = document.getElementsByTagName("head")[0];
+    head.appendChild(schemeTag);
+  });
 }
 
 domWindow.CurrieTechnologies = domWindow.CurrieTechnologies || {};
@@ -251,9 +297,10 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
   title: string | null,
   message: string | null,
   type: SweetAlertType | null,
-  theme: number
+  theme: number,
+  colorSchemeThemes: ColorSchemeDictionary
 ): void => {
-  setTheme(theme);
+  setTheme(theme, colorSchemeThemes);
 
   const params: SweetAlertArrayOptions = [];
   params[0] = title || undefined;
@@ -267,9 +314,10 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
 domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = (
   requestId: string,
   settingsPoco: SimpleSweetAlertOptions,
-  theme: number
+  theme: number,
+  colorSchemeThemes: ColorSchemeDictionary
 ): void => {
-  setTheme(theme);
+  setTheme(theme, colorSchemeThemes);
 
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
 
@@ -282,9 +330,10 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Queue = (
   requestId: string,
   optionIds: string[],
   steps: SimpleSweetAlertOptions[],
-  theme: number
+  theme: number,
+  colorSchemeThemes: ColorSchemeDictionary
 ): void => {
-  setTheme(theme);
+  setTheme(theme, colorSchemeThemes);
 
   const arrSwalSettings: SweetAlertOptions[] = optionIds.map(
     (optionId, i): SweetAlertOptions => getSwalSettingsFromPoco(steps[i], optionId, true)

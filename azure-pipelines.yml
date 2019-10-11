@@ -28,9 +28,9 @@ stages:
             displayName: Cache Yarn Packages
 
           - task: YarnInstaller@3
-            displayName: "Installing Yarn 1.17.x"
+            displayName: "Installing Yarn 1.19.x"
             inputs:
-              versionSpec: 1.17.x
+              versionSpec: 1.19.x
               checkLatest: true
               includePrerelease: false
 
@@ -72,9 +72,9 @@ stages:
             displayName: Cache Yarn Packages
 
           - task: YarnInstaller@3
-            displayName: "Installing Yarn 1.17.x"
+            displayName: "Installing Yarn 1.19.x"
             inputs:
-              versionSpec: 1.17.x
+              versionSpec: 1.19.x
               checkLatest: true
               includePrerelease: false
 
