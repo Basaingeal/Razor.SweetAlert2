@@ -228,3 +228,12 @@ stages:
                     nuGetFeedType: "external"
                     publishFeedCredentials: "NuGet All"
                     verbosityPush: "Normal"
+
+                - task: NuGetCommand@2
+                  displayName: Push to GitHub Package Registry
+                  inputs:
+                    command: "push"
+                    packagesToPush: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
+                    nuGetFeedType: "external"
+                    publishFeedCredentials: "GitHub Package Registry"
+                    verbosityPush: "Normal"
