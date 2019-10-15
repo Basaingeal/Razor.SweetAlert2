@@ -292,7 +292,9 @@ domWindow.CurrieTechnologies.Razor = domWindow.CurrieTechnologies.Razor || {};
 domWindow.CurrieTechnologies.Razor.SweetAlert2 =
   domWindow.CurrieTechnologies.Razor.SweetAlert2 || {};
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
+const razorSwal = domWindow.CurrieTechnologies.Razor.SweetAlert2;
+
+razorSwal.Fire = (
   requestId: string,
   title: string | null,
   message: string | null,
@@ -311,7 +313,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Fire = (
   });
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = (
+razorSwal.FireSettings = (
   requestId: string,
   settingsPoco: SimpleSweetAlertOptions,
   theme: number,
@@ -326,7 +328,7 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.FireSettings = (
   });
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Queue = (
+razorSwal.Queue = (
   requestId: string,
   optionIds: string[],
   steps: SimpleSweetAlertOptions[],
@@ -344,102 +346,97 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.Queue = (
   });
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.IsVisible = (): boolean => {
+razorSwal.IsVisible = (): boolean => {
   return !!Swal.isVisible();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Update = (
-  requestId: string,
-  settingsPoco: SimpleSweetAlertOptions
-): void => {
+razorSwal.Update = (requestId: string, settingsPoco: SimpleSweetAlertOptions): void => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
   Swal.update(swalSettings);
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.CloseResult = (result: SweetAlertResult): void => {
+razorSwal.CloseResult = (result: SweetAlertResult): void => {
   result.dismiss = getEnumString((result.dismiss as any) as number);
   Swal.close(result);
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.Close = (): void => {
+razorSwal.Close = (): void => {
   Swal.close();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.EnableButtons = (): void => {
+razorSwal.EnableButtons = (): void => {
   Swal.enableButtons();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.DisableButtons = (): void => {
+razorSwal.DisableButtons = (): void => {
   Swal.disableButtons();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.ShowLoading = (): void => {
+razorSwal.ShowLoading = (): void => {
   Swal.showLoading();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.HideLoading = (): void => {
+razorSwal.HideLoading = (): void => {
   Swal.hideLoading();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.HideLoading = (): boolean => {
+razorSwal.HideLoading = (): boolean => {
   return Swal.isLoading();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.ClickConfirm = (): void => {
+razorSwal.ClickConfirm = (): void => {
   Swal.clickConfirm();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.ClickCancel = (): void => {
+razorSwal.ClickCancel = (): void => {
   Swal.clickCancel();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.ShowValidationMessage = (
-  validationMessage: string
-): void => {
+razorSwal.ShowValidationMessage = (validationMessage: string): void => {
   Swal.showValidationMessage(validationMessage);
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.ResetValidationMessage = (): void => {
+razorSwal.ResetValidationMessage = (): void => {
   Swal.resetValidationMessage();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.DisableInput = (): void => {
+razorSwal.DisableInput = (): void => {
   Swal.disableInput();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.EnableInput = (): void => {
+razorSwal.EnableInput = (): void => {
   Swal.enableInput();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.GetTimerLeft = (): number | undefined => {
+razorSwal.GetTimerLeft = (): number | undefined => {
   return Swal.getTimerLeft();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.StopTimer = (): number | undefined => {
+razorSwal.StopTimer = (): number | undefined => {
   return Swal.stopTimer();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.ResumeTimer = (): number | undefined => {
+razorSwal.ResumeTimer = (): number | undefined => {
   return Swal.resumeTimer();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.ToggleTimer = (): number | undefined => {
+razorSwal.ToggleTimer = (): number | undefined => {
   return Swal.toggleTimer();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.IsTimmerRunning = (): boolean | undefined => {
+razorSwal.IsTimmerRunning = (): boolean | undefined => {
   return Swal.isTimerRunning();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.IncreaseTimer = (n: number): number | undefined => {
+razorSwal.IncreaseTimer = (n: number): number | undefined => {
   return Swal.increaseTimer(n);
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.GetQueueStep = (): string | null => {
+razorSwal.GetQueueStep = (): string | null => {
   return Swal.getQueueStep();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.InsertQueueStep = (
+razorSwal.InsertQueueStep = (
   requestId: string,
   step: SimpleSweetAlertOptions,
   index?: number
@@ -448,24 +445,22 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2.InsertQueueStep = (
   return Swal.insertQueueStep(stepSettings, index);
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.DeleteQueueStep = (index: number): void => {
+razorSwal.DeleteQueueStep = (index: number): void => {
   Swal.deleteQueueStep(index);
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.ShowProgressSteps = (): void => {
+razorSwal.ShowProgressSteps = (): void => {
   Swal.showProgressSteps();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.HideProgressSteps = (): void => {
+razorSwal.HideProgressSteps = (): void => {
   Swal.hideProgressSteps();
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.IsValidParamter = (paramName: string): boolean => {
+razorSwal.IsValidParamter = (paramName: string): boolean => {
   return Swal.isValidParameter(paramName);
 };
 
-domWindow.CurrieTechnologies.Razor.SweetAlert2.IsUpdatableParamter = (
-  paramName: string
-): boolean => {
+razorSwal.IsUpdatableParamter = (paramName: string): boolean => {
   return Swal.isUpdatableParameter(paramName);
 };
