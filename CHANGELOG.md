@@ -1,7 +1,10 @@
-﻿# v1.1.1
+﻿# v1.2.0
 
 ## Enhancements
 
-* Bump `sweetalert2` to `8.18.4`
+* Bump `@sweetalert2/themes` to `2.2.1`
+  * Features:
+    * Material UI theme (https://github.com/sweetalert2/sweetalert2-themes/issues/21) (https://github.com/sweetalert2/sweetalert2-themes/commit/77e5513ecd96e637d09d0c0ba4054fb0c98bebee)
   * Bug Fixes:
-    * **types:** do not use SweetAlertArrayOptions in fire() definition (https://github.com/sweetalert2/sweetalert2/issues/1775) (https://github.com/sweetalert2/sweetalert2/commit/893eee7ab6993013fb28337ff6fdf69f78d4ee9f)
+    * write NPM_TOKEN to ~/.npmrc (https://github.com/sweetalert2/sweetalert2-themes/commit/bfe1609425c60c9123069db982b521af7aa27c38)
+* New Material UI Theme! 🎉 Use it during setup like other themes using `SweetAlertTheme.MaterialUI`
