@@ -214,6 +214,9 @@ function getFileNameByTheme(theme: SweetAlertTheme): string {
     case SweetAlertTheme.Bootstrap4: {
       return "bootstrap4Theme.min.css";
     }
+    case SweetAlertTheme.MaterialUI: {
+      return "materialUITheme.min.css";
+    }
     case SweetAlertTheme.Default:
     default: {
       return "defaultTheme.min.css";

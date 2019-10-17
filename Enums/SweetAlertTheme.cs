@@ -6,6 +6,7 @@
         Dark,
         Minimal,
         Borderless,
-        Bootstrap4
+        Bootstrap4,
+        MaterialUI
     }
 }
