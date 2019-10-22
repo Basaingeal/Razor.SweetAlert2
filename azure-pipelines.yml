@@ -117,17 +117,11 @@ stages:
               versioningScheme: "byBuildNumber"
               verbosityPack: "Normal"
 
-          - task: CopyFiles@2
-            displayName: "Copying CHANGELOG"
-            inputs:
-              Contents: "CHANGELOG.md"
-              TargetFolder: "$(Build.ArtifactStagingDirectory)"
+          - publish: $(Build.ArtifactStagingDirectory)
+            artifact: NuGetPackage
 
-          - task: PublishBuildArtifacts@1
-            inputs:
-              PathtoPublish: "$(Build.ArtifactStagingDirectory)"
-              ArtifactName: "drop"
-              publishLocation: "Container"
+          - publish: CHANGELOG.md
+            artifact: Changelog
 
   - stage: deployStage
     displayName: Deploy
@@ -143,14 +137,6 @@ stages:
           runOnce:
             deploy:
               steps:
-                - task: DownloadBuildArtifacts@0
-                  displayName: Download Build Artifacts
-                  inputs:
-                    buildType: "current"
-                    downloadType: "single"
-                    artifactName: "drop"
-                    downloadPath: "$(System.ArtifactStagingDirectory)"
-
                 - task: GitHubRelease@1
                   displayName: Create GitHub Release
                   inputs:
@@ -161,8 +147,8 @@ stages:
                     tagSource: "userSpecifiedTag"
                     tag: "v$(Build.BuildNumber)"
                     title: "v$(Build.BuildNumber)"
-                    releaseNotesFilePath: "$(System.ArtifactStagingDirectory)/drop/CHANGELOG.md"
-                    assets: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
+                    releaseNotesFilePath: "$(Pipeline.Workspace)/Changelog/CHANGELOG.md"
+                    assets: "$(Pipeline.Workspace)/NuGetPackage/*.nupkg"
                     changeLogCompareToRelease: "lastFullRelease"
                     changeLogType: "commitBased"
 
@@ -175,14 +161,6 @@ stages:
           runOnce:
             deploy:
               steps:
-                - task: DownloadBuildArtifacts@0
-                  displayName: Download Build Artifacts
-                  inputs:
-                    buildType: "current"
-                    downloadType: "single"
-                    artifactName: "drop"
-                    downloadPath: "$(System.ArtifactStagingDirectory)"
-
                 - task: NuGetToolInstaller@1
                   displayName: Use Latest NuGet
                   inputs:
@@ -193,7 +171,7 @@ stages:
                   displayName: "Push to Private NuGet Feed"
                   inputs:
                     command: "push"
-                    packagesToPush: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
+                    packagesToPush: "$(Pipeline.Workspace)/NuGetPackage/*.nupkg"
                     nuGetFeedType: "internal"
                     publishVstsFeed: "92bb098c-7077-481e-813d-9c0d49ec780d"
 
@@ -206,14 +184,6 @@ stages:
           runOnce:
             deploy:
               steps:
-                - task: DownloadBuildArtifacts@0
-                  displayName: Download Build Artifacts
-                  inputs:
-                    buildType: "current"
-                    downloadType: "single"
-                    artifactName: "drop"
-                    downloadPath: "$(System.ArtifactStagingDirectory)"
-
                 - task: NuGetToolInstaller@1
                   displayName: Use Latest NuGet
                   inputs:
@@ -224,16 +194,31 @@ stages:
                   displayName: Push to NuGet.org
                   inputs:
                     command: "push"
-                    packagesToPush: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
+                    packagesToPush: "$(Pipeline.Workspace)/NuGetPackage/*.nupkg"
                     nuGetFeedType: "external"
                     publishFeedCredentials: "NuGet All"
                     verbosityPush: "Normal"
+
+      - deployment: githubPackageRegistry
+        displayName: Push to GitHub Package Registry
+        pool:
+          vmImage: "windows-latest"
+        environment: currietechnologies-prod
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: NuGetToolInstaller@1
+                  displayName: Use Latest NuGet
+                  inputs:
+                    versionSpec: "5.x"
+                    checkLatest: true
 
                 - task: NuGetCommand@2
                   displayName: Push to GitHub Package Registry
                   inputs:
                     command: "push"
-                    packagesToPush: "$(System.ArtifactStagingDirectory)/drop/*.nupkg"
+                    packagesToPush: "$(Pipeline.Workspace)/NuGetPackage/*.nupkg"
                     nuGetFeedType: "external"
                     publishFeedCredentials: "GitHub Package Registry"
                     verbosityPush: "Normal"
