@@ -27,13 +27,6 @@ stages:
               path: "$(YARN_CACHE_FOLDER)"
             displayName: Cache Yarn Packages
 
-          - task: YarnInstaller@3
-            displayName: "Installing Yarn 1.19.x"
-            inputs:
-              versionSpec: 1.19.x
-              checkLatest: true
-              includePrerelease: false
-
           - task: Yarn@3
             displayName: "Installing Yarn Packages"
             inputs:
@@ -70,13 +63,6 @@ stages:
               key: "yarn | $(Agent.OS) | yarn.lock"
               path: "$(YARN_CACHE_FOLDER)"
             displayName: Cache Yarn Packages
-
-          - task: YarnInstaller@3
-            displayName: "Installing Yarn 1.19.x"
-            inputs:
-              versionSpec: 1.19.x
-              checkLatest: true
-              includePrerelease: false
 
           - task: Yarn@3
             displayName: "Installing Yarn Packages"
