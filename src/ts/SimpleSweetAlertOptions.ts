@@ -1,4 +1,4 @@
-import { SweetAlertCustomClass, SweetAlertIcon } from "sweetalert2";
+import { SweetAlertCustomClass, SweetAlertIcon, SweetAlertShowClass, SweetAlertHideClass } from "sweetalert2";
 import { InputType } from "./InputType";
 import { SweetAlertGrow } from "./SweetAlertGrow";
 import { SweetAlertPosition } from "./SweetAlertPosition";
@@ -33,6 +33,10 @@ export default interface SimpleSweetAlertOptions {
   position?: SweetAlertPosition;
 
   grow?: SweetAlertGrow;
+
+  showClass?: SweetAlertShowClass;
+
+  hideClass?: SweetAlertHideClass;
 
   customClass?: SweetAlertCustomClass;
 

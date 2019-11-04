@@ -87,6 +87,16 @@
         public SweetAlertGrowDirection Grow { get; set; }
 
         /// <summary>
+        /// CSS classes for animations when showing a popup (fade in)
+        /// </summary>
+        public SweetAlertShowClass ShowClass { get; set; }
+
+        // <summary>
+        /// CSS classes for animations when hiding a popup (fade out)
+        /// </summary>
+        public SweetAlertHideClass HideClass { get; set; }
+
+        /// <summary>
         /// A custom CSS class for the modal.
         /// <para>If a string value is provided, the classname will be applied to the popup.</para>
         /// <para></para>
@@ -359,6 +369,8 @@
                 Background = this.Background,
                 Position = this.Position?.ToString(),
                 Grow = this.Grow?.ToString(),
+                ShowClass = this.ShowClass,
+                HideClass = this.HideClass,
                 CustomClass = this.CustomClass,
                 Timer = this.Timer,
                 HeightAuto = this.HeightAuto,

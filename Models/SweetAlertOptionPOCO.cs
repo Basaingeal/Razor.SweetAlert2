@@ -34,6 +34,10 @@
 
         public string Grow { get; set; }
 
+        public SweetAlertShowClass ShowClass { get; set; }
+
+        public SweetAlertHideClass HideClass { get; set; }
+
         public SweetAlertCustomClass CustomClass { get; set; }
 
         public decimal? Timer { get; set; }
