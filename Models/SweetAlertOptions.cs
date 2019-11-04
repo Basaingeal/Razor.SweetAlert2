@@ -40,6 +40,22 @@
         public SweetAlertIcon Icon { get; set; }
 
         /// <summary>
+        /// The custom HTML content for an icon.
+        /// <para>
+        /// <example>
+        /// ex.
+        /// <code>
+        /// Swal.FireAsync(new SweetAlertOptions {
+        ///    Icon = SweetAlertIcon.Error,
+        ///    IconHtml = "<i class=\"fas fa-bug\"></i>"
+        /// })
+        /// </code>
+        /// </example>
+        /// </para>
+        /// </summary>
+        public string IconHtml { get; set; }
+
+        /// <summary>
         /// Whether or not SweetAlert2 should show a full screen click-to-dismiss backdrop.
         /// </summary>
         public bool? Backdrop { get; set; }
@@ -360,6 +376,7 @@
                 Html = this.Html,
                 Footer = this.Footer,
                 Icon = this.Icon?.ToString(),
+                IconHtml = this.IconHtml,
                 Backdrop = this.Backdrop,
                 Toast = this.Toast,
                 Target = this.Target,

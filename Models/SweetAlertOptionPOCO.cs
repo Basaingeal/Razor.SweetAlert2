@@ -16,6 +16,8 @@
 
         public string Icon { get; set; }
 
+        public string IconHtml { get; set; }
+
         public bool? Backdrop { get; set; }
 
         public bool? Toast { get; set; }
