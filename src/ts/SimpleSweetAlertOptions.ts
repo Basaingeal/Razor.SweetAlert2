@@ -14,7 +14,7 @@ export default interface SimpleSweetAlertOptions {
 
   footer?: string;
 
-  type?: SweetAlertIcon;
+  icon?: SweetAlertIcon;
 
   backdrop?: boolean;
 

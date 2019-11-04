@@ -115,7 +115,7 @@ SweetAlertResult result = await Swal.FireAsync(new SweetAlertOptions
  {
    Title = "Are you sure?",
    Text = "You will not be able to recover this imaginary file!",
-   Type = SweetAlertType.Warning,
+   Icon = SweetAlertIcon.Warning,
    ShowCancelButton = true,
    ConfirmButtonText = "Yes, delete it!",
    CancelButtonText = "No, keep it"
@@ -126,7 +126,7 @@ if (!string.IsNullOrEmpty(result.Value))
  await Swal.FireAsync(
    "Deleted",
    "Your imaginary file has been deleted.",
-   SweetAlertType.Success
+   SweetAlertIcon.Success
    );
 }
 else if (result.Dismiss == DismissReason.Cancel)
@@ -134,7 +134,7 @@ else if (result.Dismiss == DismissReason.Cancel)
  await Swal.FireAsync(
    "Cancelled",
    "Your imaginary file is safe :)",
-   SweetAlertType.Error
+   SweetAlertIcon.Error
    );
 }
 
@@ -143,7 +143,7 @@ Swal.FireAsync(new SweetAlertOptions
  {
    Title = "Are you sure?",
    Text = "You will not be able to recover this imaginary file!",
-   Type = SweetAlertType.Warning,
+   Icon = SweetAlertIcon.Warning,
    ShowCancelButton = true,
    ConfirmButtonText = "Yes, delete it!",
    CancelButtonText = "No, keep it"
@@ -155,7 +155,7 @@ Swal.FireAsync(new SweetAlertOptions
      Swal.FireAsync(
        "Deleted",
        "Your imaginary file has been deleted.",
-       SweetAlertType.Success
+       SweetAlertIcon.Success
        );
    }
    else if (result.Dismiss == DismissReason.Cancel)
@@ -163,7 +163,7 @@ Swal.FireAsync(new SweetAlertOptions
      Swal.FireAsync(
        "Cancelled",
        "Your imaginary file is safe :)",
-       SweetAlertType.Error
+       SweetAlertIcon.Error
        );
    }
  });
