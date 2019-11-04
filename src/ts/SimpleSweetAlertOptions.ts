@@ -1,4 +1,4 @@
-import { SweetAlertCustomClass, SweetAlertType } from "sweetalert2";
+import { SweetAlertCustomClass, SweetAlertIcon } from "sweetalert2";
 import { InputType } from "./InputType";
 import { SweetAlertGrow } from "./SweetAlertGrow";
 import { SweetAlertPosition } from "./SweetAlertPosition";
@@ -14,7 +14,7 @@ export default interface SimpleSweetAlertOptions {
 
   footer?: string;
 
-  type?: SweetAlertType;
+  type?: SweetAlertIcon;
 
   backdrop?: boolean;
 
@@ -37,8 +37,6 @@ export default interface SimpleSweetAlertOptions {
   customClass?: SweetAlertCustomClass;
 
   timer?: number;
-
-  animation?: boolean;
 
   heightAuto?: boolean;
 

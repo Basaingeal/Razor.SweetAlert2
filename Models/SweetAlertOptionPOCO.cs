@@ -14,7 +14,7 @@
 
         public string Footer { get; set; }
 
-        public string Type { get; set; }
+        public string Icon { get; set; }
 
         public bool? Backdrop { get; set; }
 
@@ -37,8 +37,6 @@
         public SweetAlertCustomClass CustomClass { get; set; }
 
         public decimal? Timer { get; set; }
-
-        public bool? Animation { get; set; }
 
         public bool? HeightAuto { get; set; }
 

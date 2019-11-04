@@ -5,7 +5,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 {
     internal interface IAsyncSweetAlertService
     {
-        Task<SweetAlertResult> FireAsync(string title, string message, SweetAlertType type);
+        Task<SweetAlertResult> FireAsync(string title, string message, SweetAlertIcon icon);
 
         Task<SweetAlertResult> FireAsync(SweetAlertOptions settings);
 
@@ -65,13 +65,9 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         Task DeleteQueueStepAsync(double index);
 
 
-        Task ShowProgressStepsAsync();
+        Task<bool> IsValidParameterAsync(string paramName);
 
-        Task HideProgressStepsAsync();
-
-        Task<bool> IsValidParamterAsync(string paramName);
-
-        Task<bool> IsUpdatableParamterAsync(string paramName);
+        Task<bool> IsUpdatableParameterAsync(string paramName);
 
         SweetAlertOptions ArgsToParams(IEnumerable<string> paramaters);
     }

@@ -33,11 +33,11 @@
         public string Footer { get; set; }
 
         /// <summary>
-        /// The type of the modal.
-        /// <para>SweetAlert2 comes with 5 built-in types which will show a corresponding icon animation: 'warning', 'error', 'success', 'info' and 'question'.</para>
-        /// <para>It can either be put in the array under the key "type" or passed as the third parameter of the function.</para>
+        /// The icon of the modal.
+        /// <para>SweetAlert2 comes with 5 built-in icons which will show a corresponding icon animation: 'warning', 'error', 'success', 'info' and 'question'.</para>
+        /// <para>It can either be put in the array under the key "icon" or passed as the third parameter of the function.</para>
         /// </summary>
-        public SweetAlertType Type { get; set; }
+        public SweetAlertIcon Icon { get; set; }
 
         /// <summary>
         /// Whether or not SweetAlert2 should show a full screen click-to-dismiss backdrop.
@@ -97,11 +97,6 @@
         /// Auto close timer of the modal. Set in ms (milliseconds).
         /// </summary>
         public decimal? Timer { get; set; }
-
-        /// <summary>
-        /// If set to false, modal CSS animation will be disabled.
-        /// </summary>
-        public bool? Animation { get; set; }
 
         /// <summary>
         /// By default, SweetAlert2 sets html's and body's CSS height to auto !important.
@@ -354,7 +349,7 @@
                 Text = this.Text,
                 Html = this.Html,
                 Footer = this.Footer,
-                Type = this.Type?.ToString(),
+                Icon = this.Icon?.ToString(),
                 Backdrop = this.Backdrop,
                 Toast = this.Toast,
                 Target = this.Target,
@@ -366,7 +361,6 @@
                 Grow = this.Grow?.ToString(),
                 CustomClass = this.CustomClass,
                 Timer = this.Timer,
-                Animation = this.Animation,
                 HeightAuto = this.HeightAuto,
                 AllowOutsideClick = this.AllowOutsideClick,
                 AllowEscapeKey = this.AllowEscapeKey,
