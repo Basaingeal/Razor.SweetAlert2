@@ -45,13 +45,13 @@ Now, it's possible to change showing/hiding animations of popups:
 Swal.FireAsync(new SweetAlertOptions{
   ShowClass = new SweetAlertShowClass {
     Popup = "...",
-    Backdrop: "...",
-    Icon: "..."
+    Backdrop = "...",
+    Icon = "..."
   },
   HideClass = new SweetAlertHideClass {
     Popup = "...",
-    Backdrop: "...",
-    Icon: "..."
+    Backdrop = "...",
+    Icon = "..."
   }
 });
 ```
