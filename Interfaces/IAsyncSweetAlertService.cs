@@ -51,7 +51,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         Task<double?> ToggleTimerAsync();
 
-        Task<bool?> IsTimmerRunningAsync();
+        Task<bool?> IsTimerRunningAsync();
 
         Task<double?> IncreaseTimerAsync(double n);
 

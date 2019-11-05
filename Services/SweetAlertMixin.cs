@@ -242,9 +242,9 @@
         /// Check if timer is running. Returns true if timer is running, and false is timer is paused / stopped.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public Task<bool?> IsTimmerRunningAsync()
+        public Task<bool?> IsTimerRunningAsync()
         {
-            return this.swal.IsTimmerRunningAsync();
+            return this.swal.IsTimerRunningAsync();
         }
 
         /// <summary>

@@ -392,9 +392,9 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Check if timer is running. Returns true if timer is running, and false is timer is paused / stopped.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public async Task<bool?> IsTimmerRunningAsync()
+        public async Task<bool?> IsTimerRunningAsync()
         {
-            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IsTimmerRunning")
+            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IsTimerRunning")
                 .ConfigureAwait(false);
             return response == null ? null : (bool?)Convert.ToBoolean(response.ToString(), culture.NumberFormat);
         }

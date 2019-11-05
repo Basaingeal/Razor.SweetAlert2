@@ -427,7 +427,7 @@ razorSwal.ToggleTimer = (): number | undefined => {
   return Swal.toggleTimer();
 };
 
-razorSwal.IsTimmerRunning = (): boolean | undefined => {
+razorSwal.IsTimerRunning = (): boolean | undefined => {
   return Swal.isTimerRunning();
 };
 
