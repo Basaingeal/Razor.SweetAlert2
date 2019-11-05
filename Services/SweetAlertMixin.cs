@@ -21,14 +21,14 @@
         /// </summary>
         /// <param name="title"></param>
         /// <param name="message"></param>
-        /// <param name="type"></param>
+        /// <param name="icon"></param>
         /// <returns></returns>
-        public Task<SweetAlertResult> FireAsync(string title = null, string message = null, SweetAlertType type = null)
+        public Task<SweetAlertResult> FireAsync(string title = null, string message = null, SweetAlertIcon icon = null)
         {
             SweetAlertOptions newSettings = this.Mix(this.storedOptions);
             newSettings.Title = title;
             newSettings.Html = message ?? newSettings.Html;
-            newSettings.Type = type ?? newSettings.Type;
+            newSettings.Icon = icon ?? newSettings.Icon;
             return this.swal.FireAsync(newSettings);
         }
 
@@ -299,37 +299,21 @@
         }
 
         /// <summary>
-        /// Shows progress steps.
-        /// </summary>
-        public Task ShowProgressStepsAsync()
-        {
-            return this.swal.ShowProgressStepsAsync();
-        }
-
-        /// <summary>
-        /// Shows progress steps.
-        /// </summary>
-        public Task HideProgressStepsAsync()
-        {
-            return this.swal.HideProgressStepsAsync();
-        }
-
-        /// <summary>
         /// Determines if a given parameter name is valid.
         /// </summary>
         /// <param name="paramName">The parameter to check.</param>
-        public Task<bool> IsValidParamterAsync(string paramName)
+        public Task<bool> IsValidParameterAsync(string paramName)
         {
-            return this.swal.IsValidParamterAsync(paramName);
+            return this.swal.IsValidParameterAsync(paramName);
         }
 
         /// <summary>
         /// Determines if a given parameter name is valid for Swal.update() method.
         /// </summary>
         /// <param name="paramName">The parameter to check.</param>
-        public Task<bool> IsUpdatableParamterAsync(string paramName)
+        public Task<bool> IsUpdatableParameterAsync(string paramName)
         {
-            return this.swal.IsUpdatableParamterAsync(paramName);
+            return this.swal.IsUpdatableParameterAsync(paramName);
         }
 
         /// <summary>
@@ -351,7 +335,7 @@
                 Text = newSettings.Text ?? this.storedOptions.Text,
                 Html = newSettings.Html ?? this.storedOptions.Html,
                 Footer = newSettings.Footer ?? this.storedOptions.Footer,
-                Type = newSettings.Type ?? this.storedOptions.Type,
+                Icon = newSettings.Icon ?? this.storedOptions.Icon,
                 Backdrop = newSettings.Backdrop ?? this.storedOptions.Backdrop,
                 Toast = newSettings.Toast ?? this.storedOptions.Toast,
                 Target = newSettings.Target ?? this.storedOptions.Target,
@@ -363,7 +347,6 @@
                 Grow = newSettings.Grow ?? this.storedOptions.Grow,
                 CustomClass = newSettings.CustomClass ?? this.storedOptions.CustomClass,
                 Timer = newSettings.Timer ?? this.storedOptions.Timer,
-                Animation = newSettings.Animation ?? this.storedOptions.Animation,
                 HeightAuto = newSettings.HeightAuto ?? this.storedOptions.HeightAuto,
                 AllowOutsideClick = newSettings.AllowOutsideClick ?? this.storedOptions.AllowOutsideClick,
                 AllowEscapeKey = newSettings.AllowEscapeKey ?? this.storedOptions.AllowEscapeKey,

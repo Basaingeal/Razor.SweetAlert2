@@ -33,11 +33,27 @@
         public string Footer { get; set; }
 
         /// <summary>
-        /// The type of the modal.
-        /// <para>SweetAlert2 comes with 5 built-in types which will show a corresponding icon animation: 'warning', 'error', 'success', 'info' and 'question'.</para>
-        /// <para>It can either be put in the array under the key "type" or passed as the third parameter of the function.</para>
+        /// The icon of the modal.
+        /// <para>SweetAlert2 comes with 5 built-in icons which will show a corresponding icon animation: 'warning', 'error', 'success', 'info' and 'question'.</para>
+        /// <para>It can either be put in the array under the key "icon" or passed as the third parameter of the function.</para>
         /// </summary>
-        public SweetAlertType Type { get; set; }
+        public SweetAlertIcon Icon { get; set; }
+
+        /// <summary>
+        /// The custom HTML content for an icon.
+        /// <para>
+        /// <example>
+        /// ex.
+        /// <code>
+        /// Swal.FireAsync(new SweetAlertOptions {
+        ///    Icon = SweetAlertIcon.Error,
+        ///    IconHtml = "<i class=\"fas fa-bug\"></i>"
+        /// })
+        /// </code>
+        /// </example>
+        /// </para>
+        /// </summary>
+        public string IconHtml { get; set; }
 
         /// <summary>
         /// Whether or not SweetAlert2 should show a full screen click-to-dismiss backdrop.
@@ -87,6 +103,16 @@
         public SweetAlertGrowDirection Grow { get; set; }
 
         /// <summary>
+        /// CSS classes for animations when showing a popup (fade in)
+        /// </summary>
+        public SweetAlertShowClass ShowClass { get; set; }
+
+        // <summary>
+        /// CSS classes for animations when hiding a popup (fade out)
+        /// </summary>
+        public SweetAlertHideClass HideClass { get; set; }
+
+        /// <summary>
         /// A custom CSS class for the modal.
         /// <para>If a string value is provided, the classname will be applied to the popup.</para>
         /// <para></para>
@@ -97,11 +123,6 @@
         /// Auto close timer of the modal. Set in ms (milliseconds).
         /// </summary>
         public decimal? Timer { get; set; }
-
-        /// <summary>
-        /// If set to false, modal CSS animation will be disabled.
-        /// </summary>
-        public bool? Animation { get; set; }
 
         /// <summary>
         /// By default, SweetAlert2 sets html's and body's CSS height to auto !important.
@@ -354,7 +375,8 @@
                 Text = this.Text,
                 Html = this.Html,
                 Footer = this.Footer,
-                Type = this.Type?.ToString(),
+                Icon = this.Icon?.ToString(),
+                IconHtml = this.IconHtml,
                 Backdrop = this.Backdrop,
                 Toast = this.Toast,
                 Target = this.Target,
@@ -364,9 +386,10 @@
                 Background = this.Background,
                 Position = this.Position?.ToString(),
                 Grow = this.Grow?.ToString(),
+                ShowClass = this.ShowClass,
+                HideClass = this.HideClass,
                 CustomClass = this.CustomClass,
                 Timer = this.Timer,
-                Animation = this.Animation,
                 HeightAuto = this.HeightAuto,
                 AllowOutsideClick = this.AllowOutsideClick,
                 AllowEscapeKey = this.AllowEscapeKey,

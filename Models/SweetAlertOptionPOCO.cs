@@ -14,7 +14,9 @@
 
         public string Footer { get; set; }
 
-        public string Type { get; set; }
+        public string Icon { get; set; }
+
+        public string IconHtml { get; set; }
 
         public bool? Backdrop { get; set; }
 
@@ -34,11 +36,13 @@
 
         public string Grow { get; set; }
 
+        public SweetAlertShowClass ShowClass { get; set; }
+
+        public SweetAlertHideClass HideClass { get; set; }
+
         public SweetAlertCustomClass CustomClass { get; set; }
 
         public decimal? Timer { get; set; }
-
-        public bool? Animation { get; set; }
 
         public bool? HeightAuto { get; set; }
 
