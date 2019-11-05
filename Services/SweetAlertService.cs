@@ -66,9 +66,9 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         /// <param name="title"></param>
         /// <param name="message"></param>
-        /// <param name="type"></param>
+        /// <param name="icon"></param>
         /// <returns></returns>
-        public async Task<SweetAlertResult> FireAsync(string title = null, string message = null, SweetAlertType type = null)
+        public async Task<SweetAlertResult> FireAsync(string title = null, string message = null, SweetAlertIcon icon = null)
         {
             var tcs = new TaskCompletionSource<SweetAlertResult>();
             Guid requestId = Guid.NewGuid();
@@ -78,7 +78,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 requestId,
                 title,
                 message,
-                type?.ToString(),
+                icon?.ToString(),
                 (int)theme,
                 colorSchemeThemes)
                 .ConfigureAwait(false);
@@ -392,9 +392,9 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Check if timer is running. Returns true if timer is running, and false is timer is paused / stopped.
         /// <para>If `timer` parameter isn't set, returns null.</para>
         /// </summary>
-        public async Task<bool?> IsTimmerRunningAsync()
+        public async Task<bool?> IsTimerRunningAsync()
         {
-            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IsTimmerRunning")
+            var response = await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.IsTimerRunning")
                 .ConfigureAwait(false);
             return response == null ? null : (bool?)Convert.ToBoolean(response.ToString(), culture.NumberFormat);
         }
@@ -473,31 +473,13 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         }
 
         /// <summary>
-        /// Shows progress steps.
-        /// </summary>
-        public async Task ShowProgressStepsAsync()
-        {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ShowProgressSteps")
-                .ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Shows progress steps.
-        /// </summary>
-        public async Task HideProgressStepsAsync()
-        {
-            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.HideProgressSteps")
-                .ConfigureAwait(false);
-        }
-
-        /// <summary>
         /// Determines if a given parameter name is valid.
         /// </summary>
         /// <param name="paramName">The parameter to check.</param>
         /// <returns></returns>
-        public Task<bool> IsValidParamterAsync(string paramName)
+        public Task<bool> IsValidParameterAsync(string paramName)
         {
-            return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsValidParamter", paramName).AsTask();
+            return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsValidParameter", paramName).AsTask();
         }
 
         /// <summary>
@@ -505,9 +487,9 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         /// <param name="paramName">The parameter to check.</param>
         /// <returns></returns>
-        public Task<bool> IsUpdatableParamterAsync(string paramName)
+        public Task<bool> IsUpdatableParameterAsync(string paramName)
         {
-            return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsUpdatableParamter", paramName).AsTask();
+            return jSRuntime.InvokeAsync<bool>("CurrieTechnologies.Razor.SweetAlert2.IsUpdatableParameter", paramName).AsTask();
         }
 
         /// <summary>
@@ -539,7 +521,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             }
             if (paramEnum.MoveNext())
             {
-                optionsToReturn.Type = paramEnum.Current;
+                optionsToReturn.Icon = paramEnum.Current;
             }
 
             return optionsToReturn;

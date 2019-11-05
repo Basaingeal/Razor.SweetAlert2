@@ -3,7 +3,7 @@ import { SweetAlertTheme } from "./SweetAlertTheme";
 import Swal, {
   SweetAlertOptions,
   SweetAlertResult,
-  SweetAlertType,
+  SweetAlertIcon,
   SweetAlertArrayOptions
 } from "sweetalert2";
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
@@ -301,7 +301,7 @@ razorSwal.Fire = (
   requestId: string,
   title: string | null,
   message: string | null,
-  type: SweetAlertType | null,
+  icon: SweetAlertIcon | null,
   theme: number,
   colorSchemeThemes: ColorSchemeDictionary
 ): void => {
@@ -310,7 +310,7 @@ razorSwal.Fire = (
   const params: SweetAlertArrayOptions = [];
   params[0] = title || undefined;
   params[1] = message || undefined;
-  params[2] = type || undefined;
+  params[2] = icon || undefined;
   Swal.fire(params[0], params[1], params[2]).then((result): void => {
     dispatchFireResult(requestId, result);
   });
@@ -427,7 +427,7 @@ razorSwal.ToggleTimer = (): number | undefined => {
   return Swal.toggleTimer();
 };
 
-razorSwal.IsTimmerRunning = (): boolean | undefined => {
+razorSwal.IsTimerRunning = (): boolean | undefined => {
   return Swal.isTimerRunning();
 };
 
@@ -452,18 +452,10 @@ razorSwal.DeleteQueueStep = (index: number): void => {
   Swal.deleteQueueStep(index);
 };
 
-razorSwal.ShowProgressSteps = (): void => {
-  Swal.showProgressSteps();
-};
-
-razorSwal.HideProgressSteps = (): void => {
-  Swal.hideProgressSteps();
-};
-
-razorSwal.IsValidParamter = (paramName: string): boolean => {
+razorSwal.IsValidParameter = (paramName: string): boolean => {
   return Swal.isValidParameter(paramName);
 };
 
-razorSwal.IsUpdatableParamter = (paramName: string): boolean => {
+razorSwal.IsUpdatableParameter = (paramName: string): boolean => {
   return Swal.isUpdatableParameter(paramName);
 };
