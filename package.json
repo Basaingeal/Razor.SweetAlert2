@@ -12,12 +12,12 @@
     "babel": "babel ./src/ts/SweetAlert.ts --out-dir wwwroot --extensions .ts,.tsx"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-typescript": "^7.6.0",
+    "@babel/preset-env": "^7.7.0",
+    "@babel/preset-typescript": "^7.7.0",
     "@types/node": "^12.12.5",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
@@ -38,9 +38,9 @@
     "webpack-fix-style-only-entries": "^0.4.0"
   },
   "dependencies": {
-    "@sweetalert2/themes": "^2.2.1",
+    "@sweetalert2/themes": "^3.0.0",
     "core-js": "3.3.6",
-    "sweetalert2": "9.0.2"
+    "sweetalert2": "9.1.0"
   },
   "author": "Michael J. Currie",
   "private": true,
