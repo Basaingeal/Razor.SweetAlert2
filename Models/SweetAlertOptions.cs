@@ -47,7 +47,7 @@
         /// <code>
         /// Swal.FireAsync(new SweetAlertOptions {
         ///    Icon = SweetAlertIcon.Error,
-        ///    IconHtml = "<i class=\"fas fa-bug\"></i>"
+        ///    IconHtml = "&lt;i class=\"fas fa-bug\"&gt;&lt;/i&gt;"
         /// })
         /// </code>
         /// </example>
