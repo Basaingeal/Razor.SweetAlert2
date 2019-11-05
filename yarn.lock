@@ -5466,10 +5466,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sweetalert2@9.1.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.1.0.tgz#07680b8848bf829709096323990e6049d28c7488"
-  integrity sha512-z+inI9lvMV0GjvH3CKzHpwIHzTl4DJGlgD4Afgo58xNYMELa2y3CKyXOvEvb8maj7RG703s1cJJRDTkFycAezQ==
+sweetalert2@9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.1.2.tgz#00c51d389b608e44ad16c4ec757025a38eccd9b5"
+  integrity sha512-MPYzxnN8A29zleRIwlDPSQEVi+qBudwrlxT9xL6hyuzeTS+mRlaQyg1vdOJQPCdzcMGcCQMn3zb4WdsnHhlmLw==
 
 table@^5.2.3:
   version "5.4.4"
@@ -5650,10 +5650,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.6.4:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.4.tgz#b18752bb3792bc1a0281335f7f6ebf1bbfc5b91d"
-  integrity sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg==
+typescript@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.2.tgz#27e489b95fa5909445e9fef5ee48d81697ad18fb"
+  integrity sha512-ml7V7JfiN2Xwvcer+XAf2csGO1bPBdRbFCkYBczNZggrBZ9c7G3riSUeJmqEU5uOtXNPMhE3n+R4FA/3YOAWOQ==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
