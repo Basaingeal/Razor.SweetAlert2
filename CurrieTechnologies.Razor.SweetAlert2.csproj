@@ -19,11 +19,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      Bump sweetalert2 to v9
-      New IconHtml options property
-      New ShowClass and HideClass options properties
-      Remove animated property
-      Remove show/hideProgressSteps methods
+      Bump @sweetalert2/themes
     </PackageReleaseNotes>
   </PropertyGroup>
 

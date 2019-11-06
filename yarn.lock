@@ -830,10 +830,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@sweetalert2/themes@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-3.0.0.tgz#cf4af3fb0a20709137f37b6183d11535c376b39f"
-  integrity sha512-EvTqntdUlD2U1QskMG2xcAUECWqG7yzIxpZGqZ3saJz3bad3g8Z370Yq//6BUkOoFU4CvBtTP3p/hMVtDLk6Ww==
+"@sweetalert2/themes@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-3.0.1.tgz#092891354ec55afeab7854ff5c22c5e9707aa492"
+  integrity sha512-Nr8R91Hzlm210oxMpzKG9CfNwhtvdwkUI0zrIaludndRkMyR4IRQWtg9Fu2Re2Y1YcChHEjcs/4iEetKYh2J5Q==
 
 "@types/anymatch@*":
   version "1.3.1"
