@@ -30,9 +30,12 @@
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
 | [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=master)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=master) | [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=develop)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=develop) | ![Nuget](https://img.shields.io/nuget/v/CurrieTechnologies.Razor.SweetAlert2.svg?style=popout) | ![Nuget](https://img.shields.io/nuget/dt/CurrieTechnologies.Razor.SweetAlert2) | [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=Basaingeal/Razor.SweetAlert2)](https://dependabot.com) | [![mergify-status](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/Basaingeal/Razor.SweetAlert2&style=popout)](https://mergify.io) |
 
+👉 **Upgrading from v1.x to v2.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v2.0.0)
+
 ## This package is now for both Blazor Server Apps and Blazor WebAssembly Apps. [`CurrieTechnologies.Blazor.SweetAlert2`](https://github.com/Basaingeal/Blazor.SweetAlert2) is now deprecated
 
 ### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
+
 
 ## Installation
 
