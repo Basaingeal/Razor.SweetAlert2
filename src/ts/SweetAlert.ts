@@ -57,7 +57,7 @@ function getStringVersion(input: any): string {
 }
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
-  const myResult = (result as (SweetAlertResult | EnumSweetAlertResult)) as EnumSweetAlertResult;
+  const myResult = (result as SweetAlertResult | EnumSweetAlertResult) as EnumSweetAlertResult;
   myResult.value = myResult.value !== undefined ? getStringVersion(myResult.value) : undefined;
   myResult.dismiss = myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
@@ -140,9 +140,9 @@ function getSwalSettingsFromPoco(
   requestId: string,
   isQueue: boolean
 ): SweetAlertOptions {
-  const swalSettings = (cleanSettings(settings) as (
+  const swalSettings = (cleanSettings(settings) as
     | SimpleSweetAlertOptions
-    | SweetAlertOptions)) as SweetAlertOptions;
+    | SweetAlertOptions) as SweetAlertOptions;
 
   if (settings.preConfirm) {
     swalSettings.preConfirm = isQueue

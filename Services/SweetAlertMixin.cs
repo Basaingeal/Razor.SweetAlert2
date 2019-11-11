@@ -350,6 +350,7 @@
                 HideClass = newSettings.HideClass ?? this.storedOptions.HideClass,
                 CustomClass = newSettings.CustomClass ?? this.storedOptions.CustomClass,
                 Timer = newSettings.Timer ?? this.storedOptions.Timer,
+                TimerProgressBar = newSettings.TimerProgressBar ?? this.storedOptions.TimerProgressBar,
                 HeightAuto = newSettings.HeightAuto ?? this.storedOptions.HeightAuto,
                 AllowOutsideClick = newSettings.AllowOutsideClick ?? this.storedOptions.AllowOutsideClick,
                 AllowEscapeKey = newSettings.AllowEscapeKey ?? this.storedOptions.AllowEscapeKey,
