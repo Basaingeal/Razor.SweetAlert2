@@ -49,6 +49,8 @@ export default interface SimpleSweetAlertOptions {
 
   timer?: number;
 
+  timerProgressBar?: boolean;
+
   heightAuto?: boolean;
 
   allowOutsideClick?: boolean;

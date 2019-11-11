@@ -125,6 +125,12 @@
         public decimal? Timer { get; set; }
 
         /// <summary>
+        /// If set to true, the timer will have a progress bar at the bottom of a popup.
+        /// <para>Mostly, this feature is useful with toasts.</para>
+        /// </summary>
+        public bool? TimerProgressBar { get; set; }   
+
+        /// <summary>
         /// By default, SweetAlert2 sets html's and body's CSS height to auto !important.
         /// <para>If this behavior isn't compatible with your project's layout, set heightAuto to false.</para>
         /// </summary>
@@ -390,6 +396,7 @@
                 HideClass = this.HideClass,
                 CustomClass = this.CustomClass,
                 Timer = this.Timer,
+                TimerProgressBar = this.TimerProgressBar,
                 HeightAuto = this.HeightAuto,
                 AllowOutsideClick = this.AllowOutsideClick,
                 AllowEscapeKey = this.AllowEscapeKey,

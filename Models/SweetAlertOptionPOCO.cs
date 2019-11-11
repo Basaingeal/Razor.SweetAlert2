@@ -44,6 +44,8 @@
 
         public decimal? Timer { get; set; }
 
+        public bool? TimerProgressBar { get; set; }
+
         public bool? HeightAuto { get; set; }
 
         public bool? AllowOutsideClick { get; set; }
