@@ -1,3 +1,3 @@
-﻿# v2.1.1
+﻿# v2.1.2
 
-- bump `sweetalert2` to `9.3.4`
+- bump `sweetalert2` to `9.3.5`
