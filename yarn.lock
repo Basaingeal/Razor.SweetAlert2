@@ -782,10 +782,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@sweetalert2/themes@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-3.0.1.tgz#092891354ec55afeab7854ff5c22c5e9707aa492"
-  integrity sha512-Nr8R91Hzlm210oxMpzKG9CfNwhtvdwkUI0zrIaludndRkMyR4IRQWtg9Fu2Re2Y1YcChHEjcs/4iEetKYh2J5Q==
+"@sweetalert2/themes@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-3.0.3.tgz#ffe70ab04899518040b5b7b2cef8a5edcd3c8b16"
+  integrity sha512-tQbo4GEGvsb2R0x2wvtTiFGlsA4K8aO2IIv2ErTLocQYVMuTTVEtGLoTfeDjhdnnM1WZb6TnuAc7n/jQAurjkw==
 
 "@types/anymatch@*":
   version "1.3.1"
@@ -5418,10 +5418,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sweetalert2@9.3.5:
-  version "9.3.5"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.3.5.tgz#54ef40a2750c52dd59b7d070bae01dee01cdf268"
-  integrity sha512-AlITkIVaNVu0T9MJmCTyTpCTmozpe+bZG9qTPBHpReoHluA2qyaWDoIvAZLj4NIKsAyH63gno1OLIRynYDS9sA==
+sweetalert2@9.3.6:
+  version "9.3.6"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.3.6.tgz#116d4bf97358fed26a7515e46b753ba1b17f0d12"
+  integrity sha512-R0qDbzRWqywBno3GT9xReLRv5B088A+gCKeL23H8Y1BkdFFyLnQN3sk/r8pDvUJ6Xj1+ga5qeqHKUgtKR59Frw==
 
 table@^5.2.3:
   version "5.4.4"
