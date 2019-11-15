@@ -5418,10 +5418,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sweetalert2@9.3.8:
-  version "9.3.8"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.3.8.tgz#01ea6b2abb59b4caa4e254aa1a7040eb6ea8ffa1"
-  integrity sha512-HdpbP423tvrPg6uKTEkjDV8ITqp1Rc3QkFIeuWtP7PfkDV4kRLqWC9HipL6XunMzg727OisqBaPm/qSdqMvy4A==
+sweetalert2@9.3.10:
+  version "9.3.10"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.3.10.tgz#f627ec789c0984af48f56bf88c06e415a6aa9df5"
+  integrity sha512-vvjWcsFPF//WardUicQOncfkh4QNaCm0yNAm26HlzuprJzb3WzRLsnHHE5o6Pi2SQ/TpfVdhsT8O4B7jPYV4gg==
 
 table@^5.2.3:
   version "5.4.4"
