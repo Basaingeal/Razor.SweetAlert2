@@ -5016,10 +5016,10 @@ sass-loader@^8.0.0:
     schema-utils "^2.1.0"
     semver "^6.3.0"
 
-sass@^1.23.5:
-  version "1.23.5"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.23.5.tgz#7f6fefa62ab9eb3d194eb0f6c39ac3c75c197946"
-  integrity sha512-bjrN5UZgB1oKroQOJng8q2Kwe6DyBM0Yu8z3hafATJchTkw3kzoO4rbykPNlnD/Pj+cr/bzI6sexTLXVlvhBjw==
+sass@^1.23.6:
+  version "1.23.6"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.23.6.tgz#7cce6dbeac1b8caeb33301a817642ee2708f7d7e"
+  integrity sha512-awBvj9xrAuiS2TOCcYSUGCmaBV3UW6fVSK4oJ2LHS8IRfnRLc5EJihw90C7ZJ/skcEwFGSf9/XO5NlMiKupBCg==
   dependencies:
     chokidar ">=2.0.0 <4.0.0"
 
