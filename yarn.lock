@@ -782,10 +782,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@sweetalert2/themes@^3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-3.0.4.tgz#cd9c464aeaa3dcc32f6fd965a723616dc8b6358d"
-  integrity sha512-GeFmU40XzzTtYctTTeQaFTvR/euv9c3rosZ0LJSxlwnGuw2nsF5xoINhxxWyN6txSIUuiEeOrGu4+ecV+QYoVg==
+"@sweetalert2/themes@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-3.0.5.tgz#0f7eca08fd16156c385fc71aaaee4bc0b3673479"
+  integrity sha512-pASeg+mst4s1TqMov9hHqyBJjMbJ6TVFdJ6yFi18B3jrn7AGDIdTBMYyAemQxpv1w0vria4g/znaG49w+ZB68Q==
 
 "@types/anymatch@*":
   version "1.3.1"
