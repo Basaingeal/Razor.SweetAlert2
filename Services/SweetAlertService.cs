@@ -41,7 +41,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         private readonly CultureInfo culture = CultureInfo.GetCultureInfo("en-US");
 
         private readonly SweetAlertTheme theme = SweetAlertTheme.Default;
-        private readonly int[][] colorSchemeThemes = new int[2][];
+        private readonly int[][] colorSchemeThemes = Array.Empty<int[]>();
 
         public SweetAlertService(IJSRuntime jSRuntime)
         {
