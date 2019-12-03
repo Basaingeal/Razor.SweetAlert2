@@ -1,4 +1,3 @@
-﻿# v2.1.12
+﻿# v2.1.13
 
-- bump `sweetalert2` to `9.4.1`
-- bump `@sweetalert2/themes` to `3.0.7`
+- bump `sweetalert2` to `9.4.2`
