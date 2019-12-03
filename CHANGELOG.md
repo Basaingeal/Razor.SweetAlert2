@@ -1,3 +1,3 @@
-﻿# v2.1.13
+﻿# v2.1.14
 
-- bump `sweetalert2` to `9.4.2`
+- fix color scheme initialization when no options specified

@@ -19,7 +19,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      Bump sweetalert2
+      fix color scheme initialization when no options specified
     </PackageReleaseNotes>
   </PropertyGroup>
 
