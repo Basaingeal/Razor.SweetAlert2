@@ -19,9 +19,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      bump Microsoft.AspNetCore.Components
-      bump Microsoft.AspNetCore.Components.Web
-      bump sweetalert2
+      fix broken IsLoadingAsync() method
     </PackageReleaseNotes>
   </PropertyGroup>
 
