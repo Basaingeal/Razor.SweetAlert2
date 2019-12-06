@@ -383,7 +383,7 @@ razorSwal.HideLoading = (): void => {
   Swal.hideLoading();
 };
 
-razorSwal.HideLoading = (): boolean => {
+razorSwal.IsLoading = (): boolean => {
   return Swal.isLoading();
 };
 
