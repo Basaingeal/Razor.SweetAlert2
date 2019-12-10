@@ -1,5 +1,3 @@
-﻿# v2.2.1
+﻿# v2.2.2
 
-## Bug Fixes
-
-- Fix a typo causing the `Swal.isLoading()` function to not be exposed on the window, rendering `Swal.IsLoadingAsync()` unusable. Thanks to @ohenebaamissah for reporting.
+- bump `sweetalert2` to `9.5.3`
