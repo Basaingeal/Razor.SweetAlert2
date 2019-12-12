@@ -7,6 +7,7 @@
         Minimal,
         Borderless,
         Bootstrap4,
-        MaterialUI
+        MaterialUI,
+        WordpressAdmin
     }
 }
