@@ -722,10 +722,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@sweetalert2/themes@^3.0.7":
-  version "3.0.7"
-  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-3.0.7.tgz#98045a5c64df68464e11c8b483b45f57355e3e9e"
-  integrity sha512-HqmpFCA74wADnGTm6th6oPECZ/1TuYbRCl3N0hLPITmNROEtG/rGn45msom9gGZPdS6vTmLGef2+cFogxzUrrA==
+"@sweetalert2/themes@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-3.1.0.tgz#2c3eee9991b2f2f04e385ec5269fd902e143b019"
+  integrity sha512-KukdD1MIHNkU+pz1R70Xlk68j/ZeCdNXfGeX1ErhCoVEx9T9U3DoU9yGjfahszLrYbpityZGhFI1YEHKTN05oA==
 
 "@types/anymatch@*":
   version "1.3.1"
