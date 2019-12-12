@@ -4,5 +4,6 @@ export enum SweetAlertTheme {
   Minimal,
   Borderless,
   Bootstrap4,
-  MaterialUI
+  MaterialUI,
+  WordpressAdmin
 }

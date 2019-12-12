@@ -217,6 +217,9 @@ function getFileNameByTheme(theme: SweetAlertTheme): string {
     case SweetAlertTheme.MaterialUI: {
       return "materialUITheme.min.css";
     }
+    case SweetAlertTheme.WordpressAdmin: {
+      return "wordpressAdminTheme.min.css";
+    }
     case SweetAlertTheme.Default:
     default: {
       return "defaultTheme.min.css";
