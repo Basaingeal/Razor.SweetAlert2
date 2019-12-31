@@ -1,3 +1,3 @@
-﻿# v2.3.0
+﻿# v2.3.1
 
-New WordPress Admin Theme! 🎉 Use it during setup like other themes using `SweetAlertTheme.WordpressAdmin`
+- bump `sweetalert2` to `9.5.4`
