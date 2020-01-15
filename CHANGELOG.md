@@ -1,4 +1,4 @@
-﻿# v2.3.2
+﻿# v2.4.0
 
-- bump `Microsoft.AspNetCore.Components` to `3.1.1`
-- bump `Microsoft.AspNetCore.Components.Web` to `3.1.1`
+- bump `sweetalert2` to `9.6.0`
+- Make `AllowOutsideClick` and `AllowEscapeKey` updatable
