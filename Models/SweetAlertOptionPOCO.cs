@@ -124,6 +124,8 @@
 
         public bool OnAfterClose { get; set; }
 
+        public bool OnDestroy { get; set; }
+
         public bool OnOpen { get; set; }
 
         public bool OnClose { get; set; }

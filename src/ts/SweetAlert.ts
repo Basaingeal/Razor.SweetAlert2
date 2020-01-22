@@ -124,6 +124,10 @@ function dispatchOnAfterClose(requestId: string): void {
   DotNet.invokeMethodAsync(namespace, "ReceiveOnAfterCloseInput", requestId);
 }
 
+function dispatchOnDestroy(requestId: string): void {
+  DotNet.invokeMethodAsync(namespace, "ReceiveOnDestroyInput", requestId);
+}
+
 function cleanSettings(settings: SimpleSweetAlertOptions): SimpleSweetAlertOptions {
   const settingsToReturn: any = settings as any;
   for (const propName in settingsToReturn) {
@@ -169,6 +173,12 @@ function getSwalSettingsFromPoco(
     swalSettings.onAfterClose = (): void => dispatchOnAfterClose(requestId);
   } else {
     delete swalSettings.onAfterClose;
+  }
+
+  if (settings.onDestroy) {
+    swalSettings.onDestroy = (): void => dispatchOnDestroy(requestId);
+  } else {
+    delete swalSettings.onDestroy;
   }
 
   if (settings.onOpen) {

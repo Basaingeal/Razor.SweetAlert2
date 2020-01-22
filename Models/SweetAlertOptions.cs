@@ -336,9 +336,14 @@
         public SweetAlertCallback OnBeforeOpen { get; set; }
 
         /// <summary>
-        /// Function to run after modal has been disposed.
+        /// Function to run after popup has been disposed by user interaction (and not by another popup).
         /// </summary>
         public SweetAlertCallback OnAfterClose { get; set; }
+
+        /// <summary>
+        /// Function to run after popup has been destroyed either by user interaction or by another popup.
+        /// </summary>
+        public SweetAlertCallback OnDestroy { get; set; }
 
         /// <summary>
         /// Function to run when modal opens, provides modal DOM element as the first argument.
@@ -436,6 +441,7 @@
                 ProgressStepsDistance = this.ProgressStepsDistance,
                 OnBeforeOpen = this.OnBeforeOpen != null,
                 OnAfterClose = this.OnAfterClose != null,
+                OnDestroy = this.OnDestroy != null,
                 OnOpen = this.OnOpen != null,
                 OnClose = this.OnClose != null,
                 OnRender = this.OnRender != null,

@@ -390,6 +390,7 @@
                 ProgressStepsDistance = newSettings.ProgressStepsDistance ?? this.storedOptions.ProgressStepsDistance,
                 OnBeforeOpen = newSettings.OnBeforeOpen ?? this.storedOptions.OnBeforeOpen,
                 OnAfterClose = newSettings.OnAfterClose ?? this.storedOptions.OnAfterClose,
+                OnDestroy = newSettings.OnDestroy ?? this.storedOptions.OnDestroy,
                 OnOpen = newSettings.OnOpen ?? this.storedOptions.OnOpen,
                 OnClose = newSettings.OnClose ?? this.storedOptions.OnClose,
                 OnRender = newSettings.OnRender ?? this.storedOptions.OnRender,
