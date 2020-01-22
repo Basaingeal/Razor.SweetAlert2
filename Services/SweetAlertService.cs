@@ -33,6 +33,9 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         private static readonly IDictionary<Guid, SweetAlertCallback> OnAfterCloseCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
+        private static readonly IDictionary<Guid, SweetAlertCallback> OnDestroyCallbacks =
+            new Dictionary<Guid, SweetAlertCallback>();
+
         private static readonly IDictionary<Guid, InputValidatorCallback> InputValidatorCallbacks =
             new Dictionary<Guid, InputValidatorCallback>();
 
@@ -175,6 +178,11 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             if (settings.OnAfterClose != null)
             {
                 OnAfterCloseCallbacks.Add(requestId, settings.OnAfterClose);
+            }
+
+            if (settings.OnDestroy != null)
+            {
+                OnDestroyCallbacks.Add(requestId, settings.OnDestroy);
             }
         }
 
@@ -593,6 +601,15 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             var requestIdGuid = Guid.Parse(requestId);
             OnAfterCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
             OnAfterCloseCallbacks.Remove(requestIdGuid);
+            await callback.InvokeAsync().ConfigureAwait(false);
+        }
+
+        [JSInvokable]
+        public static async Task ReceiveOnDestroyInput(string requestId)
+        {
+            var requestIdGuid = Guid.Parse(requestId);
+            OnDestroyCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            OnDestroyCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
     }

@@ -133,6 +133,8 @@ export default interface SimpleSweetAlertOptions {
 
   onAfterClose: boolean;
 
+  onDestroy: boolean;
+
   onOpen: boolean;
 
   onClose: boolean;
