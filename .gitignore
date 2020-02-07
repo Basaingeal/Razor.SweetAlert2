@@ -26,7 +26,6 @@ mono_crash.*
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-!.yarn/[Rr]eleases/
 x64/
 x86/
 [Aa][Rr][Mm]/
@@ -602,3 +601,8 @@ typings/
 # End of https://www.gitignore.io/api/node,csharp,visualstudio,visualstudiocode
 
 wwwroot/
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
