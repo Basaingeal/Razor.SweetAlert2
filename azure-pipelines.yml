@@ -10,7 +10,7 @@ pr:
 
 variables:
   buildConfiguration: "Release"
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  YARN_CACHE_FOLDER: $(System.DefaultWorkingDirectory)/.yarn/cache
 
 stages:
   - stage: buildStage
