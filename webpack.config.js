@@ -4,6 +4,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const PnpWebpackPlugin = require("pnp-webpack-plugin");
 const pkg = require("./package.json");
 const babelConfig = require("./babel.config.js");
 
@@ -73,7 +74,15 @@ module.exports = [
       ]
     },
     resolve: {
-      extensions: [".ts", ".scss", ".js"]
+      extensions: [".ts", ".scss", ".js"],
+      plugins: [
+        PnpWebpackPlugin
+      ]
+    },
+    resolveLoader: {
+      plugins: [
+        PnpWebpackPlugin.moduleLoader(module),
+      ],
     }
   },
   {
@@ -110,7 +119,15 @@ module.exports = [
       ]
     },
     resolve: {
-      extensions: [".ts", ".js"]
+      extensions: [".ts", ".js"],
+      plugins: [
+        PnpWebpackPlugin
+      ]
+    },
+    resolveLoader: {
+      plugins: [
+        PnpWebpackPlugin.moduleLoader(module),
+      ],
     }
   }
 ];
