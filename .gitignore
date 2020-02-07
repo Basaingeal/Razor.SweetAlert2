@@ -602,7 +602,7 @@ typings/
 
 wwwroot/
 
-.yarn/*
-!.yarn/releases
-!.yarn/plugins
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
 .pnp.*
