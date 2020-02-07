@@ -1,4 +1,4 @@
-﻿import { ColorScheme } from "./ColorScheme";
+﻿import { ColorScheme } from './ColorScheme';
 import { SweetAlertTheme } from "./SweetAlertTheme";
 import Swal, {
   SweetAlertOptions,
@@ -9,11 +9,11 @@ import Swal, {
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import SweetAlertQueueResult from "./SweetAlertQueueResult";
 import EnumSweetAlertResult from "./EnumSweetAlertResult";
-import { ColorSchemeDictionary } from "./ColorSchemeDictionary";
+import { ColorSchemeDictionary } from "./ColorSchemeDictionary"
 
 declare const DotNet: any;
 const domWindow = window as any;
-const namespace = "CurrieTechnologies.Razor.SweetAlert2";
+const namespace = "CurrieTechnologies.Razor.SweetAlert2ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg";
 
 function getEnumNumber(enumString: Swal.DismissReason): number | undefined {
   switch (enumString) {
