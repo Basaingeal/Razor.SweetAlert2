@@ -438,6 +438,7 @@ typings/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/pnpify/
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
@@ -601,3 +602,8 @@ typings/
 # End of https://www.gitignore.io/api/node,csharp,visualstudio,visualstudiocode
 
 wwwroot/
+
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.pnp.*

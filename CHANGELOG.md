@@ -1,3 +1,4 @@
-﻿# v2.5.2
+﻿# v2.5.3
 
-- bump `sweetalert2` to `9.7.2`
+- bump `Microsoft.AspNetCore.Components` to `3.1.2`
+- bump `Microsoft.AspNetCore.Components.Web` to `3.1.2`

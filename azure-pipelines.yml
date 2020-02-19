@@ -10,7 +10,7 @@ pr:
 
 variables:
   buildConfiguration: "Release"
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  YARN_CACHE_FOLDER: $(System.DefaultWorkingDirectory)/.yarn/cache
 
 stages:
   - stage: buildStage
@@ -30,7 +30,7 @@ stages:
           - task: Yarn@3
             displayName: "Installing Yarn Packages"
             inputs:
-              arguments: --frozen-lockfile
+              arguments: install --immutable
 
           - task: Yarn@3
             displayName: "Linting"
@@ -67,7 +67,7 @@ stages:
           - task: Yarn@3
             displayName: "Installing Yarn Packages"
             inputs:
-              arguments: --frozen-lockfile
+              arguments: install --immutable
 
           - task: Yarn@3
             displayName: "Building JS and CSS"
