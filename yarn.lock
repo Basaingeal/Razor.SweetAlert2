@@ -2879,7 +2879,7 @@ __metadata:
     prettier: ^1.19.1
     sass: ^1.25.0
     sass-loader: ^8.0.2
-    sweetalert2: 9.7.2
+    sweetalert2: 9.8.0
     terser-webpack-plugin: ^2.3.4
     typescript: ^3.7.5
     webpack: ^4.41.5
@@ -3144,9 +3144,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.349":
-  version: 1.3.355
-  resolution: "electron-to-chromium@npm:1.3.355"
-  checksum: 50d5e405886afa80584ab5f5dae75226db58704b953f44dc61eeefba731948469a5e9411df618796f4e571f960c2da6f7ab455c908abf63d42e01396f04e4633
+  version: 1.3.356
+  resolution: "electron-to-chromium@npm:1.3.356"
+  checksum: 9ec33c508e101a24c24e1c2f405132d571e4a59ffae752a1bf97514755bc659c550421159a5e53b790ca90b67422fe09a8c947a3087f2278a8b9ac1b1d183f12
   languageName: node
   linkType: hard
 
@@ -7676,10 +7676,10 @@ resolve@^1.3.2:
   languageName: node
   linkType: hard
 
-"sweetalert2@npm:9.7.2":
-  version: 9.7.2
-  resolution: "sweetalert2@npm:9.7.2"
-  checksum: f41efc53264b40de9c22ead376e95e8708a41c730d55027f8210988c60d0446925ed18119ec6d93fce177787e307e61e6c3db4884503777bb6f42b4c51939ec3
+"sweetalert2@npm:9.8.0":
+  version: 9.8.0
+  resolution: "sweetalert2@npm:9.8.0"
+  checksum: 8939bd1518819cc57b08752a9a2de9622a845bfdcac0516a121cd3f9cfc35dca482d67172595b76836ce75986682b997c7e031e150d9ca0789cf3f7316c19a91
   languageName: node
   linkType: hard
 
@@ -7903,9 +7903,9 @@ resolve@^1.3.2:
   linkType: hard
 
 "tslib@npm:^1.8.1, tslib@npm:^1.9.0":
-  version: 1.10.0
-  resolution: "tslib@npm:1.10.0"
-  checksum: 626387669b38797372530d84df93dafcc0eca2b3bad31b109c7308b2e8d9c4ed0ba94113eb08a6946aa1fbee3b619fb69dd81f8681654bbc806cf8f208caeb47
+  version: 1.11.0
+  resolution: "tslib@npm:1.11.0"
+  checksum: fbcebf11bd2a1d10c1de5dfb03ab6c3758035b00d2d0eb132e91ddb30135b4c0fe376b9402174a98079b55a44c8c91d053fee39a4e94b68c82bb9fca799d2dd0
   languageName: node
   linkType: hard
 
@@ -7967,22 +7967,22 @@ resolve@^1.3.2:
   linkType: hard
 
 typescript@^3.7.5:
-  version: 3.7.5
-  resolution: "typescript@npm:3.7.5"
+  version: 3.8.2
+  resolution: "typescript@npm:3.8.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: d95ec853853af51cd766dd56b2495a18893b1a137ba317e10ef35fa4fcfb94e6b84cec6593fd44b67a16efd645619e990f09428cce7caf8cd3d26e736e1f0037
+  checksum: f55bd7176a71b4f8715dfaccd1a589baa10261d8a7a4d024a4646e6042192577834d3cf688f621036f07303307b39e652477ac4c7a49eebe948acd45704204cb
   languageName: node
   linkType: hard
 
 "typescript@patch:typescript@^3.7.5#builtin<compat/typescript>":
-  version: 3.7.5
-  resolution: "typescript@patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=226bd1"
+  version: 3.8.2
+  resolution: "typescript@patch:typescript@npm%3A3.8.2#builtin<compat/typescript>::version=3.8.2&hash=226bd1"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: de497e57cffec3ddf3cd6b7e96d62aaeaad18fccee70e8f63bea194210578e74d0c2ec2c1471851c91ce6c2030cca3ce35cf7d10beb2c016de3724e182935333
+  checksum: 9bc0350ddbc467ad8d02eb2dc505d1b6c94fa8e0f966658a1273bb6d53500d231e6a6a12167c2a543427b79e75b12c326503a06599d32274ac234f865566b559
   languageName: node
   linkType: hard
 
