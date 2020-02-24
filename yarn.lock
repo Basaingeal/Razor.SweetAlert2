@@ -1020,6 +1020,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.8.4":
+  version: 7.8.4
+  resolution: "@babel/runtime@npm:7.8.4"
+  dependencies:
+    regenerator-runtime: ^0.13.2
+  checksum: 30d4b6587664a1d76e7a93612fde694cc28d3b101a9bcec9c1dc58599f95659294eec07ccf86a60b611dd700bafb4b50e26e39f0e7d7327f032dd07febed240d
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.8.3":
   version: 7.8.3
   resolution: "@babel/template@npm:7.8.3"
@@ -1060,11 +1069,11 @@ __metadata:
   linkType: hard
 
 "@sweetalert2/themes@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@sweetalert2/themes@npm:3.1.0"
+  version: 3.1.1
+  resolution: "@sweetalert2/themes@npm:3.1.1"
   peerDependencies:
     sweetalert2: ^9.5.2
-  checksum: 81b93924e525a065c027d93f3abdb9d43eee5889dc7bc0126691d727e5713d1ceb2d90bd6e549a9f3317f0499893a8c2b8fb338701148dbb772ec51908a6ce53
+  checksum: 7495cc01d4198ba66324c607198afac04e2b3a04ce2d0f83dc8abb6931f3b72086a774e917a35bfa1c9b19b3fb519647ce08dda44c5aa2dcf8bc5a13dd28cc08
   languageName: node
   linkType: hard
 
@@ -1561,14 +1570,14 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^6.1.0, ajv@npm:^6.10.0, ajv@npm:^6.10.2, ajv@npm:^6.5.5":
-  version: 6.11.0
-  resolution: "ajv@npm:6.11.0"
+  version: 6.12.0
+  resolution: "ajv@npm:6.12.0"
   dependencies:
     fast-deep-equal: ^3.1.1
     fast-json-stable-stringify: ^2.0.0
     json-schema-traverse: ^0.4.1
     uri-js: ^4.2.2
-  checksum: 5c9986f9572b85e6452a9620670501244c8db9b30257a155dcb1cb7333f6571b7bff94b70614676f779a018019236d0acdfeb1cbbaff34955c92cc3003cef10d
+  checksum: 601f67d73030717b42f62de7c83660d507a314e1653c5bc8656f9a65c6a2f22017d90728c0f335bda5424c292a1a83bdb7faee0964786b4462a5c7c42e2b0802
   languageName: node
   linkType: hard
 
@@ -2197,9 +2206,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001027":
-  version: 1.0.30001028
-  resolution: "caniuse-lite@npm:1.0.30001028"
-  checksum: 0fa395327f572d7129081d1b1a609ff5945fc07d446cb3a8638c76c4052795a539249bda6899267a70072be6fd30a596fc2fa5f688cf6697e7b99db2767d98c0
+  version: 1.0.30001030
+  resolution: "caniuse-lite@npm:1.0.30001030"
+  checksum: 4d406b6d3558b7cf1d2ff06961a67461c651511feec37fa1a4c58f9c3e28ebe1afd0702890d3b51e40a0a0eba57652c9687eb4142e02477bed0218639486ba85
   languageName: node
   linkType: hard
 
@@ -2879,7 +2888,7 @@ __metadata:
     prettier: ^1.19.1
     sass: ^1.25.0
     sass-loader: ^8.0.2
-    sweetalert2: 9.8.0
+    sweetalert2: 9.8.2
     terser-webpack-plugin: ^2.3.4
     typescript: ^3.7.5
     webpack: ^4.41.5
@@ -3144,9 +3153,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.349":
-  version: 1.3.356
-  resolution: "electron-to-chromium@npm:1.3.356"
-  checksum: 9ec33c508e101a24c24e1c2f405132d571e4a59ffae752a1bf97514755bc659c550421159a5e53b790ca90b67422fe09a8c947a3087f2278a8b9ac1b1d183f12
+  version: 1.3.360
+  resolution: "electron-to-chromium@npm:1.3.360"
+  checksum: c72d876fa9bbe9cc2c260a0d9237d43414fb13f131898297f6f5c0cab0d36b66520cf9a7fbb4d88daf95d66f4883148e536606fc37461d2609af21dd517677ec
   languageName: node
   linkType: hard
 
@@ -3647,13 +3656,13 @@ __metadata:
   linkType: hard
 
 "find-cache-dir@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "find-cache-dir@npm:3.2.0"
+  version: 3.3.0
+  resolution: "find-cache-dir@npm:3.3.0"
   dependencies:
     commondir: ^1.0.1
-    make-dir: ^3.0.0
+    make-dir: ^3.0.2
     pkg-dir: ^4.1.0
-  checksum: 9a0b6302528b8e85fcfa99c8f5e4f2714626ba831fa60e779faace583b0a5780b14411e67b8b1902d575cb594f0b45310edd40b9d218409f4931df999c87cd62
+  checksum: e61f99e313f133b784102fb07134f7d34652d47f91df7784f6a335f24616f17646a2c15fab83d6addd576d19b453575e3c1342933082b7c343dc4ac5a68a5f48
   languageName: node
   linkType: hard
 
@@ -5083,7 +5092,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"make-dir@npm:^3.0.0":
+"make-dir@npm:^3.0.2":
   version: 3.0.2
   resolution: "make-dir@npm:3.0.2"
   dependencies:
@@ -5551,11 +5560,11 @@ fsevents@~2.1.2:
   linkType: hard
 
 "node-releases@npm:^1.1.49":
-  version: 1.1.49
-  resolution: "node-releases@npm:1.1.49"
+  version: 1.1.50
+  resolution: "node-releases@npm:1.1.50"
   dependencies:
     semver: ^6.3.0
-  checksum: 59128a946d195d515fea40d603aa393699fc89883ebfa62ecf9e20e8f1a8169e65ddde1d426d70fe2d1a2558570c06ff43822aa3e61b3b9ff51779970f4f162e
+  checksum: 4c2f4c29d12ec2dd9a097e71b213404b6700bcf1682b4ff879bf4a51ba1dc5bde795a42d7e1460f1774ec8c26fd0af2ebdd10c7389e53318a35c797b96d62178
   languageName: node
   linkType: hard
 
@@ -6542,7 +6551,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"private@npm:^0.1.6":
+"private@npm:^0.1.8":
   version: 0.1.8
   resolution: "private@npm:0.1.8"
   checksum: 67a72ac1f349afe985446962b833313057de7346098189c9e51dd0d90db884826c66952e63ebf047bdfa08941f268a9f67760ec9ed3ccca8c201c5bad1988893
@@ -6779,12 +6788,20 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"regenerator-runtime@npm:^0.13.2":
+  version: 0.13.4
+  resolution: "regenerator-runtime@npm:0.13.4"
+  checksum: 4e9b00f08a04285a8fd0f3600b0592aebb03408f47b19e046d74a9086df01099461e85a7fa2c0ff1995aa875a160360779731284e927d0e71047fa45980baa48
+  languageName: node
+  linkType: hard
+
 "regenerator-transform@npm:^0.14.0":
-  version: 0.14.1
-  resolution: "regenerator-transform@npm:0.14.1"
+  version: 0.14.2
+  resolution: "regenerator-transform@npm:0.14.2"
   dependencies:
-    private: ^0.1.6
-  checksum: b3cfcf63571aa9bb348c69aa886234f5516790001a6e0450dac56b76e30323e9afdf209f7cc32c3600e991aba397d031e3ab879d63028d861163474c816b3973
+    "@babel/runtime": ^7.8.4
+    private: ^0.1.8
+  checksum: 9d90f77d9db966e12f51ccb894aa78e755198f528fd89ea356c4ae7d33991ace298c54b2ce44bd7417914d0d3558e78d9886950b3013825c09b9a10ca8d0b338
   languageName: node
   linkType: hard
 
@@ -7676,10 +7693,10 @@ resolve@^1.3.2:
   languageName: node
   linkType: hard
 
-"sweetalert2@npm:9.8.0":
-  version: 9.8.0
-  resolution: "sweetalert2@npm:9.8.0"
-  checksum: 8939bd1518819cc57b08752a9a2de9622a845bfdcac0516a121cd3f9cfc35dca482d67172595b76836ce75986682b997c7e031e150d9ca0789cf3f7316c19a91
+"sweetalert2@npm:9.8.2":
+  version: 9.8.2
+  resolution: "sweetalert2@npm:9.8.2"
+  checksum: b72130ab12ce7871dfa5cb4914613913feb652c9fbb2ead8959171ac8fd97d06e037eebae8c0757cc89f7e795285824adb986abed0fa5c22d55291e201b7e59e
   languageName: node
   linkType: hard
 
@@ -7756,15 +7773,15 @@ resolve@^1.3.2:
   linkType: hard
 
 "terser@npm:^4.1.2, terser@npm:^4.4.3":
-  version: 4.6.3
-  resolution: "terser@npm:4.6.3"
+  version: 4.6.4
+  resolution: "terser@npm:4.6.4"
   dependencies:
     commander: ^2.20.0
     source-map: ~0.6.1
     source-map-support: ~0.5.12
   bin:
     terser: bin/terser
-  checksum: 2bf1d02f053beec5ec00ab2b84a92ad77601f6e2fd3622632c8fcf7d255cf2908106949ff512c4356bdfcbc311f567e4e7a5a6129f50bc9be5201a6f66c16c60
+  checksum: 2c3c9766eaa9be8717a301ab1c646b08ce6e62500ecb406f89329ac4fb30d8c075d4e289520daa3a8f010cb526093c89f3f251776628a7f412038e16188d00d6
   languageName: node
   linkType: hard
 
