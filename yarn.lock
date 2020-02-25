@@ -1137,10 +1137,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^13.7.0":
-  version: 13.7.4
-  resolution: "@types/node@npm:13.7.4"
-  checksum: 6ebab7d5907a9da1f67aebaa8d616390211f8849a2b6fd4eeba75c47b88701bc5a24b6703c03c547e38f584af62bb33bc22414552fb26f405b3dcc81d35ef65c
+"@types/node@npm:*, @types/node@npm:^13.7.5":
+  version: 13.7.5
+  resolution: "@types/node@npm:13.7.5"
+  checksum: 5088248d98e55422c2666decd3d4e67275606f2f866037fdd13c82894b436700a57cf54566129799a9a8ca03ff3e9184483b3c064a230e58098e0418ded67417
   languageName: node
   linkType: hard
 
@@ -2872,7 +2872,7 @@ __metadata:
     "@babel/preset-env": ^7.8.4
     "@babel/preset-typescript": ^7.8.3
     "@sweetalert2/themes": ^3.1.0
-    "@types/node": ^13.7.0
+    "@types/node": ^13.7.5
     "@typescript-eslint/eslint-plugin": ^2.21.0
     "@typescript-eslint/parser": ^2.19.0
     "@yarnpkg/pnpify": ^2.0.0-rc.17
