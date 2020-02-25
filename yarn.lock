@@ -2886,7 +2886,7 @@ __metadata:
     optimize-css-assets-webpack-plugin: ^5.0.3
     pnp-webpack-plugin: ^1.6.4
     prettier: ^1.19.1
-    sass: ^1.25.0
+    sass: ^1.26.0
     sass-loader: ^8.0.2
     sweetalert2: 9.8.2
     terser-webpack-plugin: ^2.3.4
@@ -7127,14 +7127,14 @@ resolve@^1.3.2:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.25.0":
-  version: 1.25.0
-  resolution: "sass@npm:1.25.0"
+"sass@npm:^1.26.0":
+  version: 1.26.0
+  resolution: "sass@npm:1.26.0"
   dependencies:
     chokidar: ">=2.0.0 <4.0.0"
   bin:
     sass: sass.js
-  checksum: 8eba0f5a23ecf2f929deeecc51f471acd10f0af16a18f6c5e925a629f028408fdef325581fa22311dbbd1042eef1c9542ccf22e5c447f654045dd85a38f64568
+  checksum: ca876ef15e1de0e736be895392a95cc724016c3740c735cbe1c40780efc76ad38da4ad59d7b568213959dd2c10fb313ffdda0e372cc2c5d016ecc6e7f6787aab
   languageName: node
   linkType: hard
 
