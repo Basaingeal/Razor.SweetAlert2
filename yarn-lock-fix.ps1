@@ -22,4 +22,4 @@ git push origin
 
 git checkout develop
 
-git branch -d $branch
+git branch -D $branch
