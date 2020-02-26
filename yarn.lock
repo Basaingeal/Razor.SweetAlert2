@@ -1138,9 +1138,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^13.7.5":
-  version: 13.7.5
-  resolution: "@types/node@npm:13.7.5"
-  checksum: 5088248d98e55422c2666decd3d4e67275606f2f866037fdd13c82894b436700a57cf54566129799a9a8ca03ff3e9184483b3c064a230e58098e0418ded67417
+  version: 13.7.6
+  resolution: "@types/node@npm:13.7.6"
+  checksum: aab1d82f99be6bcf64c8dc9db005e4954050eb5759f22e4882275de4e509939dd0a780e2b02db0c27265312e594e534fe24ad586c21aab187d6fab827e64be21
   languageName: node
   linkType: hard
 
@@ -1515,11 +1515,11 @@ __metadata:
   linkType: hard
 
 "acorn-jsx@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "acorn-jsx@npm:5.1.0"
+  version: 5.2.0
+  resolution: "acorn-jsx@npm:5.2.0"
   peerDependencies:
     acorn: ^6.0.0 || ^7.0.0
-  checksum: 396ab6439f74c8d27f50f1b518397fdbf957a2d615953419c51542bcf798684de93d369d83883c7ca52b43135c7abfe36f146ed9c0863e17ae863b143bf2a9c9
+  checksum: d7a3e4ca3fdd51972e1791204bdcb919ac03260824d66d6b04604d8623f5e3c2613867e414e4662ea08b101fdf7ef3d703e41a8633217aa7eb5510ee45e33236
   languageName: node
   linkType: hard
 
@@ -2886,7 +2886,7 @@ __metadata:
     optimize-css-assets-webpack-plugin: ^5.0.3
     pnp-webpack-plugin: ^1.6.4
     prettier: ^1.19.1
-    sass: ^1.26.0
+    sass: ^1.26.1
     sass-loader: ^8.0.2
     sweetalert2: 9.8.2
     terser-webpack-plugin: ^2.3.4
@@ -3153,9 +3153,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.349":
-  version: 1.3.360
-  resolution: "electron-to-chromium@npm:1.3.360"
-  checksum: c72d876fa9bbe9cc2c260a0d9237d43414fb13f131898297f6f5c0cab0d36b66520cf9a7fbb4d88daf95d66f4883148e536606fc37461d2609af21dd517677ec
+  version: 1.3.361
+  resolution: "electron-to-chromium@npm:1.3.361"
+  checksum: 6f0d9ca95d8ca7501c649d17da30ae9aa33569f4cef36ddfa543ba81c34db813579e6a6f5c0a8abac96a02ffd1303e2feaf6a211b8ebdcf272471661730918ce
   languageName: node
   linkType: hard
 
@@ -7046,11 +7046,11 @@ resolve@^1.3.2:
   linkType: hard
 
 "run-async@npm:^2.2.0":
-  version: 2.3.0
-  resolution: "run-async@npm:2.3.0"
+  version: 2.4.0
+  resolution: "run-async@npm:2.4.0"
   dependencies:
     is-promise: ^2.1.0
-  checksum: 3f32934686f10c185cfd70fa336b91e004efb5de7c196f0d1d28d056e25a9b465cdf436d1d98454601a4453498ae371c50c10936ae4c796d7df6db5779142c9f
+  checksum: 0b1f5fb70ea4444ffdc76c40262624f29a46aaffae19b56a620fdc00953ac41bf5ebffa9561375ef7436cd3969b6258a2a404b1e7073e0c8af12bc9003b090a9
   languageName: node
   linkType: hard
 
@@ -7127,14 +7127,14 @@ resolve@^1.3.2:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.26.0":
-  version: 1.26.0
-  resolution: "sass@npm:1.26.0"
+"sass@npm:^1.26.1":
+  version: 1.26.1
+  resolution: "sass@npm:1.26.1"
   dependencies:
     chokidar: ">=2.0.0 <4.0.0"
   bin:
     sass: sass.js
-  checksum: ca876ef15e1de0e736be895392a95cc724016c3740c735cbe1c40780efc76ad38da4ad59d7b568213959dd2c10fb313ffdda0e372cc2c5d016ecc6e7f6787aab
+  checksum: ffd203ce8e8a5520792a51a34f391626aa9852fee93f4520a36ac645dd0b5c555fff01ae2aa2a6beb55f8c37019c078e06def978a95f5acdf9bd4ce706f373e5
   languageName: node
   linkType: hard
 
