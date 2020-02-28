@@ -943,7 +943,8 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.8.4":
+
+"@babel/preset-env@npm:^7.8.6":
   version: 7.8.6
   resolution: "@babel/preset-env@npm:7.8.6"
   dependencies:
@@ -2871,7 +2872,7 @@ __metadata:
     "@babel/core": ^7.8.6
     "@babel/plugin-proposal-class-properties": ^7.8.3
     "@babel/plugin-proposal-object-rest-spread": ^7.8.3
-    "@babel/preset-env": ^7.8.4
+    "@babel/preset-env": ^7.8.6
     "@babel/preset-typescript": ^7.8.3
     "@sweetalert2/themes": ^3.1.0
     "@types/node": ^13.7.5
@@ -3155,9 +3156,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.361":
-  version: 1.3.363
-  resolution: "electron-to-chromium@npm:1.3.363"
-  checksum: 510a423140d995ade1ac31f2b960a5244eebcd47d05ff1035901e2d08b1bfd5a79dcbfc1ea43a9744d46c64cae47602893d79fc85325b20ccd0d16a46bc1e1a8
+  version: 1.3.362
+  resolution: "electron-to-chromium@npm:1.3.362"
+  checksum: c949605a7ad106c9681756806068bdacaba0639f0a455b8ebd383f241fc1fc5c97f84e4fd5ba796d21dd8166693265c5aee18a1e16f88fdf3d2c8d5c2f58e33c
   languageName: node
   linkType: hard
 
