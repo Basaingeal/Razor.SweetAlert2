@@ -1188,8 +1188,8 @@ __metadata:
   linkType: hard
 
 "@types/webpack@npm:^4.4.31":
-  version: 4.41.6
-  resolution: "@types/webpack@npm:4.41.6"
+  version: 4.41.7
+  resolution: "@types/webpack@npm:4.41.7"
   dependencies:
     "@types/anymatch": "*"
     "@types/node": "*"
@@ -1197,7 +1197,7 @@ __metadata:
     "@types/uglify-js": "*"
     "@types/webpack-sources": "*"
     source-map: ^0.6.0
-  checksum: 0361a83cd5d15ca2f7ca1c167d22830c5343a5d86d3b07e2da9f7852691fdccad0487c36c6654949bf8bba7b2ac62533b3e84b9b1a94608eb89f90a3871e125a
+  checksum: e167cfb7b34d71f95b442b1b47fa5ebced047f31c6527e130d55f05e37a4f1881a51a34e3e07571e65aad7da2cfb51f686ae594d8a0f3c3fedfe09bdad085284
   languageName: node
   linkType: hard
 
@@ -3155,9 +3155,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.361":
-  version: 1.3.362
-  resolution: "electron-to-chromium@npm:1.3.362"
-  checksum: c949605a7ad106c9681756806068bdacaba0639f0a455b8ebd383f241fc1fc5c97f84e4fd5ba796d21dd8166693265c5aee18a1e16f88fdf3d2c8d5c2f58e33c
+  version: 1.3.363
+  resolution: "electron-to-chromium@npm:1.3.363"
+  checksum: 510a423140d995ade1ac31f2b960a5244eebcd47d05ff1035901e2d08b1bfd5a79dcbfc1ea43a9744d46c64cae47602893d79fc85325b20ccd0d16a46bc1e1a8
   languageName: node
   linkType: hard
 
@@ -7922,9 +7922,9 @@ resolve@^1.3.2:
   linkType: hard
 
 "tslib@npm:^1.8.1, tslib@npm:^1.9.0":
-  version: 1.11.0
-  resolution: "tslib@npm:1.11.0"
-  checksum: fbcebf11bd2a1d10c1de5dfb03ab6c3758035b00d2d0eb132e91ddb30135b4c0fe376b9402174a98079b55a44c8c91d053fee39a4e94b68c82bb9fca799d2dd0
+  version: 1.11.1
+  resolution: "tslib@npm:1.11.1"
+  checksum: fcf33cc2bda03b44d1fb3d2faef38335456d0efee90807db42e241c8d60ac6e00167e16d3ab66d11b2fcacb135f30ec76c9dacc8a20a58f8ad16e1fcde4849db
   languageName: node
   linkType: hard
 
