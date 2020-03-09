@@ -1,4 +1,4 @@
-﻿# v2.5.4
+﻿# v2.6.0
 
-- bump `sweetalert2` to `9.8.2`
-- bump `@sweetalert2/themes` to `3.1.1`
+- bump `sweetalert2` to `9.10.20`
+- `SweetAlertOptions.HideClass` is now updatable
