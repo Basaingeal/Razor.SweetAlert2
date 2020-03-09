@@ -1,5 +1,0 @@
-{
-  "name": "typescript",
-  "version": "3.7.5-pnpify",
-  "main": "./lib/typescript.js"
-}
