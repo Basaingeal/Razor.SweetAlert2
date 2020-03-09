@@ -1,6 +1,6 @@
 {
   "name": "currietechnologies-razorsweetalert2",
-  "version": "2.5.4",
+  "version": "2.6.0",
   "description": "A Razor class library for interacting with SweetAlert2",
   "scripts": {
     "build": "SET NODE_ENV=production && webpack -p --color",
@@ -16,11 +16,11 @@
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-env": "^7.8.6",
     "@babel/preset-typescript": "^7.8.3",
-    "@types/node": "^13.7.0",
-    "@typescript-eslint/eslint-plugin": "^2.19.2",
-    "@typescript-eslint/parser": "^2.19.0",
+    "@types/node": "^13.7.7",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
     "@yarnpkg/pnpify": "^2.0.0-rc.17",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
@@ -31,7 +31,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "pnp-webpack-plugin": "^1.6.4",
     "prettier": "^1.19.1",
-    "sass": "^1.25.0",
+    "sass": "^1.26.1",
     "sass-loader": "^8.0.2",
     "terser-webpack-plugin": "^2.3.4",
     "typescript": "^3.7.5",
@@ -42,7 +42,7 @@
   "dependencies": {
     "@sweetalert2/themes": "^3.1.0",
     "core-js": "3.6.4",
-    "sweetalert2": "9.8.2"
+    "sweetalert2": "9.10.0"
   },
   "author": "Michael J. Currie",
   "private": true,
