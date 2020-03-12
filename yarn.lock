@@ -1073,13 +1073,12 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"@yarnpkg/fslib@^2.0.0-rc.16":
-  version "2.0.0-rc.16"
-  resolved "https://registry.yarnpkg.com/@yarnpkg/fslib/-/fslib-2.0.0-rc.16.tgz#876e59dc1f73a054e6f6f171868e07b303f99308"
-  integrity sha512-+u8WVsbDe9gPudc5AcDdEQCzQjMsS3qMXA5Y7xYrwPdYXtA4ILDnU3VQwt2pjomcZcKDwPyRwoEK7vBfnOM5Bw==
+"@yarnpkg/fslib@^2.0.0-rc.17":
+  version "2.0.0-rc.17"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/fslib/-/fslib-2.0.0-rc.17.tgz#480b73808d284bdd39054dad77814e1a60daaad3"
+  integrity sha512-u3fffxhDisSHDwKg9kjYlCbTOX3HzmOLSccy9jqYAbDVr13aUfP+DHR2EuMPy0pHeqX1uifTXs/DgpBvvmn30w==
   dependencies:
     "@yarnpkg/libzip" "^2.0.0-rc.10"
-    tmp "^0.1.0"
 
 "@yarnpkg/libzip@^2.0.0-rc.10":
   version "2.0.0-rc.10"
@@ -1088,12 +1087,12 @@
   dependencies:
     "@types/emscripten" "^1.38.0"
 
-"@yarnpkg/pnpify@^2.0.0-rc.17":
-  version "2.0.0-rc.18"
-  resolved "https://registry.yarnpkg.com/@yarnpkg/pnpify/-/pnpify-2.0.0-rc.18.tgz#f253be73a5a3e0e26d35fd3b7d07b824007918ad"
-  integrity sha512-xJy2/I4mnhh/TZLwBNsNbWLV4IMscjkrP+naRAHwyC0YMXeyT9uU6EwF7YYhTOS9Ghc4h4LjduFafNuw+fZKyg==
+"@yarnpkg/pnpify@^2.0.0-rc.19":
+  version "2.0.0-rc.19"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/pnpify/-/pnpify-2.0.0-rc.19.tgz#de8bd56744412eca91df88cf769c4dc0252e221e"
+  integrity sha512-1h/fl80Fz8ANjiCJ+u5YgVtmEk3dhv9v6f4Z0wSmCkL3kQ/U36A9nYbhsOlOEQPVNQG1mjbW7AeeilrRbxxe1A==
   dependencies:
-    "@yarnpkg/fslib" "^2.0.0-rc.16"
+    "@yarnpkg/fslib" "^2.0.0-rc.17"
     chalk "^3.0.0"
     comment-json "^2.2.0"
     cross-spawn "6.0.5"
@@ -5431,13 +5430,6 @@ tmp@^0.0.33:
   integrity sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==
   dependencies:
     os-tmpdir "~1.0.2"
-
-tmp@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.1.0.tgz#ee434a4e22543082e294ba6201dcc6eafefa2877"
-  integrity sha512-J7Z2K08jbGcdA1kkQpJSqLF6T0tdQqpR2pnSUXsIchbPdTI9v3e85cLW0d6WDhwuAleOV71j2xWs8qMPfK7nKw==
-  dependencies:
-    rimraf "^2.6.3"
 
 to-arraybuffer@^1.0.0:
   version "1.0.1"
