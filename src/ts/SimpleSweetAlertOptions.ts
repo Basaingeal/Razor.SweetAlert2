@@ -4,7 +4,7 @@ import {
   SweetAlertShowClass,
   SweetAlertHideClass,
   SweetAlertInput,
-  SweetAlertPosition
+  SweetAlertPosition,
 } from "sweetalert2";
 import { SweetAlertGrow } from "./SweetAlertGrow";
 

@@ -4,7 +4,7 @@ import Swal, {
   SweetAlertOptions,
   SweetAlertResult,
   SweetAlertIcon,
-  SweetAlertArrayOptions
+  SweetAlertArrayOptions,
 } from "sweetalert2";
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import SweetAlertQueueResult from "./SweetAlertQueueResult";
@@ -251,7 +251,7 @@ function getColorSchemeName(colorScheme: ColorScheme): string {
 
 function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictionary): void {
   const colorSchemeMap: Map<ColorScheme, SweetAlertTheme> = new Map();
-  colorSchemeThemes.forEach(pair => {
+  colorSchemeThemes.forEach((pair) => {
     colorSchemeMap.set(pair[0], pair[1]);
   });
 
