@@ -1130,10 +1130,10 @@
   dependencies:
     "@types/emscripten" "^1.38.0"
 
-"@yarnpkg/pnpify@^2.0.0-rc.19":
-  version "2.0.0-rc.19"
-  resolved "https://registry.yarnpkg.com/@yarnpkg/pnpify/-/pnpify-2.0.0-rc.19.tgz#de8bd56744412eca91df88cf769c4dc0252e221e"
-  integrity sha512-1h/fl80Fz8ANjiCJ+u5YgVtmEk3dhv9v6f4Z0wSmCkL3kQ/U36A9nYbhsOlOEQPVNQG1mjbW7AeeilrRbxxe1A==
+"@yarnpkg/pnpify@^2.0.0-rc.20":
+  version "2.0.0-rc.20"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/pnpify/-/pnpify-2.0.0-rc.20.tgz#4e03b226288dd09026535919eb41d68e6693012c"
+  integrity sha512-jMVrp6wpSl+MMZzEYqiqaavBPoJ65kcfwPUr6tpHIW87Bo5x+LCLkEQdJaGl/mZzeFUfxmT2aFwA316BMvjukg==
   dependencies:
     "@yarnpkg/fslib" "^2.0.0-rc.17"
     chalk "^3.0.0"
