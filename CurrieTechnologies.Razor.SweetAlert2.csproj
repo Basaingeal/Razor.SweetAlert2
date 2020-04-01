@@ -9,7 +9,7 @@
     <Description>
       A Razor class library for interacting with SweetAlert2.
       Use in Blazor Server Apps or Blazor WebAssembly Apps.
-      Currently using sweetalert2@9.10.6
+      Currently using sweetalert2@9.10.8
     </Description>
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -20,8 +20,6 @@
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
       Bump sweetalert2
-      Bump Microsoft.AspNetCore.Components
-      Bump Microsoft.AspNetCore.Components.Web
     </PackageReleaseNotes>
   </PropertyGroup>
 
