@@ -144,8 +144,9 @@ function getSwalSettingsFromPoco(
   requestId: string,
   isQueue: boolean
 ): SweetAlertOptions {
-  const swalSettings =
-    (cleanSettings(settings) as SimpleSweetAlertOptions | SweetAlertOptions) as SweetAlertOptions;
+  const swalSettings = (cleanSettings(settings) as
+    | SimpleSweetAlertOptions
+    | SweetAlertOptions) as SweetAlertOptions;
 
   if (settings.preConfirm) {
     swalSettings.preConfirm = isQueue
