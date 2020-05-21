@@ -1,5 +1,5 @@
-﻿# v2.6.7
+﻿# v2.7.0
 
-- bump `sweetalert2` to `9.10.13`
-- bump `Microsoft.AspNetCore.Components` to `3.1.4`
-- bump `Microsoft.AspNetCore.Components.Web` to `3.1.4`
+- bump `sweetalert2` to `9.12.0`
+- make footer updatable
+- make onClose onAfterClose onDestroy updatable
