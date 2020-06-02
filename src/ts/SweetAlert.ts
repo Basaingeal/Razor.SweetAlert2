@@ -5,6 +5,7 @@ import Swal, {
   SweetAlertResult,
   SweetAlertIcon,
   SweetAlertArrayOptions,
+  SweetAlertUpdatableParameters,
 } from "sweetalert2";
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import SweetAlertQueueResult from "./SweetAlertQueueResult";
@@ -396,7 +397,7 @@ razorSwal.Queue = (
     (optionId, i): SweetAlertOptions => getSwalSettingsFromPoco(steps[i], optionId, true)
   );
 
-  Swal.queue(arrSwalSettings).then((result): void => {
+  Swal.queue(arrSwalSettings).then((result: any): void => {
     dispatchQueueResult(requestId, result);
   });
 };
@@ -504,10 +505,10 @@ razorSwal.DeleteQueueStep = (index: number): void => {
   Swal.deleteQueueStep(index);
 };
 
-razorSwal.IsValidParameter = (paramName: string): boolean => {
+razorSwal.IsValidParameter = (paramName: keyof SweetAlertOptions): boolean => {
   return Swal.isValidParameter(paramName);
 };
 
-razorSwal.IsUpdatableParameter = (paramName: string): boolean => {
+razorSwal.IsUpdatableParameter = (paramName: SweetAlertUpdatableParameters): boolean => {
   return Swal.isUpdatableParameter(paramName);
 };
