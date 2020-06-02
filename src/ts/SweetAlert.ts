@@ -5,6 +5,7 @@ import Swal, {
   SweetAlertResult,
   SweetAlertIcon,
   SweetAlertArrayOptions,
+  SweetAlertUpdatableParameters,
 } from "sweetalert2";
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import SweetAlertQueueResult from "./SweetAlertQueueResult";
@@ -144,67 +145,115 @@ function getSwalSettingsFromPoco(
   requestId: string,
   isQueue: boolean
 ): SweetAlertOptions {
-  const swalSettings = (cleanSettings(settings) as
+  let swalSettings = (cleanSettings(settings) as
     | SimpleSweetAlertOptions
     | SweetAlertOptions) as SweetAlertOptions;
 
   if (settings.preConfirm) {
-    swalSettings.preConfirm = isQueue
-      ? (inputValue): Promise<any> => dispatchQueuePreConfirm(requestId, inputValue)
-      : (inputValue): Promise<any> => dispatchPreConfirm(requestId, inputValue);
+    swalSettings = {
+      ...swalSettings,
+      preConfirm: isQueue
+        ? (inputValue): Promise<any> => dispatchQueuePreConfirm(requestId, inputValue)
+        : (inputValue): Promise<any> => dispatchPreConfirm(requestId, inputValue),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.preConfirm;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { preConfirm, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.inputValidator) {
-    swalSettings.inputValidator = (inputValue): Promise<string> =>
-      dispatchInputValidator(requestId, inputValue);
+    swalSettings = {
+      ...swalSettings,
+      inputValidator: (inputValue): Promise<string> =>
+        dispatchInputValidator(requestId, inputValue),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.inputValidator;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { inputValidator, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onBeforeOpen) {
-    swalSettings.onBeforeOpen = (): void => dispatchOnBeforeOpen(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onBeforeOpen: (): void => dispatchOnBeforeOpen(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onBeforeOpen;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { onBeforeOpen, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onAfterClose) {
-    swalSettings.onAfterClose = (): void => dispatchOnAfterClose(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onAfterClose: (): void => dispatchOnAfterClose(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onAfterClose;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { onAfterClose, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onDestroy) {
-    swalSettings.onDestroy = (): void => dispatchOnDestroy(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onDestroy: (): void => dispatchOnDestroy(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onDestroy;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { onDestroy, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onOpen) {
-    swalSettings.onOpen = (): void => dispatchOnOpen(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onOpen: (): void => dispatchOnOpen(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onOpen;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { onOpen, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onClose) {
-    swalSettings.onClose = (): void => dispatchOnClose(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onClose: (): void => dispatchOnClose(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onClose;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { onClose, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onRender) {
-    swalSettings.onRender = (): void => dispatchOnRender(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onRender: (): void => dispatchOnRender(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onRender;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { onRender, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.grow === "false") {
-    swalSettings.grow = false;
+    swalSettings = {
+      ...swalSettings,
+      grow: false,
+    } as SweetAlertOptions;
   } else if (settings.grow == null) {
-    delete swalSettings.grow;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { grow, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   } else {
-    swalSettings.grow = settings.grow;
+    swalSettings = {
+      ...swalSettings,
+      grow: settings.grow,
+    } as SweetAlertOptions;
   }
 
   return swalSettings;
@@ -357,7 +406,7 @@ razorSwal.Queue = (
     (optionId, i): SweetAlertOptions => getSwalSettingsFromPoco(steps[i], optionId, true)
   );
 
-  Swal.queue(arrSwalSettings).then((result): void => {
+  Swal.queue(arrSwalSettings).then((result: any): void => {
     dispatchQueueResult(requestId, result);
   });
 };
@@ -465,10 +514,10 @@ razorSwal.DeleteQueueStep = (index: number): void => {
   Swal.deleteQueueStep(index);
 };
 
-razorSwal.IsValidParameter = (paramName: string): boolean => {
+razorSwal.IsValidParameter = (paramName: keyof SweetAlertOptions): boolean => {
   return Swal.isValidParameter(paramName);
 };
 
-razorSwal.IsUpdatableParameter = (paramName: string): boolean => {
+razorSwal.IsUpdatableParameter = (paramName: SweetAlertUpdatableParameters): boolean => {
   return Swal.isUpdatableParameter(paramName);
 };
