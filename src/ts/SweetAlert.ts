@@ -144,67 +144,106 @@ function getSwalSettingsFromPoco(
   requestId: string,
   isQueue: boolean
 ): SweetAlertOptions {
-  const swalSettings = (cleanSettings(settings) as
+  let swalSettings = (cleanSettings(settings) as
     | SimpleSweetAlertOptions
     | SweetAlertOptions) as SweetAlertOptions;
 
   if (settings.preConfirm) {
-    swalSettings.preConfirm = isQueue
-      ? (inputValue): Promise<any> => dispatchQueuePreConfirm(requestId, inputValue)
-      : (inputValue): Promise<any> => dispatchPreConfirm(requestId, inputValue);
+    swalSettings = {
+      ...swalSettings,
+      preConfirm: isQueue
+        ? (inputValue): Promise<any> => dispatchQueuePreConfirm(requestId, inputValue)
+        : (inputValue): Promise<any> => dispatchPreConfirm(requestId, inputValue),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.preConfirm;
+    const { preConfirm, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.inputValidator) {
-    swalSettings.inputValidator = (inputValue): Promise<string> =>
-      dispatchInputValidator(requestId, inputValue);
+    swalSettings = {
+      ...swalSettings,
+      inputValidator: (inputValue): Promise<string> =>
+        dispatchInputValidator(requestId, inputValue),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.inputValidator;
+    const { inputValidator, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onBeforeOpen) {
-    swalSettings.onBeforeOpen = (): void => dispatchOnBeforeOpen(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onBeforeOpen: (): void => dispatchOnBeforeOpen(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onBeforeOpen;
+    const { onBeforeOpen, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onAfterClose) {
-    swalSettings.onAfterClose = (): void => dispatchOnAfterClose(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onAfterClose: (): void => dispatchOnAfterClose(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onAfterClose;
+    const { onAfterClose, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onDestroy) {
-    swalSettings.onDestroy = (): void => dispatchOnDestroy(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onDestroy: (): void => dispatchOnDestroy(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onDestroy;
+    const { onDestroy, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onOpen) {
-    swalSettings.onOpen = (): void => dispatchOnOpen(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onOpen: (): void => dispatchOnOpen(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onOpen;
+    const { onOpen, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onClose) {
-    swalSettings.onClose = (): void => dispatchOnClose(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onClose: (): void => dispatchOnClose(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onClose;
+    const { onClose, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.onRender) {
-    swalSettings.onRender = (): void => dispatchOnRender(requestId);
+    swalSettings = {
+      ...swalSettings,
+      onRender: (): void => dispatchOnRender(requestId),
+    } as SweetAlertOptions;
   } else {
-    delete swalSettings.onRender;
+    const { onRender, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   }
 
   if (settings.grow === "false") {
-    swalSettings.grow = false;
+    swalSettings = {
+      ...swalSettings,
+      grow: false,
+    } as SweetAlertOptions;
   } else if (settings.grow == null) {
-    delete swalSettings.grow;
+    const { grow, ...rest } = swalSettings;
+    swalSettings = rest as SweetAlertOptions;
   } else {
-    swalSettings.grow = settings.grow;
+    swalSettings = {
+      ...swalSettings,
+      grow: settings.grow,
+    } as SweetAlertOptions;
   }
 
   return swalSettings;
