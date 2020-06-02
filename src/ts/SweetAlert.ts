@@ -157,6 +157,7 @@ function getSwalSettingsFromPoco(
         : (inputValue): Promise<any> => dispatchPreConfirm(requestId, inputValue),
     } as SweetAlertOptions;
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { preConfirm, ...rest } = swalSettings;
     swalSettings = rest as SweetAlertOptions;
   }
@@ -168,6 +169,7 @@ function getSwalSettingsFromPoco(
         dispatchInputValidator(requestId, inputValue),
     } as SweetAlertOptions;
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { inputValidator, ...rest } = swalSettings;
     swalSettings = rest as SweetAlertOptions;
   }
@@ -178,6 +180,7 @@ function getSwalSettingsFromPoco(
       onBeforeOpen: (): void => dispatchOnBeforeOpen(requestId),
     } as SweetAlertOptions;
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { onBeforeOpen, ...rest } = swalSettings;
     swalSettings = rest as SweetAlertOptions;
   }
@@ -188,6 +191,7 @@ function getSwalSettingsFromPoco(
       onAfterClose: (): void => dispatchOnAfterClose(requestId),
     } as SweetAlertOptions;
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { onAfterClose, ...rest } = swalSettings;
     swalSettings = rest as SweetAlertOptions;
   }
@@ -198,6 +202,7 @@ function getSwalSettingsFromPoco(
       onDestroy: (): void => dispatchOnDestroy(requestId),
     } as SweetAlertOptions;
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { onDestroy, ...rest } = swalSettings;
     swalSettings = rest as SweetAlertOptions;
   }
@@ -208,6 +213,7 @@ function getSwalSettingsFromPoco(
       onOpen: (): void => dispatchOnOpen(requestId),
     } as SweetAlertOptions;
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { onOpen, ...rest } = swalSettings;
     swalSettings = rest as SweetAlertOptions;
   }
@@ -218,6 +224,7 @@ function getSwalSettingsFromPoco(
       onClose: (): void => dispatchOnClose(requestId),
     } as SweetAlertOptions;
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { onClose, ...rest } = swalSettings;
     swalSettings = rest as SweetAlertOptions;
   }
@@ -228,6 +235,7 @@ function getSwalSettingsFromPoco(
       onRender: (): void => dispatchOnRender(requestId),
     } as SweetAlertOptions;
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { onRender, ...rest } = swalSettings;
     swalSettings = rest as SweetAlertOptions;
   }
@@ -238,6 +246,7 @@ function getSwalSettingsFromPoco(
       grow: false,
     } as SweetAlertOptions;
   } else if (settings.grow == null) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { grow, ...rest } = swalSettings;
     swalSettings = rest as SweetAlertOptions;
   } else {
