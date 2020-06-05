@@ -9,7 +9,7 @@
     <Description>
       A Razor class library for interacting with SweetAlert2.
       Use in Blazor Server Apps or Blazor WebAssembly Apps.
-      Currently using sweetalert2@9.12.0
+      Currently using sweetalert2@9.14.0
     </Description>
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -19,7 +19,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      Bump sweetalert2
+      bump sweetalert2 to 9.14.0
+      SweetAlertResult and SweetAlertQueueResult models extended with new IsConfirmed and IsDismissed properties
     </PackageReleaseNotes>
   </PropertyGroup>
 

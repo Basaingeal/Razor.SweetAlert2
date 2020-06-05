@@ -222,6 +222,8 @@ _See [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@me
 - No methods that return an HTMLElement are included (e. g. `Swal.getContainer()`)
 - The value of a `SweetAlertResult` (`result.Value`) can only be a string (or a collection of strings if returned from a queue request). Numbers and booleans must be converted. Object must be parsed to/from JSON in your code.
 - `OnOpenAsync()`, `OnCloseAsync()`, `OnBeforeOpenAsync()`, and `OnAfterCloseAsync()` can all take asynchronous callbacks. 🎉 (none will return an HTMLElement though.)
+- No support for `<optgroup>` in the select input type.
+- No async option for `InputOptions` or `InputValue`
 - Callbacks must be passed inside of objects specifically designed for the given callback property. e.g. the `InputValidator` property takes an `InputValidatorCallback` created like so:
 
 ```csharp
