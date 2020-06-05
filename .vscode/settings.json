@@ -6,5 +6,6 @@
   "cSpell.words": [
     "currietechnologies",
     "swal"
-  ]
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
