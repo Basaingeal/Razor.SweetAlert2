@@ -145,115 +145,67 @@ function getSwalSettingsFromPoco(
   requestId: string,
   isQueue: boolean
 ): SweetAlertOptions {
-  let swalSettings = (cleanSettings(settings) as
+  const swalSettings = (cleanSettings(settings) as
     | SimpleSweetAlertOptions
     | SweetAlertOptions) as SweetAlertOptions;
 
   if (settings.preConfirm) {
-    swalSettings = {
-      ...swalSettings,
-      preConfirm: isQueue
-        ? (inputValue): Promise<any> => dispatchQueuePreConfirm(requestId, inputValue)
-        : (inputValue): Promise<any> => dispatchPreConfirm(requestId, inputValue),
-    } as SweetAlertOptions;
+    swalSettings.preConfirm = isQueue
+      ? (inputValue): Promise<any> => dispatchQueuePreConfirm(requestId, inputValue)
+      : (inputValue): Promise<any> => dispatchPreConfirm(requestId, inputValue);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { preConfirm, ...rest } = swalSettings;
-    swalSettings = rest as SweetAlertOptions;
+    delete swalSettings.preConfirm;
   }
 
   if (settings.inputValidator) {
-    swalSettings = {
-      ...swalSettings,
-      inputValidator: (inputValue): Promise<string> =>
-        dispatchInputValidator(requestId, inputValue),
-    } as SweetAlertOptions;
+    swalSettings.inputValidator = (inputValue): Promise<string> =>
+      dispatchInputValidator(requestId, inputValue);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { inputValidator, ...rest } = swalSettings;
-    swalSettings = rest as SweetAlertOptions;
+    delete swalSettings.inputValidator;
   }
 
   if (settings.onBeforeOpen) {
-    swalSettings = {
-      ...swalSettings,
-      onBeforeOpen: (): void => dispatchOnBeforeOpen(requestId),
-    } as SweetAlertOptions;
+    swalSettings.onBeforeOpen = (): void => dispatchOnBeforeOpen(requestId);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { onBeforeOpen, ...rest } = swalSettings;
-    swalSettings = rest as SweetAlertOptions;
+    delete swalSettings.onBeforeOpen;
   }
 
   if (settings.onAfterClose) {
-    swalSettings = {
-      ...swalSettings,
-      onAfterClose: (): void => dispatchOnAfterClose(requestId),
-    } as SweetAlertOptions;
+    swalSettings.onAfterClose = (): void => dispatchOnAfterClose(requestId);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { onAfterClose, ...rest } = swalSettings;
-    swalSettings = rest as SweetAlertOptions;
+    delete swalSettings.onAfterClose;
   }
 
   if (settings.onDestroy) {
-    swalSettings = {
-      ...swalSettings,
-      onDestroy: (): void => dispatchOnDestroy(requestId),
-    } as SweetAlertOptions;
+    swalSettings.onDestroy = (): void => dispatchOnDestroy(requestId);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { onDestroy, ...rest } = swalSettings;
-    swalSettings = rest as SweetAlertOptions;
+    delete swalSettings.onDestroy;
   }
 
   if (settings.onOpen) {
-    swalSettings = {
-      ...swalSettings,
-      onOpen: (): void => dispatchOnOpen(requestId),
-    } as SweetAlertOptions;
+    swalSettings.onOpen = (): void => dispatchOnOpen(requestId);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { onOpen, ...rest } = swalSettings;
-    swalSettings = rest as SweetAlertOptions;
+    delete swalSettings.onOpen;
   }
 
   if (settings.onClose) {
-    swalSettings = {
-      ...swalSettings,
-      onClose: (): void => dispatchOnClose(requestId),
-    } as SweetAlertOptions;
+    swalSettings.onClose = (): void => dispatchOnClose(requestId);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { onClose, ...rest } = swalSettings;
-    swalSettings = rest as SweetAlertOptions;
+    delete swalSettings.onClose;
   }
 
   if (settings.onRender) {
-    swalSettings = {
-      ...swalSettings,
-      onRender: (): void => dispatchOnRender(requestId),
-    } as SweetAlertOptions;
+    swalSettings.onRender = (): void => dispatchOnRender(requestId);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { onRender, ...rest } = swalSettings;
-    swalSettings = rest as SweetAlertOptions;
+    delete swalSettings.onRender;
   }
 
   if (settings.grow === "false") {
-    swalSettings = {
-      ...swalSettings,
-      grow: false,
-    } as SweetAlertOptions;
+    swalSettings.grow = false;
   } else if (settings.grow == null) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { grow, ...rest } = swalSettings;
-    swalSettings = rest as SweetAlertOptions;
+    delete swalSettings.grow;
   } else {
-    swalSettings = {
-      ...swalSettings,
-      grow: settings.grow,
-    } as SweetAlertOptions;
+    swalSettings.grow = settings.grow;
   }
 
   return swalSettings;
@@ -352,10 +304,10 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
   });
 }
 
-domWindow.CurrieTechnologies = domWindow.CurrieTechnologies || {};
-domWindow.CurrieTechnologies.Razor = domWindow.CurrieTechnologies.Razor || {};
+domWindow.CurrieTechnologies = domWindow.CurrieTechnologies ?? {};
+domWindow.CurrieTechnologies.Razor = domWindow.CurrieTechnologies.Razor ?? {};
 domWindow.CurrieTechnologies.Razor.SweetAlert2 =
-  domWindow.CurrieTechnologies.Razor.SweetAlert2 || {};
+  domWindow.CurrieTechnologies.Razor.SweetAlert2 ?? {};
 
 const razorSwal = domWindow.CurrieTechnologies.Razor.SweetAlert2;
 
@@ -369,10 +321,11 @@ razorSwal.Fire = (
 ): void => {
   setTheme(theme, colorSchemeThemes);
 
-  const params: SweetAlertArrayOptions = [];
-  params[0] = title || undefined;
-  params[1] = message || undefined;
-  params[2] = icon || undefined;
+  const params: SweetAlertArrayOptions = [
+    title ?? undefined,
+    message ?? undefined,
+    icon ?? undefined,
+  ];
   Swal.fire(params[0], params[1], params[2]).then((result): void => {
     dispatchFireResult(requestId, result);
   });
@@ -421,8 +374,8 @@ razorSwal.Update = (requestId: string, settingsPoco: SimpleSweetAlertOptions): v
 };
 
 razorSwal.CloseResult = (result: SweetAlertResult): void => {
-  result.dismiss = getEnumString((result.dismiss as any) as number);
-  Swal.close(result);
+  const dismissString = getEnumString((result.dismiss as any) as number);
+  Swal.close({ ...result, dismiss: dismissString });
 };
 
 razorSwal.Close = (): void => {
