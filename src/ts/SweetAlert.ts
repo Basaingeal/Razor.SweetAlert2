@@ -304,10 +304,10 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
   });
 }
 
-domWindow.CurrieTechnologies = domWindow.CurrieTechnologies || {};
-domWindow.CurrieTechnologies.Razor = domWindow.CurrieTechnologies.Razor || {};
+domWindow.CurrieTechnologies = domWindow.CurrieTechnologies ?? {};
+domWindow.CurrieTechnologies.Razor = domWindow.CurrieTechnologies.Razor ?? {};
 domWindow.CurrieTechnologies.Razor.SweetAlert2 =
-  domWindow.CurrieTechnologies.Razor.SweetAlert2 || {};
+  domWindow.CurrieTechnologies.Razor.SweetAlert2 ?? {};
 
 const razorSwal = domWindow.CurrieTechnologies.Razor.SweetAlert2;
 
@@ -321,10 +321,11 @@ razorSwal.Fire = (
 ): void => {
   setTheme(theme, colorSchemeThemes);
 
-  const params: SweetAlertArrayOptions = [];
-  params[0] = title || undefined;
-  params[1] = message || undefined;
-  params[2] = icon || undefined;
+  const params: SweetAlertArrayOptions = [
+    title ?? undefined,
+    message ?? undefined,
+    icon ?? undefined,
+  ];
   Swal.fire(params[0], params[1], params[2]).then((result): void => {
     dispatchFireResult(requestId, result);
   });
@@ -373,8 +374,8 @@ razorSwal.Update = (requestId: string, settingsPoco: SimpleSweetAlertOptions): v
 };
 
 razorSwal.CloseResult = (result: SweetAlertResult): void => {
-  result.dismiss = getEnumString((result.dismiss as any) as number);
-  Swal.close(result);
+  const dismissString = getEnumString((result.dismiss as any) as number);
+  Swal.close({ ...result, dismiss: dismissString });
 };
 
 razorSwal.Close = (): void => {
