@@ -33,7 +33,10 @@ module.exports = [
       "bootstrap4Theme.min": "./src/scss/bootstrap-4-theme.scss",
       materialUITheme: "./src/scss/material-ui-theme.scss",
       "materialUITheme.min": "./src/scss/material-ui-theme.scss",
-      wordpressAdminTheme: "./src/scss/wordpress-admin-theme.scss"
+      wordpressAdminTheme: "./src/scss/wordpress-admin-theme.scss",
+      "wordpressAdminTheme.min": "./src/scss/wordpress-admin-theme.scss",
+      bulmaTheme: "./src/scss/bulma-theme.scss",
+      "bulmaTheme.min": "./src/scss/bulma-theme.scss"
     },
     output: {
       filename: "[name].js",

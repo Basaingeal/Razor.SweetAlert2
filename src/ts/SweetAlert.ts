@@ -129,6 +129,10 @@ function dispatchOnDestroy(requestId: string): void {
   DotNet.invokeMethodAsync(namespace, "ReceiveOnDestroyInput", requestId);
 }
 
+function numberStringToNumber(numberString: string): string | number {
+  return Number.isNaN(Number(numberString)) ? numberString : Number(numberString);
+}
+
 function cleanSettings(settings: SimpleSweetAlertOptions): SimpleSweetAlertOptions {
   const settingsToReturn: any = settings as any;
   for (const propName in settingsToReturn) {
@@ -208,6 +212,10 @@ function getSwalSettingsFromPoco(
     swalSettings.grow = settings.grow;
   }
 
+  if (settings.width) {
+    swalSettings.width = numberStringToNumber(settings.width);
+  }
+
   return swalSettings;
 }
 
@@ -229,7 +237,10 @@ function getFileNameByTheme(theme: SweetAlertTheme): string {
       return "materialUITheme.min.css";
     }
     case SweetAlertTheme.WordpressAdmin: {
-      return "wordpressAdminTheme.css";
+      return "wordpressAdminTheme.min.css";
+    }
+    case SweetAlertTheme.Bulma: {
+      return "bulmaTheme.min.css";
     }
     case SweetAlertTheme.Default:
     default: {
