@@ -130,7 +130,7 @@ function dispatchOnDestroy(requestId: string): void {
 }
 
 function numberStringToNumber(numberString: string): string | number {
-  return isNaN(Number(numberString)) ? numberString : Number(numberString);
+  return Number.isNaN(Number(numberString)) ? numberString : Number(numberString);
 }
 
 function cleanSettings(settings: SimpleSweetAlertOptions): SimpleSweetAlertOptions {
