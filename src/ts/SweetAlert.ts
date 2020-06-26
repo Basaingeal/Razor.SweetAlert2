@@ -129,6 +129,10 @@ function dispatchOnDestroy(requestId: string): void {
   DotNet.invokeMethodAsync(namespace, "ReceiveOnDestroyInput", requestId);
 }
 
+function numberStringToNumber(numberString: string): string | number {
+  return Number.isNaN(Number(numberString)) ? numberString : Number(numberString);
+}
+
 function cleanSettings(settings: SimpleSweetAlertOptions): SimpleSweetAlertOptions {
   const settingsToReturn: any = settings as any;
   for (const propName in settingsToReturn) {
@@ -206,6 +210,10 @@ function getSwalSettingsFromPoco(
     delete swalSettings.grow;
   } else {
     swalSettings.grow = settings.grow;
+  }
+
+  if (settings.width) {
+    swalSettings.width = numberStringToNumber(settings.width);
   }
 
   return swalSettings;
