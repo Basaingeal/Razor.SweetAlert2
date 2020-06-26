@@ -893,10 +893,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@sweetalert2/themes@^3.1.4":
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-3.1.4.tgz#ed9d4d12b4329037127dba001d75a3460c4cb66c"
-  integrity sha512-fPdouRkLzeW/EeHRDQEX7SV1FkRPivZTYgUISwtIdNbkrwPSOgd9On+IZxHGNiZAGbKNYfSwf9l8ZlQAajaGIw==
+"@sweetalert2/themes@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-3.2.0.tgz#809507c3800957a698e2d7d053b63efc096a0a91"
+  integrity sha512-TxQo3SsPoyrn1lKb9W7GL1fSBUDpRWvH3XFycWdpCgDP6smR3Hb/jvoeLKzZZjWbYsVJ1XZktjR230Q6oTUKIQ==
 
 "@types/anymatch@*":
   version "1.3.1"
