@@ -6,4 +6,5 @@ export enum SweetAlertTheme {
   Bootstrap4,
   MaterialUI,
   WordpressAdmin,
+  Bulma,
 }

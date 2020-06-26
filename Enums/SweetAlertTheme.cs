@@ -8,6 +8,7 @@
         Borderless,
         Bootstrap4,
         MaterialUI,
-        WordpressAdmin
+        WordpressAdmin,
+        Bulma
     }
 }
