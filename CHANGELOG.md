@@ -1,10 +1,10 @@
-﻿# v2.10.0
+﻿# v2.10.1
 
 ## Dependencies
 
-- bump `sweetalert2` to `9.17.0`
+- bump `sweetalert2` to `9.17.1`
 
-## Features
+## Bug Fixes
 
-- make close button updatable (https://github.com/sweetalert2/sweetalert2/pull/2018)
+- resolved issue where the popup theme would flicker when using a theme. (https://github.com/Basaingeal/Razor.SweetAlert2/pull/842) (https://github.com/Basaingeal/Razor.SweetAlert2/issues/632)
 
