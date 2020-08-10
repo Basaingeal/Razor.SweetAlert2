@@ -322,16 +322,19 @@ domWindow.CurrieTechnologies.Razor.SweetAlert2 =
 
 const razorSwal = domWindow.CurrieTechnologies.Razor.SweetAlert2;
 
+razorSwal.SendThemesToJS = (
+  theme: SweetAlertTheme,
+  colorSchemeThemes: ColorSchemeDictionary
+): void => {
+  setTheme(theme, colorSchemeThemes);
+};
+
 razorSwal.Fire = (
   requestId: string,
   title: string | null,
   message: string | null,
-  icon: SweetAlertIcon | null,
-  theme: number,
-  colorSchemeThemes: ColorSchemeDictionary
+  icon: SweetAlertIcon | null
 ): void => {
-  setTheme(theme, colorSchemeThemes);
-
   const params: SweetAlertArrayOptions = [
     title ?? undefined,
     message ?? undefined,
@@ -342,14 +345,7 @@ razorSwal.Fire = (
   });
 };
 
-razorSwal.FireSettings = (
-  requestId: string,
-  settingsPoco: SimpleSweetAlertOptions,
-  theme: number,
-  colorSchemeThemes: ColorSchemeDictionary
-): void => {
-  setTheme(theme, colorSchemeThemes);
-
+razorSwal.FireSettings = (requestId: string, settingsPoco: SimpleSweetAlertOptions): void => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
 
   Swal.fire(swalSettings).then((result): void => {
@@ -360,12 +356,8 @@ razorSwal.FireSettings = (
 razorSwal.Queue = (
   requestId: string,
   optionIds: string[],
-  steps: SimpleSweetAlertOptions[],
-  theme: number,
-  colorSchemeThemes: ColorSchemeDictionary
+  steps: SimpleSweetAlertOptions[]
 ): void => {
-  setTheme(theme, colorSchemeThemes);
-
   const arrSwalSettings: SweetAlertOptions[] = optionIds.map(
     (optionId, i): SweetAlertOptions => getSwalSettingsFromPoco(steps[i], optionId, true)
   );
