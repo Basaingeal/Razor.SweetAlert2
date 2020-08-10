@@ -62,6 +62,13 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             colorSchemeThemes = options.ColorSchemeThemes
                 .Select(kvp => new int[2] { (int)kvp.Key, (int)kvp.Value })
                 .ToArray();
+            
+            SendThemesToJS().ContinueWith(result => {});
+        }
+
+        private async Task SendThemesToJS(){
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.SendThemesToJS", (int)theme, colorSchemeThemes)
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -81,9 +88,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 requestId,
                 title,
                 message,
-                icon?.ToString(),
-                (int)theme,
-                colorSchemeThemes)
+                icon?.ToString())
                 .ConfigureAwait(false);
             return await tcs.Task.ConfigureAwait(false);
         }
@@ -137,9 +142,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             await jSRuntime.InvokeAsync<SweetAlertResult>(
                 "CurrieTechnologies.Razor.SweetAlert2.FireSettings",
                 requestId,
-                settings.ToPOCO(),
-                (int)theme,
-                colorSchemeThemes).ConfigureAwait(false);
+                settings.ToPOCO()).ConfigureAwait(false);
             return await tcs.Task.ConfigureAwait(false);
         }
 
@@ -438,9 +441,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 "CurrieTechnologies.Razor.SweetAlert2.Queue",
                 requestId,
                 tuples.Select(t => t.RequestId).ToArray(),
-                tuples.Select(t => t.Step.ToPOCO()).ToArray(),
-                (int)theme,
-                colorSchemeThemes)
+                tuples.Select(t => t.Step.ToPOCO()).ToArray())
                 .ConfigureAwait(false);
             return await tcs.Task.ConfigureAwait(false);
         }
