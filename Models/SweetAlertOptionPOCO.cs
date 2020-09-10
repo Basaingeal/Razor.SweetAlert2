@@ -60,17 +60,25 @@
 
         public bool? ShowConfirmButton { get; set; }
 
+        public bool? ShowDenyButton { get; set; }
+
         public bool? ShowCancelButton { get; set; }
 
         public string ConfirmButtonText { get; set; }
+
+        public string DenyButtonText { get; set; }
 
         public string CancelButtonText { get; set; }
 
         public string ConfirmButtonColor { get; set; }
 
+        public string DenyButtonColor { get; set; }
+
         public string CancelButtonColor { get; set; }
 
         public string ConfirmButtonAriaLabel { get; set; }
+
+        public string DenyButtonAriaLabel { get; set; }
 
         public string CancelButtonAriaLabel { get; set; }
 
@@ -79,6 +87,8 @@
         public bool? ReverseButtons { get; set; }
 
         public bool? FocusConfirm { get; set; }
+
+        public bool? FocusDeny { get; set; }
 
         public bool? FocusCancel { get; set; }
 

@@ -164,43 +164,63 @@
         public bool? KeydownListenerCapture { get; set; }
 
         /// <summary>
-        /// If set to false, a "Confirm"-button will not be shown.
+        /// If set to false, a "Confirm" button will not be shown.
         /// <para>It can be useful when you're using custom HTML description.</para>
         /// </summary>
         public bool? ShowConfirmButton { get; set; }
 
         /// <summary>
-        /// If set to true, a "Cancel"-button will be shown, which the user can click on to dismiss the modal.
+        /// If set to true, the "Deny" button will be shown, which the user can click on to deny the popup.
+        /// </summary>
+        public bool? ShowDenyButton { get; set; }
+
+        /// <summary>
+        /// If set to true, a "Cancel" button will be shown, which the user can click on to dismiss the modal.
         /// </summary>
         public bool? ShowCancelButton { get; set; }
 
         /// <summary>
-        /// Use this to change the text on the "Confirm"-button.
+        /// Use this to change the text on the "Confirm" button.
         /// </summary>
         public string ConfirmButtonText { get; set; }
 
         /// <summary>
-        /// Use this to change the text on the "Cancel"-button.
+        /// Use this to change the text on the "Deny" button.
+        /// </summary>
+        public string DenyButtonText { get; set; }
+
+        /// <summary>
+        /// Use this to change the text on the "Cancel" button.
         /// </summary>
         public string CancelButtonText { get; set; }
 
         /// <summary>
-        /// Use this to change the background color of the "Confirm"-button (must be a HEX value).
+        /// Use this to change the background color of the "Confirm" button.
         /// </summary>
         public string ConfirmButtonColor { get; set; }
 
         /// <summary>
-        /// Use this to change the background color of the "Cancel"-button (must be a HEX value).
+        /// Use this to change the background color of the "Deny" button.
+        /// </summary>
+        public string DenyButtonColor { get; set; }
+
+        /// <summary>
+        /// Use this to change the background color of the "Cancel" button.
         /// </summary>
         public string CancelButtonColor { get; set; }
 
         /// <summary>
-        /// Use this to change the aria-label for the "Confirm"-button.
+        /// Use this to change the aria-label for the "Confirm" button.
         /// </summary>
         public string ConfirmButtonAriaLabel { get; set; }
 
         /// <summary>
-        /// Use this to change the aria-label for the "Cancel"-button.
+        /// Use this to change the aria-label for the "Deny" button.
+        /// </summary>
+        public string DenyButtonAriaLabel { get; set; }
+
+        /// <summary>
+        /// Use this to change the aria-label for the "Cancel" button.
         /// </summary>
         public string CancelButtonAriaLabel { get; set; }
 
@@ -216,12 +236,17 @@
         public bool? ReverseButtons { get; set; }
 
         /// <summary>
-        /// Set to false if you want to focus the first element in tab order instead of "Confirm"-button by default.
+        /// Set to false if you want to focus the first element in tab order instead of "Confirm" button by default.
         /// </summary>
         public bool? FocusConfirm { get; set; }
 
         /// <summary>
-        /// Set to true if you want to focus the "Cancel"-button by default.
+        /// Set to true if you want to focus the "Deny" button by default.
+        /// </summary>
+        public bool? FocusDeny { get; set; }
+
+        /// <summary>
+        /// Set to true if you want to focus the "Cancel" button by default.
         /// </summary>
         public bool? FocusCancel { get; set; }
 
@@ -414,16 +439,21 @@
                 StopKeydownPropagation = this.StopKeydownPropagation,
                 KeydownListenerCapture = this.KeydownListenerCapture,
                 ShowConfirmButton = this.ShowConfirmButton,
+                ShowDenyButton = this.ShowDenyButton,
                 ShowCancelButton = this.ShowCancelButton,
                 ConfirmButtonText = this.ConfirmButtonText,
+                DenyButtonText = this.DenyButtonText,
                 CancelButtonText = this.CancelButtonText,
                 ConfirmButtonColor = this.ConfirmButtonColor,
+                DenyButtonColor = this.DenyButtonColor,
                 CancelButtonColor = this.CancelButtonColor,
                 ConfirmButtonAriaLabel = this.ConfirmButtonAriaLabel,
+                DenyButtonAriaLabel = this.DenyButtonAriaLabel,
                 CancelButtonAriaLabel = this.CancelButtonAriaLabel,
                 ButtonsStyling = this.ButtonsStyling,
                 ReverseButtons = this.ReverseButtons,
                 FocusConfirm = this.FocusConfirm,
+                FocusDeny = this.FocusDeny,
                 FocusCancel = this.FocusCancel,
                 ShowCloseButton = this.ShowCloseButton,
                 CloseButtonHtml = this.CloseButtonHtml,

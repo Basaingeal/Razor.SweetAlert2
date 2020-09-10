@@ -65,17 +65,25 @@ export default interface SimpleSweetAlertOptions {
 
   showConfirmButton?: boolean;
 
+  showDenyButton?: boolean;
+
   showCancelButton?: boolean;
 
   confirmButtonText?: string;
+
+  denyButtonText?: string;
 
   cancelButtonText?: string;
 
   confirmButtonColor?: string;
 
+  denyButtonColor?: string;
+
   cancelButtonColor?: string;
 
   confirmButtonAriaLabel?: string;
+
+  denyButtonAriaLabel?: string;
 
   cancelButtonAriaLabel?: string;
 
@@ -84,6 +92,8 @@ export default interface SimpleSweetAlertOptions {
   reverseButtons?: boolean;
 
   focusConfirm?: boolean;
+
+  focusDeny?: boolean;
 
   focusCancel?: boolean;
 
