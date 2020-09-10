@@ -93,6 +93,8 @@ export default interface SimpleSweetAlertOptions {
 
   closeButtonAriaLabel?: string;
 
+  loaderHtml?: string;
+
   showLoaderOnConfirm?: boolean;
 
   preConfirm: boolean;

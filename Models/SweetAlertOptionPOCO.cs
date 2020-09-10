@@ -88,6 +88,8 @@
 
         public string CloseButtonAriaLabel { get; set; }
 
+        public string LoaderHtml { get; set; }
+
         public bool? ShowLoaderOnConfirm { get; set; }
 
         public bool PreConfirm { get; set; }

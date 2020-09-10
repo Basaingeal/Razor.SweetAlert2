@@ -241,6 +241,11 @@
         public string CloseButtonAriaLabel { get; set; }
 
         /// <summary>
+        /// Use this to change the HTML content of the loader.
+        /// </summary>
+        public string LoaderHtml { get; set; }
+
+        /// <summary>
         /// Set to true to disable buttons and show that something is loading. Useful for AJAX requests.
         /// </summary>
         public bool? ShowLoaderOnConfirm { get; set; }
@@ -423,6 +428,7 @@
                 ShowCloseButton = this.ShowCloseButton,
                 CloseButtonHtml = this.CloseButtonHtml,
                 CloseButtonAriaLabel = this.CloseButtonAriaLabel,
+                LoaderHtml = this.LoaderHtml,
                 ShowLoaderOnConfirm = this.ShowLoaderOnConfirm,
                 PreConfirm = this.PreConfirm != null,
                 ImageUrl = this.ImageUrl,

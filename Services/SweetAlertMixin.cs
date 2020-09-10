@@ -372,6 +372,7 @@
                 ShowCloseButton = newSettings.ShowCloseButton ?? this.storedOptions.ShowCloseButton,
                 CloseButtonHtml = newSettings.CloseButtonHtml ?? this.storedOptions.CloseButtonHtml,
                 CloseButtonAriaLabel = newSettings.CloseButtonAriaLabel ?? this.storedOptions.CloseButtonAriaLabel,
+                LoaderHtml = newSettings.LoaderHtml ?? this.storedOptions.LoaderHtml,
                 ShowLoaderOnConfirm = newSettings.ShowLoaderOnConfirm ?? this.storedOptions.ShowLoaderOnConfirm,
                 PreConfirm = newSettings.PreConfirm ?? this.storedOptions.PreConfirm,
                 ImageUrl = newSettings.ImageUrl ?? this.storedOptions.ImageUrl,
