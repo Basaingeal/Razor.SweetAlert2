@@ -62,8 +62,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             colorSchemeThemes = options.ColorSchemeThemes
                 .Select(kvp => new int[2] { (int)kvp.Key, (int)kvp.Value })
                 .ToArray();
-            
-            SendThemesToJS().ContinueWith(result => {});
+
+            SendThemesToJS();
         }
 
         private async Task SendThemesToJS(){
@@ -301,7 +301,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         }
 
         /// <summary>
-        /// Clicks the "Confirm"-button programmatically.
+        /// Clicks the "Confirm" button programmatically.
         /// </summary>
         public async Task ClickConfirmAsync()
         {
@@ -310,7 +310,16 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         }
 
         /// <summary>
-        /// Clicks the "Cancel"-button programmatically.
+        /// Clicks the "Deny" button programmatically.
+        /// </summary>
+        public async Task ClickDenyAsync()
+        {
+            await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.ClickDeny")
+                .ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Clicks the "Cancel" button programmatically.
         /// </summary>
         public async Task ClickCancelAsync()
         {

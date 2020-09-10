@@ -409,6 +409,10 @@ razorSwal.ClickConfirm = (): void => {
   Swal.clickConfirm();
 };
 
+razorSwal.ClickDeny = (): void => {
+  Swal.clickDeny();
+};
+
 razorSwal.ClickCancel = (): void => {
   Swal.clickCancel();
 };

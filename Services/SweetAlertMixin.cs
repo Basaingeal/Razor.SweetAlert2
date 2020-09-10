@@ -154,7 +154,7 @@
         }
 
         /// <summary>
-        /// Clicks the "Confirm"-button programmatically.
+        /// Clicks the "Confirm" button programmatically.
         /// </summary>
         public Task ClickConfirmAsync()
         {
@@ -162,7 +162,15 @@
         }
 
         /// <summary>
-        /// Clicks the "Cancel"-button programmatically.
+        /// Clicks the "Deny" button programmatically.
+        /// </summary>
+        public Task ClickDenyAsync()
+        {
+            return this.swal.ClickDenyAsync();
+        }
+
+        /// <summary>
+        /// Clicks the "Cancel" button programmatically.
         /// </summary>
         public Task ClickCancelAsync()
         {
