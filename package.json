@@ -39,9 +39,9 @@
     "webpack-fix-style-only-entries": "^0.5.1"
   },
   "dependencies": {
-    "@sweetalert2/themes": "^3.2.0",
+    "@sweetalert2/themes": "^4.0.0",
     "core-js": "3.6.5",
-    "sweetalert2": "9.17.1"
+    "sweetalert2": "10.0.2"
   },
   "author": "Michael J. Currie",
   "private": true,
