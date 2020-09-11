@@ -3,4 +3,5 @@ export default interface SweetAlertQueueResult {
   dismiss?: number;
   isConfirmed: boolean;
   isDismissed: boolean;
+  isDenied: boolean;
 }

@@ -3,4 +3,5 @@ export default interface EnumSweetAlertResult {
   dismiss?: number;
   isConfirmed: boolean;
   isDismissed: boolean;
+  isDenied: boolean;
 }
