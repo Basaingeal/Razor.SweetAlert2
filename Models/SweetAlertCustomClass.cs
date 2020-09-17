@@ -58,6 +58,11 @@
         public string ConfirmButton { get; set; }
 
         /// <summary>
+        /// Applies classnames to the `deny-button-class` field.
+        /// </summary>
+        public string DenyButton { get; set; }
+
+        /// <summary>
         /// Applies classnames to the `cancel-button-class` field.
         /// </summary>
         public string CancelButton { get; set; }

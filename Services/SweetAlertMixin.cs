@@ -154,7 +154,7 @@
         }
 
         /// <summary>
-        /// Clicks the "Confirm"-button programmatically.
+        /// Clicks the "Confirm" button programmatically.
         /// </summary>
         public Task ClickConfirmAsync()
         {
@@ -162,7 +162,15 @@
         }
 
         /// <summary>
-        /// Clicks the "Cancel"-button programmatically.
+        /// Clicks the "Deny" button programmatically.
+        /// </summary>
+        public Task ClickDenyAsync()
+        {
+            return this.swal.ClickDenyAsync();
+        }
+
+        /// <summary>
+        /// Clicks the "Cancel" button programmatically.
         /// </summary>
         public Task ClickCancelAsync()
         {
@@ -358,20 +366,26 @@
                 StopKeydownPropagation = newSettings.StopKeydownPropagation ?? this.storedOptions.StopKeydownPropagation,
                 KeydownListenerCapture = newSettings.KeydownListenerCapture ?? this.storedOptions.KeydownListenerCapture,
                 ShowConfirmButton = newSettings.ShowConfirmButton ?? this.storedOptions.ShowConfirmButton,
+                ShowDenyButton = newSettings.ShowDenyButton ?? this.storedOptions.ShowDenyButton,
                 ShowCancelButton = newSettings.ShowCancelButton ?? this.storedOptions.ShowCancelButton,
                 ConfirmButtonText = newSettings.ConfirmButtonText ?? this.storedOptions.ConfirmButtonText,
+                DenyButtonText = newSettings.DenyButtonText ?? this.storedOptions.DenyButtonText,
                 CancelButtonText = newSettings.CancelButtonText ?? this.storedOptions.CancelButtonText,
                 ConfirmButtonColor = newSettings.ConfirmButtonColor ?? this.storedOptions.ConfirmButtonColor,
+                DenyButtonColor = newSettings.DenyButtonColor ?? this.storedOptions.DenyButtonColor,
                 CancelButtonColor = newSettings.CancelButtonColor ?? this.storedOptions.CancelButtonColor,
                 ConfirmButtonAriaLabel = newSettings.ConfirmButtonAriaLabel ?? this.storedOptions.ConfirmButtonAriaLabel,
+                DenyButtonAriaLabel = newSettings.DenyButtonAriaLabel ?? this.storedOptions.DenyButtonAriaLabel,
                 CancelButtonAriaLabel = newSettings.CancelButtonAriaLabel ?? this.storedOptions.CancelButtonAriaLabel,
                 ButtonsStyling = newSettings.ButtonsStyling ?? this.storedOptions.ButtonsStyling,
                 ReverseButtons = newSettings.ReverseButtons ?? this.storedOptions.ReverseButtons,
                 FocusConfirm = newSettings.FocusConfirm ?? this.storedOptions.FocusConfirm,
+                FocusDeny = newSettings.FocusDeny ?? this.storedOptions.FocusDeny,
                 FocusCancel = newSettings.FocusCancel ?? this.storedOptions.FocusCancel,
                 ShowCloseButton = newSettings.ShowCloseButton ?? this.storedOptions.ShowCloseButton,
                 CloseButtonHtml = newSettings.CloseButtonHtml ?? this.storedOptions.CloseButtonHtml,
                 CloseButtonAriaLabel = newSettings.CloseButtonAriaLabel ?? this.storedOptions.CloseButtonAriaLabel,
+                LoaderHtml = newSettings.LoaderHtml ?? this.storedOptions.LoaderHtml,
                 ShowLoaderOnConfirm = newSettings.ShowLoaderOnConfirm ?? this.storedOptions.ShowLoaderOnConfirm,
                 PreConfirm = newSettings.PreConfirm ?? this.storedOptions.PreConfirm,
                 ImageUrl = newSettings.ImageUrl ?? this.storedOptions.ImageUrl,

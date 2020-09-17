@@ -33,6 +33,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         Task ClickConfirmAsync();
 
+        Task ClickDenyAsync();
+
         Task ClickCancelAsync();
 
         Task ShowValidationMessageAsync(string validationMessage);
