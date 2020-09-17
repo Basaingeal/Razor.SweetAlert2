@@ -6,24 +6,24 @@
     {
         /// <summary>
         /// The title of the modal, as HTML.
-        /// <para>It can either be added to the object under the key "title" or passed as the first parameter of the function.</para>
+        /// <para>It can either be added to the object under the key "title" or passed as the first parameter of Swal.FireAsync()</para>
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// The title of the modal, as text. Useful to avoid HTML injection.
+        /// The title of the popup, as text. Useful to avoid HTML injection.
         /// </summary>
         public string TitleText { get; set; }
 
         /// <summary>
         /// A description for the modal.
-        /// <para>It can either be added to the object under the key "text" or passed as the second parameter of the function.</para>
+        /// <para>If "Text" and "Html" parameters are provided in the same time, "Text" will be used.</para>
         /// </summary>
         public string Text { get; set; }
 
         /// <summary>
         /// A HTML description for the modal.
-        /// <para>If "text" and "html" parameters are provided in the same time, "text" will be used.</para>
+        /// <para>It can either be added to the object under the key "Html" or passed as the second parameter of Swal.FireAsync()</para>
         /// </summary>
         public string Html { get; set; }
 
@@ -34,10 +34,16 @@
 
         /// <summary>
         /// The icon of the modal.
-        /// <para>SweetAlert2 comes with 5 built-in icons which will show a corresponding icon animation: 'warning', 'error', 'success', 'info' and 'question'.</para>
-        /// <para>It can either be put in the array under the key "icon" or passed as the third parameter of the function.</para>
+        /// <para>SweetAlert2 comes with 5 built-in icons which will show a corresponding icon animation:</para>
+        /// <para>'warning', 'error', 'success', 'info' and 'question'.</para>
+        /// <para>It can either be put to the object under the key "icon" or passed as the third parameter of Swal.FireAsync().</para>
         /// </summary>
         public SweetAlertIcon Icon { get; set; }
+
+        /// <summary>
+        /// Use this to change the color of the icon.
+        /// </summary>
+        public string IconColor { get; set; }
 
         /// <summary>
         /// The custom HTML content for an icon.
@@ -417,6 +423,7 @@
                 Html = this.Html,
                 Footer = this.Footer,
                 Icon = this.Icon?.ToString(),
+                IconColor = this.IconColor,
                 IconHtml = this.IconHtml,
                 Backdrop = this.Backdrop,
                 Toast = this.Toast,

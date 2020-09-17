@@ -21,6 +21,8 @@ export default interface SimpleSweetAlertOptions {
 
   icon?: SweetAlertIcon;
 
+  iconColor?: string
+
   iconHtml?: string;
 
   backdrop?: boolean;
