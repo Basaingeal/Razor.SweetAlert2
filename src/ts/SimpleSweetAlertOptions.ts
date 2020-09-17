@@ -21,6 +21,8 @@ export default interface SimpleSweetAlertOptions {
 
   icon?: SweetAlertIcon;
 
+  iconColor?: string;
+
   iconHtml?: string;
 
   backdrop?: boolean;
@@ -65,17 +67,25 @@ export default interface SimpleSweetAlertOptions {
 
   showConfirmButton?: boolean;
 
+  showDenyButton?: boolean;
+
   showCancelButton?: boolean;
 
   confirmButtonText?: string;
+
+  denyButtonText?: string;
 
   cancelButtonText?: string;
 
   confirmButtonColor?: string;
 
+  denyButtonColor?: string;
+
   cancelButtonColor?: string;
 
   confirmButtonAriaLabel?: string;
+
+  denyButtonAriaLabel?: string;
 
   cancelButtonAriaLabel?: string;
 
@@ -85,6 +95,8 @@ export default interface SimpleSweetAlertOptions {
 
   focusConfirm?: boolean;
 
+  focusDeny?: boolean;
+
   focusCancel?: boolean;
 
   showCloseButton?: boolean;
@@ -92,6 +104,8 @@ export default interface SimpleSweetAlertOptions {
   closeButtonHtml?: string;
 
   closeButtonAriaLabel?: string;
+
+  loaderHtml?: string;
 
   showLoaderOnConfirm?: boolean;
 

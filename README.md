@@ -32,7 +32,9 @@
 
 👉 **Upgrading from v1.x to v2.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v2.0.0)
 
-## This package is now for both Blazor Server Apps and Blazor WebAssembly Apps. [`CurrieTechnologies.Blazor.SweetAlert2`](https://github.com/Basaingeal/Blazor.SweetAlert2) is now deprecated
+👉 **Upgrading from v2.x to v3.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v3.0.0)
+
+## This package is for both Blazor Server Apps and Blazor WebAssembly Apps. It should be used instead of [`CurrieTechnologies.Blazor.SweetAlert2`](https://github.com/Basaingeal/Blazor.SweetAlert2) which is now deprecated.
 
 ### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
 

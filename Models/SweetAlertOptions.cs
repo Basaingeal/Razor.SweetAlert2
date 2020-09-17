@@ -6,24 +6,24 @@
     {
         /// <summary>
         /// The title of the modal, as HTML.
-        /// <para>It can either be added to the object under the key "title" or passed as the first parameter of the function.</para>
+        /// <para>It can either be added to the object under the key "title" or passed as the first parameter of Swal.FireAsync()</para>
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// The title of the modal, as text. Useful to avoid HTML injection.
+        /// The title of the popup, as text. Useful to avoid HTML injection.
         /// </summary>
         public string TitleText { get; set; }
 
         /// <summary>
         /// A description for the modal.
-        /// <para>It can either be added to the object under the key "text" or passed as the second parameter of the function.</para>
+        /// <para>If "Text" and "Html" parameters are provided in the same time, "Text" will be used.</para>
         /// </summary>
         public string Text { get; set; }
 
         /// <summary>
         /// A HTML description for the modal.
-        /// <para>If "text" and "html" parameters are provided in the same time, "text" will be used.</para>
+        /// <para>It can either be added to the object under the key "Html" or passed as the second parameter of Swal.FireAsync()</para>
         /// </summary>
         public string Html { get; set; }
 
@@ -34,10 +34,16 @@
 
         /// <summary>
         /// The icon of the modal.
-        /// <para>SweetAlert2 comes with 5 built-in icons which will show a corresponding icon animation: 'warning', 'error', 'success', 'info' and 'question'.</para>
-        /// <para>It can either be put in the array under the key "icon" or passed as the third parameter of the function.</para>
+        /// <para>SweetAlert2 comes with 5 built-in icons which will show a corresponding icon animation:</para>
+        /// <para>'warning', 'error', 'success', 'info' and 'question'.</para>
+        /// <para>It can either be put to the object under the key "icon" or passed as the third parameter of Swal.FireAsync().</para>
         /// </summary>
         public SweetAlertIcon Icon { get; set; }
+
+        /// <summary>
+        /// Use this to change the color of the icon.
+        /// </summary>
+        public string IconColor { get; set; }
 
         /// <summary>
         /// The custom HTML content for an icon.
@@ -164,43 +170,63 @@
         public bool? KeydownListenerCapture { get; set; }
 
         /// <summary>
-        /// If set to false, a "Confirm"-button will not be shown.
+        /// If set to false, a "Confirm" button will not be shown.
         /// <para>It can be useful when you're using custom HTML description.</para>
         /// </summary>
         public bool? ShowConfirmButton { get; set; }
 
         /// <summary>
-        /// If set to true, a "Cancel"-button will be shown, which the user can click on to dismiss the modal.
+        /// If set to true, the "Deny" button will be shown, which the user can click on to deny the popup.
+        /// </summary>
+        public bool? ShowDenyButton { get; set; }
+
+        /// <summary>
+        /// If set to true, a "Cancel" button will be shown, which the user can click on to dismiss the modal.
         /// </summary>
         public bool? ShowCancelButton { get; set; }
 
         /// <summary>
-        /// Use this to change the text on the "Confirm"-button.
+        /// Use this to change the text on the "Confirm" button.
         /// </summary>
         public string ConfirmButtonText { get; set; }
 
         /// <summary>
-        /// Use this to change the text on the "Cancel"-button.
+        /// Use this to change the text on the "Deny" button.
+        /// </summary>
+        public string DenyButtonText { get; set; }
+
+        /// <summary>
+        /// Use this to change the text on the "Cancel" button.
         /// </summary>
         public string CancelButtonText { get; set; }
 
         /// <summary>
-        /// Use this to change the background color of the "Confirm"-button (must be a HEX value).
+        /// Use this to change the background color of the "Confirm" button.
         /// </summary>
         public string ConfirmButtonColor { get; set; }
 
         /// <summary>
-        /// Use this to change the background color of the "Cancel"-button (must be a HEX value).
+        /// Use this to change the background color of the "Deny" button.
+        /// </summary>
+        public string DenyButtonColor { get; set; }
+
+        /// <summary>
+        /// Use this to change the background color of the "Cancel" button.
         /// </summary>
         public string CancelButtonColor { get; set; }
 
         /// <summary>
-        /// Use this to change the aria-label for the "Confirm"-button.
+        /// Use this to change the aria-label for the "Confirm" button.
         /// </summary>
         public string ConfirmButtonAriaLabel { get; set; }
 
         /// <summary>
-        /// Use this to change the aria-label for the "Cancel"-button.
+        /// Use this to change the aria-label for the "Deny" button.
+        /// </summary>
+        public string DenyButtonAriaLabel { get; set; }
+
+        /// <summary>
+        /// Use this to change the aria-label for the "Cancel" button.
         /// </summary>
         public string CancelButtonAriaLabel { get; set; }
 
@@ -216,12 +242,17 @@
         public bool? ReverseButtons { get; set; }
 
         /// <summary>
-        /// Set to false if you want to focus the first element in tab order instead of "Confirm"-button by default.
+        /// Set to false if you want to focus the first element in tab order instead of "Confirm" button by default.
         /// </summary>
         public bool? FocusConfirm { get; set; }
 
         /// <summary>
-        /// Set to true if you want to focus the "Cancel"-button by default.
+        /// Set to true if you want to focus the "Deny" button by default.
+        /// </summary>
+        public bool? FocusDeny { get; set; }
+
+        /// <summary>
+        /// Set to true if you want to focus the "Cancel" button by default.
         /// </summary>
         public bool? FocusCancel { get; set; }
 
@@ -239,6 +270,11 @@
         /// Use this to change the `aria-label` for the close button.
         /// </summary>
         public string CloseButtonAriaLabel { get; set; }
+
+        /// <summary>
+        /// Use this to change the HTML content of the loader.
+        /// </summary>
+        public string LoaderHtml { get; set; }
 
         /// <summary>
         /// Set to true to disable buttons and show that something is loading. Useful for AJAX requests.
@@ -387,6 +423,7 @@
                 Html = this.Html,
                 Footer = this.Footer,
                 Icon = this.Icon?.ToString(),
+                IconColor = this.IconColor,
                 IconHtml = this.IconHtml,
                 Backdrop = this.Backdrop,
                 Toast = this.Toast,
@@ -409,20 +446,26 @@
                 StopKeydownPropagation = this.StopKeydownPropagation,
                 KeydownListenerCapture = this.KeydownListenerCapture,
                 ShowConfirmButton = this.ShowConfirmButton,
+                ShowDenyButton = this.ShowDenyButton,
                 ShowCancelButton = this.ShowCancelButton,
                 ConfirmButtonText = this.ConfirmButtonText,
+                DenyButtonText = this.DenyButtonText,
                 CancelButtonText = this.CancelButtonText,
                 ConfirmButtonColor = this.ConfirmButtonColor,
+                DenyButtonColor = this.DenyButtonColor,
                 CancelButtonColor = this.CancelButtonColor,
                 ConfirmButtonAriaLabel = this.ConfirmButtonAriaLabel,
+                DenyButtonAriaLabel = this.DenyButtonAriaLabel,
                 CancelButtonAriaLabel = this.CancelButtonAriaLabel,
                 ButtonsStyling = this.ButtonsStyling,
                 ReverseButtons = this.ReverseButtons,
                 FocusConfirm = this.FocusConfirm,
+                FocusDeny = this.FocusDeny,
                 FocusCancel = this.FocusCancel,
                 ShowCloseButton = this.ShowCloseButton,
                 CloseButtonHtml = this.CloseButtonHtml,
                 CloseButtonAriaLabel = this.CloseButtonAriaLabel,
+                LoaderHtml = this.LoaderHtml,
                 ShowLoaderOnConfirm = this.ShowLoaderOnConfirm,
                 PreConfirm = this.PreConfirm != null,
                 ImageUrl = this.ImageUrl,
