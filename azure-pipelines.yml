@@ -120,17 +120,16 @@ stages:
                 - task: GitHubRelease@1
                   displayName: Create GitHub Release
                   inputs:
-                    gitHubConnection: "github connection 1"
-                    repositoryName: "$(Build.Repository.Name)"
-                    action: "create"
-                    target: "$(Build.SourceVersion)"
-                    tagSource: "userSpecifiedTag"
-                    tag: "v$(Build.BuildNumber)"
-                    title: "v$(Build.BuildNumber)"
-                    releaseNotesFilePath: "$(Pipeline.Workspace)/Changelog/CHANGELOG.md"
-                    assets: "$(Pipeline.Workspace)/NuGetPackage/*.nupkg"
-                    changeLogCompareToRelease: "lastFullRelease"
-                    changeLogType: "commitBased"
+                    gitHubConnection: 'github connection 1'
+                    repositoryName: '$(Build.Repository.Name)'
+                    action: 'create'
+                    target: '$(Build.SourceVersion)'
+                    tagSource: 'userSpecifiedTag'
+                    tag: 'v$(Build.BuildNumber)'
+                    title: 'v$(Build.BuildNumber)'
+                    releaseNotesFilePath: '$(Pipeline.Workspace)/Changelog/CHANGELOG.md'
+                    assets: '$(Pipeline.Workspace)/NuGetPackage/*.nupkg'
+                    addChangeLog: false
 
       - deployment: privateNuget
         displayName: Push to Private NuGet Feed
