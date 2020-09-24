@@ -5452,10 +5452,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sweetalert2@10.1.0:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.1.0.tgz#a782165d626d939f014ace1ec7edd986b910f914"
-  integrity sha512-r+hFEkHv90M32vmo+Q+qNTPcfcKuN8b3Pn6zcXGrkNLvZtIn1XzY2uLJTFZUQ8hR96mCxDmRcEMXzxX7sEgyWA==
+sweetalert2@10.3.3:
+  version "10.3.3"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.3.3.tgz#4a19270619fac1d4394dd733221b2dbeeb7d3951"
+  integrity sha512-TFndpC3gKR98zOsItkOVkxOKnJTPf+TDLyejVMMlLxU9h+LZOvVIDFxtdWzJXYvq5GgN2L5YuPzu9P+xpE2hdw==
 
 table@^5.2.3:
   version "5.4.6"
