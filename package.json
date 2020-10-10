@@ -35,7 +35,7 @@
     "terser-webpack-plugin": "^4.2.3",
     "typescript": "^4.0.3",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
+    "webpack-cli": "^4.0.0",
     "webpack-fix-style-only-entries": "^0.5.2"
   },
   "dependencies": {
