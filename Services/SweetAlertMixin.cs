@@ -403,12 +403,12 @@
                 ProgressSteps = newSettings.ProgressSteps ?? this.storedOptions.ProgressSteps,
                 CurrentProgressStep = newSettings.CurrentProgressStep ?? this.storedOptions.CurrentProgressStep,
                 ProgressStepsDistance = newSettings.ProgressStepsDistance ?? this.storedOptions.ProgressStepsDistance,
-                OnBeforeOpen = newSettings.OnBeforeOpen ?? this.storedOptions.OnBeforeOpen,
-                OnAfterClose = newSettings.OnAfterClose ?? this.storedOptions.OnAfterClose,
-                OnDestroy = newSettings.OnDestroy ?? this.storedOptions.OnDestroy,
-                OnOpen = newSettings.OnOpen ?? this.storedOptions.OnOpen,
-                OnClose = newSettings.OnClose ?? this.storedOptions.OnClose,
-                OnRender = newSettings.OnRender ?? this.storedOptions.OnRender,
+                WillOpen = newSettings.WillOpen ?? this.storedOptions.WillOpen,
+                DidClose = newSettings.DidClose ?? this.storedOptions.DidClose,
+                DidDestroy = newSettings.DidDestroy ?? this.storedOptions.DidDestroy,
+                DidOpen = newSettings.DidOpen ?? this.storedOptions.DidOpen,
+                WillClose = newSettings.WillClose ?? this.storedOptions.WillClose,
+                DidRender = newSettings.DidRender ?? this.storedOptions.DidRender,
                 ScrollbarPadding = newSettings.ScrollbarPadding ?? this.storedOptions.ScrollbarPadding,
             };
         }

@@ -372,36 +372,37 @@
         public string ProgressStepsDistance { get; set; }
 
         /// <summary>
-        /// Function to run when modal built, but not shown yet. Provides modal DOM element as the first argument.
+        /// Popup lifecycle hook. Synchronously runs before the popup is shown on screen.
         /// </summary>
-        public SweetAlertCallback OnBeforeOpen { get; set; }
+        public SweetAlertCallback WillOpen { get; set; }
 
         /// <summary>
-        /// Function to run after popup has been disposed by user interaction (and not by another popup).
+        /// Popup lifecycle hook. Asynchronously runs after the popup has been disposed by user interaction (and not due to another popup being fired).
         /// </summary>
-        public SweetAlertCallback OnAfterClose { get; set; }
+        public SweetAlertCallback DidClose { get; set; }
 
         /// <summary>
-        /// Function to run after popup has been destroyed either by user interaction or by another popup.
+        /// Popup lifecycle hook. Synchronously runs after popup has been destroyed either by user interaction or by another popup.
+        /// <para>If you have cleanup operations that you need to reliably execute each time a popup is closed, prefer `DidDestroy` over `DidClose`</para>
         /// </summary>
-        public SweetAlertCallback OnDestroy { get; set; }
+        public SweetAlertCallback DidDestroy { get; set; }
 
         /// <summary>
-        /// Function to run when modal opens, provides modal DOM element as the first argument.
+        /// Popup lifecycle hook. Asynchronously runs after the popup has been shown on screen.
         /// </summary>
-        public SweetAlertCallback OnOpen { get; set; }
+        public SweetAlertCallback DidOpen { get; set; }
 
         /// <summary>
-        /// Function to run when modal closes, provides modal DOM element as the first argument.
+        /// Popup lifecycle hook. Synchronously runs when the popup closes by user interaction (and not due to another popup being fired).
         /// </summary>
-        public SweetAlertCallback OnClose { get; set; }
+        public SweetAlertCallback WillClose { get; set; }
 
         /// <summary>
-        /// Function to run after modal DOM has been updated.
+        /// Popup lifecycle hook. Synchronously runs after the popup DOM has been updated (ie. just before the popup is repainted on the screen).
         /// <para>Typically, this will happen after Swal.FireAsync() or Swal.UpdateAsync().</para>
-        /// <para>If you want to perform changes in the modal's DOM, that survive Swal.UpdateAsync(), onRender is a good place for that.</para>
+        /// <para>If you want to perform changes in the modal's DOM, that survive Swal.UpdateAsync(), prefer `DidRender` over `WillOpen`</para>
         /// </summary>
-        public SweetAlertCallback OnRender { get; set; }
+        public SweetAlertCallback DidRender { get; set; }
 
         /// <summary>
         /// Set to false to disable body padding adjustment when scrollbar is present.
@@ -488,12 +489,12 @@
                 ProgressSteps = this.ProgressSteps,
                 CurrentProgressStep = this.CurrentProgressStep,
                 ProgressStepsDistance = this.ProgressStepsDistance,
-                OnBeforeOpen = this.OnBeforeOpen != null,
-                OnAfterClose = this.OnAfterClose != null,
-                OnDestroy = this.OnDestroy != null,
-                OnOpen = this.OnOpen != null,
-                OnClose = this.OnClose != null,
-                OnRender = this.OnRender != null,
+                WillOpen = this.WillOpen != null,
+                DidClose = this.DidClose != null,
+                DidDestroy = this.DidDestroy != null,
+                DidOpen = this.DidOpen != null,
+                WillClose = this.WillClose != null,
+                DidRender = this.DidRender != null,
                 ScrollbarPadding = this.ScrollbarPadding,
             };
         }

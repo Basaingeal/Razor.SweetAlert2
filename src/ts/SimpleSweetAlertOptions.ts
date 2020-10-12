@@ -145,17 +145,17 @@ export default interface SimpleSweetAlertOptions {
 
   progressStepsDistance?: string;
 
-  onBeforeOpen: boolean;
+  willOpen: boolean;
 
-  onAfterClose: boolean;
+  didClose: boolean;
 
-  onDestroy: boolean;
+  didDestroy: boolean;
 
-  onOpen: boolean;
+  didOpen: boolean;
 
-  onClose: boolean;
+  willClose: boolean;
 
-  onRender: boolean;
+  didRender: boolean;
 
   scrollbarPadding?: boolean;
 }

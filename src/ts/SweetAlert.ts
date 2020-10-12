@@ -105,28 +105,28 @@ function dispatchInputValidator(requestId: string, inputValue: any): Promise<str
   return DotNet.invokeMethodAsync(namespace, "ReceiveInputValidatorInput", requestId, inputValue);
 }
 
-function dispatchOnOpen(requestId: string): void {
-  DotNet.invokeMethodAsync(namespace, "ReceiveOnOpenInput", requestId);
+function dispatchDidOpen(requestId: string): void {
+  DotNet.invokeMethodAsync(namespace, "ReceiveDidOpenInput", requestId);
 }
 
-function dispatchOnClose(requestId: string): void {
-  DotNet.invokeMethodAsync(namespace, "ReceiveOnCloseInput", requestId);
+function dispatchWillClose(requestId: string): void {
+  DotNet.invokeMethodAsync(namespace, "ReceiveWillCloseInput", requestId);
 }
 
-function dispatchOnRender(requestId: string): void {
-  DotNet.invokeMethodAsync(namespace, "ReceiveOnRenderInput", requestId);
+function dispatchDidRender(requestId: string): void {
+  DotNet.invokeMethodAsync(namespace, "ReceiveDidRenderInput", requestId);
 }
 
-function dispatchOnBeforeOpen(requestId: string): void {
-  DotNet.invokeMethodAsync(namespace, "ReceiveOnBeforeOpenInput", requestId);
+function dispatchWillOpen(requestId: string): void {
+  DotNet.invokeMethodAsync(namespace, "ReceiveWillOpenInput", requestId);
 }
 
-function dispatchOnAfterClose(requestId: string): void {
-  DotNet.invokeMethodAsync(namespace, "ReceiveOnAfterCloseInput", requestId);
+function dispatchDidClose(requestId: string): void {
+  DotNet.invokeMethodAsync(namespace, "ReceiveDidCloseInput", requestId);
 }
 
-function dispatchOnDestroy(requestId: string): void {
-  DotNet.invokeMethodAsync(namespace, "ReceiveOnDestroyInput", requestId);
+function dispatchDidDestroy(requestId: string): void {
+  DotNet.invokeMethodAsync(namespace, "ReceiveDidDestroyInput", requestId);
 }
 
 function numberStringToNumber(numberString: string): string | number {
@@ -168,40 +168,40 @@ function getSwalSettingsFromPoco(
     delete swalSettings.inputValidator;
   }
 
-  if (settings.onBeforeOpen) {
-    swalSettings.onBeforeOpen = (): void => dispatchOnBeforeOpen(requestId);
+  if (settings.willOpen) {
+    swalSettings.willOpen = (): void => dispatchWillOpen(requestId);
   } else {
-    delete swalSettings.onBeforeOpen;
+    delete swalSettings.willOpen;
   }
 
-  if (settings.onAfterClose) {
-    swalSettings.onAfterClose = (): void => dispatchOnAfterClose(requestId);
+  if (settings.didClose) {
+    swalSettings.didClose = (): void => dispatchDidClose(requestId);
   } else {
-    delete swalSettings.onAfterClose;
+    delete swalSettings.didClose;
   }
 
-  if (settings.onDestroy) {
-    swalSettings.onDestroy = (): void => dispatchOnDestroy(requestId);
+  if (settings.didDestroy) {
+    swalSettings.didDestroy = (): void => dispatchDidDestroy(requestId);
   } else {
-    delete swalSettings.onDestroy;
+    delete swalSettings.didDestroy;
   }
 
-  if (settings.onOpen) {
-    swalSettings.onOpen = (): void => dispatchOnOpen(requestId);
+  if (settings.didOpen) {
+    swalSettings.didOpen = (): void => dispatchDidOpen(requestId);
   } else {
-    delete swalSettings.onOpen;
+    delete swalSettings.didOpen;
   }
 
-  if (settings.onClose) {
-    swalSettings.onClose = (): void => dispatchOnClose(requestId);
+  if (settings.willClose) {
+    swalSettings.willClose = (): void => dispatchWillClose(requestId);
   } else {
-    delete swalSettings.onClose;
+    delete swalSettings.willClose;
   }
 
-  if (settings.onRender) {
-    swalSettings.onRender = (): void => dispatchOnRender(requestId);
+  if (settings.didRender) {
+    swalSettings.didRender = (): void => dispatchDidRender(requestId);
   } else {
-    delete swalSettings.onRender;
+    delete swalSettings.didRender;
   }
 
   if (settings.grow === "false") {

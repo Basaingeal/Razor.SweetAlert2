@@ -18,22 +18,22 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         private static readonly IDictionary<Guid, PreConfirmCallback> PreConfirmCallbacks =
             new Dictionary<Guid, PreConfirmCallback>();
 
-        private static readonly IDictionary<Guid, SweetAlertCallback> OnOpenCallbacks =
+        private static readonly IDictionary<Guid, SweetAlertCallback> DidOpenCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
-        private static readonly IDictionary<Guid, SweetAlertCallback> OnCloseCallbacks =
+        private static readonly IDictionary<Guid, SweetAlertCallback> WillCloseCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
-        private static readonly IDictionary<Guid, SweetAlertCallback> OnRenderCallbacks =
+        private static readonly IDictionary<Guid, SweetAlertCallback> DidRenderCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
-        private static readonly IDictionary<Guid, SweetAlertCallback> OnBeforeOpenCallbacks =
+        private static readonly IDictionary<Guid, SweetAlertCallback> WillOpenCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
-        private static readonly IDictionary<Guid, SweetAlertCallback> OnAfterCloseCallbacks =
+        private static readonly IDictionary<Guid, SweetAlertCallback> DidCloseCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
-        private static readonly IDictionary<Guid, SweetAlertCallback> OnDestroyCallbacks =
+        private static readonly IDictionary<Guid, SweetAlertCallback> DidDestroyCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
         private static readonly IDictionary<Guid, InputValidatorCallback> InputValidatorCallbacks =
@@ -158,34 +158,34 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 InputValidatorCallbacks.Add(requestId, settings.InputValidator);
             }
 
-            if (settings.OnOpen != null)
+            if (settings.DidOpen != null)
             {
-                OnOpenCallbacks.Add(requestId, settings.OnOpen);
+                DidOpenCallbacks.Add(requestId, settings.DidOpen);
             }
 
-            if (settings.OnClose != null)
+            if (settings.WillClose != null)
             {
-                OnCloseCallbacks.Add(requestId, settings.OnClose);
+                WillCloseCallbacks.Add(requestId, settings.WillClose);
             }
 
-            if (settings.OnRender != null)
+            if (settings.DidRender != null)
             {
-                OnRenderCallbacks.Add(requestId, settings.OnRender);
+                DidRenderCallbacks.Add(requestId, settings.DidRender);
             }
 
-            if (settings.OnBeforeOpen != null)
+            if (settings.WillOpen != null)
             {
-                OnBeforeOpenCallbacks.Add(requestId, settings.OnBeforeOpen);
+                WillOpenCallbacks.Add(requestId, settings.WillOpen);
             }
 
-            if (settings.OnAfterClose != null)
+            if (settings.DidClose != null)
             {
-                OnAfterCloseCallbacks.Add(requestId, settings.OnAfterClose);
+                DidCloseCallbacks.Add(requestId, settings.DidClose);
             }
 
-            if (settings.OnDestroy != null)
+            if (settings.DidDestroy != null)
             {
-                OnDestroyCallbacks.Add(requestId, settings.OnDestroy);
+                DidDestroyCallbacks.Add(requestId, settings.DidDestroy);
             }
         }
 
@@ -571,55 +571,55 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         }
 
         [JSInvokable]
-        public static async Task ReceiveOnOpenInput(string requestId)
+        public static async Task ReceiveDidOpenInput(string requestId)
         {
             var requestIdGuid = Guid.Parse(requestId);
-            OnOpenCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
-            OnOpenCallbacks.Remove(requestIdGuid);
+            DidOpenCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            DidOpenCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
 
         [JSInvokable]
-        public static async Task ReceiveOnCloseInput(string requestId)
+        public static async Task ReceiveWillCloseInput(string requestId)
         {
             var requestIdGuid = Guid.Parse(requestId);
-            OnCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
-            OnCloseCallbacks.Remove(requestIdGuid);
+            WillCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            WillCloseCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
 
         [JSInvokable]
-        public static async Task ReceiveOnRenderInput(string requestId)
+        public static async Task ReceiveDidRenderInput(string requestId)
         {
             var requestIdGuid = Guid.Parse(requestId);
-            OnRenderCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            DidRenderCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
 
         [JSInvokable]
-        public static async Task ReceiveOnBeforeOpenInput(string requestId)
+        public static async Task ReceiveWillOpenInput(string requestId)
         {
             var requestIdGuid = Guid.Parse(requestId);
-            OnBeforeOpenCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
-            OnBeforeOpenCallbacks.Remove(requestIdGuid);
+            WillOpenCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            WillOpenCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
 
         [JSInvokable]
-        public static async Task ReceiveOnAfterCloseInput(string requestId)
+        public static async Task ReceiveDidCloseInput(string requestId)
         {
             var requestIdGuid = Guid.Parse(requestId);
-            OnAfterCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
-            OnAfterCloseCallbacks.Remove(requestIdGuid);
+            DidCloseCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            DidCloseCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
 
         [JSInvokable]
-        public static async Task ReceiveOnDestroyInput(string requestId)
+        public static async Task ReceiveDidDestroyInput(string requestId)
         {
             var requestIdGuid = Guid.Parse(requestId);
-            OnDestroyCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
-            OnDestroyCallbacks.Remove(requestIdGuid);
+            DidDestroyCallbacks.TryGetValue(requestIdGuid, out SweetAlertCallback callback);
+            DidDestroyCallbacks.Remove(requestIdGuid);
             await callback.InvokeAsync().ConfigureAwait(false);
         }
     }
