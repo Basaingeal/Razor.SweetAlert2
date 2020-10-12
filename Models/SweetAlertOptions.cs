@@ -310,6 +310,11 @@
         public string ImageAlt { get; set; }
 
         /// <summary>
+        /// Input field label.
+        /// </summary>
+        public string InputLabel { get; set; }
+
+        /// <summary>
         /// Input field placeholder.
         /// </summary>
         public string InputPlaceholder { get; set; }
@@ -472,6 +477,7 @@
                 ImageWidth = this.ImageWidth,
                 ImageHeight = this.ImageHeight,
                 ImageAlt = this.ImageAlt,
+                InputLabel = this.InputLabel,
                 InputPlaceholder = this.InputPlaceholder,
                 InputValue = this.InputValue,
                 InputOptions = this.InputOptions,
