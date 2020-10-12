@@ -2,9 +2,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
-const PnpWebpackPlugin = require("pnp-webpack-plugin");
 const pkg = require("./package.json");
 const babelConfig = require("./babel.config.js");
 
@@ -57,14 +54,10 @@ module.exports = [
       ]
     },
     plugins: [
-      new FixStyleOnlyEntriesPlugin(),
       new MiniCssExtractPlugin({
         filename: "[name].css",
         path: path.resolve(__dirname, "wwwroot")
       }),
-      new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: []
-      })
     ],
     optimization: {
       minimizer: [
@@ -74,19 +67,12 @@ module.exports = [
         new OptimizeCSSAssetsPlugin({
           assetNameRegExp: /\.min\.css$/
         })
-      ]
+      ],
     },
     resolve: {
       extensions: [".ts", ".scss", ".js"],
-      plugins: [
-        PnpWebpackPlugin
-      ]
     },
-    resolveLoader: {
-      plugins: [
-        PnpWebpackPlugin.moduleLoader(module),
-      ],
-    }
+    stats: 'normal'
   },
   {
     entry: {
@@ -97,6 +83,7 @@ module.exports = [
       filename: "[name].js",
       path: path.resolve(__dirname, "wwwroot")
     },
+    target: ['web', 'es5'],
     module: {
       rules: [
         {
@@ -123,14 +110,7 @@ module.exports = [
     },
     resolve: {
       extensions: [".ts", ".js"],
-      plugins: [
-        PnpWebpackPlugin
-      ]
     },
-    resolveLoader: {
-      plugins: [
-        PnpWebpackPlugin.moduleLoader(module),
-      ],
-    }
+    stats: 'normal'
   }
 ];
