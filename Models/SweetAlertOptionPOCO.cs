@@ -114,6 +114,8 @@
 
         public string ImageAlt { get; set; }
 
+        public string InputLabel { get; set; }
+
         public string InputPlaceholder { get; set; }
 
         public string InputValue { get; set; }

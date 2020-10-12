@@ -392,6 +392,7 @@
                 ImageWidth = newSettings.ImageWidth ?? this.storedOptions.ImageWidth,
                 ImageHeight = newSettings.ImageHeight ?? this.storedOptions.ImageHeight,
                 ImageAlt = newSettings.ImageAlt ?? this.storedOptions.ImageAlt,
+                InputLabel = newSettings.InputLabel ?? this.storedOptions.InputLabel,
                 InputPlaceholder = newSettings.InputPlaceholder ?? this.storedOptions.InputPlaceholder,
                 InputValue = newSettings.InputValue ?? this.storedOptions.InputValue,
                 InputOptions = newSettings.InputOptions ?? this.storedOptions.InputOptions,

@@ -119,6 +119,8 @@ export default interface SimpleSweetAlertOptions {
 
   imageAlt?: string;
 
+  inputLabel?: string;
+
   imageClass?: string;
 
   inputPlaceholder?: string;
