@@ -48,6 +48,11 @@
         public string Input { get; set; }
 
         /// <summary>
+        /// Applies classnames to the `validation-message-class` field.
+        /// </summary>
+        public string ValidationMessage { get; set; }
+
+        /// <summary>
         /// Applies classnames to the `actions-class` field.
         /// </summary>
         public string Actions { get; set; }
