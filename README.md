@@ -34,6 +34,8 @@
 
 👉 **Upgrading from v2.x to v3.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v3.0.0)
 
+👉 **Upgrading from v3.x to v4.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v4.0.0)
+
 ## This package is for both Blazor Server Apps and Blazor WebAssembly Apps. It should be used instead of [`CurrieTechnologies.Blazor.SweetAlert2`](https://github.com/Basaingeal/Blazor.SweetAlert2) which is now deprecated.
 
 ### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
