@@ -114,6 +114,8 @@
 
         public string ImageAlt { get; set; }
 
+        public string InputLabel { get; set; }
+
         public string InputPlaceholder { get; set; }
 
         public string InputValue { get; set; }
@@ -134,17 +136,17 @@
 
         public string ProgressStepsDistance { get; set; }
 
-        public bool OnBeforeOpen { get; set; }
+        public bool WillOpen { get; set; }
 
-        public bool OnAfterClose { get; set; }
+        public bool DidClose { get; set; }
 
-        public bool OnDestroy { get; set; }
+        public bool DidDestroy { get; set; }
 
-        public bool OnOpen { get; set; }
+        public bool DidOpen { get; set; }
 
-        public bool OnClose { get; set; }
+        public bool WillClose { get; set; }
 
-        public bool OnRender { get; set; }
+        public bool DidRender { get; set; }
 
         public bool? ScrollbarPadding { get; set; }
     }

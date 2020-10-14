@@ -9,7 +9,7 @@
     <Description>
       A Razor class library for interacting with SweetAlert2.
       Use in Blazor Server Apps or Blazor WebAssembly Apps.
-      Currently using sweetalert2@10.1.0
+      Currently using sweetalert2@10.5.1
     </Description>
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -19,11 +19,10 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      bump sweetalert2 to 10.1.0
-      bump @sweetalert2/themes to 4.0.0
-      The third DENY button
-      New LoaderHtml property
-      New IconColor property
+      bump sweetalert2 to 10.5.1
+      Rename lifecycle hooks
+      New InputLabel property
+      New ValidationMessage CustomClass property
     </PackageReleaseNotes>
   </PropertyGroup>
 
@@ -42,8 +41,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.9" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

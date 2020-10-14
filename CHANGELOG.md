@@ -1,57 +1,46 @@
-﻿# v3.0.0
+﻿# v4.0.0
 
 ## 🔴 Breaking Changes
 
-In this major release, no breaking changes have been made in the API surface. However, the underlying SweetAlert2 library has changed the HTML structure of the loader.
+Just a couple of releases after `sweetalert2@10` was released, they renamed the lifecycle hooks and deprecated the old names. (https://github.com/sweetalert2/sweetalert2/pull/2057)
+As a rule, this wrapper library does not include deprecated functionality.
+As a result, the old lifecycle hook names have been completely replaced with the new ones, resulting in a new major version.
 
-> For the sake of customization, the loader has been separated from the confirm button into its own DOM element (`<div class="swal2-loader"></div>`).
->
-> As a part of that breaking change, there's a new API param `loaderHtml` which allow to set custom HTML, e.g. SVG icon inside of the loader.
->
-> [sweetalert2 v10.0.0 release](https://github.com/sweetalert2/sweetalert2/releases/tag/v10.0.0).
+### Hook name changes
+
+Hooks were previously named as follows:
+
+| Before Hook    | After hook     |
+| -------------- | -------------- |
+| `OnBeforeOpen` | `OnOpen`       |
+|                | `OnRender`     |
+| `OnClose`      | `OnAfterClose` |
+|                | `OnDestroy`    |
+
+All have been renamed according to the convention used by frameworks like UIKit or React:
+
+| Before Hook | After hook  |
+| ----------- | ----------- |
+| `WillOpen`  | `DidOpen`   |
+|             | `DidRender` |
+| `WillClose` | `DidClose`  |
+|             | `DidDstroy` |
 
 ## 🎉 New Features
 
-### The third DENY button
+### Additional `SweetAlertOptions` properties
 
-#### Additional `SweetAlertOptions` properties
-
-- `ShowDenyButton`
-- `DenyButtonText`
-- `DenyButtonColor`
-- `DenyButtonAriaLabel`
-- `FocusDeny`
-- `CustomerClass.DenyButton`
-
-#### Additional `SweetAlertResult` and `SweetAlertQueueResult` properties
-
-- `IsDenied`
-
-#### Additional `SweetAlertService` methods
-
-- `Swal.ClickDenyAsync()`
-
-**NB**: There is no `Swal.GetDenyButtonAsync()` method as methods which return HTMLElements are not included in the wrapper library.
-
-### Loader HTML
-
-As part of the breaking change in `sweetalert2@10` there is a new options property to set custom HTML for the loader.
-
-#### Additional `SweetlertOptions` properties
-
-- `LoaderHtml`
-
-### Icon Color
-
-Introduced in [sweetalert2@10.1](https://github.com/sweetalert2/sweetalert2/releases/tag/v10.1.0), there is a new options property to set the color of the popup icon.
-
-#### Additional `SweetlertOptions` properties
-
-- `IconColor`
+- `InputLabel`
+- `CustomClass.ValidationMessage`
 
 ## Dependencies
 
-- bump `sweetalert2` to `10.1.0`
-- bump `@sweetalert2/themes` to `4.0.0`
+- bump `sweetalert2` to `10.5.1`
+- bump `Microsoft.AspNetCore.Components` to `3.1.9`
+- bump `Microsoft.AspNetCore.Components.Web` to `3.1.9`
 
-For more information, read the [sweetalert2 v10.0.0 release](https://github.com/sweetalert2/sweetalert2/releases/tag/v10.0.0).
+### Webpack 5
+
+Webpack 5 is now used behind the scenes to create the JavaScript component of the wrapper, which uses more modern JavaScript syntax for slightly smaller file sizes.
+
+**NB:** *The IE11 Compat version wich contains some polyfills still uses the more traditional JS syntax.*

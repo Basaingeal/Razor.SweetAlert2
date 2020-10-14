@@ -34,6 +34,8 @@
 
 👉 **Upgrading from v2.x to v3.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v3.0.0)
 
+👉 **Upgrading from v3.x to v4.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v4.0.0)
+
 ## This package is for both Blazor Server Apps and Blazor WebAssembly Apps. It should be used instead of [`CurrieTechnologies.Blazor.SweetAlert2`](https://github.com/Basaingeal/Blazor.SweetAlert2) which is now deprecated.
 
 ### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
@@ -223,7 +225,7 @@ _See [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@me
 
 - No methods that return an HTMLElement are included (e. g. `Swal.getContainer()`)
 - The value of a `SweetAlertResult` (`result.Value`) can only be a string (or a collection of strings if returned from a queue request). Numbers and booleans must be converted. Object must be parsed to/from JSON in your code.
-- `OnOpenAsync()`, `OnCloseAsync()`, `OnBeforeOpenAsync()`, and `OnAfterCloseAsync()` can all take asynchronous callbacks. 🎉 (none will return an HTMLElement though.)
+- `DidOpenAsync()`, `WillCloseAsync()`, `WillOpenAsync()`, and `DidCloseAsync()` can all take asynchronous callbacks. 🎉 (none will return an HTMLElement though.)
 - No support for `<optgroup>` in the select input type.
 - No async option for `InputOptions` or `InputValue`
 - Callbacks must be passed inside of objects specifically designed for the given callback property. e.g. the `InputValidator` property takes an `InputValidatorCallback` created like so:
