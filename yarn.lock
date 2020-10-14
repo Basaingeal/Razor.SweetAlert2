@@ -6129,10 +6129,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sweetalert2@10.5.0:
-  version "10.5.0"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.5.0.tgz#87bde47951b9c068ad5267e86ee83a32f8459ce1"
-  integrity sha512-L+NuDiUbSH0/+0r7MSWaHq5avlQoBIBgmvZSpE+nani/jahstkoNIW2o/pnglJnNGiyIkGtcpr2iP5UQOqqWDQ==
+sweetalert2@10.5.1:
+  version "10.5.1"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.5.1.tgz#277c20f4977c7524168e13fed579e5c21d18e1dd"
+  integrity sha512-WU2rcWJldFKSxLmO+nBRVZfK5+/XHonQXLYbjiY/r+OFpGkpiHpaqg7hysVGQ+paAWk2BZK+QKiUYL3RK7dnMw==
 
 table-layout@^1.0.0:
   version "1.0.1"
