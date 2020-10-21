@@ -135,6 +135,8 @@ export default interface SimpleSweetAlertOptions {
 
   inputValidator: boolean;
 
+  returnInputValueOnDeny?: boolean;
+
   validationMessage?: string;
 
   inputClass?: string;
