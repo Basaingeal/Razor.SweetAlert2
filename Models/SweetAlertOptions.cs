@@ -352,6 +352,12 @@
         public InputValidatorCallback InputValidator { get; set; }
 
         /// <summary>
+        /// If you want to return the input value as `Result.Value` when denying the popup, set to `true`.
+        /// Otherwise, the denying will set `Result.Value` to `false`.
+        /// </summary>
+        public bool? ReturnInputValueOnDeny { get; set; }
+
+        /// <summary>
         /// A custom validation message for default validators (email, url).
         /// </summary>
         public string ValidationMessage { get; set; }
@@ -485,6 +491,7 @@
                 InputAutoTrim = this.InputAutoTrim,
                 InputAttributes = this.InputAttributes,
                 InputValidator = this.InputValidator != null,
+                ReturnInputValueOnDeny = this.ReturnInputValueOnDeny,
                 ValidationMessage = this.ValidationMessage,
                 ProgressSteps = this.ProgressSteps,
                 CurrentProgressStep = this.CurrentProgressStep,

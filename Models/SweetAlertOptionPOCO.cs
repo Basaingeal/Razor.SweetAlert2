@@ -128,6 +128,8 @@
 
         public bool InputValidator { get; set; }
 
+        public bool? ReturnInputValueOnDeny { get; set; }
+
         public string ValidationMessage { get; set; }
 
         public IEnumerable<string> ProgressSteps { get; set; }
