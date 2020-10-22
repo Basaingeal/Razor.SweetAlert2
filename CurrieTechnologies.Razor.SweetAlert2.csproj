@@ -9,7 +9,7 @@
     <Description>
       A Razor class library for interacting with SweetAlert2.
       Use in Blazor Server Apps or Blazor WebAssembly Apps.
-      Currently using sweetalert2@10.5.1
+      Currently using sweetalert2@10.7.0
     </Description>
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -19,10 +19,9 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      bump sweetalert2 to 10.5.1
-      Rename lifecycle hooks
-      New InputLabel property
-      New ValidationMessage CustomClass property
+      bump sweetalert2 to 10.7.0
+      New ReturnInputValueOnDeny  property
+      New Loader CustomClass property
     </PackageReleaseNotes>
   </PropertyGroup>
 
