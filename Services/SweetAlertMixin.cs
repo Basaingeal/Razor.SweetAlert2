@@ -399,6 +399,7 @@
                 InputAutoTrim = newSettings.InputAutoTrim ?? this.storedOptions.InputAutoTrim,
                 InputAttributes = newSettings.InputAttributes ?? this.storedOptions.InputAttributes,
                 InputValidator = newSettings.InputValidator ?? this.storedOptions.InputValidator,
+                ReturnInputValueOnDeny = newSettings.ReturnInputValueOnDeny ?? this.storedOptions.ReturnInputValueOnDeny,
                 ValidationMessage = newSettings.ValidationMessage ?? this.storedOptions.ValidationMessage,
                 ProgressSteps = newSettings.ProgressSteps ?? this.storedOptions.ProgressSteps,
                 CurrentProgressStep = newSettings.CurrentProgressStep ?? this.storedOptions.CurrentProgressStep,
