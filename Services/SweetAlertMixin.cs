@@ -388,6 +388,7 @@
                 LoaderHtml = newSettings.LoaderHtml ?? this.storedOptions.LoaderHtml,
                 ShowLoaderOnConfirm = newSettings.ShowLoaderOnConfirm ?? this.storedOptions.ShowLoaderOnConfirm,
                 PreConfirm = newSettings.PreConfirm ?? this.storedOptions.PreConfirm,
+                PreDeny = newSettings.PreDeny ?? this.storedOptions.PreDeny,
                 ImageUrl = newSettings.ImageUrl ?? this.storedOptions.ImageUrl,
                 ImageWidth = newSettings.ImageWidth ?? this.storedOptions.ImageWidth,
                 ImageHeight = newSettings.ImageHeight ?? this.storedOptions.ImageHeight,

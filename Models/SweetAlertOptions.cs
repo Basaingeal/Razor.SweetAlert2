@@ -282,10 +282,22 @@
         public bool? ShowLoaderOnConfirm { get; set; }
 
         /// <summary>
-        /// Function to execute before confirm.
-        /// <para>Receives the value from the request, and returns a new value for the request.</para>
+        /// Function to execute before confirming, may be async or sync.
+        /// <para> Returned (or resolved) value can be:</para>
+        /// <para>"false" to prevent a popup from closing</para>
+        ///  <para>anything else to pass that value as the `Result.Value` of `Swal.FireAsync()`</para>
+        ///  <para>`null` to keep the default `Result.Value`</para>
         /// </summary>
         public PreConfirmCallback PreConfirm { get; set; }
+
+        /// <summary>
+        /// Function to execute before denying, may be async or sync.
+        /// <para> Returned (or resolved) value can be:</para>
+        /// <para>"false" to prevent a popup from closing</para>
+        ///  <para>anything else to pass that value as the `Result.Value` of `Swal.FireAsync()`</para>
+        ///  <para>`null` to keep the default `Result.Value`</para>
+        /// </summary>
+        public PreDenyCallback PreDeny { get; set; }
 
 #pragma warning disable CA1056 // Uri properties should not be strings
         /// <summary>
@@ -480,6 +492,7 @@
                 LoaderHtml = this.LoaderHtml,
                 ShowLoaderOnConfirm = this.ShowLoaderOnConfirm,
                 PreConfirm = this.PreConfirm != null,
+                PreDeny = this.PreDeny != null,
                 ImageUrl = this.ImageUrl,
                 ImageWidth = this.ImageWidth,
                 ImageHeight = this.ImageHeight,

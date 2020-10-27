@@ -101,6 +101,26 @@ function dispatchQueuePreConfirm(requestId: string, inputValue: any): Promise<an
   );
 }
 
+function dispatchPreDeny(requestId: string, inputValue: any): Promise<any> {
+  return DotNet.invokeMethodAsync(
+    namespace,
+    "ReceivePreDenyInput",
+    requestId,
+    getStringVersion(inputValue)
+  );
+}
+
+function dispatchQueuePreDeny(requestId: string, inputValue: any): Promise<any> {
+  const valArray: any[] = Array.isArray(inputValue) ? inputValue : [inputValue];
+
+  return DotNet.invokeMethodAsync(
+    namespace,
+    "ReceivePreDenyQueueInput",
+    requestId,
+    valArray.map((v): string => getStringVersion(v))
+  );
+}
+
 function dispatchInputValidator(requestId: string, inputValue: any): Promise<string> {
   return DotNet.invokeMethodAsync(namespace, "ReceiveInputValidatorInput", requestId, inputValue);
 }
@@ -153,12 +173,34 @@ function getSwalSettingsFromPoco(
     | SimpleSweetAlertOptions
     | SweetAlertOptions) as SweetAlertOptions;
 
+  function processPreConfirmDenyResult(value: any) {
+    if (value === null) {
+      return undefined;
+    }
+    if (value === "false") {
+      return false;
+    }
+    return value;
+  }
+
   if (settings.preConfirm) {
     swalSettings.preConfirm = isQueue
-      ? (inputValue): Promise<any> => dispatchQueuePreConfirm(requestId, inputValue)
-      : (inputValue): Promise<any> => dispatchPreConfirm(requestId, inputValue);
+      ? (inputValue): Promise<any> =>
+          dispatchQueuePreConfirm(requestId, inputValue).then(processPreConfirmDenyResult)
+      : (inputValue): Promise<any> =>
+          dispatchPreConfirm(requestId, inputValue).then(processPreConfirmDenyResult);
   } else {
     delete swalSettings.preConfirm;
+  }
+
+  if (settings.preDeny) {
+    swalSettings.preDeny = isQueue
+      ? (inputValue): Promise<any> =>
+          dispatchQueuePreDeny(requestId, inputValue).then(processPreConfirmDenyResult)
+      : (inputValue): Promise<any> =>
+          dispatchPreDeny(requestId, inputValue).then(processPreConfirmDenyResult);
+  } else {
+    delete swalSettings.preDeny;
   }
 
   if (settings.inputValidator) {

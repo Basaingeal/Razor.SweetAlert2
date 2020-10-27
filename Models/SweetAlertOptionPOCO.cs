@@ -106,6 +106,8 @@
 
         public bool PreConfirm { get; set; }
 
+        public bool PreDeny { get; set; }
+
         public string ImageUrl { get; set; }
 
         public double? ImageWidth { get; set; }
