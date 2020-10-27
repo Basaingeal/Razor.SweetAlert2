@@ -18,6 +18,9 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         private static readonly IDictionary<Guid, PreConfirmCallback> PreConfirmCallbacks =
             new Dictionary<Guid, PreConfirmCallback>();
 
+        private static readonly IDictionary<Guid, PreDenyCallback> PreDenyCallbacks =
+            new Dictionary<Guid, PreDenyCallback>();
+
         private static readonly IDictionary<Guid, SweetAlertCallback> DidOpenCallbacks =
             new Dictionary<Guid, SweetAlertCallback>();
 
@@ -151,6 +154,11 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             if (settings.PreConfirm != null)
             {
                 PreConfirmCallbacks.Add(requestId, settings.PreConfirm);
+            }
+
+            if (settings.PreDeny != null)
+            {
+                PreDenyCallbacks.Add(requestId, settings.PreDeny);
             }
 
             if (settings.InputValidator != null)
@@ -550,7 +558,6 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             PreConfirmCallbacks.TryGetValue(requestIdGuid, out PreConfirmCallback callback);
-            PreConfirmCallbacks.Remove(requestIdGuid);
             return callback.InvokeAsync(inputValue);
         }
 
@@ -559,6 +566,22 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             var requestIdGuid = Guid.Parse(requestId);
             PreConfirmCallbacks.TryGetValue(requestIdGuid, out PreConfirmCallback callback);
+            return callback.InvokeAsync(inputValue);
+        }
+
+        [JSInvokable]
+        public static Task<string> ReceivePreDenyInput(string requestId, string inputValue)
+        {
+            var requestIdGuid = Guid.Parse(requestId);
+            PreDenyCallbacks.TryGetValue(requestIdGuid, out PreDenyCallback callback);
+            return callback.InvokeAsync(inputValue);
+        }
+
+        [JSInvokable]
+        public static Task<IEnumerable<string>> ReceivePreDenyQueueInput(string requestId, IEnumerable<string> inputValue)
+        {
+            var requestIdGuid = Guid.Parse(requestId);
+            PreDenyCallbacks.TryGetValue(requestIdGuid, out PreDenyCallback callback);
             return callback.InvokeAsync(inputValue);
         }
 

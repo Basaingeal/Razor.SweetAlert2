@@ -111,6 +111,8 @@ export default interface SimpleSweetAlertOptions {
 
   preConfirm: boolean;
 
+  preDeny: boolean;
+
   imageUrl?: string;
 
   imageWidth?: number;
