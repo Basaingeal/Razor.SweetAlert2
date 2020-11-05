@@ -19,10 +19,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
-      bump sweetalert2 to 10.9.0
-      bump @sweetalert2/themes to 4.0.1
-      New PreDeny callback property
-      New functionality on PreConfirm callback
+      expose JS Swal object to DOM window
     </PackageReleaseNotes>
   </PropertyGroup>
 
