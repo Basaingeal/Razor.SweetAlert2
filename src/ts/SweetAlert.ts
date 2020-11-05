@@ -16,7 +16,7 @@ declare const DotNet: any;
 const domWindow = window as any;
 const namespace = "CurrieTechnologies.Razor.SweetAlert2";
 
-domWindow.Swal = Swal
+domWindow.Swal = Swal;
 
 function getEnumNumber(enumString: Swal.DismissReason): number | undefined {
   switch (enumString) {
