@@ -33,84 +33,83 @@ module.exports = [
       wordpressAdminTheme: "./src/scss/wordpress-admin-theme.scss",
       "wordpressAdminTheme.min": "./src/scss/wordpress-admin-theme.scss",
       bulmaTheme: "./src/scss/bulma-theme.scss",
-      "bulmaTheme.min": "./src/scss/bulma-theme.scss"
+      "bulmaTheme.min": "./src/scss/bulma-theme.scss",
     },
     output: {
       filename: "[name].js",
-      path: path.resolve(__dirname, "wwwroot")
+      path: path.resolve(__dirname, "wwwroot"),
     },
     module: {
       rules: [
         {
           test: /\.ts$/,
           use: "babel-loader",
-          exclude: /node_modules/
+          exclude: /node_modules/,
         },
         {
           test: /\.(sass|scss)$/,
           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-          exclude: /node_modules/
-        }
-      ]
+          exclude: /node_modules/,
+        },
+      ],
     },
     plugins: [
       new MiniCssExtractPlugin({
         filename: "[name].css",
-        path: path.resolve(__dirname, "wwwroot")
       }),
     ],
     optimization: {
       minimizer: [
         new TerserJSPlugin({
-          include: /\.min\.js$/
+          include: /\.min\.js$/,
         }),
         new OptimizeCSSAssetsPlugin({
-          assetNameRegExp: /\.min\.css$/
-        })
+          assetNameRegExp: /\.min\.css$/,
+        }),
       ],
     },
     resolve: {
       extensions: [".ts", ".scss", ".js"],
     },
-    stats: 'normal'
+    stats: "normal",
   },
   {
     entry: {
       "sweetAlert2.ieCompat": "./src/ts/SweetAlert.ts",
-      "sweetAlert2.ieCompat.min": "./src/ts/SweetAlert.ts"
+      "sweetAlert2.ieCompat.min": "./src/ts/SweetAlert.ts",
     },
     output: {
       filename: "[name].js",
-      path: path.resolve(__dirname, "wwwroot")
+      path: path.resolve(__dirname, "wwwroot"),
     },
-    target: ['web', 'es5'],
+    target: ["web", "es5"],
     module: {
       rules: [
         {
           test: /\.ts$/,
           use: {
             loader: "babel-loader",
-            options: getIECompatBabelLoaderOptions()
+            options: getIECompatBabelLoaderOptions(),
           },
-          exclude: /node_modules/
+          exclude: /node_modules/,
         },
         {
           test: /\.(sass|scss)$/,
           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-          exclude: /node_modules/
-        }
-      ]
+          exclude: /node_modules/,
+        },
+      ],
     },
     optimization: {
       minimizer: [
         new TerserJSPlugin({
-          include: /\.min\.js$/
-        })
-      ]
+          include: /\.min\.js$/,
+        }),
+      ],
     },
     resolve: {
       extensions: [".ts", ".js"],
     },
-    stats: 'normal'
-  }
+    stats: "normal",
+  },
 ];
