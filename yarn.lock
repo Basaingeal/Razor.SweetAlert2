@@ -4277,10 +4277,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sweetalert2@10.10.1:
-  version "10.10.1"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.10.1.tgz#47c46929eff4837c8296836aa169073bae418031"
-  integrity sha512-lUdjFEE3ZKJ9OIhIZ1v3yAMwC5gGsBz5N/+FvTVY0Ttw+ZVcoIIPX2K4V+p+PKnFChm0Pan1j8xwYLgcvt0O7g==
+sweetalert2@10.12.7:
+  version "10.12.7"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.12.7.tgz#1a8bfa018a87233bb1325faee5099cb48bd14cf4"
+  integrity sha512-nzT2WtZSxu8ZAeqYlfIri+Wuf3OWH+g4rR0rcoFgApACoHTrW+0iqLUXtZ7OdpDERIKvJi1EKNAbvKSN34Hbcg==
 
 table@^6.0.4:
   version "6.0.4"
