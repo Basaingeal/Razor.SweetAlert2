@@ -1000,10 +1000,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@sweetalert2/themes@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-4.0.1.tgz#ba07a40743fd439663341480c20360116c2e1f27"
-  integrity sha512-dE+SXd0ym2RUkDQT/rVyBIwe6QIKl1cfBF3133XdLeXVKUR+XEtkr1uVBK821uX5DRQfN9doJmVCd2jFdG/qXw==
+"@sweetalert2/themes@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-4.0.2.tgz#f49bc758539ba7916c3f0244c227070df1a7cc08"
+  integrity sha512-SbpJre8YPnrRA+1U94vqg7hMpMNN9suRX0YCFb2wV7asLDwAAFbU1u1LtFw0C5Ac9fm9YE068b3ZR+XalowLiQ==
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
