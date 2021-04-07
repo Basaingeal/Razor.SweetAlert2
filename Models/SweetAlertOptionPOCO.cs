@@ -94,6 +94,8 @@
 
         public bool? FocusCancel { get; set; }
 
+        public bool? ReturnFocus { get; set; }
+
         public bool? ShowCloseButton { get; set; }
 
         public string CloseButtonHtml { get; set; }
@@ -103,6 +105,8 @@
         public string LoaderHtml { get; set; }
 
         public bool? ShowLoaderOnConfirm { get; set; }
+
+        public bool? ShowLoaderOnDeny { get; set; }
 
         public bool PreConfirm { get; set; }
 

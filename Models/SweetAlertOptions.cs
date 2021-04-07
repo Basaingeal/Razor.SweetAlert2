@@ -257,6 +257,11 @@
         public bool? FocusCancel { get; set; }
 
         /// <summary>
+        /// Set to false if you don't want to return the focus to the element that invoked the modal after the modal is closed.
+        /// </summary>
+        public bool? ReturnFocus { get; set; }
+
+        /// <summary>
         /// Set to true to show close button in top right corner of the modal.
         /// </summary>
         public bool? ShowCloseButton { get; set; }
@@ -277,9 +282,14 @@
         public string LoaderHtml { get; set; }
 
         /// <summary>
-        /// Set to true to disable buttons and show that something is loading. Useful for AJAX requests.
+        /// Set to true to disable buttons and show the loader instead of the Confirm button
         /// </summary>
         public bool? ShowLoaderOnConfirm { get; set; }
+
+        /// <summary>
+        /// Set to true to disable buttons and show the loader instead of the Deny button.
+        /// </summary>
+        public bool? ShowLoaderOnDeny { get; set; }
 
         /// <summary>
         /// Function to execute before confirming, may be async or sync.
@@ -486,11 +496,13 @@
                 FocusConfirm = this.FocusConfirm,
                 FocusDeny = this.FocusDeny,
                 FocusCancel = this.FocusCancel,
+                ReturnFocus = this.ReturnFocus,
                 ShowCloseButton = this.ShowCloseButton,
                 CloseButtonHtml = this.CloseButtonHtml,
                 CloseButtonAriaLabel = this.CloseButtonAriaLabel,
                 LoaderHtml = this.LoaderHtml,
                 ShowLoaderOnConfirm = this.ShowLoaderOnConfirm,
+                ShowLoaderOnDeny = this.ShowLoaderOnDeny,
                 PreConfirm = this.PreConfirm != null,
                 PreDeny = this.PreDeny != null,
                 ImageUrl = this.ImageUrl,

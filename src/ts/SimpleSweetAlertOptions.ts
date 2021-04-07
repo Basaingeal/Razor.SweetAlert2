@@ -99,6 +99,8 @@ export default interface SimpleSweetAlertOptions {
 
   focusCancel?: boolean;
 
+  returnFocus?: boolean;
+
   showCloseButton?: boolean;
 
   closeButtonHtml?: string;
@@ -108,6 +110,8 @@ export default interface SimpleSweetAlertOptions {
   loaderHtml?: string;
 
   showLoaderOnConfirm?: boolean;
+
+  showLoaderOnDeny?: boolean;
 
   preConfirm: boolean;
 

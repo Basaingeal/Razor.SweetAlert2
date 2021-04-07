@@ -18,7 +18,11 @@
 
         public string Content { get; set; }
 
+        public string HtmlContainer { get; set; }
+
         public string Input { get; set; }
+
+        public string InputLabel { get; set; }
 
         public string ValidationMessage { get; set; }
 
