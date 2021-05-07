@@ -66,7 +66,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 .Select(kvp => new int[2] { (int)kvp.Key, (int)kvp.Value })
                 .ToArray();
 
-            SendThemesToJS();
+            _ = SendThemesToJS();
         }
 
         private async Task SendThemesToJS(){
