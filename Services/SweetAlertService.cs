@@ -443,6 +443,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Provide an array of SweetAlert2 parameters to show multiple modals, one modal after another.
         /// </summary>
         /// <param name="steps">The steps' configuration.</param>
+        [Obsolete]
         public async Task<SweetAlertQueueResult> QueueAsync(IEnumerable<SweetAlertOptions> steps)
         {
             var requestId = Guid.NewGuid();
@@ -466,6 +467,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <summary>
         /// Gets the index of current modal in queue. When there's no active queue, null will be returned.
         /// </summary>
+        [Obsolete]
         public Task<string> GetQueueStepAsync()
         {
             return jSRuntime.InvokeAsync<string>("CurrieTechnologies.Razor.SweetAlert2.GetQueueStep").AsTask();
@@ -476,6 +478,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         /// <param name="step">The step configuration (same object as in the Swal.fire() call).</param>
         /// <param name="index">The index to insert the step at. By default a modal will be added to the end of a queue.</param>
+        [Obsolete]
         public Task<double> InsertQueueStepAsync(SweetAlertOptions step, double? index = null)
         {
             if (step == null)
@@ -492,6 +495,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// Deletes the modal at the specified index in the queue.
         /// </summary>
         /// <param name="index">The modal index in the queue.</param>
+        [Obsolete]
         public async Task DeleteQueueStepAsync(double index)
         {
             await jSRuntime.InvokeAsync<object>("CurrieTechnologies.Razor.SweetAlert2.DeleteQueueStep", index)
