@@ -989,10 +989,10 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@sweetalert2/themes@^4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-4.0.3.tgz#41c8a4a97bbfd279cccc6e6ac42eeb0e888b0979"
-  integrity sha512-KG+ouxP53SCjqnxiAduZ5s++HRC41vhk7ywKpMU7dDJmQB0nK1hIZtompRjSp/cCvk58KH8FxfvzijkYEUqQxQ==
+"@sweetalert2/themes@^4.0.5":
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/themes/-/themes-4.0.5.tgz#d0ff4528657ddfec90dcd6384a5a0feb4f9f190a"
+  integrity sha512-KVuWzJdv8GQr5aoHq8yt2VA+raEqIne9SM1VyL4djLSxBKjk7qNjoNigqKjUzSnMXLOcFg40KcEbKDDr2kuw/Q==
 
 "@types/eslint-scope@^3.7.0":
   version "3.7.0"
