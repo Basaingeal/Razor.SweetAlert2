@@ -9,7 +9,7 @@
     <Description>
       A Razor class library for interacting with SweetAlert2.
       Use in Blazor Server Apps or Blazor WebAssembly Apps.
-      Currently using sweetalert2@10.16.0
+      Currently using sweetalert2@10.16.7
     </Description>
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -20,12 +20,7 @@
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReleaseNotes>
       bump sweetalert2
-      bump Microsoft.AspNetCore.Components
-      bump Microsoft.AspNetCore.Components.Web
-      new CustomClass property: HtmlContainer
-      new CustomClass property: InputLabel
-      new SweetAlertOption property: ReturnFocus
-      new SweetAlertoption property: ShowLoaderOnDeny
+      fix issue when users specify their own JSON serialization settings
     </PackageReleaseNotes>
   </PropertyGroup>
 

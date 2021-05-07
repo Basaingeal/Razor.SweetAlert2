@@ -3,7 +3,7 @@ pull_request_rules:
     conditions:
       - status-success=Basaingeal.Razor.SweetAlert2
       - status-success=deepcode-ci-bot
-      - author=dependabot-preview[bot]
+      - author=dependabot[bot]
       - base=develop
       - head~=dependabot\/npm_and_yarn\/develop\/(?!sweetalert2).*
     actions:
