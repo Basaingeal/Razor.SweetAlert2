@@ -43,6 +43,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         private readonly CultureInfo _culture = CultureInfo.GetCultureInfo("en-US");
 
+        private readonly SweetAlertOptions _defaultOptions;
+
         private readonly IJSRuntime _jSRuntime;
 
         private readonly SweetAlertTheme _theme = SweetAlertTheme.Default;
@@ -60,6 +62,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             _colorSchemeThemes = options.ColorSchemeThemes
                 .Select(kvp => new[] {(int) kvp.Key, (int) kvp.Value})
                 .ToArray();
+
+            if (options.DefaultOptions != null) _defaultOptions = options.DefaultOptions;
 
             _ = SendThemesToJs();
         }
@@ -104,6 +108,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         {
             if (settings == null) throw new ArgumentNullException(nameof(settings));
 
+            if (_defaultOptions != null) settings = SweetAlertOptionsMixingService.Mix(_defaultOptions, settings);
+
             var tcs = new TaskCompletionSource<SweetAlertResult>();
             var requestId = Guid.NewGuid();
             PendingFireRequests.Add(requestId, tcs);
@@ -124,6 +130,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// <returns></returns>
         public SweetAlertMixin Mixin(SweetAlertOptions settings)
         {
+            if (_defaultOptions != null) settings = SweetAlertOptionsMixingService.Mix(_defaultOptions, settings);
             return new SweetAlertMixin(settings, this);
         }
 
@@ -164,6 +171,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         public async Task UpdateAsync(SweetAlertOptions newSettings)
         {
             if (newSettings == null) throw new ArgumentNullException(nameof(newSettings));
+            if (_defaultOptions != null) newSettings = SweetAlertOptionsMixingService.Mix(_defaultOptions, newSettings);
 
             var requestId = Guid.NewGuid();
             AddCallbackToDictionaries(newSettings, requestId);
