@@ -14,10 +14,11 @@
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Basaingeal/Razor.SweetAlert2</PackageProjectUrl>
-    <PackageIconUrl>https://currietechnologyimages.blob.core.windows.net/logos/logo_v2_128.png</PackageIconUrl>
+    <PackageIcon>logo_v2_128.png</PackageIcon>
     <RepositoryUrl>https://github.com/Basaingeal/Razor.SweetAlert2</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
       bump sweetalert2
       fix issue when users specify their own JSON serialization settings
@@ -36,6 +37,8 @@
   <ItemGroup>
     <None Include="package.json" />
     <None Include="tsconfig.json" />
+    <None Include="logo_v2_128.png" Pack="true" PackagePath="\"/>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <ItemGroup>
