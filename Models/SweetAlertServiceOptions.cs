@@ -12,6 +12,12 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         /// </summary>
         public SweetAlertTheme Theme { get; set; }
 
+
+        /// <summary>
+        ///     Set options to be used in every SweetAlert across the application
+        /// </summary>
+        public SweetAlertOptions DefaultOptions { get; set; }
+
         internal Dictionary<ColorScheme, SweetAlertTheme> ColorSchemeThemes { get; } =
             new Dictionary<ColorScheme, SweetAlertTheme>();
 
