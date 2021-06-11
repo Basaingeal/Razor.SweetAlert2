@@ -60,7 +60,7 @@ function getStringVersion(input: any): string {
 }
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
-  const myResult = (result as SweetAlertResult | EnumSweetAlertResult) as EnumSweetAlertResult;
+  const myResult = result as SweetAlertResult | EnumSweetAlertResult as EnumSweetAlertResult;
   myResult.value = myResult.value !== undefined ? getStringVersion(myResult.value) : undefined;
   myResult.dismiss = myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
@@ -171,9 +171,9 @@ function getSwalSettingsFromPoco(
   requestId: string,
   isQueue: boolean
 ): SweetAlertOptions {
-  const swalSettings = (cleanSettings(settings) as
+  const swalSettings = cleanSettings(settings) as
     | SimpleSweetAlertOptions
-    | SweetAlertOptions) as SweetAlertOptions;
+    | SweetAlertOptions as SweetAlertOptions;
 
   function processPreConfirmDenyResult(value: any) {
     if (value === null) {
@@ -421,7 +421,7 @@ razorSwal.Update = (requestId: string, settingsPoco: SimpleSweetAlertOptions): v
 };
 
 razorSwal.CloseResult = (result: SweetAlertResult): void => {
-  const dismissString = getEnumString((result.dismiss as any) as number);
+  const dismissString = getEnumString(result.dismiss as any as number);
   Swal.close({ ...result, dismiss: dismissString });
 };
 
