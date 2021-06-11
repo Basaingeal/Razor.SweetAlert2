@@ -15,8 +15,6 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         Task CloseAsync(SweetAlertResult result);
 
-        Task CloseAsync(SweetAlertQueueResult result);
-
         Task CloseAsync();
 
         Task UpdateAsync(SweetAlertOptions newSettings);
@@ -57,20 +55,10 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         Task<double?> IncreaseTimerAsync(double n);
 
-        Task<SweetAlertQueueResult> QueueAsync(IEnumerable<SweetAlertOptions> steps);
-
-        Task<string> GetQueueStepAsync();
-
-        Task<double> InsertQueueStepAsync(SweetAlertOptions step, double? index);
-
-
-        Task DeleteQueueStepAsync(double index);
-
-
         Task<bool> IsValidParameterAsync(string paramName);
 
         Task<bool> IsUpdatableParameterAsync(string paramName);
 
-        SweetAlertOptions ArgsToParams(IEnumerable<string> paramaters);
+        SweetAlertOptions ArgsToParams(IEnumerable<string> parameters);
     }
 }

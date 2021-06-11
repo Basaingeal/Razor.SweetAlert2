@@ -224,7 +224,7 @@ _See [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@me
 ## Notable differences from the JavaScript library
 
 - No methods that return an HTMLElement are included (e. g. `Swal.getContainer()`)
-- The value of a `SweetAlertResult` (`result.Value`) can only be a string (or a collection of strings if returned from a queue request). Numbers and booleans must be converted. Object must be parsed to/from JSON in your code.
+- The value of a `SweetAlertResult` (`result.Value`) can only be a string. Numbers and booleans must be converted. Object must be parsed to/from JSON in your code.
 - `DidOpenAsync()`, `WillCloseAsync()`, `WillOpenAsync()`, and `DidCloseAsync()` can all take asynchronous callbacks. 🎉 (none will return an HTMLElement though.)
 - No support for `<optgroup>` in the select input type.
 - No async option for `InputOptions` or `InputValue`

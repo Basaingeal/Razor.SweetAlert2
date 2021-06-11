@@ -1,19 +1,25 @@
-﻿namespace CurrieTechnologies.Razor.SweetAlert2
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+namespace CurrieTechnologies.Razor.SweetAlert2
+{
     public sealed class SweetAlertIcon
     {
         private static readonly Dictionary<string, SweetAlertIcon> Instance =
             new Dictionary<string, SweetAlertIcon>();
 
-        private readonly string name;
+        public static readonly SweetAlertIcon Success = new SweetAlertIcon("success");
+        public static readonly SweetAlertIcon Error = new SweetAlertIcon("error");
+        public static readonly SweetAlertIcon Warning = new SweetAlertIcon("warning");
+        public static readonly SweetAlertIcon Info = new SweetAlertIcon("info");
+        public static readonly SweetAlertIcon Question = new SweetAlertIcon("question");
+
+        private readonly string _name;
 
         private SweetAlertIcon(string name)
         {
-            this.name = name;
-            Instance[name] = this;
+            _name = name;
+            Instance[_name] = this;
         }
 
         public static implicit operator SweetAlertIcon(string str)
@@ -23,25 +29,15 @@
 
         public static SweetAlertIcon FromString(string str)
         {
-            if (Instance.TryGetValue(str, out SweetAlertIcon result))
-            {
+            if (Instance.TryGetValue(str, out var result))
                 return result;
-            }
-            else
-            {
-                throw new ArgumentException($"{nameof(SweetAlertIcon)} must be \"{Success}\", \"{Error}\", \"{Warning}\", \"{Info}\", or \"{Question}.\"");
-            }
+            throw new ArgumentException(
+                $"{nameof(SweetAlertIcon)} must be \"{Success}\", \"{Error}\", \"{Warning}\", \"{Info}\", or \"{Question}.\"");
         }
 
         public override string ToString()
         {
-            return this.name;
+            return _name;
         }
-
-        public static readonly SweetAlertIcon Success = new SweetAlertIcon("success");
-        public static readonly SweetAlertIcon Error = new SweetAlertIcon("error");
-        public static readonly SweetAlertIcon Warning = new SweetAlertIcon("warning");
-        public static readonly SweetAlertIcon Info = new SweetAlertIcon("info");
-        public static readonly SweetAlertIcon Question = new SweetAlertIcon("question");
     }
 }

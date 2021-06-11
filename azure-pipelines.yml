@@ -10,7 +10,6 @@ pr:
 
 variables:
   buildConfiguration: "Release"
-  YARN_CACHE_FOLDER: $(System.DefaultWorkingDirectory)/.yarn/cache
 
 stages:
   - stage: buildStage
@@ -21,31 +20,28 @@ stages:
         pool:
           vmImage: "windows-latest"
         steps:
-          - task: CacheBeta@1
+          - task: Npm@1
+            displayName: "Installing NPM Packages"
             inputs:
-              key: "yarn | $(Agent.OS) | yarn.lock"
-              path: "$(YARN_CACHE_FOLDER)"
-            displayName: Cache Yarn Packages
+              command: install
 
-          - task: Yarn@3
-            displayName: "Installing Yarn Packages"
-            inputs:
-              arguments: install --freeze-lockfile
-
-          - task: Yarn@3
+          - task: Npm@1
             displayName: "Linting"
             inputs:
-              arguments: lint
+              command: custom
+              customCommand: run lint
 
-          - task: Yarn@3
+          - task: Npm@1
             displayName: "Checking Prettier"
             inputs:
-              arguments: prettier:check
+              command: custom
+              customCommand: run prettier:check
 
-          - task: Yarn@3
+          - task: Npm@1
             displayName: "Checking Types"
             inputs:
-              arguments: build:tsc
+              command: custom
+              customCommand: run build:tsc
 
       - job: buildLibrary
         displayName: Build
@@ -58,21 +54,16 @@ stages:
             inputs:
               filePath: "./versioning.ps1"
 
-          - task: CacheBeta@1
+          - task: Npm@1
+            displayName: "Installing NPM Packages"
             inputs:
-              key: "yarn | $(Agent.OS) | yarn.lock"
-              path: "$(YARN_CACHE_FOLDER)"
-            displayName: Cache Yarn Packages
+              command: "install"
 
-          - task: Yarn@3
-            displayName: "Installing Yarn Packages"
-            inputs:
-              arguments: install --freeze-lockfile
-
-          - task: Yarn@3
+          - task: Npm@1
             displayName: "Building JS and CSS"
             inputs:
-              arguments: build
+              command: custom
+              customCommand: "run build"
 
           - task: DotNetCoreCLI@2
             displayName: "Restoring Nuget Packages"
@@ -120,15 +111,15 @@ stages:
                 - task: GitHubRelease@1
                   displayName: Create GitHub Release
                   inputs:
-                    gitHubConnection: 'github connection 1'
-                    repositoryName: '$(Build.Repository.Name)'
-                    action: 'create'
-                    target: '$(Build.SourceVersion)'
-                    tagSource: 'userSpecifiedTag'
-                    tag: 'v$(Build.BuildNumber)'
-                    title: 'v$(Build.BuildNumber)'
-                    releaseNotesFilePath: '$(Pipeline.Workspace)/Changelog/CHANGELOG.md'
-                    assets: '$(Pipeline.Workspace)/NuGetPackage/*.nupkg'
+                    gitHubConnection: "github connection 1"
+                    repositoryName: "$(Build.Repository.Name)"
+                    action: "create"
+                    target: "$(Build.SourceVersion)"
+                    tagSource: "userSpecifiedTag"
+                    tag: "v$(Build.BuildNumber)"
+                    title: "v$(Build.BuildNumber)"
+                    releaseNotesFilePath: "$(Pipeline.Workspace)/Changelog/CHANGELOG.md"
+                    assets: "$(Pipeline.Workspace)/NuGetPackage/*.nupkg"
                     addChangeLog: false
 
       - deployment: privateNuget

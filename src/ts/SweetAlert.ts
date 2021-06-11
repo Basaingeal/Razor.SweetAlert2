@@ -8,7 +8,6 @@ import Swal, {
   SweetAlertUpdatableParameters,
 } from "sweetalert2";
 import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
-import SweetAlertQueueResult from "./SweetAlertQueueResult";
 import EnumSweetAlertResult from "./EnumSweetAlertResult";
 import { ColorSchemeDictionary } from "./ColorSchemeDictionary";
 
@@ -60,27 +59,10 @@ function getStringVersion(input: any): string {
 }
 
 function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
-  const myResult = (result as SweetAlertResult | EnumSweetAlertResult) as EnumSweetAlertResult;
+  const myResult = result as SweetAlertResult | EnumSweetAlertResult as EnumSweetAlertResult;
   myResult.value = myResult.value !== undefined ? getStringVersion(myResult.value) : undefined;
   myResult.dismiss = myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss) : undefined;
   return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
-}
-
-const flatten = (arr: any[]): any[] =>
-  arr.reduce((flat, next): any[] => flat.concat(Array.isArray(next) ? flatten(next) : next), []);
-//arr.flat(Infinity)
-
-function dispatchQueueResult(requestId: string, result: SweetAlertResult): Promise<void> {
-  const queueResult = result as SweetAlertQueueResult;
-  queueResult.value =
-    queueResult.value !== undefined
-      ? flatten(queueResult.value).map((v: any): string | undefined =>
-          v !== undefined ? getStringVersion(v) : undefined
-        )
-      : undefined;
-  queueResult.dismiss =
-    queueResult.dismiss !== undefined ? getEnumNumber(queueResult.dismiss) : undefined;
-  return DotNet.invokeMethodAsync(namespace, "ReceiveQueueResult", requestId, queueResult);
 }
 
 function dispatchPreConfirm(requestId: string, inputValue: any): Promise<any> {
@@ -92,34 +74,12 @@ function dispatchPreConfirm(requestId: string, inputValue: any): Promise<any> {
   );
 }
 
-function dispatchQueuePreConfirm(requestId: string, inputValue: any): Promise<any> {
-  const valArray: any[] = Array.isArray(inputValue) ? inputValue : [inputValue];
-
-  return DotNet.invokeMethodAsync(
-    namespace,
-    "ReceivePreConfirmQueueInput",
-    requestId,
-    valArray.map((v): string => getStringVersion(v))
-  );
-}
-
 function dispatchPreDeny(requestId: string, inputValue: any): Promise<any> {
   return DotNet.invokeMethodAsync(
     namespace,
     "ReceivePreDenyInput",
     requestId,
     getStringVersion(inputValue)
-  );
-}
-
-function dispatchQueuePreDeny(requestId: string, inputValue: any): Promise<any> {
-  const valArray: any[] = Array.isArray(inputValue) ? inputValue : [inputValue];
-
-  return DotNet.invokeMethodAsync(
-    namespace,
-    "ReceivePreDenyQueueInput",
-    requestId,
-    valArray.map((v): string => getStringVersion(v))
   );
 }
 
@@ -168,12 +128,11 @@ function cleanSettings(settings: SimpleSweetAlertOptions): SimpleSweetAlertOptio
 
 function getSwalSettingsFromPoco(
   settings: SimpleSweetAlertOptions,
-  requestId: string,
-  isQueue: boolean
+  requestId: string
 ): SweetAlertOptions {
-  const swalSettings = (cleanSettings(settings) as
+  const swalSettings = cleanSettings(settings) as
     | SimpleSweetAlertOptions
-    | SweetAlertOptions) as SweetAlertOptions;
+    | SweetAlertOptions as SweetAlertOptions;
 
   function processPreConfirmDenyResult(value: any) {
     if (value === null) {
@@ -186,21 +145,15 @@ function getSwalSettingsFromPoco(
   }
 
   if (settings.preConfirm) {
-    swalSettings.preConfirm = isQueue
-      ? (inputValue): Promise<any> =>
-          dispatchQueuePreConfirm(requestId, inputValue).then(processPreConfirmDenyResult)
-      : (inputValue): Promise<any> =>
-          dispatchPreConfirm(requestId, inputValue).then(processPreConfirmDenyResult);
+    swalSettings.preConfirm = (inputValue): Promise<any> =>
+      dispatchPreConfirm(requestId, inputValue).then(processPreConfirmDenyResult);
   } else {
     delete swalSettings.preConfirm;
   }
 
   if (settings.preDeny) {
-    swalSettings.preDeny = isQueue
-      ? (inputValue): Promise<any> =>
-          dispatchQueuePreDeny(requestId, inputValue).then(processPreConfirmDenyResult)
-      : (inputValue): Promise<any> =>
-          dispatchPreDeny(requestId, inputValue).then(processPreConfirmDenyResult);
+    swalSettings.preDeny = (inputValue): Promise<any> =>
+      dispatchPreDeny(requestId, inputValue).then(processPreConfirmDenyResult);
   } else {
     delete swalSettings.preDeny;
   }
@@ -390,24 +343,10 @@ razorSwal.Fire = (
 };
 
 razorSwal.FireSettings = (requestId: string, settingsPoco: SimpleSweetAlertOptions): void => {
-  const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
+  const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId);
 
   Swal.fire(swalSettings).then((result): void => {
     dispatchFireResult(requestId, result);
-  });
-};
-
-razorSwal.Queue = (
-  requestId: string,
-  optionIds: string[],
-  steps: SimpleSweetAlertOptions[]
-): void => {
-  const arrSwalSettings: SweetAlertOptions[] = optionIds.map(
-    (optionId, i): SweetAlertOptions => getSwalSettingsFromPoco(steps[i], optionId, true)
-  );
-
-  Swal.queue(arrSwalSettings).then((result: any): void => {
-    dispatchQueueResult(requestId, result);
   });
 };
 
@@ -416,12 +355,12 @@ razorSwal.IsVisible = (): boolean => {
 };
 
 razorSwal.Update = (requestId: string, settingsPoco: SimpleSweetAlertOptions): void => {
-  const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
+  const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId);
   Swal.update(swalSettings);
 };
 
 razorSwal.CloseResult = (result: SweetAlertResult): void => {
-  const dismissString = getEnumString((result.dismiss as any) as number);
+  const dismissString = getEnumString(result.dismiss as any as number);
   Swal.close({ ...result, dismiss: dismissString });
 };
 
@@ -499,23 +438,6 @@ razorSwal.IsTimerRunning = (): boolean | undefined => {
 
 razorSwal.IncreaseTimer = (n: number): number | undefined => {
   return Swal.increaseTimer(n);
-};
-
-razorSwal.GetQueueStep = (): string | null => {
-  return Swal.getQueueStep();
-};
-
-razorSwal.InsertQueueStep = (
-  requestId: string,
-  step: SimpleSweetAlertOptions,
-  index?: number
-): number => {
-  const stepSettings = getSwalSettingsFromPoco(step, requestId, true);
-  return Swal.insertQueueStep(stepSettings, index);
-};
-
-razorSwal.DeleteQueueStep = (index: number): void => {
-  Swal.deleteQueueStep(index);
 };
 
 razorSwal.IsValidParameter = (paramName: keyof SweetAlertOptions): boolean => {
