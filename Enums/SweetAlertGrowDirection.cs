@@ -1,19 +1,24 @@
-﻿namespace CurrieTechnologies.Razor.SweetAlert2
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+namespace CurrieTechnologies.Razor.SweetAlert2
+{
     public sealed class SweetAlertGrowDirection
     {
         private static readonly Dictionary<string, SweetAlertGrowDirection> Instance =
             new Dictionary<string, SweetAlertGrowDirection>();
 
-        private readonly string name;
+        public static readonly SweetAlertGrowDirection Row = new SweetAlertGrowDirection("row");
+        public static readonly SweetAlertGrowDirection Column = new SweetAlertGrowDirection("column");
+        public static readonly SweetAlertGrowDirection Fullscreen = new SweetAlertGrowDirection("fullscreen");
+        public static readonly SweetAlertGrowDirection False = new SweetAlertGrowDirection("false");
+
+        private readonly string _name;
 
         public SweetAlertGrowDirection(string name)
         {
-            this.name = name;
-            Instance[name] = this;
+            _name = name;
+            Instance[_name] = this;
         }
 
         public static implicit operator SweetAlertGrowDirection(string str)
@@ -23,14 +28,10 @@
 
         public static SweetAlertGrowDirection FromString(string str)
         {
-            if (Instance.TryGetValue(str, out SweetAlertGrowDirection result))
-            {
+            if (Instance.TryGetValue(str, out var result))
                 return result;
-            }
-            else
-            {
-                throw new ArgumentException($"{nameof(SweetAlertGrowDirection)} must be \"{Row}\", \"{Column}\", \"{Fullscreen}\", or {False}");
-            }
+            throw new ArgumentException(
+                $"{nameof(SweetAlertGrowDirection)} must be \"{Row}\", \"{Column}\", \"{Fullscreen}\", or {False}");
         }
 
         public static implicit operator SweetAlertGrowDirection(bool boolean)
@@ -41,23 +42,13 @@
         public static SweetAlertGrowDirection FromBoolean(bool boolean)
         {
             if (boolean)
-            {
                 throw new ArgumentException("SweetAlertGrowDirection cannot be true.");
-            }
-            else
-            {
-                return False;
-            }
+            return False;
         }
 
         public override string ToString()
         {
-            return this.name;
+            return _name;
         }
-
-        public static readonly SweetAlertGrowDirection Row = new SweetAlertGrowDirection("row");
-        public static readonly SweetAlertGrowDirection Column = new SweetAlertGrowDirection("column");
-        public static readonly SweetAlertGrowDirection Fullscreen = new SweetAlertGrowDirection("fullscreen");
-        public static readonly SweetAlertGrowDirection False = new SweetAlertGrowDirection("false");
     }
 }
