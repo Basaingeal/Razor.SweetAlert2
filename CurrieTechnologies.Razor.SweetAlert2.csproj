@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.0;</TargetFrameworks>
     <RazorLangVersion>3.0</RazorLangVersion>
     <Authors>Michael J. Currie</Authors>
     <Company>Currie Technologies</Company>
@@ -9,18 +9,21 @@
     <Description>
       A Razor class library for interacting with SweetAlert2.
       Use in Blazor Server Apps or Blazor WebAssembly Apps.
-      Currently using sweetalert2@10.16.7
+      Currently using sweetalert2@11.0.17
     </Description>
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Basaingeal/Razor.SweetAlert2</PackageProjectUrl>
-    <PackageIconUrl>https://currietechnologyimages.blob.core.windows.net/logos/logo_v2_128.png</PackageIconUrl>
+    <PackageIcon>logo_v2_128.png</PackageIcon>
     <RepositoryUrl>https://github.com/Basaingeal/Razor.SweetAlert2</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
       bump sweetalert2
-      fix issue when users specify their own JSON serialization settings
+      remove queueing functionality
+      default color adjustments
+      multi-targetting
     </PackageReleaseNotes>
   </PropertyGroup>
 
@@ -36,15 +39,32 @@
   <ItemGroup>
     <None Include="package.json" />
     <None Include="tsconfig.json" />
+    <None Include="logo_v2_128.png" Pack="true" PackagePath="\"/>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.14" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.14" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <!-- ReSharper disable UnknownProperty -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="[3.1.0, 5.0.0)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="[3.1.0, 5.0.0)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="[3.1.0, 5.0.0)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="[3.1.0, 5.0.0)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="[5.0.0, 6.0.0)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="[5.0.0, 6.0.0)" />
+  </ItemGroup>
+  <!-- ReSharper restore UnknownProperty -->
 
 </Project>

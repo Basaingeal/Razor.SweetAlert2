@@ -1,4 +1,5 @@
-﻿namespace CurrieTechnologies.Razor.SweetAlert2
+﻿// ReSharper disable InconsistentNaming
+namespace CurrieTechnologies.Razor.SweetAlert2
 {
     public enum SweetAlertTheme
     {

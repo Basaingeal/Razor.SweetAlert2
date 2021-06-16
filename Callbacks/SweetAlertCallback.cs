@@ -1,63 +1,56 @@
-﻿namespace CurrieTechnologies.Razor.SweetAlert2
-{
-    using Microsoft.AspNetCore.Components;
-    using System;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 
+namespace CurrieTechnologies.Razor.SweetAlert2
+{
     /// <summary>
-    /// A bound event handler delagate.
+    ///     A bound event handler delegate.
     /// </summary>
     public class SweetAlertCallback
     {
-        private readonly Action syncCallback;
-        private readonly Func<Task> asyncCallback;
-        private readonly EventCallback eventCallback;
+        private readonly Func<Task> _asyncCallback;
+        private readonly EventCallback _eventCallback;
+        private readonly Action _syncCallback;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SweetAlertCallback"/> class.
-        /// Creates a <see cref="SweetAlertCallback"/> for the provided <paramref name="receiver"/> and <paramref name="callback"/>.
+        ///     Initializes a new instance of the <see cref="SweetAlertCallback" /> class.
+        ///     Creates a <see cref="SweetAlertCallback" /> for the provided <paramref name="receiver" /> and
+        ///     <paramref name="callback" />.
         /// </summary>
         /// <param name="callback">The event callback.</param>
         /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
         public SweetAlertCallback(Action callback, ComponentBase receiver = null)
         {
-            this.syncCallback = callback;
-            if (receiver != null)
-            {
-                this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
-            }
+            _syncCallback = callback;
+            if (receiver != null) _eventCallback = EventCallback.Factory.Create(receiver, () => { });
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SweetAlertCallback"/> class.
-        /// Creates a <see cref="SweetAlertCallback"/> for the provided <paramref name="receiver"/> and <paramref name="callback"/>.
+        ///     Initializes a new instance of the <see cref="SweetAlertCallback" /> class.
+        ///     Creates a <see cref="SweetAlertCallback" /> for the provided <paramref name="receiver" /> and
+        ///     <paramref name="callback" />.
         /// </summary>
         /// <param name="callback">The event callback.</param>
         /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
         public SweetAlertCallback(Func<Task> callback, ComponentBase receiver = null)
         {
-            this.asyncCallback = callback;
-            if (receiver != null)
-            {
-                this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
-            }
+            _asyncCallback = callback;
+            if (receiver != null) _eventCallback = EventCallback.Factory.Create(receiver, () => { });
         }
 
         /// <summary>
-        /// Invokes the delegate associated with this binding and dispatches an event notification to the appropriate component.
+        ///     Invokes the delegate associated with this binding and dispatches an event notification to the appropriate
+        ///     component.
         /// </summary>
         public async Task InvokeAsync()
         {
-            if (this.asyncCallback != null)
-            {
-                await this.asyncCallback().ConfigureAwait(true);
-            }
+            if (_asyncCallback != null)
+                await _asyncCallback().ConfigureAwait(true);
             else
-            {
-                this.syncCallback();
-            }
+                _syncCallback();
 
-            await this.eventCallback.InvokeAsync(null).ConfigureAwait(true);
+            await _eventCallback.InvokeAsync(null).ConfigureAwait(true);
         }
     }
 }

@@ -1,42 +1,12 @@
-﻿namespace CurrieTechnologies.Razor.SweetAlert2
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+namespace CurrieTechnologies.Razor.SweetAlert2
+{
     public sealed class SweetAlertInputType
     {
         private static readonly Dictionary<string, SweetAlertInputType> Instance =
             new Dictionary<string, SweetAlertInputType>();
-
-        private readonly string name;
-
-        public SweetAlertInputType(string name)
-        {
-            this.name = name;
-            Instance[name] = this;
-        }
-
-        public static implicit operator SweetAlertInputType(string str)
-        {
-            return FromString(str);
-        }
-
-        public static SweetAlertInputType FromString(string str)
-        {
-            if (Instance.TryGetValue(str, out SweetAlertInputType result))
-            {
-                return result;
-            }
-            else
-            {
-                throw new ArgumentException($"{nameof(SweetAlertInputType)} must be \"${Text}\", \"{Email}\", \"{Password}\", \"{Number}\", \"{Tel}\", \"{Range}\", \"{Textarea}\", \"{Select}\", \"{Radio}\", \"{Checkbox}\", \"{Url}\", or \"{File}\""); ;
-            }
-        }
-
-        public override string ToString()
-        {
-            return this.name;
-        }
 
         public static readonly SweetAlertInputType Text = new SweetAlertInputType("text");
         public static readonly SweetAlertInputType Email = new SweetAlertInputType("email");
@@ -50,5 +20,31 @@
         public static readonly SweetAlertInputType Checkbox = new SweetAlertInputType("checkbox");
         public static readonly SweetAlertInputType Url = new SweetAlertInputType("url");
         internal static readonly SweetAlertInputType File = new SweetAlertInputType("file");
+
+        private readonly string _name;
+
+        public SweetAlertInputType(string name)
+        {
+            _name = name;
+            Instance[_name] = this;
+        }
+
+        public static implicit operator SweetAlertInputType(string str)
+        {
+            return FromString(str);
+        }
+
+        public static SweetAlertInputType FromString(string str)
+        {
+            if (Instance.TryGetValue(str, out var result)) return result;
+
+            throw new ArgumentException(
+                $"{nameof(SweetAlertInputType)} must be \"${Text}\", \"{Email}\", \"{Password}\", \"{Number}\", \"{Tel}\", \"{Range}\", \"{Textarea}\", \"{Select}\", \"{Radio}\", \"{Checkbox}\", \"{Url}\", or \"{File}\"");
+        }
+
+        public override string ToString()
+        {
+            return _name;
+        }
     }
 }

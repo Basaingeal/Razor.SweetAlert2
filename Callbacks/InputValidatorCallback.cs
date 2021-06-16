@@ -1,65 +1,58 @@
-﻿namespace CurrieTechnologies.Razor.SweetAlert2
-{
-    using Microsoft.AspNetCore.Components;
-    using System;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 
+namespace CurrieTechnologies.Razor.SweetAlert2
+{
     /// <summary>
-    /// A bound event handler delagate.
+    ///     A bound event handler delegate.
     /// </summary>
     public class InputValidatorCallback
     {
-        private readonly Func<string, Task<string>> asyncCallback;
-        private readonly Func<string, string> syncCallback;
-        private readonly EventCallback eventCallback;
+        private readonly Func<string, Task<string>> _asyncCallback;
+        private readonly EventCallback _eventCallback;
+        private readonly Func<string, string> _syncCallback;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InputValidatorCallback"/> class.
-        /// Creates an <see cref="InputValidatorCallback"/> for the provided <paramref name="receiver"/> and <paramref name="callback"/>.
+        ///     Initializes a new instance of the <see cref="InputValidatorCallback" /> class.
+        ///     Creates an <see cref="InputValidatorCallback" /> for the provided <paramref name="receiver" /> and
+        ///     <paramref name="callback" />.
         /// </summary>
         /// <param name="callback">The event callback.</param>
         /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
         public InputValidatorCallback(Func<string, Task<string>> callback, ComponentBase receiver = null)
         {
-            this.asyncCallback = callback;
-            if (receiver != null)
-            {
-                this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
-            }
+            _asyncCallback = callback;
+            if (receiver != null) _eventCallback = EventCallback.Factory.Create(receiver, () => { });
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InputValidatorCallback"/> class.
-        /// Creates an <see cref="InputValidatorCallback"/> for the provided <paramref name="receiver"/> and <paramref name="callback"/>.
+        ///     Initializes a new instance of the <see cref="InputValidatorCallback" /> class.
+        ///     Creates an <see cref="InputValidatorCallback" /> for the provided <paramref name="receiver" /> and
+        ///     <paramref name="callback" />.
         /// </summary>
         /// <param name="callback">The event callback.</param>
         /// <param name="receiver">The event receiver. Pass in `this` from the calling component.</param>
         public InputValidatorCallback(Func<string, string> callback, ComponentBase receiver = null)
         {
-            this.syncCallback = callback;
-            if (receiver != null)
-            {
-                this.eventCallback = EventCallback.Factory.Create(receiver, () => { });
-            }
+            _syncCallback = callback;
+            if (receiver != null) _eventCallback = EventCallback.Factory.Create(receiver, () => { });
         }
 
         /// <summary>
-        /// Invokes the delegate associated with this binding and dispatches an event notification to the appropriate component.
+        ///     Invokes the delegate associated with this binding and dispatches an event notification to the appropriate
+        ///     component.
         /// </summary>
         /// <param name="arg">The argument.</param>
         public async Task<string> InvokeAsync(string arg)
         {
             string ret;
-            if (this.asyncCallback != null)
-            {
-                ret = await this.asyncCallback(arg).ConfigureAwait(true);
-            }
+            if (_asyncCallback != null)
+                ret = await _asyncCallback(arg).ConfigureAwait(true);
             else
-            {
-                ret = this.syncCallback(arg);
-            }
+                ret = _syncCallback(arg);
 
-            await this.eventCallback.InvokeAsync(arg).ConfigureAwait(true);
+            await _eventCallback.InvokeAsync(arg).ConfigureAwait(true);
 
 
             return ret;

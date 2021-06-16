@@ -1,42 +1,12 @@
-﻿namespace CurrieTechnologies.Razor.SweetAlert2
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+namespace CurrieTechnologies.Razor.SweetAlert2
+{
     public sealed class SweetAlertPosition
     {
         private static readonly Dictionary<string, SweetAlertPosition> Instance =
             new Dictionary<string, SweetAlertPosition>();
-
-        private readonly string name;
-
-        private SweetAlertPosition(string name)
-        {
-            this.name = name;
-            Instance[name] = this;
-        }
-
-        public static implicit operator SweetAlertPosition(string str)
-        {
-            return FromString(str);
-        }
-
-        public static SweetAlertPosition FromString(string str)
-        {
-            if (Instance.TryGetValue(str, out SweetAlertPosition result))
-            {
-                return result;
-            }
-            else
-            {
-                throw new ArgumentException($"{nameof(SweetAlertPosition)} must be \"{Top}\", \"{TopStart}\", \"{TopEnd}\", \"{TopLeft}\", \"{TopRight}\", \"{Center}\", \"{CenterStart}\", \"{CenterEnd}\", \"{CenterLeft}\", \"{CenterRight}\", \"{Bottom}\", \"{BottomStart}\", \"{BottomEnd}\", \"{BottomLeft}\", or \"{BottomRight}.\"");
-            }
-        }
-
-        public override string ToString()
-        {
-            return this.name;
-        }
 
         public static readonly SweetAlertPosition Top = new SweetAlertPosition("top");
         public static readonly SweetAlertPosition TopStart = new SweetAlertPosition("top-start");
@@ -53,5 +23,31 @@
         public static readonly SweetAlertPosition BottomEnd = new SweetAlertPosition("bottom-end");
         public static readonly SweetAlertPosition BottomLeft = new SweetAlertPosition("bottom-left");
         public static readonly SweetAlertPosition BottomRight = new SweetAlertPosition("bottom-right");
+
+        private readonly string _name;
+
+        private SweetAlertPosition(string name)
+        {
+            _name = name;
+            Instance[_name] = this;
+        }
+
+        public static implicit operator SweetAlertPosition(string str)
+        {
+            return FromString(str);
+        }
+
+        public static SweetAlertPosition FromString(string str)
+        {
+            if (Instance.TryGetValue(str, out var result))
+                return result;
+            throw new ArgumentException(
+                $"{nameof(SweetAlertPosition)} must be \"{Top}\", \"{TopStart}\", \"{TopEnd}\", \"{TopLeft}\", \"{TopRight}\", \"{Center}\", \"{CenterStart}\", \"{CenterEnd}\", \"{CenterLeft}\", \"{CenterRight}\", \"{Bottom}\", \"{BottomStart}\", \"{BottomEnd}\", \"{BottomLeft}\", or \"{BottomRight}.\"");
+        }
+
+        public override string ToString()
+        {
+            return _name;
+        }
     }
 }
