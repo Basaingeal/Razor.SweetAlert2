@@ -1,45 +1,20 @@
-<p align="center">
-  <a href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">
-    <img src="BrandBlazor_nohalo_140x.png" alt="Blazor">
-  </a>
-</p>
-<p align="center">
-  Blazor
-</p>
-<p align="center">
-  +
-</p>
-<p align="center">
-  <a href="https://sweetalert2.github.io/">
-    <img src="https://raw.github.com/sweetalert2/sweetalert2/master/assets/swal2-logo.png" alt="SweetAlert2">
-  </a>
-</p>
-<p align="center">
-  A beautiful, responsive, customizable, accessible (WAI-ARIA) replacement for JavaScript's popup boxes.
-</p>
-<p align="center">
-  <a href="https://sweetalert2.github.io/">
-    <img src="https://raw.github.com/sweetalert2/sweetalert2/master/assets/sweetalert2.gif" width="562"><br>
-    See SweetAlert2 in action ↗
-  </a>
-</p>
+# CurrieTechnologies.Razor.SweetAlert2
 
----
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| ![Blazor](BrandBlazor_nohalo_140x.png) <br/> ➕ <br/> ![SweetAlert2](https://raw.github.com/sweetalert2/sweetalert2/master/assets/swal2-logo.png) <br/> A beautiful, responsive, customizable, accessible (WAI-ARIA) replacement for JavaScript's popup boxes. <br/> All wrapped inside a Razor Component Library for use in Blazor Server and WebAssembly applications. <br/> ![SweetAlert2 in action](https://raw.github.com/sweetalert2/sweetalert2/master/assets/sweetalert2.gif) <br/> [See SweetAlert2 in action ↗](https://sweetalert2.github.io/) |
 
-|                                                                                                                                  Master                                                                                                                                   |                                                                                                                                   Develop                                                                                                                                   |                                            Version                                             |                                   Downloads                                    |                                                               Dependabot                                                               |                                                                         Mergify                                                                         |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=master)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=master) | [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=develop)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=develop) | ![Nuget](https://img.shields.io/nuget/v/CurrieTechnologies.Razor.SweetAlert2.svg?style=popout) | ![Nuget](https://img.shields.io/nuget/dt/CurrieTechnologies.Razor.SweetAlert2) | [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=Basaingeal/Razor.SweetAlert2)](https://dependabot.com) | [![mergify-status](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/Basaingeal/Razor.SweetAlert2&style=popout)](https://mergify.io) |
-
-👉 **Upgrading from v1.x to v2.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v2.0.0)
-
-👉 **Upgrading from v2.x to v3.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v3.0.0)
+|                                                                                                                                  Master                                                                                                                                   |                                                                                                                                   Develop                                                                                                                                   |                                            Version                                             |                                   Downloads                                    |                                                                         Mergify                                                                         |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=master)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=master) | [![Build Status](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_apis/build/status/Basaingeal.Razor.SweetAlert2?branchName=develop)](https://dev.azure.com/michaeljcurrie136/CurrieTechnologies.Blazor/_build/latest?definitionId=16&branchName=develop) | ![Nuget](https://img.shields.io/nuget/v/CurrieTechnologies.Razor.SweetAlert2.svg?style=popout) | ![Nuget](https://img.shields.io/nuget/dt/CurrieTechnologies.Razor.SweetAlert2) | [![mergify-status](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/Basaingeal/Razor.SweetAlert2&style=popout)](https://mergify.io) |
 
 👉 **Upgrading from v3.x to v4.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v4.0.0)
+
+👉 **Upgrading from v4.x to v5.x?** [Read the release notes!](https://github.com/Basaingeal/Razor.SweetAlert2/releases/tag/v5.0.0)
 
 ## This package is for both Blazor Server Apps and Blazor WebAssembly Apps. It should be used instead of [`CurrieTechnologies.Blazor.SweetAlert2`](https://github.com/Basaingeal/Blazor.SweetAlert2) which is now deprecated.
 
 ### 🙌 Includes themes from the [Official SweetAlert2 Themes project](https://github.com/sweetalert2/sweetalert2-themes) 🙌
-
 
 ## Installation
 
@@ -221,9 +196,25 @@ services.AddSweetAlert2(options => {
 
 _See [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) for more information._
 
+### Default Settings
+
+If you want some settings globally applied to all of your SweetAlert2 dialogs, configure your default settings in `Startup.cs`
+
+```csharp
+services.AddSweetAlert2(options => {
+ options.DefaultOptions = new SweetAlertOptions {
+   HeightAuto = false
+ };
+});
+```
+
+These can be overriden in individual `FireAsync()` calls.
+
+**NB:** This will only apply to `FireAsync()` calls that take a `SweetAlertOptions` object as a parameter. The methods that take in primitive types bypass `SweetAlertOptions` entirely on both the C# and JS libraries.
+
 ## Notable differences from the JavaScript library
 
-- No methods that return an HTMLElement are included (e. g. `Swal.getContainer()`)
+- No methods that return an HTMLElement are included (e. g. `Swal.getHtmlContainer()`)
 - The value of a `SweetAlertResult` (`result.Value`) can only be a string. Numbers and booleans must be converted. Object must be parsed to/from JSON in your code.
 - `DidOpenAsync()`, `WillCloseAsync()`, `WillOpenAsync()`, and `DidCloseAsync()` can all take asynchronous callbacks. 🎉 (none will return an HTMLElement though.)
 - No support for `<optgroup>` in the select input type.
@@ -243,13 +234,15 @@ These callbacks are necessary because there is currently no way to create an `Ev
 
 ## Browser compatibility
 
-| IE11\* | Edge               | Chrome             | Firefox            | Safari             | Opera              | UC Browser         |
-| ------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| ⚠️     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| IE11\* | Edge | Chrome | Firefox | Safari | Opera | UC Browser |
+| ------ | ---- | ------ | ------- | ------ | ----- | ---------- |
+| ❌     | ✔    | ✔      | ✔       | ✔      | ✔     | ✔          |
 
 ### IE Compatibility\*
 
-If you need to support IE11, use this script tag instead. (file size is about 35% larger)
+IE Compatibility has been removed in `v5` due to `sweetalert2@11` dropping their support for it.
+
+If you need to support IE11, use `v4` or earlier, and use this script tag instead. (file size is about 35% larger)
 
 ```html
 <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.ieCompat.min.js"></script>
