@@ -156,21 +156,3 @@ stages:
                     nuGetFeedType: "external"
                     publishFeedCredentials: "NuGet All"
                     verbosityPush: "Normal"
-
-      - deployment: githubPackageRegistry
-        displayName: Push to GitHub Package Registry
-        pool:
-          vmImage: "windows-latest"
-        environment: currietechnologies-prod
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: NuGetCommand@2
-                  displayName: Push to GitHub Package Registry
-                  inputs:
-                    command: "push"
-                    packagesToPush: "$(Pipeline.Workspace)/NuGetPackage/*.nupkg"
-                    nuGetFeedType: "external"
-                    publishFeedCredentials: "GitHub Package Registry"
-                    verbosityPush: "Normal"
