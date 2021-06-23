@@ -1,6 +1,6 @@
 {
   "name": "@currietechnologies/razorsweetalert2",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A Razor class library for interacting with SweetAlert2",
   "type": "module",
   "scripts": {
