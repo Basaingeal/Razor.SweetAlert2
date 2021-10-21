@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.0;</TargetFrameworks>
+    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.0;</TargetFrameworks>
     <RazorLangVersion>3.0</RazorLangVersion>
     <Authors>Michael J. Currie</Authors>
     <Company>Currie Technologies</Company>
@@ -62,6 +62,11 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="[5.0.0, 6.0.0)" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="[5.0.0, 6.0.0)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="[6.0.0-rc.2.21480.10, 7.0.0)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="[6.0.0-rc.2.21480.10, 7.0.0)" />
   </ItemGroup>
   <!-- ReSharper restore UnknownProperty -->
 
