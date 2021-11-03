@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@sweetalert2/themes": "^5.0.7",
-    "core-js": "3.19.0",
+    "core-js": "3.19.1",
     "sweetalert2": "11.1.9"
   },
   "author": "Michael J. Currie",
