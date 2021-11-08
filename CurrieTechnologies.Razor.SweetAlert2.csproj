@@ -20,8 +20,8 @@
     <PackageTags>Blazor SweetAlert SweetAlert2 JSInterop Server Razor</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
+      .NET 6 support
       bump sweetalert2
-      bump @sweetalert2/themes
     </PackageReleaseNotes>
   </PropertyGroup>
 
