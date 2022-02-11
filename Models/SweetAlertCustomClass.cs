@@ -49,5 +49,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         [JsonPropertyName("loader")] public string Loader { get; set; }
 
         [JsonPropertyName("footer")] public string Footer { get; set; }
+
+        [JsonPropertyName("timerProgressBar")] public string TimerProgressBar { get; set; }
     }
 }
