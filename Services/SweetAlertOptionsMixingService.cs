@@ -19,6 +19,7 @@
                 Input = newSettings.Input ?? oldSettings.Input,
                 Width = newSettings.Width ?? oldSettings.Width,
                 Padding = newSettings.Padding ?? oldSettings.Padding,
+                Color = newSettings.Color ?? oldSettings.Color,
                 Background = newSettings.Background ?? oldSettings.Background,
                 Position = newSettings.Position ?? oldSettings.Position,
                 Grow = newSettings.Grow ?? oldSettings.Grow,
