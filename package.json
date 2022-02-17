@@ -35,7 +35,7 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "@sweetalert2/themes": "^5.0.8",
+    "@sweetalert2/themes": "^5.0.10",
     "core-js": "3.21.1",
     "sweetalert2": "11.4.0"
   },
