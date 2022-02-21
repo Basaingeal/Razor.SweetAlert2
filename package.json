@@ -23,7 +23,7 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.6.0",
     "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.4.0",
     "mini-css-extract-plugin": "^2.5.3",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "prettier": "^2.5.1",
