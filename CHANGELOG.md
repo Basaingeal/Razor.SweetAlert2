@@ -1,8 +1,14 @@
-﻿# v5.1.0
+﻿# v5.2.0
 
-## .NET 6 multi-targetting enabled
+## 🎉 New Features
+
+### Additional `SweetAlertOptions` properties
+
+- `Color`
+- `CustomClass.TimerProgressBar`
+  
 ## Dependencies
 
-- bump `sweetalert2` to `11.1.9`
-- bump `@sweetalert2/themes` to `5.0.7`
+- bump `sweetalert2` to `11.4.4`
+- bump `@sweetalert2/themes` to `5.0.10`
 
