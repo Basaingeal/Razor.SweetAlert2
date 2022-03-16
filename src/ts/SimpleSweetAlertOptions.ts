@@ -37,6 +37,8 @@ export default interface SimpleSweetAlertOptions {
 
   padding?: string;
 
+  color?: string;
+
   background?: string;
 
   position?: SweetAlertPosition;

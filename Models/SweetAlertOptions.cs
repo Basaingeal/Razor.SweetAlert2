@@ -110,6 +110,11 @@ namespace CurrieTechnologies.Razor.SweetAlert2
         public string Padding { get; set; }
 
         /// <summary>
+        ///     Popup color for title, content and footer (CSS `color` property).
+        /// </summary>
+        public string Color { get; set; }
+
+        /// <summary>
         ///     Modal window background (CSS background property).
         /// </summary>
         public string Background { get; set; }
@@ -331,18 +336,18 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
 #pragma warning disable CA1056 // Uri properties should not be strings
         /// <summary>
-        ///     Add a customized icon for the modal. Should contain a string with the path or URL to the image.
+        ///     Add an image to the popup. Should contain a string with the path or URL to the image.
         /// </summary>
         public string ImageUrl { get; set; }
 #pragma warning restore CA1056 // Uri properties should not be strings
 
         /// <summary>
-        ///     If imageUrl is set, you can specify imageWidth to describes image width in px.
+        ///     If imageUrl is set, you can specify imageWidth to describes image width.
         /// </summary>
         public double? ImageWidth { get; set; }
 
         /// <summary>
-        ///     If imageUrl is set, you can specify imageHeight to describes image height in px.
+        ///     If imageUrl is set, you can specify imageHeight to describes image height.
         /// </summary>
         public double? ImageHeight { get; set; }
 
@@ -485,6 +490,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 Input = Input?.ToString(),
                 Width = Width,
                 Padding = Padding,
+                Color = Color,
                 Background = Background,
                 Position = Position?.ToString(),
                 Grow = Grow?.ToString(),

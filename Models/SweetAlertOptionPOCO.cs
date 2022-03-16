@@ -33,6 +33,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         [JsonPropertyName("padding")] public string Padding { get; set; }
 
+        [JsonPropertyName("color")] public string Color { get; set; }
+
         [JsonPropertyName("background")] public string Background { get; set; }
 
         [JsonPropertyName("position")] public string Position { get; set; }
