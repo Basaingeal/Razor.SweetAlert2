@@ -1,14 +1,10 @@
-﻿# v5.2.0
+﻿# v5.2.1
 
-## 🎉 New Features
+## Bug fixes
 
-### Additional `SweetAlertOptions` properties
-
-- `Color`
-- `CustomClass.TimerProgressBar`
+- Use InvariantCulture for JavaScript number parsing. (@alislin)(https://github.com/Basaingeal/Razor.SweetAlert2/pull/1862)
   
 ## Dependencies
 
-- bump `sweetalert2` to `11.4.4`
-- bump `@sweetalert2/themes` to `5.0.10`
+- bump `sweetalert2` to `11.4.8`
 
