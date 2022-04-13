@@ -9,7 +9,7 @@
     <Description>
       A Razor class library for interacting with SweetAlert2.
       Use in Blazor Server Apps or Blazor WebAssembly Apps.
-      Currently using sweetalert2@11.4.4
+      Currently using sweetalert2@11.4.8
     </Description>
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -21,7 +21,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
       bump sweetalert2
-      bump @sweetalert2/themes
+      use InvariantCulture for JavaScript Number parsing
     </PackageReleaseNotes>
   </PropertyGroup>
 
