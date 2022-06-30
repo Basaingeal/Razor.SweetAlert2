@@ -11,11 +11,15 @@ import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
 import EnumSweetAlertResult from "./EnumSweetAlertResult";
 import { ColorSchemeDictionary } from "./ColorSchemeDictionary";
 
-declare const DotNet: any;
-const domWindow = window as any;
+interface SwalWindow extends Window {
+  CurrieTechnologies: any;
+  Swal: any;
+}
+
+declare let window: SwalWindow;
 const namespace = "CurrieTechnologies.Razor.SweetAlert2";
 
-domWindow.Swal = Swal;
+window.Swal = Swal;
 
 function getEnumNumber(enumString: Swal.DismissReason): number | undefined {
   switch (enumString) {
@@ -312,12 +316,11 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
   });
 }
 
-domWindow.CurrieTechnologies = domWindow.CurrieTechnologies ?? {};
-domWindow.CurrieTechnologies.Razor = domWindow.CurrieTechnologies.Razor ?? {};
-domWindow.CurrieTechnologies.Razor.SweetAlert2 =
-  domWindow.CurrieTechnologies.Razor.SweetAlert2 ?? {};
+window.CurrieTechnologies = window.CurrieTechnologies ?? {};
+window.CurrieTechnologies.Razor = window.CurrieTechnologies.Razor ?? {};
+window.CurrieTechnologies.Razor.SweetAlert2 = window.CurrieTechnologies.Razor.SweetAlert2 ?? {};
 
-const razorSwal = domWindow.CurrieTechnologies.Razor.SweetAlert2;
+const razorSwal = window.CurrieTechnologies.Razor.SweetAlert2;
 
 razorSwal.SendThemesToJS = (
   theme: SweetAlertTheme,
