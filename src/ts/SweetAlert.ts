@@ -12,11 +12,11 @@ import EnumSweetAlertResult from "./EnumSweetAlertResult";
 import { ColorSchemeDictionary } from "./ColorSchemeDictionary";
 
 interface SwalWindow extends Window {
-  CurrieTechnologies: any
-  Swal: any
+  CurrieTechnologies: any;
+  Swal: any;
 }
 
-declare let window: SwalWindow
+declare let window: SwalWindow;
 const namespace = "CurrieTechnologies.Razor.SweetAlert2";
 
 window.Swal = Swal;
@@ -318,8 +318,7 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
 
 window.CurrieTechnologies = window.CurrieTechnologies ?? {};
 window.CurrieTechnologies.Razor = window.CurrieTechnologies.Razor ?? {};
-window.CurrieTechnologies.Razor.SweetAlert2 =
-  window.CurrieTechnologies.Razor.SweetAlert2 ?? {};
+window.CurrieTechnologies.Razor.SweetAlert2 = window.CurrieTechnologies.Razor.SweetAlert2 ?? {};
 
 const razorSwal = window.CurrieTechnologies.Razor.SweetAlert2;
 
