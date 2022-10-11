@@ -10,12 +10,10 @@
     "strict": true,
     "moduleResolution": "node",
     "noEmit": true,
-    "lib": [
-      "es2015",
-      "dom"
-    ],
+    "lib": ["es2015", "dom"],
     "allowJs": true,
-    "types": ["sweetalert2"]
+    "types": ["sweetalert2", "@blazor/javascript-interop"],
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["./src/ts/*.ts"]
 }

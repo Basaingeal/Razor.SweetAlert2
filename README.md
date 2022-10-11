@@ -26,7 +26,7 @@ Or install from the NuGet Package Manager
 
 ## Usage
 
-Register the service in your Startup file.
+### Register the service in your Startup file.
 
 ```csharp
 // Startup.cs
@@ -38,9 +38,17 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+**NB:** For newer .NET 6 minimal project templates, this will actually be in `Program.cs`
+
+```csharp
+// Program.cs
+...
+builder.Services.AddSweetAlert2();
+```
+
 ### OR
 
-If you want to use one of the Official SweetAlert2 themes
+If you want to use one of the Official SweetAlert2 themes:
 
 ```csharp
 // Startup.cs
@@ -56,7 +64,11 @@ public void ConfigureServices(IServiceCollection services)
 
 _See [Configuration](#configuration) for more information._
 
+### Add the script tag
+
 Add this script tag in your root html file (Likely \_Host.cshtml for Blazor Server or index.html for Blazor WebAssembly), right under the framework script tag. (i.e `<script src="_framework/blazor.server.js"></script>` for Blazor Server or `<script src="_framework/blazor.webassembly.js"></script>` for Blazor WebAssembly)
+
+**NB:** In newer templates, this will be towards the bottom of `Pages/_Layout.cshtml` for Blazor Server or `wwwroot/index.html` for Blazor WebAssembly.
 
 ```html
 <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
@@ -64,13 +76,17 @@ Add this script tag in your root html file (Likely \_Host.cshtml for Blazor Serv
 
 **If you need to support IE11, this script tag is different. See [IE Compatibility](#ie-compatibility).**
 
-Inject the SweetAlertService into any Blazor component.
+### \_Imports.razor
+
+_Recommended:_ Add `@using CurrieTechnologies.Razor.SweetAlert2` to your `_Imports.razor` file, to avoid having to put the using call in every component that requires it.
+
+### Inject the SweetAlertService into any Blazor component.
 
 ```razor
 // Sample.razor
 @inject SweetAlertService Swal;
 <button class="btn btn-primary"
-   @onclick="(async () => await Swal.FireAsync("Any fool can use a computer"))">
+   @onclick="@(async () => await Swal.FireAsync("Any fool can use a computer"))">
  Try me!
 </button>
 ```
@@ -249,6 +265,10 @@ If you need to support IE11, use `v4` or earlier, and use this script tag instea
 ```
 
 You will also likely need to utilize the [Blazor.Polyfill](https://github.com/Daddoon/Blazor.Polyfill) library, for general Blazor functionality in IE.
+
+## Protestware
+
+Currently, the original `sweetalert2` library contains protestware to disable Russian websites using `sweetalert2` when visited by Russian-speaking users. This wrapper library bypasses the effects of that protestware, so there should be no undesired effects when using this library.
 
 ## Related projects
 
