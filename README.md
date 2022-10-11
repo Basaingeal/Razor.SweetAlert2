@@ -266,6 +266,10 @@ If you need to support IE11, use `v4` or earlier, and use this script tag instea
 
 You will also likely need to utilize the [Blazor.Polyfill](https://github.com/Daddoon/Blazor.Polyfill) library, for general Blazor functionality in IE.
 
+## Protestware
+
+Currently, the original `sweetalert2` library contains protestware to disable Russian websites using `sweetalert2` when visited by Russian-speaking users. This wrapper library bypasses the effects of that protestware, so there should be no undesired effects when using this library.
+
 ## Related projects
 
 - [SweetAlert2](https://sweetalert2.github.io/) - Original SweetAlert2 project
