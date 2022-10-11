@@ -21,6 +21,11 @@ const namespace = "CurrieTechnologies.Razor.SweetAlert2";
 
 window.Swal = Swal;
 
+// bypass sweetalert2 protestware
+if (document.body.style.pointerEvents === "none") {
+  document.body.style.pointerEvents = "auto";
+}
+
 function getEnumNumber(enumString: Swal.DismissReason): number | undefined {
   switch (enumString) {
     case Swal.DismissReason.cancel:
