@@ -21,7 +21,7 @@
     "@types/node": "^18.11.8",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
-    "babel-loader": "^9.0.0",
+    "babel-loader": "^9.0.1",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "eslint": "^8.26.0",
