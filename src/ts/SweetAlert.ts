@@ -21,10 +21,7 @@ const namespace = "CurrieTechnologies.Razor.SweetAlert2";
 
 window.Swal = Swal;
 
-// bypass sweetalert2 protestware
-if (document.body.style.pointerEvents === "none") {
-  document.body.style.pointerEvents = "auto";
-}
+disableProtestware();
 
 function getEnumNumber(enumString: Swal.DismissReason): number | undefined {
   switch (enumString) {
@@ -385,7 +382,7 @@ razorSwal.DisableButtons = (): void => {
 };
 
 razorSwal.ShowLoading = (): void => {
-  Swal.showLoading();
+  Swal.showLoading(null);
 };
 
 razorSwal.HideLoading = (): void => {
@@ -455,3 +452,26 @@ razorSwal.IsValidParameter = (paramName: keyof SweetAlertOptions): boolean => {
 razorSwal.IsUpdatableParameter = (paramName: SweetAlertUpdatableParameters): boolean => {
   return Swal.isUpdatableParameter(paramName);
 };
+
+function disableProtestware() {
+  const protestwareObserver = new MutationObserver((mutations) => {
+    mutations.forEach((childListMutation) => {
+      childListMutation.addedNodes.forEach((addedNode) => {
+        if (addedNode.nodeName.toLowerCase() === "audio") {
+          const audioNode = addedNode as HTMLAudioElement;
+          if (audioNode.src === "https://discoveric.ru/upload/anthem/61/61-1.mp3") {
+            protestwareObserver.disconnect();
+            audioNode.remove();
+            if (document.body.style.pointerEvents === "none") {
+              document.body.style.pointerEvents = "auto";
+            }
+            console.debug("SweetAlert2 protestware disabled.");
+            return;
+          }
+        }
+      });
+    });
+  });
+
+  protestwareObserver.observe(document.body, { childList: true });
+}
