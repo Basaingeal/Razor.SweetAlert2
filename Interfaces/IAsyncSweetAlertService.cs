@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace CurrieTechnologies.Razor.SweetAlert2
 {
-    internal interface IAsyncSweetAlertService
+    public interface IAsyncSweetAlertService
     {
         Task<SweetAlertResult> FireAsync(string title, string message, SweetAlertIcon icon);
 
