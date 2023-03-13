@@ -380,6 +380,12 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 #pragma warning restore CA2227 // Collection properties should be read only
 
         /// <summary>
+        ///     Automatically focus the input when popup is shown.
+        ///     <para>Set this parameter to `false` to disable auto-focusing.</para>
+        /// </summary>
+        public bool? InputAutoFocus { get; set; }
+
+        /// <summary>
         ///     Automatically remove whitespaces from both ends of a result string.
         ///     <para>Set this parameter to false to disable auto-trimming.</para>
         /// </summary>
@@ -539,6 +545,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 InputPlaceholder = InputPlaceholder,
                 InputValue = InputValue,
                 InputOptions = InputOptions,
+                InputAutoFocus = InputAutoFocus,
                 InputAutoTrim = InputAutoTrim,
                 InputAttributes = InputAttributes,
                 InputValidator = InputValidator != null,
