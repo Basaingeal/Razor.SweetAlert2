@@ -1,19 +1,19 @@
-﻿import { ColorScheme } from "./ColorScheme";
-import { SweetAlertTheme } from "./SweetAlertTheme";
-import Swal, {
+﻿import Swal, {
+  SweetAlertArrayOptions,
+  SweetAlertIcon,
   SweetAlertOptions,
   SweetAlertResult,
-  SweetAlertIcon,
-  SweetAlertArrayOptions,
   SweetAlertUpdatableParameters,
 } from "sweetalert2";
-import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
-import EnumSweetAlertResult from "./EnumSweetAlertResult";
+import { ColorScheme } from "./ColorScheme";
 import { ColorSchemeDictionary } from "./ColorSchemeDictionary";
+import EnumSweetAlertResult from "./EnumSweetAlertResult";
+import SimpleSweetAlertOptions from "./SimpleSweetAlertOptions";
+import { SweetAlertTheme } from "./SweetAlertTheme";
 
 interface SwalWindow extends Window {
   CurrieTechnologies: any;
-  Swal: any;
+  Swal: typeof Swal;
 }
 
 declare let window: SwalWindow;
@@ -23,7 +23,7 @@ window.Swal = Swal;
 
 disableProtestware();
 
-function getEnumNumber(enumString: Swal.DismissReason): number | undefined {
+function getEnumNumber(enumString: Swal.DismissReason) {
   switch (enumString) {
     case Swal.DismissReason.cancel:
       return 0;
@@ -40,7 +40,7 @@ function getEnumNumber(enumString: Swal.DismissReason): number | undefined {
   return undefined;
 }
 
-function getEnumString(enumNumber: number): Swal.DismissReason | undefined {
+function getEnumString(enumNumber: number | undefined) {
   switch (enumNumber) {
     case 0:
       return Swal.DismissReason.cancel;
@@ -57,21 +57,30 @@ function getEnumString(enumNumber: number): Swal.DismissReason | undefined {
   return undefined;
 }
 
-function getStringVersion(input: any): string {
+function getStringVersion(input: unknown) {
   if (input instanceof Object) {
     return JSON.stringify(input);
   }
   return String(input);
 }
 
-function dispatchFireResult(requestId: string, result: SweetAlertResult): Promise<void> {
-  const myResult = result as SweetAlertResult | EnumSweetAlertResult as EnumSweetAlertResult;
-  myResult.value = myResult.value !== undefined ? getStringVersion(myResult.value) : undefined;
-  myResult.dismiss = myResult.dismiss !== undefined ? getEnumNumber(myResult.dismiss) : undefined;
-  return DotNet.invokeMethodAsync(namespace, "ReceiveFireResult", requestId, myResult);
+function dispatchFireResult(requestId: string, result: SweetAlertResult) {
+  const myResult = result as EnumSweetAlertResult;
+  myResult.value =
+    myResult.value !== undefined ? getStringVersion(myResult.value) : undefined;
+  myResult.dismiss =
+    myResult.dismiss !== undefined
+      ? getEnumNumber(myResult.dismiss)
+      : undefined;
+  return DotNet.invokeMethodAsync(
+    namespace,
+    "ReceiveFireResult",
+    requestId,
+    myResult
+  );
 }
 
-function dispatchPreConfirm(requestId: string, inputValue: any): Promise<any> {
+function dispatchPreConfirm(requestId: string, inputValue: unknown) {
   return DotNet.invokeMethodAsync(
     namespace,
     "ReceivePreConfirmInput",
@@ -80,7 +89,7 @@ function dispatchPreConfirm(requestId: string, inputValue: any): Promise<any> {
   );
 }
 
-function dispatchPreDeny(requestId: string, inputValue: any): Promise<any> {
+function dispatchPreDeny(requestId: string, inputValue: unknown) {
   return DotNet.invokeMethodAsync(
     namespace,
     "ReceivePreDenyInput",
@@ -89,42 +98,52 @@ function dispatchPreDeny(requestId: string, inputValue: any): Promise<any> {
   );
 }
 
-function dispatchInputValidator(requestId: string, inputValue: any): Promise<string> {
-  return DotNet.invokeMethodAsync(namespace, "ReceiveInputValidatorInput", requestId, inputValue);
+function dispatchInputValidator(requestId: string, inputValue: unknown) {
+  return DotNet.invokeMethodAsync(
+    namespace,
+    "ReceiveInputValidatorInput",
+    requestId,
+    inputValue
+  );
 }
 
-function dispatchDidOpen(requestId: string): void {
+function dispatchDidOpen(requestId: string) {
   DotNet.invokeMethodAsync(namespace, "ReceiveDidOpenInput", requestId);
 }
 
-function dispatchWillClose(requestId: string): void {
+function dispatchWillClose(requestId: string) {
   DotNet.invokeMethodAsync(namespace, "ReceiveWillCloseInput", requestId);
 }
 
-function dispatchDidRender(requestId: string): void {
+function dispatchDidRender(requestId: string) {
   DotNet.invokeMethodAsync(namespace, "ReceiveDidRenderInput", requestId);
 }
 
-function dispatchWillOpen(requestId: string): void {
+function dispatchWillOpen(requestId: string) {
   DotNet.invokeMethodAsync(namespace, "ReceiveWillOpenInput", requestId);
 }
 
-function dispatchDidClose(requestId: string): void {
+function dispatchDidClose(requestId: string) {
   DotNet.invokeMethodAsync(namespace, "ReceiveDidCloseInput", requestId);
 }
 
-function dispatchDidDestroy(requestId: string): void {
+function dispatchDidDestroy(requestId: string) {
   DotNet.invokeMethodAsync(namespace, "ReceiveDidDestroyInput", requestId);
 }
 
-function numberStringToNumber(numberString: string): string | number {
-  return Number.isNaN(Number(numberString)) ? numberString : Number(numberString);
+function numberStringToNumber(numberString: string) {
+  return Number.isNaN(Number(numberString))
+    ? numberString
+    : Number(numberString);
 }
 
-function cleanSettings(settings: SimpleSweetAlertOptions): SimpleSweetAlertOptions {
-  const settingsToReturn: any = settings as any;
+function cleanSettings(settings: SimpleSweetAlertOptions) {
+  const settingsToReturn = settings as any;
   for (const propName in settingsToReturn) {
-    if (settingsToReturn[propName] === null || settingsToReturn[propName] === undefined) {
+    if (
+      settingsToReturn[propName] === null ||
+      settingsToReturn[propName] === undefined
+    ) {
       delete settingsToReturn[propName];
     }
   }
@@ -135,12 +154,12 @@ function cleanSettings(settings: SimpleSweetAlertOptions): SimpleSweetAlertOptio
 function getSwalSettingsFromPoco(
   settings: SimpleSweetAlertOptions,
   requestId: string
-): SweetAlertOptions {
+) {
   const swalSettings = cleanSettings(settings) as
     | SimpleSweetAlertOptions
     | SweetAlertOptions as SweetAlertOptions;
 
-  function processPreConfirmDenyResult(value: any) {
+  function processPreConfirmDenyResult(value: unknown) {
     if (value === null) {
       return undefined;
     }
@@ -151,58 +170,60 @@ function getSwalSettingsFromPoco(
   }
 
   if (settings.preConfirm) {
-    swalSettings.preConfirm = (inputValue): Promise<any> =>
-      dispatchPreConfirm(requestId, inputValue).then(processPreConfirmDenyResult);
+    swalSettings.preConfirm = (inputValue) =>
+      dispatchPreConfirm(requestId, inputValue).then(
+        processPreConfirmDenyResult
+      );
   } else {
     delete swalSettings.preConfirm;
   }
 
   if (settings.preDeny) {
-    swalSettings.preDeny = (inputValue): Promise<any> =>
+    swalSettings.preDeny = (inputValue) =>
       dispatchPreDeny(requestId, inputValue).then(processPreConfirmDenyResult);
   } else {
     delete swalSettings.preDeny;
   }
 
   if (settings.inputValidator) {
-    swalSettings.inputValidator = (inputValue): Promise<string> =>
-      dispatchInputValidator(requestId, inputValue);
+    swalSettings.inputValidator = (inputValue) =>
+      dispatchInputValidator(requestId, inputValue) as Promise<string>;
   } else {
     delete swalSettings.inputValidator;
   }
 
   if (settings.willOpen) {
-    swalSettings.willOpen = (): void => dispatchWillOpen(requestId);
+    swalSettings.willOpen = () => dispatchWillOpen(requestId);
   } else {
     delete swalSettings.willOpen;
   }
 
   if (settings.didClose) {
-    swalSettings.didClose = (): void => dispatchDidClose(requestId);
+    swalSettings.didClose = () => dispatchDidClose(requestId);
   } else {
     delete swalSettings.didClose;
   }
 
   if (settings.didDestroy) {
-    swalSettings.didDestroy = (): void => dispatchDidDestroy(requestId);
+    swalSettings.didDestroy = () => dispatchDidDestroy(requestId);
   } else {
     delete swalSettings.didDestroy;
   }
 
   if (settings.didOpen) {
-    swalSettings.didOpen = (): void => dispatchDidOpen(requestId);
+    swalSettings.didOpen = () => dispatchDidOpen(requestId);
   } else {
     delete swalSettings.didOpen;
   }
 
   if (settings.willClose) {
-    swalSettings.willClose = (): void => dispatchWillClose(requestId);
+    swalSettings.willClose = () => dispatchWillClose(requestId);
   } else {
     delete swalSettings.willClose;
   }
 
   if (settings.didRender) {
-    swalSettings.didRender = (): void => dispatchDidRender(requestId);
+    swalSettings.didRender = () => dispatchDidRender(requestId);
   } else {
     delete swalSettings.didRender;
   }
@@ -222,7 +243,7 @@ function getSwalSettingsFromPoco(
   return swalSettings;
 }
 
-function getFileNameByTheme(theme: SweetAlertTheme): string {
+function getFileNameByTheme(theme: SweetAlertTheme) {
   switch (theme) {
     case SweetAlertTheme.Dark: {
       return "darkTheme.min.css";
@@ -252,7 +273,7 @@ function getFileNameByTheme(theme: SweetAlertTheme): string {
   }
 }
 
-function getColorSchemeName(colorScheme: ColorScheme): string {
+function getColorSchemeName(colorScheme: ColorScheme) {
   switch (colorScheme) {
     case ColorScheme.Light:
       return "light";
@@ -264,7 +285,10 @@ function getColorSchemeName(colorScheme: ColorScheme): string {
   }
 }
 
-function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictionary): void {
+function setTheme(
+  theme: SweetAlertTheme,
+  colorSchemeThemes: ColorSchemeDictionary
+) {
   const colorSchemeMap: Map<ColorScheme, SweetAlertTheme> = new Map();
   colorSchemeThemes.forEach((pair) => {
     colorSchemeMap.set(pair[0], pair[1]);
@@ -289,7 +313,9 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
     const styleTag = document.createElement("link");
     styleTag.rel = "stylesheet";
     styleTag.id = tagId;
-    styleTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${getFileNameByTheme(theme)}`;
+    styleTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${getFileNameByTheme(
+      theme
+    )}`;
     styleTag.setAttribute("data-theme-number", String(theme));
     head.appendChild(styleTag);
   }
@@ -298,7 +324,9 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
     const schemeTagId = `currietechnologies-razor-sweetalert2-scheme-link-${colorScheme}`;
     const existingSchemeTag = document.getElementById(schemeTagId);
     if (existingSchemeTag !== null) {
-      const currentThemeForScheme = Number(existingSchemeTag.dataset.themeNumber);
+      const currentThemeForScheme = Number(
+        existingSchemeTag.dataset.themeNumber
+      );
       if (currentThemeForScheme === theme) {
         return;
       }
@@ -308,10 +336,15 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
     const schemeTag = document.createElement("link");
     schemeTag.rel = "stylesheet";
     schemeTag.id = schemeTagId;
-    schemeTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${getFileNameByTheme(theme)}`;
+    schemeTag.href = `_content/CurrieTechnologies.Razor.SweetAlert2/${getFileNameByTheme(
+      theme
+    )}`;
     schemeTag.setAttribute("data-theme-number", String(theme));
     schemeTag.setAttribute("data-scheme-number", String(colorScheme));
-    schemeTag.setAttribute("media", `(prefers-color-scheme: ${getColorSchemeName(colorScheme)})`);
+    schemeTag.setAttribute(
+      "media",
+      `(prefers-color-scheme: ${getColorSchemeName(colorScheme)})`
+    );
 
     const head = document.getElementsByTagName("head")[0];
     head.appendChild(schemeTag);
@@ -320,14 +353,15 @@ function setTheme(theme: SweetAlertTheme, colorSchemeThemes: ColorSchemeDictiona
 
 window.CurrieTechnologies = window.CurrieTechnologies ?? {};
 window.CurrieTechnologies.Razor = window.CurrieTechnologies.Razor ?? {};
-window.CurrieTechnologies.Razor.SweetAlert2 = window.CurrieTechnologies.Razor.SweetAlert2 ?? {};
+window.CurrieTechnologies.Razor.SweetAlert2 =
+  window.CurrieTechnologies.Razor.SweetAlert2 ?? {};
 
 const razorSwal = window.CurrieTechnologies.Razor.SweetAlert2;
 
 razorSwal.SendThemesToJS = (
   theme: SweetAlertTheme,
   colorSchemeThemes: ColorSchemeDictionary
-): void => {
+) => {
   setTheme(theme, colorSchemeThemes);
 };
 
@@ -336,120 +370,126 @@ razorSwal.Fire = (
   title: string | null,
   message: string | null,
   icon: SweetAlertIcon | null
-): void => {
+) => {
   const params: SweetAlertArrayOptions = [
     title ?? undefined,
     message ?? undefined,
     icon ?? undefined,
   ];
-  Swal.fire(params[0], params[1], params[2]).then((result): void => {
+  Swal.fire(params[0], params[1], params[2]).then((result) => {
     dispatchFireResult(requestId, result);
   });
 };
 
-razorSwal.FireSettings = (requestId: string, settingsPoco: SimpleSweetAlertOptions): void => {
+razorSwal.FireSettings = (
+  requestId: string,
+  settingsPoco: SimpleSweetAlertOptions
+) => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId);
 
-  Swal.fire(swalSettings).then((result): void => {
+  Swal.fire(swalSettings).then((result) => {
     dispatchFireResult(requestId, result);
   });
 };
 
-razorSwal.IsVisible = (): boolean => {
+razorSwal.IsVisible = () => {
   return !!Swal.isVisible();
 };
 
-razorSwal.Update = (requestId: string, settingsPoco: SimpleSweetAlertOptions): void => {
+razorSwal.Update = (
+  requestId: string,
+  settingsPoco: SimpleSweetAlertOptions
+) => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId);
   Swal.update(swalSettings);
 };
 
-razorSwal.CloseResult = (result: SweetAlertResult): void => {
-  const dismissString = getEnumString(result.dismiss as any as number);
+razorSwal.CloseResult = (result: SweetAlertResult) => {
+  const dismissString = getEnumString(result.dismiss);
   Swal.close({ ...result, dismiss: dismissString });
 };
 
-razorSwal.Close = (): void => {
+razorSwal.Close = () => {
   Swal.close();
 };
 
-razorSwal.EnableButtons = (): void => {
+razorSwal.EnableButtons = () => {
   Swal.enableButtons();
 };
 
-razorSwal.DisableButtons = (): void => {
+razorSwal.DisableButtons = () => {
   Swal.disableButtons();
 };
 
-razorSwal.ShowLoading = (): void => {
-  Swal.showLoading(null);
+razorSwal.ShowLoading = () => {
+  Swal.showLoading();
 };
 
-razorSwal.HideLoading = (): void => {
+razorSwal.HideLoading = () => {
   Swal.hideLoading();
 };
 
-razorSwal.IsLoading = (): boolean => {
+razorSwal.IsLoading = () => {
   return Swal.isLoading();
 };
 
-razorSwal.ClickConfirm = (): void => {
+razorSwal.ClickConfirm = () => {
   Swal.clickConfirm();
 };
 
-razorSwal.ClickDeny = (): void => {
+razorSwal.ClickDeny = () => {
   Swal.clickDeny();
 };
 
-razorSwal.ClickCancel = (): void => {
+razorSwal.ClickCancel = () => {
   Swal.clickCancel();
 };
 
-razorSwal.ShowValidationMessage = (validationMessage: string): void => {
+razorSwal.ShowValidationMessage = (validationMessage: string) => {
   Swal.showValidationMessage(validationMessage);
 };
 
-razorSwal.ResetValidationMessage = (): void => {
+razorSwal.ResetValidationMessage = () => {
   Swal.resetValidationMessage();
 };
 
-razorSwal.DisableInput = (): void => {
+razorSwal.DisableInput = () => {
   Swal.disableInput();
 };
 
-razorSwal.EnableInput = (): void => {
+razorSwal.EnableInput = () => {
   Swal.enableInput();
 };
 
-razorSwal.GetTimerLeft = (): number | undefined => {
+razorSwal.GetTimerLeft = () => {
   return Swal.getTimerLeft();
 };
 
-razorSwal.StopTimer = (): number | undefined => {
+razorSwal.StopTimer = () => {
   return Swal.stopTimer();
 };
 
-razorSwal.ResumeTimer = (): number | undefined => {
+razorSwal.ResumeTimer = () => {
   return Swal.resumeTimer();
 };
 
-razorSwal.ToggleTimer = (): number | undefined => {
+razorSwal.ToggleTimer = () => {
   return Swal.toggleTimer();
 };
 
-razorSwal.IsTimerRunning = (): boolean | undefined => {
+razorSwal.IsTimerRunning = () => {
   return Swal.isTimerRunning();
 };
 
-razorSwal.IncreaseTimer = (n: number): number | undefined => {
+razorSwal.IncreaseTimer = (n: number) => {
   return Swal.increaseTimer(n);
 };
 
-razorSwal.IsValidParameter = (paramName: keyof SweetAlertOptions): boolean => {
+razorSwal.IsValidParameter = (paramName: keyof SweetAlertOptions) => {
   return Swal.isValidParameter(paramName);
 };
 
-razorSwal.IsUpdatableParameter = (paramName: SweetAlertUpdatableParameters): boolean => {
+razorSwal.IsUpdatableParameter = (paramName: SweetAlertUpdatableParameters) => {
   return Swal.isUpdatableParameter(paramName);
 };
 
@@ -459,7 +499,10 @@ function disableProtestware() {
       childListMutation.addedNodes.forEach((addedNode) => {
         if (addedNode.nodeName.toLowerCase() === "audio") {
           const audioNode = addedNode as HTMLAudioElement;
-          if (audioNode.src === "https://discoveric.ru/upload/anthem/61/61-1.mp3") {
+          if (
+            audioNode.src ===
+            "https://flag-gimn.ru/wp-content/uploads/2021/09/Ukraina.mp3"
+          ) {
             protestwareObserver.disconnect();
             audioNode.remove();
             if (document.body.style.pointerEvents === "none") {
