@@ -9,7 +9,7 @@
     <Description>
       A Razor class library for interacting with SweetAlert2.
       Use in Blazor Server Apps or Blazor WebAssembly Apps.
-      Currently using sweetalert2@11.6.15
+      Currently using sweetalert2@11.7.3
     </Description>
     <Copyright>Michael J. Currie</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -21,9 +21,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
       bump sweetalert2
-      bump @sweetalert2/themes
-      removed explicit support for .NET Core 3.1
-      made IAsyncSweetAlertService interface public
+      add InputAutoFocus property
     </PackageReleaseNotes>
   </PropertyGroup>
 
