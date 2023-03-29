@@ -68,6 +68,7 @@
                 InputPlaceholder = newSettings.InputPlaceholder ?? oldSettings.InputPlaceholder,
                 InputValue = newSettings.InputValue ?? oldSettings.InputValue,
                 InputOptions = newSettings.InputOptions ?? oldSettings.InputOptions,
+                InputAutoFocus = newSettings.InputAutoFocus ?? oldSettings.InputAutoFocus,
                 InputAutoTrim = newSettings.InputAutoTrim ?? oldSettings.InputAutoTrim,
                 InputAttributes = newSettings.InputAttributes ?? oldSettings.InputAttributes,
                 InputValidator = newSettings.InputValidator ?? oldSettings.InputValidator,

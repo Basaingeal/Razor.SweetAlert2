@@ -143,6 +143,8 @@ namespace CurrieTechnologies.Razor.SweetAlert2
 
         [JsonPropertyName("inputOptions")] public IDictionary<string, string> InputOptions { get; set; }
 
+        [JsonPropertyName("inputAutoFocus")] public bool? InputAutoFocus { get; set; }
+
         [JsonPropertyName("inputAutoTrim")] public bool? InputAutoTrim { get; set; }
 
         [JsonPropertyName("inputAttributes")] public IDictionary<string, string> InputAttributes { get; set; }
