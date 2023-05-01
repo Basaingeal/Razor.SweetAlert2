@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.21.5",
-    "@babel/core": "^7.21.4",
+    "@babel/core": "^7.21.5",
     "@babel/preset-env": "^7.21.5",
     "@babel/preset-typescript": "^7.21.4",
     "@types/blazor__javascript-interop": "^3.1.3",
