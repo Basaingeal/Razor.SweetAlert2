@@ -13,7 +13,7 @@
     "babel": "babel ./src/ts/SweetAlert.ts --out-dir wwwroot --extensions .ts,.tsx"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.9",
+    "@babel/cli": "^7.22.10",
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-typescript": "^7.22.5",
