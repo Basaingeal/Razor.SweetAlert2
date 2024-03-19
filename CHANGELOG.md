@@ -1,12 +1,14 @@
-﻿# v5.5.0
+﻿# v5.6.0
 
 ## Notable changes
 
-### `InputAutoFocus` property
+### .NET 8 support
 
-This release includes the new `inputAutoFocus` options property introduced by the `sweetalert2` library.
-By setting this to `false`, the input on the alert will not be auto-focused. (`true` by default)
+This release adds support for the .NET 8 runetime, using the v8 versions of the `Microsoft.AspNetCore.Components` and `Microsoft.AspNetCore.Components.Web` packages.
 
 ## Dependencies
 
-- bump `sweetalert2` to `11.7.3`
+- bump `Microsoft.AspNetCore.Components@6` to `6.0.25`
+- bump `Microsoft.AspNetCore.Components.Web@6` to `6.0.25`
+- bump `Microsoft.AspNetCore.Components@7` to `7.0.14`
+- bump `Microsoft.AspNetCore.Components.Web@7` to `7.0.14`
