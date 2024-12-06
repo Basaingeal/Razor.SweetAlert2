@@ -32,7 +32,7 @@
     "sass-loader": "^16.0.4",
     "terser-webpack-plugin": "^5.3.10",
     "typescript": "^5.7.2",
-    "webpack": "^5.97.0",
+    "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
