@@ -30,7 +30,7 @@
     "prettier": "^2.8.8",
     "sass": "^1.83.0",
     "sass-loader": "^16.0.4",
-    "terser-webpack-plugin": "^5.3.10",
+    "terser-webpack-plugin": "^5.3.11",
     "typescript": "^5.7.2",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4"
