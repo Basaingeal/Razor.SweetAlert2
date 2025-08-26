@@ -28,7 +28,7 @@
     "eslint-config-prettier": "^10.1.8",
     "mini-css-extract-plugin": "^2.9.4",
     "prettier": "^2.8.8",
-    "sass": "^1.90.0",
+    "sass": "^1.91.0",
     "sass-loader": "^16.0.5",
     "terser-webpack-plugin": "^5.3.14",
     "typescript": "^5.9.2",
