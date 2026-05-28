@@ -33,7 +33,7 @@
     "terser-webpack-plugin": "^5.6.0",
     "typescript": "^5.9.3",
     "webpack": "^5.107.2",
-    "webpack-cli": "^7.0.2"
+    "webpack-cli": "^7.0.3"
   },
   "dependencies": {
     "@sweetalert2/themes": "^5.0.15",
