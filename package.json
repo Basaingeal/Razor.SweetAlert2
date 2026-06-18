@@ -16,7 +16,7 @@
     "@babel/cli": "^8.0.1",
     "@babel/core": "^8.0.0",
     "@babel/preset-env": "^8.0.0",
-    "@babel/preset-typescript": "^8.0.0",
+    "@babel/preset-typescript": "^8.0.1",
     "@types/blazor__javascript-interop": "^3.1.7",
     "@types/node": "^25.9.3",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
